@@ -1,0 +1,148 @@
+
+/* Pub */
+
+.Pub {
+	background-color: black;
+	color: #000;
+	position: relative;
+	width: 100%;
+	z-index: 0;
+}
+
+/* Pub background */
+
+.Pub-background {
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	height: 100%;
+	/*filter: alpha(Opacity=40);*/
+	/*opacity: 0.4;*/
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 100%;
+	z-index: -1;
+}
+
+.Pub--assis .Pub-background {
+	background: url(../img/assis.png) no-repeat center center;
+}
+
+.Pub--ourinhos .Pub-background {
+	background: url(../img/ourinhos.png) no-repeat center center;
+}
+
+.Pub--paraguacu .Pub-background {
+	background: url(../img/paraguacu.png) no-repeat center center;
+}
+
+.Pub--assis .Pub-background,
+.Pub--ourinhos .Pub-background,
+.Pub--paraguacu .Pub-background {
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.Pub-inner {
+	-webkit-align-items: center;
+	align-items: center;
+	border-bottom: 1px solid #d3d3d3;
+	background-color: #fff;
+	background-color: rgba(255, 255, 255, 0.8);
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-justify-content: space-around;
+	justify-content: space-around;
+	-webkit-flex-flow: row;
+	flex-flow: row;
+	padding: .75em 0;
+	-webkit-transition: background-color .35s ease;
+	-moz-transition: background-color .35s ease;
+	-ms-transition: background-color .35s ease;
+	-o-transition: background-color .35s ease;
+	transition: background-color .35s ease;
+	z-index: 0;
+}
+
+.Pub-inner:hover,
+.Pub-inner:focus {
+	background-color: rgba(255, 255, 255, 0.8);
+}
+
+.Pub-inner:hover .Button--dark.Button--fill,
+.Pub-inner:focus .Button--dark.Button--fill {
+	background-color: #323232;
+	color: #e0e0e0 !important;
+}
+
+.Pub-logo {
+	flex: 1;
+	text-align: center;
+	width: 100%;
+}
+
+.Pub-info {
+	flex: 1;
+	text-align: center;
+}
+
+.Pub-info p {
+	margin-bottom: .5em;
+	padding: 0 1em;
+}
+
+.Pub-logo svg {
+	width: 100%;
+	max-width: 8em;
+}
+
+.Pub-address {
+	color: #161616;
+	font-size: .925em;
+	font-weight: 600;
+	text-transform: uppercase;
+}
+
+.Pub-inner:hover .Pub-address,
+.Pub-inner:focus .Pub-address {
+	color: #000;
+}
+
+.Pub-contact {
+	font-size: .9em;
+}
+
+@media (min-width: 768px) {
+
+	.Pub-inner {
+		background-color: rgba(255, 255, 255, 0.6);
+		-webkit-flex-flow: column;
+		flex-flow: column;
+		padding: 1em 0;
+	}
+
+	.Pub-logo svg {
+		max-width: 12em;
+	}
+
+	.Pub-info {
+		margin-bottom: 1em;
+	}
+
+	.Pub-address {
+		font-size: 1em;
+	}
+
+	.Pub-contact {
+		font-size: .925em;
+	}
+
+}
+

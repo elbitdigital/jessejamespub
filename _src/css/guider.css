@@ -1,0 +1,114 @@
+
+/* Guider */
+
+.Guider {
+	background-color: white;
+	bottom: 0;
+	/*-webkit-box-shadow: 0 3px 6px 0 rgba(0,0,0,.3);*/
+	/*-moz-box-shadow: 0 3px 6px 0 rgba(0,0,0,.3);*/
+	/*box-shadow: 0 3px 6px 0 rgba(0,0,0,.3);*/
+	color: black;
+	left: 0;
+	padding: 1em 0;
+	position: absolute;
+	right: 0;
+	text-align: center;
+	width: 100%;
+	z-index: 5;
+}
+
+#to-franchises {
+	flex: 100%;
+	width:100%;
+}
+
+h1.Guider-heading {
+	display: inline-block;
+	font-size: 1.25em;
+}
+
+.Guider-arrow {
+	display: inline-block;
+	margin: 0 .5em;
+}
+
+.Guider-arrow svg {
+	/*height: 100%;*/
+	width: .75em;
+}
+
+.Guider:hover .Guider-arrow,
+#to-franchises:hover .Guider-arrow,
+#to-franchises:focus .Guider-arrow {
+	-webkit-animation: jump .8s linear 0s infinite normal;
+	animation: jump .8s linear 0s infinite normal;
+}
+
+@-webkit-keyframes jump {
+	0% {
+		-webkit-transform: translateY(0);
+		transform: translateY(0);
+	}
+	25% {
+		-webkit-transform: translateY(-10%);
+		transform: translateY(-10%);
+	}
+	75% {
+		-webkit-transform: translateY(10%);
+		transform: translateY(10%);
+	}
+	100% {
+		-webkit-transform: translateY(0);
+		transform: translateY(0);
+	}
+}
+
+@keyframes jump {
+	0% {
+		transform: translateY(0);
+	}
+	25% {
+		transform: translateY(-10%);
+	}
+	75% {
+		transform: translateY(10%);
+	}
+	100% {
+		transform: translateY(0);
+	}
+}
+
+/* Guider Arrow as ASCII symbol */
+
+/* On both sides of the text */
+/*.Guider-heading:before,*/
+/*.Guider-heading:after {*/
+	/*display: inline-block;*/
+	/*content: "\00bb";*/
+	/*transform: rotate(90deg);*/
+	/*margin: 0 .5em;*/
+	/*font-family: "Roboto", sans-serif !important;*/
+/*}*/
+
+/* Below text */
+/*.Guider:after {*/
+	/*display: inline-block;*/
+	/*content: "\00bb";*/
+	/*transform: rotate(90deg);*/
+	/*margin: 0 .5em;*/
+	/*font-family: "Roboto", sans-serif !important;*/
+	/*font-size: 1.75em;*/
+	/*font-weight: bolder;*/
+/*}*/
+
+@media (min-width: 40em) {
+
+	h1.Guider-heading {
+		font-size: 1.5em;
+	}
+
+	.Guider-heading:before,
+	.Guider-heading:after {
+		margin: 0 1em;
+	}
+}

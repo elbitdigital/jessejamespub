@@ -1,0 +1,28 @@
+
+/* Intro Lead */
+
+.IntroLead {
+	width: 100%;
+	padding: 1em 1em 2em;
+	background-color: #262626;
+	background-color: rgba(76,76,76,.5);
+}
+
+@media (min-width: 48em) {
+
+	.IntroLead {
+		background-color: #262626;
+		background-color: rgba(76,76,76,.5);
+		color: white;
+		border-radius: 2px;
+		padding: 1em 1.5em 1.5em;
+		position: absolute;
+		max-width: 22em;
+		right: 1.5em;
+		bottom: 3em;
+		/*margin: 0 auto;*/
+		/*display: inline-block;*/
+		/*left: 100%;*/
+	}
+
+}

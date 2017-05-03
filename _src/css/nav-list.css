@@ -1,0 +1,36 @@
+
+/* Nav List */
+
+.NavList {
+	list-style: none;
+	margin-bottom: 1em;
+	padding-left: 0;
+}
+
+.NavList-item {
+	display: inline-block;
+}
+
+.NavList-item a,
+.NavList-item p {
+	font-size: 1em;
+	font-weight: 700 !important;
+}
+
+.NavList-franq .NavList-item a,
+.NavList-franq .NavList-item p {
+	font-size: .75em;
+}
+
+.NavList-franq .NavList-item a {
+	border-width: 2px;
+}
+
+@media (min-width: 768px) {
+
+	.NavList-item a,
+	.NavList-item p {
+		letter-spacing: 1px;
+	}
+
+}

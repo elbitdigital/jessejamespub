@@ -1,4 +1,4 @@
-const _PROJECTNAME = 'base';
+const _PROJECTNAME = 'jessejamespub';
 
 var gulp = require('gulp'),
 	watch = require('gulp-watch'),
@@ -164,7 +164,12 @@ gulp.task('serve', function () {
 			baseDir: "./public/",
 			index: "index.html",
 			routes: {
-				"/home": "./index.html"
+				"/home": "./public/index.html",
+				"/fix": "./public/fixed.html",
+				"/assis": "./public/assis.html",
+				"/ourinhos": "./public/ourinhos.html",
+				"/paraguacu": "./public/paraguacu.html",
+				"/seja-franqueado": "./public/franqueado.html"
 			}
 		}
 	});

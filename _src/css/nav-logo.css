@@ -1,0 +1,39 @@
+
+/* Navbar Logo */
+
+.NavbarLogo {
+	display: inline-block;
+	margin-bottom: .5em;
+}
+
+.NavbarLogo:active {
+	outline: none;
+	outline: 0;
+}
+
+.NavbarLogo:hover,
+.NavbarLogo:focus {
+	text-decoration: none;
+}
+
+.NavbarLogo img {
+	display: inline-block;
+	max-width: 13em;
+	width: 100%;
+}
+
+@media (min-width: 768px) {
+
+	.NavbarLogo img {
+		max-width: 18em;
+	}
+
+}
+
+@media (max-height: 320px) {
+
+	.NavbarLogo img {
+		max-width: 10em;
+	}
+
+}

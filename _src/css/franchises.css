@@ -1,0 +1,66 @@
+
+/* Locations */
+
+.Franchises {
+	-webkit-align-items: center;
+	align-items: center;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-flow: column;
+	flex-flow: column;
+	left: 0;
+	position: absolute;
+	top: 100%;
+	width: 100%;
+}
+
+@media (min-width: 768px) {
+
+	.Franchises {
+		-webkit-flex-flow: row wrap;
+		flex-flow: row wrap;
+	}
+
+	.Franchises .Pub--assis,
+	.Franchises .Pub--ourinhos,
+	.Franchises .Pub--paraguacu {
+		flex: 1;
+	}
+	.Franchises .Pub--assis {
+		order: 2; /* centralizado */
+	}
+
+	.Franchises .Pub--ourinhos {
+		order: 1;
+	}
+
+	.Franchises .Pub--paraguacu {
+		order: 3;
+	}
+
+}
+
+@media (min-height: 1000px) {
+
+	/* Display full layout on screens higher than 1000px (ipad) */
+
+	.Intro {
+		height: auto !important;
+		padding-top: 15em;
+	}
+
+	.Guider {
+		position: relative !important;
+	}
+
+	.Franchises {
+		left: 0;
+		position: relative;
+		top: 0;
+		width: 100%;
+	}
+
+}

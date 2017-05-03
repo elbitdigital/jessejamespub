@@ -4,28 +4,10 @@
 <title>Jesse James Pub</title>
 <meta name="viewport"
       content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
-<link rel="icon" type="image/png" href="icon.png" />
-
-<meta name="description" content="O melhor pub sertanejo do interior paulista">
-<meta name="image" content="https://jessejamespub.com.br/dist/img/meta.png">
-
-<meta itemprop="name" content="Jesse James Pub">
-<meta itemprop="description" content="O melhor pub sertanejo do interior paulista">
-<meta itemprop="image" content="https://jessejamespub.com.br/dist/img/meta.png">
-
-<meta name="og:title" content="Jesse James Pub">
-<meta name="og:description" content="O melhor pub sertanejo do interior paulista">
-<meta name="og:image" content="https://jessejamespub.com.br/dist/img/meta.png">
-<meta name="og:url" content="https://jessejamespub.com.br">
-<meta name="og:site_name" content="Jesse James Pub">
-<meta name="og:locale" content="pt_BR">
-<meta name="fb:app_id" content="1586666258259861">
-<meta name="og:type" content="website">
-
 <script src="dist/js/villa.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700" rel="stylesheet">
 <link rel="stylesheet" href="dist/css/villa.min.css"/>
-<link rel="stylesheet" href="dist/css/jessejamespub.min.css"/>
+<link rel="stylesheet" href="dist/css/jessejamespub.css"/>
 <!--[if lt IE 9]>
 <link rel="stylesheet" type="text/css" href="dist/css/material-colors.css"/>
 <link rel="stylesheet" type="text/css" href="dist/css/villa-cross.min.css"/>
@@ -36,26 +18,20 @@
 
 <body class="josefin">
 
-<nav class="Navbar Navbar-sticky-top" role="navigation">
+<nav class="Navbar Navbar--fixed-top" role="navigation">
 
 	<div class="Navbar-background"></div>
 
-	<div class="Navbar-inner container">
+	<div class="Navbar-inner">
 
 		<a class="NavbarLogo" href=".">
-
-			<img src="dist/img/logo-pub-metalico.png" alt="Logo Pub"/>
-
+			<img src="dist/img/logo-pub-metalico-trimmed.png" alt="Logo Pub"/>
 		</a>
 
 		<ul class="NavList">
-
 			<li class="NavList-item">
-
 				<a href="/seja-franqueado" class="Button">Seja um franqueado</a>
-
 			</li>
-
 		</ul>
 
 	</div>
@@ -63,24 +39,17 @@
 </nav>
 
 <header class="Intro container">
-
 	<div class="Intro-background"></div>
-
 	<div class="Intro-inner">
-
 		<h1 class="Intro-heading">Bem-vindo</h1>
 		<p class="Intro-text">ao site dos melhores pubs do <br>INTERIOR PAULISTA</p>
-
 	</div>
-
 </header>
 
 <a class="anchor" id="to-franchises" title="Visualizar todos os pubs" href=".">
-
 	<div class="Guider">
 
 		<div class="Guider-arrow">
-
 			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 215 215">
 				<path fill="none" d="M-1 -1H216V216H-1z"/>
 				<path d="M-10 51.4996H140V81.4996H-10z" transform="rotate(45 65 66.5)"/>
@@ -88,13 +57,11 @@
 				<path d="M-10 133.5003H140V163.5003H-10z" transform="rotate(45 65 148.5)"/>
 				<path d="M75 133.5003H225V163.5003H75z" transform="rotate(135 150 148.5)"/>
 			</svg>
-
 		</div>
 
 		<h1 class="Guider-heading">Encontre o Pub mais próximo</h1>
 
 		<div class="Guider-arrow">
-
 			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 215 215">
 				<path fill="none" d="M-1 -1H216V216H-1z"/>
 				<path d="M-10 51.4996H140V81.4996H-10z" transform="rotate(45 65 66.5)"/>
@@ -102,11 +69,9 @@
 				<path d="M-10 133.5003H140V163.5003H-10z" transform="rotate(45 65 148.5)"/>
 				<path d="M75 133.5003H225V163.5003H75z" transform="rotate(135 150 148.5)"/>
 			</svg>
-
 		</div>
 
 	</div>
-
 </a>
 
 <div id="franchises" class="Franchises roboto">
@@ -170,9 +135,7 @@
 	</div>
 
 	<div class="Pub Pub--paraguacu">
-
 		<div class="Pub-background"></div>
-
 		<a class="Pub-inner" href="/paraguacu">
 
 			<div class="Pub-logo">
@@ -201,9 +164,23 @@
 
 </div>
 
-<script src="dist/js/jessejamespub.min.js"></script>
+<script src="dist/js/jessejamespub.js"></script>
 
 <script>
+
+	//	var franchisesEl = document.getElementById('franchises');
+	//
+	//	var franchisesAn = new Anchor(franchisesEl, {
+	//		duration: 300,
+	//		easing: 'easeInQuad'
+	//	});
+	//
+	//	var franchisesTg = document.getElementById('to-franchises');
+	//
+	//	franchisesTg.addEventListener('click', function (e) {
+	//		e.preventDefault();
+	//		franchisesAn.push();
+	//	});
 
 	var franchisesAn = new Anchor(document.getElementById('franchises'), {
 		duration: 300,
