@@ -246,18 +246,19 @@ img::-moz-selection {
     flex: 1;
   }
 
-  .Franchises .Pub--assis {
-    order: 2;
-    /* centralizado */
-  }
+  /* centraliza assis (default => asc) */
 
-  .Franchises .Pub--ourinhos {
-    order: 1;
-  }
-
-  .Franchises .Pub--paraguacu {
-    order: 3;
-  }
+  /*
+	.Franchises .Pub--assis {
+		order: 2;
+	}
+	.Franchises .Pub--ourinhos {
+		order: 1;
+	}
+	.Franchises .Pub--paraguacu {
+		order: 3;
+	}
+	*/
 }
 
 @media (min-height: 1000px) {
