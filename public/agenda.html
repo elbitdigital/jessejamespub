@@ -6,6 +6,7 @@
       content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
 <script src="dist/js/villa.min.js"></script>
 <link rel="stylesheet" href="dist/css/villa.min.css"/>
+<link rel="stylesheet" href="dist/css/jessejamespub.css">
 <!--[if lt IE 9]>
 <link rel="stylesheet" type="text/css" href="dist/css/material-colors.css"/>
 <link rel="stylesheet" type="text/css" href="dist/css/villa-cross.min.css"/>
@@ -40,8 +41,9 @@
         padding: 0 1em;
     }
 
-    .Event-content {
-        background-color: rgba(0,0,0,1);
+    /* content */
+    .EventContent {
+        background-color: rgba(0, 0, 0, 1);
         -webkit-align-items: center;
         align-items: center;
         display: -webkit-box;
@@ -51,11 +53,13 @@
         display: flex;
         -webkit-flex-flow: row;
         flex-flow: row;
-        padding: 1em;
+        padding: 1em 2pt;
+        width: 100%;
     }
 
-    .Event-content span {
-        color: #ffffff;
+    /* space */
+    .EventContent-space {
+        border-right: solid 2px #ffffff;
         -webkit-align-items: center;
         align-items: center;
         display: -webkit-box;
@@ -64,52 +68,115 @@
         display: -webkit-flex;
         display: flex;
         height: 3rem;
+        flex: 1;
+        -webkit-justify-content: center;
+        justify-content: center;
+    }
+
+    .EventContent-space:last-of-type {
+        border-right: 0;
+    }
+
+    /* space span */
+    .EventContent-space > span {
+        color: #ffffff;
+        -webkit-align-items: center;
+        align-items: center;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
         -webkit-justify-content: center;
         justify-content: center;
         margin-bottom: 0;
-        padding: 0 1rem;
+        padding: 0 .5rem;
         text-transform: uppercase;
         text-align: center;
         width: 100%;
     }
 
-    .Event-content span.Event-date {
-        border-right: solid 2px #ffffff;
-        font-size: .75em;
-        font-weight: 900;
-        width: 6rem;
+    /* span */
+    .EventContent-date {
+        -webkit-align-items: center;
+        align-items: center;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-flex-flow: column;
+        flex-flow: column;
+        flex: 3;
+        -webkit-justify-content: center;
+        justify-content: center;
     }
 
-    .Event-content span.Event-title {
-        border-right: solid 2px #ffffff;
+    .EventContent-date span.monthDay {
+        font-size: .75em;
+        font-weight: 400;
+    }
+
+    .EventContent-date span.weekDay {
+        color: #b388ff;
+        font-size: 1.125em;
+        font-weight: 900;
+    }
+
+    /* title */
+    .EventContent-title {
+        flex: 6;
+    }
+
+    .EventContent-title span {
         font-size: 1em;
         font-weight: 900;
-        width: 12rem;
     }
 
-    .Event-content span.Event-weekDay {
-        display: none;
-        font-size: 2.25em;
-        font-weight: 900;
+    /* link list */
+    .EventContent-linkList {
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        flex: 4;
     }
 
-    .Event-content a.Event-link {
+    .EventContent-linkList a {
+        -webkit-align-items: center;
+        align-items: center;
         border: solid 3px #ffffff;
         border-radius: 6px;
         color: #ffffff;
-        margin-left: 1em;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
         font-weight: 900;
-        padding: .375rem .75rem;
+        padding: .375em;
         -webkit-transition: all .4s;
         -moz-transition: all .4s;
         -ms-transition: all .4s;
         -o-transition: all .4s;
         transition: all .4s;
+        margin-right: 2pt;
     }
 
-    .Event-content a.Event-link:hover {
+    .EventContent-linkList a:hover {
         color: #2962ff;
         background-color: #ffffff;
+    }
+
+    .EventContent-linkList a:last-of-type {
+        margin-right: 0;
+    }
+
+    .EventContent-linkList .eventShowMoreButton {
+        border-radius: 50%;
+        border-color: transparent;
+        padding: .375em 4pt;
     }
 
     .Event-headerImage {
@@ -206,44 +273,57 @@
 
     // CONTENT
     var contentElement = document.createElement('div');
-    contentElement.className = 'Event-content';
+    contentElement.className = 'EventContent';
     eventElement.appendChild(contentElement);
 
     // DATA DO EVENTO
+    var dateElement = document.createElement('div');
+    dateElement.className = 'EventContent-date EventContent-space';
+    contentElement.appendChild(dateElement);
+
+    // DIA DA SEMANA
     var weekDayElement = document.createElement('span');
-    weekDayElement.className = 'Event-weekDay';
+    weekDayElement.className = 'weekDay';
     eventRef.child('weekDay').on('value', function (snap) {
 
       weekDayElement.innerText = snap.val();
 
     });
-    contentElement.appendChild(weekDayElement);
+    dateElement.appendChild(weekDayElement);
 
-    // DATA DO EVENTO
-    var dateElement = document.createElement('span');
-    dateElement.className = 'Event-date';
+    // DIA DO MÊS
+    var monthDayElement = document.createElement('span');
+    monthDayElement.className = 'monthDay';
     eventRef.child('date').on('value', function (snap) {
 
-      dateElement.innerText = snap.val();
+      monthDayElement.innerText = snap.val();
 
     });
-    contentElement.appendChild(dateElement);
+    dateElement.appendChild(monthDayElement);
 
     // TITULO DO EVENTO
-    var titleElement = document.createElement('span');
-    titleElement.className = 'Event-title';
+    var titleElement = document.createElement('div');
+    titleElement.className = 'EventContent-title EventContent-space';
     eventRef.child('title').on('value', function (snap) {
 
-      titleElement.innerText = snap.val();
+      titleElement.innerHTML = '<span>' + snap.val() + '</span>';
 
     });
     contentElement.appendChild(titleElement);
 
-    var facebookEventLinkElement = document.createElement('a');
-    facebookEventLinkElement.className = 'Event-link';
-    facebookEventLinkElement.href = '#';
-    facebookEventLinkElement.innerText = 'F';
-    contentElement.appendChild(facebookEventLinkElement);
+    var linkList = document.createElement('div');
+    linkList.className = 'EventContent-linkList EventContent-space';
+    contentElement.appendChild(linkList);
+
+    var facebookLink = document.createElement('a');
+    facebookLink.className = 'facebookLink';
+    facebookLink.innerHTML = '<span class="icon-facebook"></span>';
+    linkList.appendChild(facebookLink);
+
+    var eventShowMoreButton = document.createElement('a');
+    eventShowMoreButton.className = 'eventShowMoreButton';
+    eventShowMoreButton.innerHTML = '<span class="icon-down-dir"></span>';
+    linkList.appendChild(eventShowMoreButton);
 
   });
 
