@@ -1,0 +1,40 @@
+
+/* Header Upper */
+
+.HeaderUpper {
+	/*min-height: 6em;*/
+	position: relative;
+	width: 100%;
+}
+
+/* HeaderUpper background */
+
+.HeaderUpper-background {
+	background-color: #7F1C1E;
+	height: 100%;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 100%;
+	z-index: -1;
+}
+
+/* HeaderUpper inner */
+
+.HeaderUpper-inner {
+	-webkit-align-items: center;
+	align-items: center;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-justify-content: space-around;
+	justify-content: space-around;
+	height: 100%;
+	padding: 1em .5em;
+	position: relative;
+	text-align: center;
+	width: 100%;
+	z-index: 1;
+}

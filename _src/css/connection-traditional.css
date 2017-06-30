@@ -1,0 +1,17 @@
+
+/* Connection traditional */
+
+.ConnectionTraditional {
+	flex: 1;
+}
+
+.ConnectionTraditional-email,
+.ConnectionTraditional-phone {
+	font-size: .875em;
+	font-weight: 800;
+	margin-bottom: .25em;
+}
+
+.ConnectionTraditional-email {
+	display: none;
+}

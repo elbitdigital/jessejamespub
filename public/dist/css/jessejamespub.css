@@ -216,6 +216,50 @@ img::-moz-selection {
     /*line-height: 1.3;*/
   }
 }
+/* Connection social */
+
+.ConnectionSocial {
+  /*flex: 1;*/
+}
+
+.ConnectionSocial-icon {
+  font-size: 1.5em;
+  padding: 0;
+  margin: 0 .25em;
+}
+/* Connection traditional */
+
+.ConnectionTraditional {
+  flex: 1;
+}
+
+.ConnectionTraditional-email,
+.ConnectionTraditional-phone {
+  font-size: .875em;
+  font-weight: 800;
+  margin-bottom: .25em;
+}
+
+.ConnectionTraditional-email {
+  display: none;
+}
+/* Franchise nav list */
+
+.FranchiseNavList {
+  width: 100%;
+  text-align: center;
+}
+
+.FranchiseNavList-item {
+  display: inline-block;
+  margin: .25em;
+}
+
+.FranchiseNavList-item a {
+  text-transform: uppercase;
+  font-weight: 900;
+  font-size: .875em;
+}
 /* Locations */
 
 .Franchises {
@@ -589,6 +633,80 @@ h1.Guider-heading {
   .Guider-heading:after {
     margin: 0 1em;
   }
+}
+/* Header Lower */
+
+.HeaderLower {
+  /*min-height: 3em;*/
+  position: relative;
+  width: 100%;
+}
+
+/* HeaderLower background */
+
+.HeaderLower-background {
+  background-color: #3E010A;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+  z-index: -1;
+}
+
+/* HeaderLower inner */
+
+.HeaderLower-inner {
+  padding: .5em;
+  position: relative;
+  text-align: center;
+  width: 100%;
+  z-index: 1;
+}
+/* Header Upper */
+
+.HeaderUpper {
+  /*min-height: 6em;*/
+  position: relative;
+  width: 100%;
+}
+
+/* HeaderUpper background */
+
+.HeaderUpper-background {
+  background-color: #7F1C1E;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+  z-index: -1;
+}
+
+/* HeaderUpper inner */
+
+.HeaderUpper-inner {
+  -webkit-align-items: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-around;
+  justify-content: space-around;
+  height: 100%;
+  padding: 1em .5em;
+  position: relative;
+  text-align: center;
+  width: 100%;
+  z-index: 1;
+}
+/* Header */
+
+.Header {
+  position: relative;
+  width: 100%;
 }
 /* Intro Lead */
 
@@ -1375,6 +1493,27 @@ h1.Guider-heading {
 }
 
 /* '' */
+/* Logo franchise */
+
+.LogoFranchise {
+  position: relative;
+}
+
+
+
+.LogoFranchise.LogoFranchise--full {
+  display: none;
+}
+
+.LogoFranchise.LogoFranchise--compact .LogoFranchise-img {
+  max-height: 3.5em;
+  width: auto;
+}
+
+.LogoFranchise.LogoFranchise--full {
+  max-height: 3.5em;
+  width: auto;
+}
 /* Logo */
 
 .logo-pub {

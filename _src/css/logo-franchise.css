@@ -1,0 +1,24 @@
+
+/* Logo franchise */
+
+.LogoFranchise {
+	position: relative;
+}
+
+.LogoFranchise.LogoFranchise--compact {
+
+}
+
+.LogoFranchise.LogoFranchise--full {
+	display: none;
+}
+
+.LogoFranchise.LogoFranchise--compact .LogoFranchise-img {
+	max-height: 3.5em;
+	width: auto;
+}
+
+.LogoFranchise.LogoFranchise--full {
+	max-height: 3.5em;
+	width: auto;
+}

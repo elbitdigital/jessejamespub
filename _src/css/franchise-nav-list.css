@@ -1,0 +1,18 @@
+
+/* Franchise nav list */
+
+.FranchiseNavList {
+	width: 100%;
+	text-align: center;
+}
+
+.FranchiseNavList-item {
+	display: inline-block;
+	margin: .25em;
+}
+
+.FranchiseNavList-item a {
+	text-transform: uppercase;
+	font-weight: 900;
+	font-size: .875em;
+}
