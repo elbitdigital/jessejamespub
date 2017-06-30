@@ -161,7 +161,7 @@
         -ms-transition: all .4s;
         -o-transition: all .4s;
         transition: all .4s;
-        margin-right: 2pt;
+        margin-right: .375rem;
     }
 
     .EventContent-linkList a:hover {
@@ -176,7 +176,7 @@
     .EventContent-linkList .eventShowMoreButton {
         border-radius: 50%;
         border-color: transparent;
-        padding: .375em 4pt;
+        padding: 3pt 2pt;
     }
 
     .Event-headerImage {
@@ -249,81 +249,90 @@
 
 <script>
 
-  eventsRef.on('child_added', function (snap) {
+  eventsRef.limitToFirst(2).on('child_added', function (snap) {
 
     var eventData = snap.val();
     var eventReferenceKey = snap.key;
     var eventRef = eventsRef.child(eventReferenceKey);
 
-    // O EVENTO
-    var eventElement = document.createElement('div');
-    eventElement.className = 'Event';
-    eventElement.dataset.eventReferenceKey = eventReferenceKey;
-    eventListElement.appendChild(eventElement);
+    if (eventData.active) {
 
-    // HEADER (IMAGEM)
-    var headerImageElement = document.createElement('div');
-    headerImageElement.className = 'Event-headerImage';
-    eventRef.child('headerImageURL').on('value', function (snap) {
+      // O EVENTO
+      var eventElement = document.createElement('div');
+      eventElement.className = 'Event';
+      eventElement.dataset.eventReferenceKey = eventReferenceKey;
+      eventListElement.appendChild(eventElement);
 
-      headerImageElement.style.backgroundImage = 'url("' + snap.val() + '")';
+      // HEADER (IMAGEM)
+      var headerImageElement = document.createElement('div');
+      headerImageElement.className = 'Event-headerImage';
+      eventRef.child('headerImageURL').on('value', function (snap) {
 
-    });
-    eventElement.appendChild(headerImageElement);
+        headerImageElement.style.backgroundImage = 'url("' + snap.val() + '")';
 
-    // CONTENT
-    var contentElement = document.createElement('div');
-    contentElement.className = 'EventContent';
-    eventElement.appendChild(contentElement);
+      });
+      eventElement.appendChild(headerImageElement);
 
-    // DATA DO EVENTO
-    var dateElement = document.createElement('div');
-    dateElement.className = 'EventContent-date EventContent-space';
-    contentElement.appendChild(dateElement);
+      // CONTENT
+      var contentElement = document.createElement('div');
+      contentElement.className = 'EventContent';
+      eventElement.appendChild(contentElement);
 
-    // DIA DA SEMANA
-    var weekDayElement = document.createElement('span');
-    weekDayElement.className = 'weekDay';
-    eventRef.child('weekDay').on('value', function (snap) {
+      // DATA DO EVENTO
+      var dateElement = document.createElement('div');
+      dateElement.className = 'EventContent-date EventContent-space';
+      contentElement.appendChild(dateElement);
 
-      weekDayElement.innerText = snap.val();
+      // DIA DA SEMANA
+      var weekDayElement = document.createElement('span');
+      weekDayElement.className = 'weekDay';
+      eventRef.child('weekDay').on('value', function (snap) {
 
-    });
-    dateElement.appendChild(weekDayElement);
+        weekDayElement.innerText = snap.val();
 
-    // DIA DO MÊS
-    var monthDayElement = document.createElement('span');
-    monthDayElement.className = 'monthDay';
-    eventRef.child('date').on('value', function (snap) {
+      });
+      dateElement.appendChild(weekDayElement);
 
-      monthDayElement.innerText = snap.val();
+      // DIA DO MÊS
+      var monthDayElement = document.createElement('span');
+      monthDayElement.className = 'monthDay';
+      eventRef.child('date').on('value', function (snap) {
 
-    });
-    dateElement.appendChild(monthDayElement);
+        monthDayElement.innerText = snap.val();
 
-    // TITULO DO EVENTO
-    var titleElement = document.createElement('div');
-    titleElement.className = 'EventContent-title EventContent-space';
-    eventRef.child('title').on('value', function (snap) {
+      });
+      dateElement.appendChild(monthDayElement);
 
-      titleElement.innerHTML = '<span>' + snap.val() + '</span>';
+      // TITULO DO EVENTO
+      var titleElement = document.createElement('div');
+      titleElement.className = 'EventContent-title EventContent-space';
+      eventRef.child('title').on('value', function (snap) {
 
-    });
-    contentElement.appendChild(titleElement);
+        titleElement.innerHTML = '<span>' + snap.val() + '</span>';
 
-    var linkList = document.createElement('div');
-    linkList.className = 'EventContent-linkList EventContent-space';
-    contentElement.appendChild(linkList);
+      });
+      contentElement.appendChild(titleElement);
 
-    var facebookLink = document.createElement('a');
-    facebookLink.className = 'facebookLink';
-    facebookLink.innerHTML = '<span class="icon-facebook"></span>';
-    linkList.appendChild(facebookLink);
+      var linkList = document.createElement('div');
+      linkList.className = 'EventContent-linkList EventContent-space';
+      contentElement.appendChild(linkList);
 
-    var eventShowMoreButton = document.createElement('a');
-    eventShowMoreButton.className = 'eventShowMoreButton';
-    eventShowMoreButton.innerHTML = '<span class="icon-down-dir"></span>';
-    linkList.appendChild(eventShowMoreButton);
+      var facebookLink = document.createElement('a');
+      facebookLink.className = 'facebookLink';
+      facebookLink.innerHTML = '<span class="icon-facebook"></span>';
+      eventRef.child('facebookEventURL').on('value', function (snap) {
+
+        facebookLink.href = snap.val();
+
+      });
+      linkList.appendChild(facebookLink);
+
+      var eventShowMoreButton = document.createElement('a');
+      eventShowMoreButton.className = 'eventShowMoreButton';
+      eventShowMoreButton.innerHTML = '<span class="icon-down-dir"></span>';
+      linkList.appendChild(eventShowMoreButton);
+
+    }
 
   });
 
