@@ -38,7 +38,7 @@
     }
 
     .Event input {
-        border: none;
+        border: solid 1px #ffffff;
         color: #ffffff;
         background: none;
         text-transform: uppercase;
@@ -65,6 +65,11 @@
         font-size: 2.25em;
         font-weight: 900;
         margin-bottom: .5rem;
+    }
+
+    .Event input.Event-facebookEventURL {
+        font-size: 1em;
+        text-transform: none;
     }
 
     .Event-headerImage {
@@ -177,7 +182,8 @@
       eventsRef.push({
         title: '',
         date: '',
-        headerImageURL: ''
+        headerImageURL: '',
+        facebookEventURL: ''
       });
 
     }
@@ -200,6 +206,7 @@
 
     // ARQUIVO DA IMAGEM
     var imageFileInputElement = document.createElement('input');
+    imageFileInputElement.type = 'text';
     imageFileInputElement.type = 'file';
     imageFileInputElement.style.visibility = 'hidden';
     imageFileInputElement.addEventListener('change', function () {
@@ -269,8 +276,9 @@
     });
     eventElement.appendChild(imageElement);
 
-    // DATA DO EVENTO
+    // DATA DO EVENTO (dia da semana)
     var weekDayElement = document.createElement('input');
+    weekDayElement.type = 'text';
     weekDayElement.className = 'Event-weekDay';
     weekDayElement.placeholder = 'dia da semana';
     weekDayElement.addEventListener('input', function () {
@@ -286,8 +294,9 @@
     });
     eventElement.appendChild(weekDayElement);
 
-    // DATA DO EVENTO
+    // DATA DO EVENTO (dia do mês)
     var dateElement = document.createElement('input');
+    dateElement.type = 'text';
     dateElement.className = 'Event-date';
     dateElement.placeholder = 'Data do evento (dia e mês)';
     dateElement.addEventListener('input', function () {
@@ -305,6 +314,7 @@
 
     // TITULO DO EVENTO
     var titleElement = document.createElement('input');
+    titleElement.type = 'text';
     titleElement.className = 'Event-title';
     titleElement.placeholder = 'Titulo do evento';
     titleElement.addEventListener('input', function () {
@@ -319,6 +329,41 @@
 
     });
     eventElement.appendChild(titleElement);
+
+    // TITULO DO EVENTO
+    var facebookEventURL = document.createElement('input');
+    facebookEventURL.type = 'text';
+    facebookEventURL.className = 'Event-facebookEventURL';
+    facebookEventURL.placeholder = 'URL do evento (facebook)';
+    facebookEventURL.addEventListener('input', function () {
+
+      eventRef.child('facebookEventURL').set(this.value);
+
+    });
+    eventRef.child('facebookEventURL').on('value', function (snap) {
+
+      if (facebookEventURL.value !== snap.val())
+        facebookEventURL.value = snap.val();
+
+    });
+    eventElement.appendChild(facebookEventURL);
+
+    // TITULO DO EVENTO
+    var activeStateSwitcherElement = document.createElement('input');
+    activeStateSwitcherElement.type = 'checkbox';
+    activeStateSwitcherElement.className = 'Event-facebookEventURL';
+    activeStateSwitcherElement.placeholder = 'URL do evento (facebook)';
+    activeStateSwitcherElement.addEventListener('change', function () {
+
+      eventRef.child('active').set(this.checked);
+
+    });
+    eventRef.child('active').on('value', function (snap) {
+
+        activeStateSwitcherElement.checked = snap.val();
+
+    });
+    eventElement.appendChild(activeStateSwitcherElement);
 
   });
 
