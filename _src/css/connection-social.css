@@ -10,3 +10,15 @@
 	padding: 0;
 	margin: 0 .25em;
 }
+
+@media (min-width: 48em) {
+
+	.ConnectionSocial-icon--mail{
+		display: none;
+	}
+
+	.ConnectionSocial-icon {
+		font-size: 2em;
+	}
+
+}

@@ -16,3 +16,11 @@
 	font-weight: 900;
 	font-size: .875em;
 }
+
+@media (min-width: 48em) {
+
+	.FranchiseNavList-item {
+		margin: .25em .5em;
+	}
+
+}

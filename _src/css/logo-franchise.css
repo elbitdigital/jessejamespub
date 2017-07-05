@@ -18,7 +18,23 @@
 	width: auto;
 }
 
-.LogoFranchise.LogoFranchise--full {
+.LogoFranchise.LogoFranchise--full .LogoFranchise-img {
 	max-height: 3.5em;
 	width: auto;
+}
+
+@media (min-width: 48em) {
+
+	.LogoFranchise.LogoFranchise--compact {
+		display: none;
+	}
+
+	.LogoFranchise.LogoFranchise--full {
+		display: block;
+	}
+
+	.LogoFranchise.LogoFranchise--full .LogoFranchise-img {
+		max-height: 4.5em;
+	}
+
 }

@@ -15,3 +15,21 @@
 .ConnectionTraditional-email {
 	display: none;
 }
+
+@media (min-width: 48em) {
+
+	.ConnectionTraditional-email {
+		display: block;
+	}
+
+	.social-icon.icon-mail-alt {
+		display: none;
+	}
+
+	.ConnectionTraditional-email,
+	.ConnectionTraditional-phone {
+		font-size: 1em;
+		font-weight: 700;
+	}
+
+}
