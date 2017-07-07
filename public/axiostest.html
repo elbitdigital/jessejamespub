@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+
+<h1>teste</h1>
+<div id="teste"></div>
+
+<script src="dist/js/axios.min.js"></script>
+<script>
+	axios.get('https://api.github.com/users/cristianofromagio')
+		.then(function (response) {
+			document.getElementById('teste').innerHTML = '<pre><code>'+JSON.stringify(response.data, undefined, 2)+'</code></pre>';
+		})
+		.catch(function (err) {
+			document.getElementById('teste').innerHTML = '<li class="text-danger">' + err.message + '</li>';
+		});
+</script>
+
+</body>
+</html>
