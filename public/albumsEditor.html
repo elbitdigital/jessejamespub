@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="roboto">
+<meta charset="UTF-8">
+<title>Editor de álbums Jesse James</title>
+<meta name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+<script src="dist/js/villa.min.js"></script>
+<link rel="stylesheet" href="dist/css/villa.min.css"/>
+
+<!--[if lt IE 9]>
+<link rel="stylesheet" type="text/css" href="dist/css/material-colors.css"/>
+<link rel="stylesheet" type="text/css" href="dist/css/villa-cross.min.css"/>
+<script src="dist/js/html5shiv.js"></script>
+<script src="dist/js/html5shiv-printshiv.js"></script>
+<script src="dist/js/classList.min.js"></script>
+<![endif]-->
+
+<style>
+
+	body {
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-flex-flow: column;
+		flex-flow: column;
+	}
+
+	pre {
+		max-width: 1000px;
+		margin: 0 auto;
+		word-wrap: break-word;
+	}
+
+	.Button--narrow {
+		background-color: #03a9f4;
+		border: none;
+		border-radius: 2px;
+		color: #ffffff;
+		font-weight: 700;
+		padding: .25em .5em;
+		-webkit-transition: background .3s ease-in-out;
+		-moz-transition: background .3s ease-in-out;
+		-ms-transition: background .3s ease-in-out;
+		-o-transition: background .3s ease-in-out;
+		transition: background .3s ease-in-out;
+		text-transform: uppercase;
+	}
+
+	.Button--narrow:focus,
+	.Button--narrow:hover {
+		background-color: #81d4fa;
+		cursor: pointer;
+		-webkit-transition: background .3s ease-in-out;
+		-moz-transition: background .3s ease-in-out;
+		-ms-transition: background .3s ease-in-out;
+		-o-transition: background .3s ease-in-out;
+		transition: background .3s ease-in-out;
+	}
+
+	.Button--narrow:active {
+		background-color: #039be5;
+	}
+
+	.Button--alert {
+		background-color: #F44336;
+	}
+
+	.Button--alert:focus,
+	.Button--alert:hover {
+		background-color: #EF9A9A;
+	}
+
+	.Button--alert:active {
+		background-color: #E53935;
+	}
+
+	.Button--simple {
+		background-color: #585858;
+	}
+
+	.Button--simple:focus,
+	.Button--simple:hover {
+		background-color: #bdbdbd;
+	}
+
+	.Button--simple:active {
+		background-color: #585858;
+	}
+
+	#albums-info,
+	#albums-info-featured {
+		-webkit-align-items: center;
+		align-items: center;
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-justify-content: center;
+		justify-content: center;
+		-webkit-flex-flow: row wrap;
+		flex-flow: row wrap;
+		width: 80%;
+		margin: 0 auto;
+	}
+
+	#albums-info-featured {
+		background-color: #ccc;
+		-webkit-align-items: flex-start;
+		align-items: flex-start;
+	}
+
+	.album {
+		/*display: inline-block;*/
+		-webkit-align-items: center;
+		align-items: center;
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-justify-content: center;
+		justify-content: center;
+		-webkit-flex-flow: column;
+		flex-flow: column;
+		margin: .5em;
+		width: 150px;
+		max-width: 150px;
+		text-align: center;
+	}
+
+	#albums-info-featured .album {
+		-webkit-justify-content: space-between;
+		justify-content: space-between;
+		margin: 1em;
+		min-height: 175px;
+		padding: 1em;
+		width: 200px;
+		max-width: 215px;
+		background-color: #bdbdbd;
+	}
+
+</style>
+
+<body class="grey-100">
+
+	<button class="Button--narrow" onclick="getAllPageAlbums();">Receber álbums da página</button>
+
+	<h2 style="text-align: center;">ÚLTIMOS ÁLBUNS ADICIONADOS</h2>
+
+	<div id="albums-info-featured">
+
+	</div>
+
+	<div id="albums-info"></div>
+
+
+<script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
+<script>
+	// Initialize Firebase
+	var config = {
+		apiKey: "AIzaSyAMTCtuJ2DyPiBx5qBHeDg_OU1KW4UzURY",
+		authDomain: "jessejamespub-com-br.firebaseapp.com",
+		databaseURL: "https://jessejamespub-com-br.firebaseio.com",
+		projectId: "jessejamespub-com-br",
+		storageBucket: "jessejamespub-com-br.appspot.com",
+		messagingSenderId: "118227352953"
+	};
+	firebase.initializeApp(config);
+</script>
+
+<script>
+
+	window.addEventListener('load', function () {
+		getAllPageAlbums()
+	});
+
+</script>
+
+<script src="dist/js/axios.min.js"></script>
+
+<script>
+
+	function getAllPageAlbums() {
+
+		var PAGE_ID = 1586666258259861;
+
+		axios.get('https://graph.facebook.com/v2.9/' + PAGE_ID, {
+			params: {
+//				fields: 'albums.fields(name, link, cover_photo.fields(id,height,width,images))',
+				fields: 'albums.fields(name, link, cover_photo.fields(id,height,width,picture)).limit(9999)',
+				access_token: '146544439255115|3_8Ip3wrGqx-BfnrEVVRhJeUpLA' //token do aplicativo
+			}
+		}).then(function (response) {
+
+			removeProfileAlbums(response.data.albums.data);
+
+//			var albums = response.data.albums.data;
+//			document.getElementById('albums-info').innerHTML = '<pre><code>' + JSON.stringify(response.data, undefined, 4) +'</code></pre>';
+
+		}).catch(function (err) {
+			document.getElementById('albums-info').innerHTML = '<span style="color: red;">' + err.message + '</span>';
+		});
+
+	}
+
+	function removeProfileAlbums(all_albums) {
+
+		var ignored_albums = ['1594575264135627', '1586670551592765', '1885754275017723', '1875326966060454', '1586667811593039'];
+		// ['Timeline Photos', 'Cover Photos', 'Instagram Photos', 'VIOLADA DUBS - DESFILE CHEIAS DE CHARME', 'Profile Pictures']
+
+		// filter albums that appears on the ignored_albums
+		var filtered_albums = all_albums.filter(function(album) {
+
+			return ignored_albums.indexOf(album.id) == -1;
+
+		});
+
+		presentCustomPageAlbums(filtered_albums);
+
+	}
+
+	function presentCustomPageAlbums(filtered_albums) {
+
+		var albums = filtered_albums;
+
+		var albumsNode = document.getElementById('albums-info');
+		var featuredAlbumsNode = document.getElementById('albums-info-featured');
+
+		for (var i = 0; i < albums.length; i++) {
+
+			if (i < 4) {
+
+				var featuredAlbumNode = document.createElement('div');
+				featuredAlbumNode.classList.add('album');
+				featuredAlbumNode.innerHTML += '<a href="' + albums[i].link + '" target="_blank"><img src="' + albums[i].cover_photo.picture + '"/></a><a href="' + albums[i].link + '" target="_blank"><p>' + albums[i].name + '</p></a>';
+
+				featuredAlbumsNode.appendChild(featuredAlbumNode);
+			}
+
+			var albumNode = document.createElement('div');
+			albumNode.classList.add('album');
+			albumNode.innerHTML += '<a href="' + albums[i].link + '" target="_blank"><img src="' + albums[i].cover_photo.picture + '"/></a><a href="' + albums[i].link + '" target="_blank"><p>' + albums[i].name + '</p></a>';
+
+			albumsNode.appendChild(albumNode);
+
+		}
+
+	}
+
+
+</script>
+
+</body>
+
+</html>
