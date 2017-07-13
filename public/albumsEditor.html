@@ -6,6 +6,7 @@
       content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
 <script src="dist/js/villa.min.js"></script>
 <link rel="stylesheet" href="dist/css/villa.min.css"/>
+<link rel="stylesheet" href="dist/css/jessejamespub.css"/>
 
 <!--[if lt IE 9]>
 <link rel="stylesheet" type="text/css" href="dist/css/material-colors.css"/>
@@ -33,64 +34,7 @@
 		word-wrap: break-word;
 	}
 
-	.Button--narrow {
-		background-color: #03a9f4;
-		border: none;
-		border-radius: 2px;
-		color: #ffffff;
-		font-weight: 700;
-		padding: .25em .5em;
-		-webkit-transition: background .3s ease-in-out;
-		-moz-transition: background .3s ease-in-out;
-		-ms-transition: background .3s ease-in-out;
-		-o-transition: background .3s ease-in-out;
-		transition: background .3s ease-in-out;
-		text-transform: uppercase;
-	}
-
-	.Button--narrow:focus,
-	.Button--narrow:hover {
-		background-color: #81d4fa;
-		cursor: pointer;
-		-webkit-transition: background .3s ease-in-out;
-		-moz-transition: background .3s ease-in-out;
-		-ms-transition: background .3s ease-in-out;
-		-o-transition: background .3s ease-in-out;
-		transition: background .3s ease-in-out;
-	}
-
-	.Button--narrow:active {
-		background-color: #039be5;
-	}
-
-	.Button--alert {
-		background-color: #F44336;
-	}
-
-	.Button--alert:focus,
-	.Button--alert:hover {
-		background-color: #EF9A9A;
-	}
-
-	.Button--alert:active {
-		background-color: #E53935;
-	}
-
-	.Button--simple {
-		background-color: #585858;
-	}
-
-	.Button--simple:focus,
-	.Button--simple:hover {
-		background-color: #bdbdbd;
-	}
-
-	.Button--simple:active {
-		background-color: #585858;
-	}
-
-	#albums-info,
-	#albums-info-featured {
+	.AlbumsGallery {
 		-webkit-align-items: center;
 		align-items: center;
 		display: -webkit-box;
@@ -102,18 +46,61 @@
 		justify-content: center;
 		-webkit-flex-flow: row wrap;
 		flex-flow: row wrap;
-		width: 80%;
 		margin: 0 auto;
 	}
 
-	#albums-info-featured {
-		background-color: #ccc;
-		-webkit-align-items: flex-start;
-		align-items: flex-start;
+	@media (min-width: 48em) {
+
+		.AlbumsGallery {
+			width: 90%;
+		}
+
 	}
 
-	.album {
-		/*display: inline-block;*/
+	.Album {
+		padding: .5em;
+		/*margin: .5em;*/
+		width: 175px;
+		max-width: 175px;
+		height: 210px;
+		/*min-height: 200px;*/
+		text-align: center;
+		position: relative;
+	}
+
+	@media (min-width: 48em) {
+
+		.Album {
+			margin: .75em;
+		}
+
+	}
+
+	.AlbumCover {
+		border: 2px solid #0277bd;
+		height: 100%;
+		/*padding: 1.5em 1em;*/
+		position: relative;
+		width: 100%;
+
+		-moz-user-select: none;
+		-ms-user-select: none;
+		-khtml-user-select: none;
+		-webkit-user-select: none;
+		-webkit-touch-callout: none;
+	}
+
+	.AlbumCover.is-disabled {
+		background-color: #E0E0E0;
+		border-color: #bdbdbd;
+		color: #9E9E9E;
+	}
+
+	.AlbumCover:hover {
+		cursor: pointer;
+	}
+
+	.AlbumBody {
 		-webkit-align-items: center;
 		align-items: center;
 		display: -webkit-box;
@@ -121,44 +108,120 @@
 		display: -ms-flexbox;
 		display: -webkit-flex;
 		display: flex;
-		-webkit-justify-content: center;
-		justify-content: center;
-		-webkit-flex-flow: column;
-		flex-flow: column;
-		margin: .5em;
-		width: 150px;
-		max-width: 150px;
-		text-align: center;
-	}
-
-	#albums-info-featured .album {
 		-webkit-justify-content: space-between;
 		justify-content: space-between;
-		margin: 1em;
-		min-height: 175px;
-		padding: 1em;
-		width: 200px;
-		max-width: 215px;
+		-webkit-flex-flow: column;
+		flex-flow: column;
+		padding: 1.5em 1em; /* user click on album body to toggle display */
+
+		position: relative;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+
+	.Album-link {
+		background-color: #0277bd;
+		color: #fff;
+		font-size: .875em;
+		width: 1.5em;
+		height: 1.5em;
+		line-height: 1.5em;
+		text-align: center;
+		top: -.75em;
+		right: -.75em;
+		position: absolute;
+	}
+
+	.AlbumCover.is-disabled .Album-link {
 		background-color: #bdbdbd;
 	}
 
+	.Album-caption {
+		font-weight: 800;
+		text-transform: uppercase;
+		font-size: .875em;
+	}
+
+	/*.FeaturedAlbums .Album {*/
+		/*-webkit-justify-content: space-between;*/
+		/*justify-content: space-between;*/
+		/*margin: 1em;*/
+		/*min-height: 175px;*/
+		/*padding: 1em;*/
+		/*width: 200px;*/
+		/*max-width: 215px;*/
+		/*background-color: #bdbdbd;*/
+	/*}*/
+
 </style>
 
-<body class="grey-100">
+<body class="grey-100 font-grey-900 roboto">
 
-	<button class="Button--narrow" onclick="getAllPageAlbums();">Receber álbums da página</button>
+	<button class="Btn Btn--primary" onclick="getAllPageAlbums();">Receber álbums da página</button>
 
-	<h2 style="text-align: center;">ÚLTIMOS ÁLBUNS ADICIONADOS</h2>
+	<h2 style="text-align: center;">Gerenciamento dos álbuns</h2>
 
-	<div id="albums-info-featured">
+	<div id="albums-gallery" class="AlbumsGallery">
+
+		<!--<div class="Album">-->
+
+			<!--<div class="AlbumCover">-->
+
+				<!--<a href="https://google.com" target="_blank" class="Album-link">-->
+					<!--<span class="icon-link-ext"></span>-->
+				<!--</a>-->
+
+				<!--<div class="AlbumBody">-->
+					<!--<img class="Album-image" src="https://scontent.xx.fbcdn.net/v/t1.0-0/s130x130/19665675_1917823568477460_7416851733986222613_n.jpg?oh=3042d0adfa4c613923bf3b97c3c8348e&oe=5A05294E" />-->
+					<!--<p class="Album-caption">SEXTA-FEIRA 02.04.17</p>-->
+				<!--</div>-->
+
+			<!--</div>-->
+
+		<!--</div>-->
+
+		<!--<div class="Album">-->
+
+			<!--<div class="AlbumCover is-disabled">-->
+
+				<!--<a href="https://google.com" target="_blank" class="Album-link">-->
+					<!--<span class="icon-link-ext"></span>-->
+				<!--</a>-->
+
+				<!--<div class="AlbumBody">-->
+					<!--<img class="Album-image" src="https://scontent.xx.fbcdn.net/v/t1.0-0/s130x130/19665675_1917823568477460_7416851733986222613_n.jpg?oh=3042d0adfa4c613923bf3b97c3c8348e&oe=5A05294E" />-->
+					<!--<p class="Album-caption">SEXTA-FEIRA 02.04.17</p>-->
+				<!--</div>-->
+
+			<!--</div>-->
+
+		<!--</div>-->
+
+		<!--<div class="Album">-->
+
+			<!--<div class="AlbumCover is-disabled">-->
+
+				<!--<a href="https://google.com" target="_blank" class="Album-link">-->
+					<!--<span class="icon-link-ext"></span>-->
+				<!--</a>-->
+
+				<!--<div class="AlbumBody">-->
+					<!--<img class="Album-image" src="https://scontent.xx.fbcdn.net/v/t1.0-0/s130x130/19665675_1917823568477460_7416851733986222613_n.jpg?oh=3042d0adfa4c613923bf3b97c3c8348e&oe=5A05294E" />-->
+					<!--<p class="Album-caption">SÁBADO 02.04.17</p>-->
+				<!--</div>-->
+
+			<!--</div>-->
+
+		<!--</div>-->
 
 	</div>
-
-	<div id="albums-info"></div>
 
 
 <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
 <script>
+
 	// Initialize Firebase
 	var config = {
 		apiKey: "AIzaSyAMTCtuJ2DyPiBx5qBHeDg_OU1KW4UzURY",
@@ -169,12 +232,24 @@
 		messagingSenderId: "118227352953"
 	};
 	firebase.initializeApp(config);
+
 </script>
 
 <script>
 
 	window.addEventListener('load', function () {
-		getAllPageAlbums()
+
+		getAllPageAlbums();
+
+//		var albums_select = document.querySelectorAll('div.AlbumBody');
+//
+//		for (var i = 0; i < albums_select.length; i++) {
+//
+//			albums_select[i].addEventListener('click', function(ev) {
+//				this.parentNode.classList.toggle('is-disabled');
+//			});
+//		}
+
 	});
 
 </script>
@@ -195,18 +270,18 @@
 			}
 		}).then(function (response) {
 
-			removeProfileAlbums(response.data.albums.data);
+			removeIgnoredAlbums(response.data.albums.data);
 
 //			var albums = response.data.albums.data;
-//			document.getElementById('albums-info').innerHTML = '<pre><code>' + JSON.stringify(response.data, undefined, 4) +'</code></pre>';
+//			document.getElementById('gallery').innerHTML = '<pre><code>' + JSON.stringify(response.data, undefined, 4) +'</code></pre>';
 
 		}).catch(function (err) {
-			document.getElementById('albums-info').innerHTML = '<span style="color: red;">' + err.message + '</span>';
+			document.getElementById('gallery').innerHTML = '<span style="color: red;">' + err.message + '</span>';
 		});
 
 	}
 
-	function removeProfileAlbums(all_albums) {
+	function removeIgnoredAlbums(all_albums) {
 
 		var ignored_albums = ['1594575264135627', '1586670551592765', '1885754275017723', '1875326966060454', '1586667811593039'];
 		// ['Timeline Photos', 'Cover Photos', 'Instagram Photos', 'VIOLADA DUBS - DESFILE CHEIAS DE CHARME', 'Profile Pictures']
@@ -218,7 +293,71 @@
 
 		});
 
-		presentCustomPageAlbums(filtered_albums);
+//		presentCustomPageAlbums(filtered_albums);
+
+		transformDataArrayIntoAlbumsElements(filtered_albums);
+
+	}
+
+	function transformDataArrayIntoAlbumsElements(received_albums) {
+
+		var albums = received_albums;
+
+		var albumsNode = document.getElementById('albums-gallery');
+
+		for (var i = 0; i < albums.length; i++) {
+
+			var albumNode = document.createElement('div');
+			albumNode.className = 'Album';
+
+			var albumCoverNode = document.createElement('div');
+			albumCoverNode.className = 'AlbumCover';
+
+			var albumLinkNode = document.createElement('a');
+			albumLinkNode.className = 'Album-link';
+			albumLinkNode.href = albums[i].link;
+			albumLinkNode.target = '_blank';
+			albumLinkNode.innerHTML = '<span class="icon-link-ext"></span>';
+
+			var albumBodyNode = document.createElement('div');
+			albumBodyNode.className = 'AlbumBody';
+
+			var albumImgNode = document.createElement('img');
+			albumImgNode.className = 'Album-image';
+			albumImgNode.src = albums[i].cover_photo.picture;
+
+			if (albums[i].cover_photo.height > albums[i].cover_photo.width) {
+				albumImgNode.src = 'https://via.placeholder.com/130x89';
+			}
+
+			var albumCaptionNode = document.createElement('p');
+			albumCaptionNode.className = 'Album-caption';
+			albumCaptionNode.textContent = albums[i].name;
+
+			albumBodyNode.appendChild(albumImgNode);
+			albumBodyNode.appendChild(albumCaptionNode);
+
+			albumCoverNode.appendChild(albumLinkNode);
+			albumCoverNode.appendChild(albumBodyNode);
+
+			albumNode.appendChild(albumCoverNode);
+
+			albumsNode.appendChild(albumNode);
+
+		}
+
+		// add event listener to toggle album display state
+		// TODO: save album state on firebase and receive blocked albums and display them as disabled
+
+		var albums_body = albumsNode.querySelectorAll('div.AlbumBody');
+
+		for (var t = 0; t < albums_body.length; t++) {
+
+			albums_body[t].addEventListener('click', function(ev) {
+				this.parentNode.classList.toggle('is-disabled');
+			});
+
+		}
 
 	}
 
@@ -226,19 +365,18 @@
 
 		var albums = filtered_albums;
 
-		var albumsNode = document.getElementById('albums-info');
-		var featuredAlbumsNode = document.getElementById('albums-info-featured');
+		var albumsNode = document.getElementById('albums-gallery');
 
 		for (var i = 0; i < albums.length; i++) {
 
-			if (i < 4) {
-
-				var featuredAlbumNode = document.createElement('div');
-				featuredAlbumNode.classList.add('album');
-				featuredAlbumNode.innerHTML += '<a href="' + albums[i].link + '" target="_blank"><img src="' + albums[i].cover_photo.picture + '"/></a><a href="' + albums[i].link + '" target="_blank"><p>' + albums[i].name + '</p></a>';
-
-				featuredAlbumsNode.appendChild(featuredAlbumNode);
-			}
+//			if (i < 4) {
+//
+//				var featuredAlbumNode = document.createElement('div');
+//				featuredAlbumNode.classList.add('album');
+//				featuredAlbumNode.innerHTML += '<a href="' + albums[i].link + '" target="_blank"><img src="' + albums[i].cover_photo.picture + '"/></a><a href="' + albums[i].link + '" target="_blank"><p>' + albums[i].name + '</p></a>';
+//
+//				featuredAlbumsNode.appendChild(featuredAlbumNode);
+//			}
 
 			var albumNode = document.createElement('div');
 			albumNode.classList.add('album');
