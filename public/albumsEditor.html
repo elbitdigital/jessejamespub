@@ -18,16 +18,6 @@
 
 <style>
 
-	body {
-		display: -webkit-box;
-		display: -moz-box;
-		display: -ms-flexbox;
-		display: -webkit-flex;
-		display: flex;
-		-webkit-flex-flow: column;
-		flex-flow: column;
-	}
-
 	pre {
 		max-width: 1000px;
 		margin: 0 auto;
@@ -58,25 +48,30 @@
 	}
 
 	.Album {
-		padding: .5em;
+		height: auto;
 		/*margin: .5em;*/
-		width: 175px;
-		max-width: 175px;
-		height: 210px;
+		max-width: 150px;
 		/*min-height: 200px;*/
-		text-align: center;
+		padding: .5em;
 		position: relative;
+		text-align: center;
+		width: 175px;
 	}
 
 	@media (min-width: 48em) {
 
 		.Album {
+			height: 210px;
 			margin: .75em;
+			max-width: 175px;
+			width: 175px;
 		}
 
 	}
 
 	.AlbumCover {
+		background-color: #EEEEEE;
+		color: #212121;
 		border: 2px solid #0277bd;
 		height: 100%;
 		/*padding: 1.5em 1em;*/
@@ -112,7 +107,7 @@
 		justify-content: space-between;
 		-webkit-flex-flow: column;
 		flex-flow: column;
-		padding: 1.5em 1em; /* user click on album body to toggle display */
+		padding: 1.5em 1em; /* user should click on album body to toggle display */
 
 		position: relative;
 		top: 0;
@@ -123,25 +118,30 @@
 
 	.Album-link {
 		background-color: #0277bd;
+		border-radius: .25em;
 		color: #fff;
 		font-size: .875em;
-		width: 1.5em;
 		height: 1.5em;
 		line-height: 1.5em;
+		position: absolute;
+		right: -.75em;
 		text-align: center;
 		top: -.75em;
-		right: -.75em;
-		position: absolute;
+		width: 1.5em;
 	}
 
 	.AlbumCover.is-disabled .Album-link {
 		background-color: #bdbdbd;
 	}
 
+	.Album-image {
+		margin-bottom: .5em;
+	}
+
 	.Album-caption {
+		font-size: .875em;
 		font-weight: 800;
 		text-transform: uppercase;
-		font-size: .875em;
 	}
 
 	/*.FeaturedAlbums .Album {*/
@@ -157,11 +157,15 @@
 
 </style>
 
-<body class="grey-100 font-grey-900 roboto">
+<body class="grey-900 font-white roboto">
 
-	<button class="Btn Btn--primary" onclick="getAllPageAlbums();">Receber álbums da página</button>
+	<!--<button class="Btn Btn&#45;&#45;primary" onclick="getAllPageAlbums();">Receber álbums da página</button>-->
 
-	<h2 style="text-align: center;">Gerenciamento dos álbuns</h2>
+	<header>
+
+		<h1>o <span class="purple font-white">expectacular</span> gerenciador de álbums</h1>
+
+	</header>
 
 	<div id="albums-gallery" class="AlbumsGallery">
 
@@ -176,40 +180,6 @@
 				<!--<div class="AlbumBody">-->
 					<!--<img class="Album-image" src="https://scontent.xx.fbcdn.net/v/t1.0-0/s130x130/19665675_1917823568477460_7416851733986222613_n.jpg?oh=3042d0adfa4c613923bf3b97c3c8348e&oe=5A05294E" />-->
 					<!--<p class="Album-caption">SEXTA-FEIRA 02.04.17</p>-->
-				<!--</div>-->
-
-			<!--</div>-->
-
-		<!--</div>-->
-
-		<!--<div class="Album">-->
-
-			<!--<div class="AlbumCover is-disabled">-->
-
-				<!--<a href="https://google.com" target="_blank" class="Album-link">-->
-					<!--<span class="icon-link-ext"></span>-->
-				<!--</a>-->
-
-				<!--<div class="AlbumBody">-->
-					<!--<img class="Album-image" src="https://scontent.xx.fbcdn.net/v/t1.0-0/s130x130/19665675_1917823568477460_7416851733986222613_n.jpg?oh=3042d0adfa4c613923bf3b97c3c8348e&oe=5A05294E" />-->
-					<!--<p class="Album-caption">SEXTA-FEIRA 02.04.17</p>-->
-				<!--</div>-->
-
-			<!--</div>-->
-
-		<!--</div>-->
-
-		<!--<div class="Album">-->
-
-			<!--<div class="AlbumCover is-disabled">-->
-
-				<!--<a href="https://google.com" target="_blank" class="Album-link">-->
-					<!--<span class="icon-link-ext"></span>-->
-				<!--</a>-->
-
-				<!--<div class="AlbumBody">-->
-					<!--<img class="Album-image" src="https://scontent.xx.fbcdn.net/v/t1.0-0/s130x130/19665675_1917823568477460_7416851733986222613_n.jpg?oh=3042d0adfa4c613923bf3b97c3c8348e&oe=5A05294E" />-->
-					<!--<p class="Album-caption">SÁBADO 02.04.17</p>-->
 				<!--</div>-->
 
 			<!--</div>-->
@@ -233,13 +203,19 @@
 	};
 	firebase.initializeApp(config);
 
+	var databaseRef = firebase.database().ref('/');
+	var houseRef = databaseRef.child('assis');
+	var galleryRef = houseRef.child('gallery');
+	var disabledRef = galleryRef.child('disabledAlbums');
+
 </script>
 
 <script>
 
 	window.addEventListener('load', function () {
 
-		getAllPageAlbums();
+//		getAllPageAlbums();
+		updateDisabledAlbumsArray();
 
 //		var albums_select = document.querySelectorAll('div.AlbumBody');
 //
@@ -258,6 +234,40 @@
 
 <script>
 
+	var ignored_albums = [];
+
+	/**
+	 * Receive the disabled/ignored albums from firebase and save them on an array
+	 */
+	function updateDisabledAlbumsArray() {
+
+		disabledRef.on('value', function(snapshot) {
+
+			var disabled = [];
+
+			snapshot.forEach(function(album) {
+				disabled.push(album.key);
+			});
+
+			ignored_albums = disabled;
+
+//			showDisabled();
+
+			// TODO: asynchonous call for update (as it is only work at first, subsequent overflow the element)
+			getAllPageAlbums();
+
+		});
+
+	}
+
+	function showDisabled() {
+		console.log(ignored_albums);
+	}
+
+	/**
+	 * Make a request to Facebook Graph API requesting all the albums from Jesse James Assis page
+	 * And proceed to pass the information to a function that transform the json response to elements
+	 */
 	function getAllPageAlbums() {
 
 		var PAGE_ID = 1586666258259861;
@@ -270,20 +280,29 @@
 			}
 		}).then(function (response) {
 
-			removeIgnoredAlbums(response.data.albums.data);
+			/* #1 - do not present disabled albums to user */
+//			removeIgnoredAlbums(response.data.albums.data);
 
+			/* #2 - present albums to user with disabled style */
+			transformDataArrayIntoAlbumsElements(response.data.albums.data);
+
+			/* debug response from request */
 //			var albums = response.data.albums.data;
 //			document.getElementById('gallery').innerHTML = '<pre><code>' + JSON.stringify(response.data, undefined, 4) +'</code></pre>';
 
 		}).catch(function (err) {
-			document.getElementById('gallery').innerHTML = '<span style="color: red;">' + err.message + '</span>';
+			document.getElementById('albums-gallery').innerHTML = '<span style="color: red;">' + err.message + '</span>';
 		});
 
 	}
 
+
+	/**
+	 * Create a filtered object from the request response (all albums) without ignored albums
+	 */
 	function removeIgnoredAlbums(all_albums) {
 
-		var ignored_albums = ['1594575264135627', '1586670551592765', '1885754275017723', '1875326966060454', '1586667811593039'];
+//		var ignored_albums = ['1594575264135627', '1586670551592765', '1885754275017723', '1875326966060454', '1586667811593039'];
 		// ['Timeline Photos', 'Cover Photos', 'Instagram Photos', 'VIOLADA DUBS - DESFILE CHEIAS DE CHARME', 'Profile Pictures']
 
 		// filter albums that appears on the ignored_albums
@@ -293,12 +312,14 @@
 
 		});
 
-//		presentCustomPageAlbums(filtered_albums);
-
-		transformDataArrayIntoAlbumsElements(filtered_albums);
+		/* #1 - do not present disabled albums to user */
+//		transformDataArrayIntoAlbumsElements(filtered_albums);
 
 	}
 
+	/**
+	 * Create html elements from json array
+	 */
 	function transformDataArrayIntoAlbumsElements(received_albums) {
 
 		var albums = received_albums;
@@ -309,6 +330,7 @@
 
 			var albumNode = document.createElement('div');
 			albumNode.className = 'Album';
+			albumNode.dataset.id = albums[i].id;
 
 			var albumCoverNode = document.createElement('div');
 			albumCoverNode.className = 'AlbumCover';
@@ -327,7 +349,7 @@
 			albumImgNode.src = albums[i].cover_photo.picture;
 
 			if (albums[i].cover_photo.height > albums[i].cover_photo.width) {
-				albumImgNode.src = 'https://via.placeholder.com/130x89';
+				albumImgNode.src = 'http://lorempixel.com/g/130/89/abstract/retrato/';
 			}
 
 			var albumCaptionNode = document.createElement('p');
@@ -348,6 +370,8 @@
 
 		// add event listener to toggle album display state
 		// TODO: save album state on firebase and receive blocked albums and display them as disabled
+		// DONE: receive ignored/disabled albums from firebase and display them as disabled
+		// TODO: save new ignored albums on firebase and update album state (if it is not ignored anymore)
 
 		var albums_body = albumsNode.querySelectorAll('div.AlbumBody');
 
@@ -359,35 +383,31 @@
 
 		}
 
+		/* #2 - present albums to user with disabled style */
+		styleDisabledAlbumsElements(albumsNode);
+
 	}
 
-	function presentCustomPageAlbums(filtered_albums) {
+	/**
+	 * Style the html elements for ignored albums
+	 */
+	function styleDisabledAlbumsElements(galleryElement) {
 
-		var albums = filtered_albums;
+		var albums = galleryElement.querySelectorAll('div.Album');
 
-		var albumsNode = document.getElementById('albums-gallery');
+//		var ignored_albums = ['1594575264135627', '1586670551592765', '1885754275017723', '1875326966060454', '1586667811593039'];
 
-		for (var i = 0; i < albums.length; i++) {
+		for (var x = 0; x < albums.length; x++) {
 
-//			if (i < 4) {
-//
-//				var featuredAlbumNode = document.createElement('div');
-//				featuredAlbumNode.classList.add('album');
-//				featuredAlbumNode.innerHTML += '<a href="' + albums[i].link + '" target="_blank"><img src="' + albums[i].cover_photo.picture + '"/></a><a href="' + albums[i].link + '" target="_blank"><p>' + albums[i].name + '</p></a>';
-//
-//				featuredAlbumsNode.appendChild(featuredAlbumNode);
-//			}
+			if (ignored_albums.indexOf(albums[x].dataset.id) != -1) {
 
-			var albumNode = document.createElement('div');
-			albumNode.classList.add('album');
-			albumNode.innerHTML += '<a href="' + albums[i].link + '" target="_blank"><img src="' + albums[i].cover_photo.picture + '"/></a><a href="' + albums[i].link + '" target="_blank"><p>' + albums[i].name + '</p></a>';
+				albums[x].firstElementChild.classList.add('is-disabled'); // first child = AlbumCover
 
-			albumsNode.appendChild(albumNode);
+			}
 
 		}
 
 	}
-
 
 </script>
 
