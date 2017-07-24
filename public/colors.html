@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Color Gradients - Jesse James Pub</title>
+</head>
+<body>
+
+<style>
+
+	body {
+		font-family: sans-serif;
+	}
+
+	.Color {
+		display: inline-block;
+		width: 275px;
+		text-align: center;
+		margin: 1em;
+		color: #242424;
+	}
+
+	.Color--light span {
+		color: #fff;
+	}
+
+	.Color-back,
+	.Color span {
+		display: block;
+		width: 100%;
+		height: 75px;
+		line-height: 75px;
+		/*margin: 1px 0 0;*/
+		padding: 0;
+		font-weight: 600;
+	}
+
+</style>
+
+<div class="Color Color--light">
+
+	<h3>Marrom couro</h3>
+
+	<span class="" style="background-color: #301c09;">20% preto: #301c09</span>
+	<span class="" style="background-color: #442a0d;">20% cinza: #442a0d</span>
+	<span class="" style="background-color: #4c2f0f;">cor base: #4c2f0f</span>
+	<span class="" style="background-color: #6f573f;">20% branco: #6f573f</span>
+	<span class="" style="background-color: #a59687;">50% branco: #a59687</span>
+
+</div>
+
+<div class="Color Color--light">
+
+	<h3>Vermelho terra</h3>
+
+	<span class="" style="background-color: #6e3118;">20% preto: #6e3118</span>
+	<span class="" style="background-color: #7d381b;">20% cinza: #7d381b</span>
+	<span class="" style="background-color: #8a3f1e;">cor base: #8a3f1e</span>
+	<span class="" style="background-color: #a1644b;">20% branco: #a1644b</span>
+	<span class="" style="background-color: #c49e8e;">50% branco: #c49e8e</span>
+
+</div>
+
+<div class="Color Color--light">
+
+	<h3>Marrom madeira</h3>
+
+	<span class="" style="background-color: #9c5e20;">20% preto: #9c5e20</span>
+	<span class="" style="background-color: #af6925;">20% cinza: #af6925</span>
+	<span class="" style="background-color: #c37529;">cor base: #c37529</span>
+	<span class="" style="background-color: #cf9153;">20% branco: #cf9153</span>
+	<span class="" style="background-color: #e1ba94;">50% branco: #e1ba94</span>
+
+</div>
+
+<div class="Color">
+
+	<h3>Marrom poeira</h3>
+
+	<span class="" style="background-color: #b89040;">20% preto: #b89040</span>
+	<span class="" style="background-color: #cfa148;">20% cinza: #cfa148</span>
+	<span class="" style="background-color: #e6b350;">cor base: #e6b350</span>
+	<span class="" style="background-color: #ebc373;">20% branco: #ebc373</span>
+	<span class="" style="background-color: #f2d9a7;">50% branco: #f2d9a7</span>
+
+</div>
+
+<div class="Color Color--light">
+
+	<h3>20% cinza</h3>
+
+	<!--<div class="Color-back" style="background-color: rgba(38,23,7,1);">-->
+	<!--<div class="Color-back" style="background-color: #4c2f0f;">-->
+		<!--<span class="Color-mask" style="background-color: rgba(38,23,7,.2);">marrom couro: #442a0d</span>-->
+	<!--</div>-->
+
+	<!--<div class="Color-back" style="background-color: rgba(69,31,15,1);">-->
+	<!--<div class="Color-back" style="background-color: #8a3f1e;">-->
+		<!--<span class="Color-mask" style="background-color: rgba(69,31,15,.2);">vermelho terra: #7d381b</span>-->
+	<!--</div>-->
+
+	<!--<div class="Color-back" style="background-color: rgba(195,118,41,1);">-->
+	<!--<div class="Color-back" style="background-color: #c37529;">-->
+		<!--<span class="Color-mask" style="background-color: rgba(97,59,20,.2);">marrom madeira: #af6925</span>-->
+	<!--</div>-->
+
+	<!--<div class="Color-back" style="background-color: rgba(115,90,40,1);">-->
+	<!--<div class="Color-back" style="background-color: #e6b350;">-->
+		<!--<span class="Color-mask" style="background-color: rgba(115,90,40,.2);">marrom poeira: #cfa148</span>-->
+	<!--</div>-->
+
+	<span class="Color-mask" style="background-color: #442a0d;">Marrom couro: #442a0d</span>
+	<span class="Color-mask" style="background-color: #7d381b;">Vermelho terra: #7d381b</span>
+	<span class="Color-mask" style="background-color: #af6925;">Marrom madeira: #af6925</span>
+	<span class="Color-mask" style="background-color: #cfa148;">Marrom poeira: #cfa148</span>
+
+</div>
+
+<div class="Color Color--light">
+
+	<h3>50% preto</h3>
+
+	<!--<span class="" style="background-color: rgba(38,23,7,1);">Marrom couro: #261707</span>-->
+	<!--<span class="" style="background-color: rgba(69,31,15,1);">Vermelho terra: #451f0f</span>-->
+	<!--<span class="" style="background-color: rgba(97,59,20,1);">Marrom madeira: #613b14</span>-->
+	<!--<span class="" style="background-color: rgba(115,90,40,1);">Marrom poeira: #735a28</span>-->
+	<span class="" style="background-color: #261707;">Marrom couro: #261707</span>
+	<span class="" style="background-color: #451f0f;">Vermelho terra: #451f0f</span>
+	<span class="" style="background-color: #613b14;">Marrom madeira: #613b14</span>
+	<span class="" style="background-color: #735a28;">Marrom poeira: #735a28</span>
+
+</div>
+
+<div class="Color">
+
+	<h3>0.2 de 50% preto (suavizador)</h3>
+
+	<!--<div class="Color-back" style="background-color: rgba(38,23,7,1);">-->
+	<!--<div class="Color-back" style="background-color: #4c2f0f;">-->
+		<span class="Color-mask" style="background-color: rgba(38,23,7,.2);">Marrom couro (suavizador)</span>
+	<!--</div>-->
+
+	<!--<div class="Color-back" style="background-color: rgba(69,31,15,1);">-->
+	<!--<div class="Color-back" style="background-color: #8a3f1e;">-->
+		<span class="Color-mask" style="background-color: rgba(69,31,15,.2);">Vermelho terra (suavizador)</span>
+	<!--</div>-->
+
+	<!--<div class="Color-back" style="background-color: rgba(97,59,20,1);">-->
+	<!--<div class="Color-back" style="background-color: #613B14;">-->
+		<span class="Color-mask" style="background-color: rgba(97,59,20,.2);">Marrom madeira (suavizador)</span>
+	<!--</div>-->
+
+	<!--<div class="Color-back" style="background-color: rgba(115,90,40,1);">-->
+	<!--<div class="Color-back" style="background-color: #e6b350;">-->
+		<span class="Color-mask" style="background-color: rgba(115,90,40,.2);">Marrom poeira (suavizador)</span>
+	<!--</div>-->
+
+</div>
+
+<div class="Color">
+
+	<p>Darkest: 20% preto (SHADE)</p>
+	<p>Darken: 20% cinza (TONE)</p>
+	<p>Cor base: cor inicial (HUE)</p>
+	<p>Lighten: 20% branco (TINT)</p>
+	<p>Lightest: 50% branco (TINT)</p>
+
+	<p>20% cinza: 0.2 da opacidade do 50% preto da cor base, sobreposta à cor base.</p>
+
+	<p>0% cintestar contraste do texto com as cores.</p>
+
+</div>
+
+
+
+</body>
+</html>

@@ -792,7 +792,8 @@ h1.Guider-heading {
 /* HeaderLower background */
 
 .HeaderLower-background {
-  background-color: #3E010A;
+  /*background-color: #3E010A;*/
+  background-color: #6f573f;
   height: 100%;
   position: absolute;
   right: 0;
@@ -821,7 +822,15 @@ h1.Guider-heading {
 /* HeaderUpper background */
 
 .HeaderUpper-background {
-  background-color: #7F1C1E;
+  /*background-color: #7F1C1E;*/
+  background-color: #442a0d;
+  /*background: -moz-linear-gradient(270deg, #8a3f1e 0%, #7d381b 50%, #7d381b 100%); !* ff3.6+ *!*/
+  /*background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #8a3f1e), color-stop(50%, #7d381b), color-stop(100%, #7d381b)); !* safari4+,chrome *!*/
+  /*background: -webkit-linear-gradient(270deg, #8a3f1e 0%, #7d381b 50%, #7d381b 100%); !* safari5.1+,chrome10+ *!*/
+  /*background: -o-linear-gradient(270deg, #8a3f1e 0%, #7d381b 50%, #7d381b 100%); !* opera 11.10+ *!*/
+  /*background: -ms-linear-gradient(270deg, #8a3f1e 0%, #7d381b 50%, #7d381b 100%); !* ie10+ *!*/
+  /*background: linear-gradient(180deg, #8a3f1e 0%, #7d381b 50%, #7d381b 100%); !* w3c *!*/
+  /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8a3f1e', endColorstr='#7d381b',GradientType=0 ); !* ie6-9 *!*/
   height: 100%;
   position: absolute;
   right: 0;

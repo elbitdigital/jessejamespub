@@ -10,7 +10,8 @@
 /* HeaderLower background */
 
 .HeaderLower-background {
-	background-color: #3E010A;
+	/*background-color: #3E010A;*/
+	background-color: #6f573f;
 	height: 100%;
 	position: absolute;
 	right: 0;
