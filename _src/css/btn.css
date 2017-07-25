@@ -66,16 +66,19 @@
 /* Custom styles modifiers */
 
 .Btn--primary {
-	background-color: #009688;
+	background-color: #7d381b;
 	color: #fff;
-	box-shadow: inset 0 0 0 1px #00796B;
+	box-shadow: inset 0 0 0 1px #6e3118;
 }
+
 .Btn--light {
 	color: #fff !important;
 }
+
 .Btn--dark {
 	color: #262626 !important;
 }
+
 .Btn--squared {
 	border-radius: 0;
 }

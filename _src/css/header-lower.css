@@ -10,8 +10,6 @@
 /* HeaderLower background */
 
 .HeaderLower-background {
-	/*background-color: #3E010A;*/
-	background-color: #6f573f;
 	height: 100%;
 	position: absolute;
 	right: 0;
@@ -23,7 +21,6 @@
 /* HeaderLower inner */
 
 .HeaderLower-inner {
-	padding: .5em;
 	position: relative;
 	text-align: center;
 	width: 100%;

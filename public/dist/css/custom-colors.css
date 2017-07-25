@@ -1,0 +1,93 @@
+
+/* Jesse James Pub Color Pallete */
+
+/* Marrom couro */
+
+.marrom-couro--darkest {
+	background-color: #301c09;
+}
+
+.marrom-couro--darker {
+	background-color: #442a0d;
+}
+
+.marrom-couro {
+	background-color: #4c2f0f;
+}
+
+.marrom-couro--lighter {
+	background-color: #6f573f;
+}
+
+.marrom-couro--lightest {
+	background-color: #a59687;
+}
+
+
+/* Vermelho terra */
+
+.vermelho-terra--darkest {
+	background-color: #6e3118;
+}
+
+.vermelho-terra--darker {
+	background-color: #7d381b;
+}
+
+.vermelho-terra {
+	background-color: #8a3f1e;
+}
+
+.vermelho-terra--lighter {
+	background-color: #a1644b;
+}
+
+.vermelho-terra--lightest {
+	background-color: #c49e8e;
+}
+
+
+/* Marrom madeira */
+
+.marrom-madeira--darkest {
+	background-color: #a05825;
+}
+
+.marrom-madeira--darker {
+	background-color: #b5642a;
+}
+
+.marrom-madeira {
+	background-color: #c96f2f;
+}
+
+.marrom-madeira--lighter {
+	background-color: #d38b58;
+}
+
+.marrom-madeira--lightest {
+	background-color: #e4b797;
+}
+
+
+/* Marrom poeira */
+
+.marrom-poeira--darkest {
+	background-color: #b89040;
+}
+
+.marrom-poeira--darker {
+	background-color: #cfa148;
+}
+
+.marrom-poeira {
+	background-color: #e6b350;
+}
+
+.marrom-poeira--lighter {
+	background-color: #ebc373;
+}
+
+.marrom-poeira--lightest {
+	background-color: #f2d9a7;
+}
