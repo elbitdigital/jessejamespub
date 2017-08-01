@@ -1,6 +1,8 @@
 
 /* Jesse James Pub Color Pallete */
 
+/* BACKGROUND */
+
 /* Marrom couro */
 
 .marrom-couro--darkest {
@@ -90,4 +92,97 @@
 
 .marrom-poeira--lightest {
 	background-color: #f2d9a7;
+}
+
+/* FONT COLOR */
+
+/* Marrom couro */
+
+.f-marrom-couro--darkest {
+	color: #301c09;
+}
+
+.f-marrom-couro--darker {
+	color: #442a0d;
+}
+
+.f-marrom-couro {
+	color: #4c2f0f;
+}
+
+.f-marrom-couro--lighter {
+	color: #6f573f;
+}
+
+.f-marrom-couro--lightest {
+	color: #a59687;
+}
+
+
+/* Vermelho terra */
+
+.f-vermelho-terra--darkest {
+	color: #6e3118;
+}
+
+.f-vermelho-terra--darker {
+	color: #7d381b;
+}
+
+.f-vermelho-terra {
+	color: #8a3f1e;
+}
+
+.f-vermelho-terra--lighter {
+	color: #a1644b;
+}
+
+.f-vermelho-terra--lightest {
+	color: #c49e8e;
+}
+
+
+/* Marrom madeira */
+
+.f-marrom-madeira--darkest {
+	color: #a05825;
+}
+
+.f-marrom-madeira--darker {
+	color: #b5642a;
+}
+
+.f-marrom-madeira {
+	color: #c96f2f;
+}
+
+.f-marrom-madeira--lighter {
+	color: #d38b58;
+}
+
+.f-marrom-madeira--lightest {
+	color: #e4b797;
+}
+
+
+/* Marrom poeira */
+
+.f-marrom-poeira--darkest {
+	color: #b89040;
+}
+
+.f-marrom-poeira--darker {
+	color: #cfa148;
+}
+
+.f-marrom-poeira {
+	color: #e6b350;
+}
+
+.f-marrom-poeira--lighter {
+	color: #ebc373;
+}
+
+.f-marrom-poeira--lightest {
+	color: #f2d9a7;
 }

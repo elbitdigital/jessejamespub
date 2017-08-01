@@ -18,8 +18,13 @@
 	padding: .75em .5em;
 	position: relative;
 	text-transform: uppercase;
-	margin: 3px 0;
+	margin: 0 0 3px 0;
 }
+
+/*.FranchiseNavList-item a:hover,*/
+/*.FranchiseNavList-item a:focus {*/
+	/*background-color: #d38b58;*/
+/*}*/
 
 .FranchiseNavList-item a::after {
 	background-color: white;
@@ -31,9 +36,9 @@
 	-webkit-transition: opacity 0.2s, -webkit-transform 0.2s;
 	-moz-transition: opacity 0.2s, -moz-transform 0.2s;
 	transition: opacity 0.2s, transform 0.2s;
-	-webkit-transform: translateY(-5px);
-	-moz-transform: translateY(-5px);
-	transform: translateY(-5px);
+	-webkit-transform: translateY(-3px);
+	-moz-transform: translateY(-3px);
+	transform: translateY(-3px);
 	top: 100%;
 	width: 100%;
 }

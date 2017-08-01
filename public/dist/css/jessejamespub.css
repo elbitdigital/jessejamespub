@@ -47,6 +47,20 @@ body {
   font-family: 'Josefin Sans', 'Roboto', sans-serif;
 }
 
+.rye {
+  font-family: 'Rye', serif;
+  font-weight: normal;
+}
+
+.noto {
+  font-family: 'Noto Serif', serif;
+}
+
+.roboto-condensed-c {
+  font-family: 'Roboto Condensed', 'Roboto', sans-serif;
+  font-weight: 700;
+}
+
 .anchor {
   cursor: pointer;
 }
@@ -78,22 +92,21 @@ img::-moz-selection {
 }
 .Btn {
   background-clip: padding-box;
-  background-color: #ffffff;
-  border-radius: 3px;
+  background-color: transparent;
+  border-radius: 0;
   border: none;
   box-sizing: border-box;
-  box-shadow: inset 0 0 0 1px #cccccc;
-  color: #323232;
+  box-shadow: inset 0 0 0 2px #cccccc;
+  color: #cccccc;
   cursor: pointer;
   display: inline-block;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: 'Roboto', 'Noto', sans-serif;
-  font-size: .725em;
-  font-weight: 600;
-  line-height: 36px;
+  font-family: 'Roboto Condensed', 'Noto', sans-serif;
+  font-size: 1.125em;
+  font-weight: bold;
+  line-height: 40px;
   letter-spacing: 0;
-  margin: .25em;
   min-height: 36px;
   overflow: hidden;
   padding: 0 24px;
@@ -102,10 +115,11 @@ img::-moz-selection {
   text-transform: uppercase;
   position: relative;
   text-overflow: ellipsis;
-  -webkit-transition: none;
-  -webkit-transition: -webkit-box-shadow 0.2s ease;
-  -webkit-transition: box-shadow 0.2s ease;
-  transition: box-shadow 0.2s ease;
+  -webkit-transition: all .2s ease;
+  -moz-transition: all .2s ease;
+  -ms-transition: all .2s ease;
+  -o-transition: all .2s ease;
+  transition: all .2s ease;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -116,8 +130,10 @@ img::-moz-selection {
 
 .Btn:hover,
 .Btn:focus {
-  opacity: 0.9;
+  /*opacity: 0.9;*/
   outline: 0;
+  background-color: #6e3118;
+  color: #fafafa;
 }
 
 .Btn:active {
@@ -144,9 +160,10 @@ img::-moz-selection {
 /* Custom styles modifiers */
 
 .Btn--primary {
-  background-color: #7d381b;
-  color: #fff;
-  box-shadow: inset 0 0 0 1px #6e3118;
+  /*background-color: #7d381b;*/
+  color: #7d381b;
+  /*color: #fff;*/
+  box-shadow: inset 0 0 0 2px #6e3118;
 }
 
 .Btn--light {
@@ -161,8 +178,11 @@ img::-moz-selection {
   border-radius: 0;
 }
 
+.Btn--rounded {
+  border-radius: 3px;
+}
+
 .Btn--narrow {
-  border-radius: 2px;
   font-size: .725em;
   font-weight: 600;
   padding: 0 1.5em;
@@ -386,6 +406,8 @@ img::-moz-selection {
 }
 /* Jesse James Pub Color Pallete */
 
+/* BACKGROUND */
+
 /* Marrom couro */
 
 .marrom-couro--darkest {
@@ -473,6 +495,96 @@ img::-moz-selection {
 .marrom-poeira--lightest {
   background-color: #f2d9a7;
 }
+
+/* FONT COLOR */
+
+/* Marrom couro */
+
+.f-marrom-couro--darkest {
+  color: #301c09;
+}
+
+.f-marrom-couro--darker {
+  color: #442a0d;
+}
+
+.f-marrom-couro {
+  color: #4c2f0f;
+}
+
+.f-marrom-couro--lighter {
+  color: #6f573f;
+}
+
+.f-marrom-couro--lightest {
+  color: #a59687;
+}
+
+/* Vermelho terra */
+
+.f-vermelho-terra--darkest {
+  color: #6e3118;
+}
+
+.f-vermelho-terra--darker {
+  color: #7d381b;
+}
+
+.f-vermelho-terra {
+  color: #8a3f1e;
+}
+
+.f-vermelho-terra--lighter {
+  color: #a1644b;
+}
+
+.f-vermelho-terra--lightest {
+  color: #c49e8e;
+}
+
+/* Marrom madeira */
+
+.f-marrom-madeira--darkest {
+  color: #a05825;
+}
+
+.f-marrom-madeira--darker {
+  color: #b5642a;
+}
+
+.f-marrom-madeira {
+  color: #c96f2f;
+}
+
+.f-marrom-madeira--lighter {
+  color: #d38b58;
+}
+
+.f-marrom-madeira--lightest {
+  color: #e4b797;
+}
+
+/* Marrom poeira */
+
+.f-marrom-poeira--darkest {
+  color: #b89040;
+}
+
+.f-marrom-poeira--darker {
+  color: #cfa148;
+}
+
+.f-marrom-poeira {
+  color: #e6b350;
+}
+
+.f-marrom-poeira--lighter {
+  color: #ebc373;
+}
+
+.f-marrom-poeira--lightest {
+  color: #f2d9a7;
+}
 /* Franchise nav list */
 
 .FranchiseNavList {
@@ -492,8 +604,16 @@ img::-moz-selection {
   padding: .75em .5em;
   position: relative;
   text-transform: uppercase;
-  margin: 3px 0;
+  margin: 0 0 3px 0;
 }
+
+/*.FranchiseNavList-item a:hover,*/
+
+/*.FranchiseNavList-item a:focus {*/
+
+/*background-color: #d38b58;*/
+
+/*}*/
 
 .FranchiseNavList-item a::after {
   background-color: white;
@@ -505,9 +625,9 @@ img::-moz-selection {
   -webkit-transition: opacity 0.2s, -webkit-transform 0.2s;
   -moz-transition: opacity 0.2s, -moz-transform 0.2s;
   transition: opacity 0.2s, transform 0.2s;
-  -webkit-transform: translateY(-5px);
-  -moz-transform: translateY(-5px);
-  transform: translateY(-5px);
+  -webkit-transform: translateY(-3px);
+  -moz-transform: translateY(-3px);
+  transform: translateY(-3px);
   top: 100%;
   width: 100%;
 }
@@ -923,7 +1043,7 @@ h1.Guider-heading {
 .HeaderLower-inner {
   position: relative;
   text-align: center;
-  width: 100%;
+  /*width: 100%;*/
   z-index: 1;
 }
 /* Header Upper */
@@ -967,10 +1087,10 @@ h1.Guider-heading {
   -webkit-justify-content: space-around;
   justify-content: space-around;
   height: 100%;
-  padding: 1em .5em;
+  padding: 1.5em .5em;
   position: relative;
   text-align: center;
-  width: 100%;
+  /*width: 100%;*/
   z-index: 1;
 }
 /* Header */

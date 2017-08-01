@@ -35,8 +35,8 @@
 					inner[0].classList.add('is-return');
 
 					var updates = {};
-					updates['/admins/a' + user.uid] = {
-						'uid': user.uid,
+					updates['/admins/a' + user.uid] = 
+{						'uid': user.uid,
 						'datetime': new Date().toLocaleString() //DONT JUDGE ME
 					};
 					updates['/users/u' + user.uid] = {

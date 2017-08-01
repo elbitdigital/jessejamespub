@@ -44,9 +44,9 @@
 	-webkit-justify-content: space-around;
 	justify-content: space-around;
 	height: 100%;
-	padding: 1em .5em;
+	padding: 1.5em .5em;
 	position: relative;
 	text-align: center;
-	width: 100%;
+	/*width: 100%;*/
 	z-index: 1;
 }

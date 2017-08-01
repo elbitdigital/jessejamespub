@@ -41,6 +41,21 @@ body {
 	font-family: 'Josefin Sans', 'Roboto', sans-serif;
 }
 
+.rye {
+	font-family: 'Rye', serif;
+	font-weight: normal;
+}
+
+.noto {
+	font-family: 'Noto Serif', serif;
+}
+
+.roboto-condensed-c {
+	font-family: 'Roboto Condensed', 'Roboto', sans-serif;
+	font-weight: 700;
+}
+
+
 .anchor {
 	cursor: pointer;
 }

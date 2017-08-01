@@ -226,7 +226,8 @@
 <script>
 
   var databaseRef = firebase.database().ref('/');
-  var scheduleRef = databaseRef.child('schedule');
+  var houseRef = databaseRef.child('assis');
+  var scheduleRef = houseRef.child('schedule');
   var eventsRef = scheduleRef.child('items');
 
   // storage ref
