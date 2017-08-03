@@ -1,13 +1,31 @@
 <!DOCTYPE html>
-<html lang="pt-br" class="roboto">
+<html lang="pt-br">
 <meta charset="UTF-8">
-<title>Editor de álbums - Jesse James Assis</title>
+<title>Assis | Jesse James Pub</title>
 <meta name="viewport"
       content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+<link rel="icon" type="image/png" href="icon.png"/>
+
+<meta name="description" content="O melhor pub sertanejo do interior paulista">
+<meta name="image" content="https://jessejamespub.com.br/dist/img/meta.png">
+
+<meta itemprop="name" content="Jesse James Pub">
+<meta itemprop="description" content="O melhor pub sertanejo do interior paulista">
+<meta itemprop="image" content="https://jessejamespub.com.br/dist/img/meta.png">
+
+<meta name="og:title" content="Jesse James Pub">
+<meta name="og:description" content="O melhor pub sertanejo do interior paulista">
+<meta name="og:image" content="https://jessejamespub.com.br/dist/img/meta.png">
+<meta name="og:url" content="https://jessejamespub.com.br">
+<meta name="og:site_name" content="Jesse James Pub">
+<meta name="og:locale" content="pt_BR">
+<meta name="fb:app_id" content="1586666258259861">
+<meta name="og:type" content="website">
+
 <script src="dist/js/villa.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Rye|Noto+Serif|Roboto+Condensed:400,700" rel="stylesheet">
 <link rel="stylesheet" href="dist/css/villa.min.css"/>
 <link rel="stylesheet" href="dist/css/jessejamespub.css"/>
-
 <!--[if lt IE 9]>
 <link rel="stylesheet" type="text/css" href="dist/css/material-colors.css"/>
 <link rel="stylesheet" type="text/css" href="dist/css/villa-cross.min.css"/>
@@ -24,7 +42,7 @@
 		word-wrap: break-word;
 	}
 
-	.AlbumsGallery {
+	.Gallery-list {
 		-webkit-align-items: center;
 		align-items: center;
 		display: -webkit-box;
@@ -41,7 +59,7 @@
 
 	@media (min-width: 48em) {
 
-		.AlbumsGallery {
+		.Gallery-list {
 			width: 90%;
 		}
 
@@ -145,52 +163,194 @@
 		text-transform: uppercase;
 	}
 
-	/*.FeaturedAlbums .Album {*/
-	/*-webkit-justify-content: space-between;*/
-	/*justify-content: space-between;*/
-	/*margin: 1em;*/
-	/*min-height: 175px;*/
-	/*padding: 1em;*/
-	/*width: 200px;*/
-	/*max-width: 215px;*/
-	/*background-color: #bdbdbd;*/
-	/*}*/
+</style>
+
+<style>
+
+	.Gallery {
+		padding: 3em 0 2.5em;
+		text-align: center;
+	}
 
 </style>
 
-<body class="grey-900 font-white roboto">
+<style>
 
-<!--<button class="Btn Btn&#45;&#45;primary" onclick="getAllPageAlbums();">Receber álbums da página</button>-->
+	.PlaceholderExternal {
+		border-radius: 2px;
+		background-color: rgba(0, 0, 0, .2);
+		width: 600px;
+		margin: 1em 0;
+		padding: 1em 1em;
+	}
 
-<header>
+</style>
 
-	<h1>o <span class="purple font-white">expectacular</span> gerenciador de álbums</h1>
+<style>
 
-</header>
+	.loader {
+		height: 5px;
+		width: 100%;
+		position: relative;
+		overflow: hidden;
+		background-color: #ddd;
+	}
 
-<div id="albums-gallery" class="AlbumsGallery">
+	.loader:before {
+		display: block;
+		position: absolute;
+		content: "";
+		left: -200px;
+		width: 1px;
+		height: 5px;
+		background-color: #6e3118;
+		animation: loading 2s linear infinite;
+	}
 
-	<!--<div class="Album">-->
+	@keyframes loading {
+		from {
+			left: -200px;
+			width: 10%;
+		}
+		30% {
+			width: 20%;
+		}
+		50% {
+			width: 30%;
+		}
+		70% {
+			width: 70%;
+		}
+		80% {
+			left: 50%;
+			width: 100%;
+		}
+		95% {
+			left: 120%;
+		}
+		to {
+			left: 100%;
+		}
+	}
 
-	<!--<a href="https://google.com" target="_blank" class="Album-link">-->
-	<!--<span class="icon-link-ext"></span>-->
-	<!--</a>-->
+</style>
 
-	<!--<div class="AlbumCover">-->
+<body class="roboto marrom-poeira--lighter">
 
-	<!--<div class="AlbumBody">-->
-	<!--<img class="Album-image" src="https://scontent.xx.fbcdn.net/v/t1.0-0/s130x130/19665675_1917823568477460_7416851733986222613_n.jpg?oh=3042d0adfa4c613923bf3b97c3c8348e&oe=5A05294E" />-->
-	<!--<p class="Album-caption">SEXTA-FEIRA 02.04.17</p>-->
-	<!--</div>-->
+<section class="Gallery">
 
-	<!--</div>-->
+	<!-- TODO: style album cover (limit to last 3 and 4th as link to gallery page -->
+	<h1 class="title rye f-vermelho-terra--darkest">Galeria de fotos</h1>
+	<div id="gallery-list" class="Gallery Gallery-list">
 
-	<!--</div>-->
+		<!--<div class="PlaceholderExternal">-->
+			<!--<p>Carregando álbums...</p>-->
+			<!--<div class="loader"></div>-->
+		<!--</div>-->
 
-</div>
+		<style>
 
+			.Teste {
+				width: 300px;
+				height: 300px;
+				border: 2px solid red;
+				position: relative;
+				background-repeat: no-repeat;
+				background-position: center center;
+				-webkit-background-size: cover;
+				-moz-background-size: cover;
+				-o-background-size: cover;
+				background-size: cover;
+
+				-webkit-transition: all .4s ease;
+				-moz-transition: all .4s ease;
+				-ms-transition: all .4s ease;
+				-o-transition: all .4s ease;
+				transition: all .4s ease;
+
+				-webkit-align-items: center;
+				align-items: center;
+				display: -webkit-box;
+				display: -moz-box;
+				display: -ms-flexbox;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-justify-content: center;
+				justify-content: center;
+				-webkit-flex-flow: column;
+				flex-flow: column;
+			}
+
+			.Teste:hover {
+				border-color: green;
+			}
+
+			.Teste:hover:after {
+				bottom: -.75em;
+				right: -.75em;
+				background-color: darkgreen;
+			}
+
+			.Teste:after {
+				content: '';
+				background-color: darkred;
+				position: absolute;
+				z-index: -1;
+				bottom: -.5em;
+				right: -.5em;
+				display: block;
+				width: 100%;
+				height: 100%;
+
+				-webkit-transition: all .4s ease;
+				-moz-transition: all .4s ease;
+				-ms-transition: all .4s ease;
+				-o-transition: all .4s ease;
+				transition: all .4s ease;
+			}
+
+			.Teste:hover h1 {
+				/*padding: .575em .75em;*/
+				background-color: rgba(0,0,0,.8);
+				/*font-size: 1.5em;*/
+				border-color: green;
+			}
+
+			.Teste h1 {
+				font-size: 1.25em;
+				padding: .5em;
+				background-color: rgba(0,0,0,.7);
+				border: 2px solid red;
+				-webkit-transition: all .3s ease;
+				-moz-transition: all .3s ease;
+				-ms-transition: all .3s ease;
+				-o-transition: all .3s ease;
+				transition: all .3s ease;
+			}
+
+		</style>
+
+		<div class="Teste" style="background-image: url('https://scontent.xx.fbcdn.net/v/t31.0-0/p600x600/20368996_1929509733975510_6919608120889740573_o.jpg?oh=015be32f605fd90145511454d4fd9c52&oe=5A024C8A');">
+			<h1>05/05/2017</h1>
+			<!--<h4>SEXTA-FEIRA</h4>-->
+		</div>
+
+	</div>
+
+</section>
+
+<script>
+
+	window.addEventListener('load', function () {
+
+		galleryInit();
+
+	});
+
+</script>
 
 <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
+
 <script>
 
 	var config = {
@@ -201,26 +361,17 @@
 		storageBucket: "jessejamespub-com-br.appspot.com",
 		messagingSenderId: "118227352953"
 	};
+
 	firebase.initializeApp(config);
 
 	var databaseRef = firebase.database().ref('/');
 	var houseRef = databaseRef.child('assis');
+	var scheduleRef = houseRef.child('schedule');
+	var eventsRef = scheduleRef.child('items');
+
 	var galleryRef = houseRef.child('gallery');
-	var disabledAlbumsRef = galleryRef.child('disabledAlbums');
-
-</script>
-
-<script>
-
-	window.addEventListener('load', function () {
-
-		galleryInit();
-//			> getAllPageAlbums();
-//				< removeUndesiredTypes();
-//				> transformDataArrayIntoAlbumsElements();
-//			> addFirebaseListeners();
-
-	});
+	var enabledRef = galleryRef.child('enabledAlbums');
+	var disabledRef = galleryRef.child('disabledAlbums');
 
 </script>
 
@@ -228,141 +379,87 @@
 
 <script>
 
-	var disabled_albums = [];
+	var batched_albums = [];
+	var batch_list = [];
 
 	function galleryInit() {
 
-		getAllPageAlbums();
-		addFirebaseListeners();
+		enabledRef.orderByKey().limitToLast(3).once('value', function (snapshot) {
+
+			snapshot.forEach(function (child) {
+
+				batch_list.push({
+					"method": "GET",
+					"relative_url": child.key + "?fields=name, link, type, cover_photo.fields(id, height, width, picture, images)"
+				});
+
+			});
+
+			batchRequestAlbums(batch_list);
+
+		});
 
 	}
 
-	/**
-	 * Make a request to Facebook Graph API requesting all the albums from Jesse James Assis page
-	 * And proceed to pass the information to a function that transform the json response to elements
-	 */
-	function getAllPageAlbums() {
+	function batchRequestAlbums(batch_list) {
 
-		var showRequestData = false;
-
-		var PAGE_ID = 1586666258259861;
-
-		axios.get('https://graph.facebook.com/v2.10/' + PAGE_ID, {
-			params: {
-//				fields: 'albums.fields(name, link, type, cover_photo.fields(id,height,width,images)).limit(9999)',
-				fields: 'albums.fields(name, link, type, cover_photo.fields(id,height,width,picture)).limit(9999)',
-				access_token: '146544439255115|3_8Ip3wrGqx-BfnrEVVRhJeUpLA' //token do aplicativo
-			}
+		axios.post('https://graph.facebook.com/v2.10/', {
+			access_token: '146544439255115|3_8Ip3wrGqx-BfnrEVVRhJeUpLA',
+			batch: batch_list,
+			include_headers: "false"
 		}).then(function (response) {
 
-			if (!showRequestData) {
+			batched_albums = response.data;
 
-				/* #1 - do not display disabled albums to user */
-//			    removeDisabledAlbums(response.data.albums.data);
+//			transformDataArrayIntoAlbumsElements(batched_albums);
 
-				/* #2 - display albums to user with disabled style */
-				var normal_albums = removeUndesiredTypes(response.data.albums.data);
-				transformDataArrayIntoAlbumsElements(normal_albums);
-
-			} else {
-
-				document.getElementById('albums-gallery').innerHTML = '<pre><code>' + JSON.stringify(response.data, undefined, 2) +'</code></pre>';
-
-			}
+//            document.getElementById('gallery-list').innerHTML = '<pre><code>' + JSON.stringify(response.data, undefined, 2) +'</code></pre>';
 
 		}).catch(function (err) {
 
-			document.getElementById('albums-gallery').innerHTML = '<span style="color: red;">' + err.message + '</span>';
+			document.getElementById('gallery-list').innerHTML = '<span style="color: red;">' + err.message + '</span>';
 
 		});
 
 	}
 
-	/**
-	 * Create a filtered json object from the request response (all albums) without disabled albums
-	 * WARNING: it might not act as intended at this stage, as disabled_albums array is asynchronously created by the
-	 *  firebase child listeners (precisely on child_added)
-	 * This was left for possible future use and documentation pourposes only
-	 * @param {JSON} all_albums Provided by the Graph API request (gathered from response.data.albums.data)
-	 */
-	function removeDisabledAlbums(all_albums) {
-
-//		var disabled_albums = ['1594575264135627', '1586670551592765', '1885754275017723', '1875326966060454', '1586667811593039'];
-		// ['Timeline Photos', 'Cover Photos', 'Instagram Photos', 'VIOLADA DUBS - DESFILE CHEIAS DE CHARME', 'Profile Pictures']
-
-		// filter albums that appears on disabled_albums
-		var filtered_albums = all_albums.filter(function(album) {
-
-			return disabled_albums.indexOf(album.id) == -1;
-
-		});
-
-		/* #1 - do not display disabled albums to user */
-//		transformDataArrayIntoAlbumsElements(filtered_albums);
-
-	}
-
-	/**
-	 * Returns a filtered json object without undesired page albums types (like profile, cover, app, wall, etc)
-	 * @param {JSON} all_albums Provided by the Graph API request (gathered from response.data.albums.data)
-	 * @returns {JSON} All albums without the undesired album types
-	 */
-	function removeUndesiredTypes(all_albums) {
-
-		// undesired album types => {app, cover, profile, mobile, wall}
-		// desired album types => {normal, album}
-		var undesired = ["app", "cover", "profile", "mobile", "wall"];
-
-		return all_albums.filter(function(album) {
-
-			return undesired.indexOf(album.type) == -1;
-
-		});
-
-	}
-
-	/**
-	 * Create all albums elements and append them to album gallery element
-	 * @param {JSON} received_albums Provided by the Graph API request (gathered from removeUndesiredTypes() return)
-	 */
 	function transformDataArrayIntoAlbumsElements(received_albums) {
 
-		var albums = received_albums;
+		var galleryNode = document.getElementById('gallery-list');
+		galleryNode.innerHTML = '';
 
-		var galleryNode = document.getElementById('albums-gallery');
+		for (var i = received_albums.length; i--;) {
 
-		for (var i = 0; i < albums.length; i++) {
+			var album = JSON.parse(received_albums[i].body);
 
 			var albumNode = document.createElement('div');
 			albumNode.className = 'Album';
 
 			var albumLinkNode = document.createElement('a');
 			albumLinkNode.className = 'Album-link';
-			albumLinkNode.href = albums[i].link;
+			albumLinkNode.href = album.link;
 			albumLinkNode.target = '_blank';
 			albumLinkNode.innerHTML = '<span class="icon-link-ext"></span>';
 
 			var albumCoverNode = document.createElement('div');
 			albumCoverNode.className = 'AlbumCover';
-			albumCoverNode.dataset.id = albums[i].id;
+			albumCoverNode.dataset.id = album.id;
 
 			var albumBodyNode = document.createElement('div');
 			albumBodyNode.className = 'AlbumBody';
-			albumBodyNode.addEventListener('click', function(ev) {
-				toggleDisabledAlbum(this.parentElement);
-			});
 
 			var albumImgNode = document.createElement('img');
 			albumImgNode.className = 'Album-image';
-			albumImgNode.src = albums[i].cover_photo.picture;
+			albumImgNode.src = album.cover_photo.picture;
+			console.log(album.cover_photo.images);
 
-			if (albums[i].cover_photo.height > albums[i].cover_photo.width) {
+			if (album.cover_photo.height > album.cover_photo.width) {
 				albumImgNode.src = 'http://lorempixel.com/g/130/89/abstract/retrato/';
 			}
 
 			var albumCaptionNode = document.createElement('p');
 			albumCaptionNode.className = 'Album-caption';
-			albumCaptionNode.textContent = albums[i].name;
+			albumCaptionNode.textContent = album.name;
 
 			albumBodyNode.appendChild(albumImgNode);
 			albumBodyNode.appendChild(albumCaptionNode);
@@ -376,112 +473,8 @@
 
 		}
 
-	}
+//		addFirebaseListeners();
 
-	/**
-	 * When user click on AlbumBody, get the AlbumCover of the clicked element and check if it's in the disabled_albums
-	 * array, if it is (and is styled accordingly) ask to turn it on again, otherwise ask to disable it
-	 * @param {Element} albumCover Provided by user click event on the AlbumBody element (gathered as albumBody.parentElement)
-	 */
-	function toggleDisabledAlbum(albumCover) {
-
-		var msg = "";
-		var id = albumCover.dataset.id;
-
-		if (disabled_albums.indexOf(id) > -1 && albumCover.classList.contains('is-disabled')) {
-
-			msg = "Deseja habilitar o álbum?";
-
-			if(confirm(msg))
-				removeDisabledAlbum(id);
-
-		} else if (disabled_albums.indexOf(id) == -1 && !albumCover.classList.contains('is-disabled')) {
-
-			msg = "Deseja desabilitar o álbum?";
-
-			if(confirm(msg))
-				saveDisabledAlbum(id);
-
-		} else {
-
-			console.log('sei lá bixo, debuga ai');
-
-		}
-
-	}
-
-	/**
-	 * Save the newly disabled album to the firebase reference
-	 * @param {Number} albumId Album identifier, provided by the Graph API request and gathered from AlbumCover dataset
-	 */
-	function saveDisabledAlbum(albumId) {
-
-		disabledAlbumsRef.child(albumId).set({
-			disabled_on: firebase.database.ServerValue.TIMESTAMP
-		});
-
-	}
-
-	/**
-	 * Remove the disabled album from the firebase reference, making it enabled again
-	 * @param {Number} albumId Album identifier, provided by the Graph API request and gathered from AlbumCover dataset
-	 */
-	function removeDisabledAlbum(albumId) {
-
-//		disabledAlbumsRef.child(albumId).set(null);
-		disabledAlbumsRef.child(albumId).remove();
-
-	}
-
-	/**
-	 * Style an album element (to disabled state) by adding 'is-disabled' class to AlbumCover element
-	 * @param {Number} albumId Album identifier, provided by the Graph API request and gathered from firebase disabledAlbumsRef
-	 */
-	function turnOnDisabledAlbum(albumId) {
-
-		var albumCover = document.querySelector("[data-id='" + albumId + "']");
-		albumCover.classList.add('is-disabled');
-
-	}
-
-	/**
-	 * Style an album element (to enabled state) by removing 'is-disabled' class from AlbumCover element
-	 * @param {Number} albumId Album identifier, provided by the Graph API request and gathered from firebase disabledAlbumsRef
-	 */
-	function turnOffDisabledAlbum(albumId) {
-
-		var albumCover = document.querySelector("[data-id='" + albumId + "']");
-		albumCover.classList.remove('is-disabled');
-
-	}
-
-	/**
-	 * Enable firebase child listeners on the disabled albums reference
-	 *  the on child_added is trigged for every already persisted child, not only future added childs
-	 */
-	function addFirebaseListeners() {
-
-		disabledAlbumsRef.on('child_added', function(snapshot) {
-
-			disabled_albums.push(snapshot.key);
-			turnOnDisabledAlbum(snapshot.key);
-
-		});
-
-		disabledAlbumsRef.on('child_removed', function(snapshot) {
-
-			var index = disabled_albums.indexOf(snapshot.key);
-			if (index > -1)
-				disabled_albums.splice(index, 1);
-
-			turnOffDisabledAlbum(snapshot.key);
-
-		});
-
-	}
-
-	function showDisabled() {
-		console.log(disabled_albums);
 	}
 
 </script>
