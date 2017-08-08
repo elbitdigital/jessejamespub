@@ -583,6 +583,106 @@
 
 </style>
 
+<style>
+
+	.HighlightedAlbum {
+		width: 18em;
+		height: 18em;
+		margin: .5em;
+		border: 2px solid #7d381b;
+		position: relative;
+		background-repeat: no-repeat;
+		background-position: center center;
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
+
+		-webkit-transition: all .4s ease;
+		-moz-transition: all .4s ease;
+		-ms-transition: all .4s ease;
+		-o-transition: all .4s ease;
+		transition: all .4s ease;
+
+		-webkit-align-items: center;
+		align-items: center;
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-justify-content: center;
+		justify-content: center;
+	}
+
+	.HighlightedAlbum:hover {
+		border-color: #6e3118;
+	}
+
+	.HighlightedAlbum--more .HighlightedAlbumContent-date {
+		background-color: rgba(0,0,0,.9);
+	}
+
+	.HighlightedAlbumContent-date {
+		display: inline-block;
+		font-size: 1.5em;
+		padding: .25em;
+		min-width: 5em;
+		background-color: rgba(0,0,0,.5);
+		border: 2px solid #7d381b;
+		-webkit-transition: all .3s ease;
+		-moz-transition: all .3s ease;
+		-ms-transition: all .3s ease;
+		-o-transition: all .3s ease;
+		transition: all .3s ease;
+	}
+
+	.HighlightedAlbum:hover .HighlightedAlbumContent-date {
+		background-color: rgba(0,0,0,.7);
+		border-color: #6e3118; /* marrom couro darkest */
+	}
+
+	.HighlightedAlbumContent-title {
+		font-size: 1.25em;
+		text-transform: uppercase;
+		margin: .5em;
+	}
+
+	.HighlightedAlbum-overlay {
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		right: 0;
+		opacity: .4;
+		z-index: 1;
+		-webkit-transition: all .3s ease;
+		-moz-transition: all .3s ease;
+		-ms-transition: all .3s ease;
+		-o-transition: all .3s ease;
+		transition: all .3s ease;
+	}
+
+	.HighlightedAlbum:hover .HighlightedAlbum-overlay {
+		opacity: .3;
+	}
+
+	.HighlightedAlbum--more .HighlightedAlbum-overlay {
+		opacity: .7;
+	}
+
+	.HighlightedAlbum--more:hover .HighlightedAlbum-overlay {
+		opacity: .8;
+	}
+
+	.HighlightedAlbumContent {
+		color: #fafafa;
+		font-family: 'Roboto Condensed', 'Roboto', sans-serif;
+		z-index: 2;
+	}
+
+</style>
+
 <body class="roboto marrom-poeira--lighter">
 
 <div class="Header">
@@ -1095,7 +1195,7 @@
 
 				batch_list.push({
 					"method": "GET",
-					"relative_url": child.key + "?fields=name, link, type, cover_photo.fields(id,height,width,picture,images)"
+					"relative_url": child.key + "?fields=name, link, type, cover_photo.fields(id, height, width, picture, images, link)"
 				});
 
 			});
@@ -1136,50 +1236,95 @@
 		for (var i = received_albums.length; i--;) {
 
 			var album = JSON.parse(received_albums[i].body);
-			console.log(album);
 
-			var albumNode = document.createElement('div');
-			albumNode.className = 'Album';
+			var highlightedAlbumNode = document.createElement('a');
+			highlightedAlbumNode.href = album.link;
+			highlightedAlbumNode.className = 'HighlightedAlbum';
+			highlightedAlbumNode.title = album.name;
+			highlightedAlbumNode.style.backgroundImage = 'url(' + album.cover_photo.images[4].source +')';
 
-			var albumLinkNode = document.createElement('a');
-			albumLinkNode.className = 'Album-link';
-			albumLinkNode.href = album.link;
-			albumLinkNode.target = '_blank';
-			albumLinkNode.innerHTML = '<span class="icon-link-ext"></span>';
+			var albumOverlayNode = document.createElement('div');
+			albumOverlayNode.className = 'HighlightedAlbum-overlay marrom-couro--darkest';
 
-			var albumCoverNode = document.createElement('div');
-			albumCoverNode.className = 'AlbumCover';
-			albumCoverNode.dataset.id = album.id;
+			var albumContentNode = document.createElement('div');
+			albumContentNode.className = 'HighlightedAlbumContent';
 
-			var albumBodyNode = document.createElement('div');
-			albumBodyNode.className = 'AlbumBody';
+			var formattedDate = converterData(separarDataTitulo(album.name).date[0]);
+			var title = separarDataTitulo(album.name).title;
 
-			var albumImgNode = document.createElement('img');
-			albumImgNode.className = 'Album-image';
-			albumImgNode.src = album.cover_photo.picture;
-			console.log(album.cover_photo.images);
+			var albumContentDate = document.createElement('h1');
+			albumContentDate.className = 'HighlightedAlbumContent-date';
+			albumContentDate.textContent = formattedDate;
 
-			if (album.cover_photo.height > album.cover_photo.width) {
-				albumImgNode.src = 'http://lorempixel.com/g/130/89/abstract/retrato/';
-			}
+			var albumContentTitle = document.createElement('h2');
+			albumContentTitle.className = 'HighlightedAlbumContent-title';
+			albumContentTitle.textContent = title;
 
-			var albumCaptionNode = document.createElement('p');
-			albumCaptionNode.className = 'Album-caption';
-			albumCaptionNode.textContent = album.name;
+//			if (i == 0) {
+//
+//				highlightedAlbumNode.className = 'HighlightedAlbum HighlightedAlbum--more';
+//				highlightedAlbumNode.title = 'Ver todos os álbuns';
+//				highlightedAlbumNode.href = '/galeria';
+//				albumContentTitle.textContent = 'Ver todos os álbuns';
+//
+//				albumContentNode.appendChild(albumContentTitle);
+//
+//				highlightedAlbumNode.appendChild(albumOverlayNode);
+//				highlightedAlbumNode.appendChild(albumContentNode);
+//
+//				galleryNode.appendChild(highlightedAlbumNode);
+//
+//			} else {
 
-			albumBodyNode.appendChild(albumImgNode);
-			albumBodyNode.appendChild(albumCaptionNode);
+				albumContentNode.appendChild(albumContentDate);
+				albumContentNode.appendChild(albumContentTitle);
 
-			albumCoverNode.appendChild(albumBodyNode);
+				highlightedAlbumNode.appendChild(albumOverlayNode);
+				highlightedAlbumNode.appendChild(albumContentNode);
 
-			albumNode.appendChild(albumLinkNode);
-			albumNode.appendChild(albumCoverNode);
+				galleryNode.appendChild(highlightedAlbumNode);
 
-			galleryNode.appendChild(albumNode);
+//			}
 
 		}
 
+		var seeAllButton = document.createElement('a');
+		seeAllButton.href = 'galeria';
+		seeAllButton.title = 'Ver todos os álbuns';
+		seeAllButton.className = 'Btn Btn--primary';
+		seeAllButton.textContent = 'Ver todos os álbuns';
+
+		galleryNode.parentNode.appendChild(seeAllButton);
+
 //		addFirebaseListeners();
+
+	}
+
+	function procurarDataSubtitulo(string) {
+
+		var regex_date = /(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](((19|20)\d\d)|(\d\d))/gm;
+
+		return regex_date.test(string);
+
+	}
+
+	function converterData(date) {
+
+		var regex_separator = /[- .]/gm;
+
+		return date.replace(regex_separator, '/');
+
+	}
+
+	function separarDataTitulo(string) {
+
+		var content = [];
+
+		var regex_date = /(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](((19|20)\d\d)|(\d\d))/gm;
+		content.date = regex_date.exec(string);
+		content.title = string.replace(regex_date, '');
+
+		return content;
 
 	}
 

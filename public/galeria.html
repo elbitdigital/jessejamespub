@@ -60,107 +60,9 @@
 	@media (min-width: 48em) {
 
 		.Gallery-list {
-			width: 90%;
+			/*width: 90%;*/
 		}
 
-	}
-
-	.Album {
-		height: auto;
-		/*margin: .5em;*/
-		max-width: 150px;
-		/*min-height: 200px;*/
-		padding: .5em;
-		position: relative;
-		text-align: center;
-		width: 175px;
-	}
-
-	@media (min-width: 48em) {
-
-		.Album {
-			height: 210px;
-			margin: .75em;
-			max-width: 175px;
-			width: 175px;
-		}
-
-	}
-
-	.AlbumCover {
-		background-color: #EEEEEE;
-		color: #212121;
-		border: 2px solid #0277bd;
-		height: 100%;
-		/*padding: 1.5em 1em;*/
-		position: relative;
-		width: 100%;
-
-		-moz-user-select: none;
-		-ms-user-select: none;
-		-khtml-user-select: none;
-		-webkit-user-select: none;
-		-webkit-touch-callout: none;
-	}
-
-	.AlbumCover.is-disabled {
-		background-color: #E0E0E0;
-		border-color: #bdbdbd;
-		color: #9E9E9E;
-	}
-
-	.AlbumCover:hover {
-		cursor: pointer;
-	}
-
-	.AlbumBody {
-		-webkit-align-items: center;
-		align-items: center;
-		display: -webkit-box;
-		display: -moz-box;
-		display: -ms-flexbox;
-		display: -webkit-flex;
-		display: flex;
-		-webkit-justify-content: space-between;
-		justify-content: space-between;
-		-webkit-flex-flow: column;
-		flex-flow: column;
-		padding: 1.5em 1em; /* user should click on album body to toggle disabled */
-
-		position: relative;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-	}
-
-	.Album-link {
-		background-color: #0277bd;
-		border-radius: .25em;
-		color: #fff;
-		font-size: .875em;
-		height: 1.5em;
-		line-height: 1.5em;
-		position: absolute;
-		right: 0;
-		top: 0;
-		text-align: center;
-		width: 1.5em;
-		z-index: 5;
-	}
-
-	/*.AlbumCover.is-disabled .Album-link {*/
-	/*background-color: #bdbdbd;*/
-	/*}*/
-
-	.Album-image {
-		margin-bottom: .5em;
-	}
-
-	.Album-caption {
-		font-size: .875em;
-		font-weight: 800;
-		text-transform: uppercase;
 	}
 
 </style>
@@ -235,11 +137,110 @@
 
 </style>
 
+<style>
+
+	.HighlightedAlbum {
+		width: 15em;
+		height: 15em;
+		margin: .5em;
+		border: 2px solid #442a0d; /* marrom couro darker */
+		position: relative;
+		background-repeat: no-repeat;
+		background-position: center center;
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
+
+		-webkit-transition: all .4s ease;
+		-moz-transition: all .4s ease;
+		-ms-transition: all .4s ease;
+		-o-transition: all .4s ease;
+		transition: all .4s ease;
+
+		-webkit-align-items: center;
+		align-items: center;
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-justify-content: center;
+		justify-content: center;
+	}
+
+	.HighlightedAlbum:hover {
+		border-color: #301c09; /* marrom couro darkest */
+	}
+
+	.HighlightedAlbum--more .HighlightedAlbumContent-date {
+		background-color: rgba(0,0,0,.9);
+	}
+
+	.HighlightedAlbumContent-date {
+		display: inline-block;
+		font-size: 1.5em;
+		padding: .25em;
+		min-width: 5em;
+		background-color: rgba(0,0,0,.5);
+		border: 2px solid #442a0d; /* marrom couro darker */
+		-webkit-transition: all .3s ease;
+		-moz-transition: all .3s ease;
+		-ms-transition: all .3s ease;
+		-o-transition: all .3s ease;
+		transition: all .3s ease;
+	}
+
+	.HighlightedAlbum:hover .HighlightedAlbumContent-date {
+		background-color: rgba(0,0,0,.7);
+		border-color: #301c09; /* marrom couro darkest */
+	}
+
+	.HighlightedAlbumContent-title {
+		font-size: 1.25em;
+		text-transform: uppercase;
+		margin: .5em;
+	}
+
+	.HighlightedAlbum-overlay {
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		right: 0;
+		opacity: .4;
+		z-index: 1;
+		-webkit-transition: all .3s ease;
+		-moz-transition: all .3s ease;
+		-ms-transition: all .3s ease;
+		-o-transition: all .3s ease;
+		transition: all .3s ease;
+	}
+
+	.HighlightedAlbum:hover .HighlightedAlbum-overlay {
+		opacity: .3;
+	}
+
+	.HighlightedAlbum--more .HighlightedAlbum-overlay {
+		opacity: .7;
+	}
+
+	.HighlightedAlbum--more:hover .HighlightedAlbum-overlay {
+		opacity: .8;
+	}
+
+	.HighlightedAlbumContent {
+		color: #fafafa;
+		font-family: 'Roboto Condensed', 'Roboto', sans-serif;
+		z-index: 2;
+	}
+
+</style>
+
 <body class="roboto marrom-poeira--lighter">
 
-<section class="Gallery">
+<section class="Gallery container">
 
-	<!-- TODO: style album cover (limit to last 3 and 4th as link to gallery page -->
 	<h1 class="title rye f-vermelho-terra--darkest">Galeria de fotos</h1>
 	<div id="gallery-list" class="Gallery Gallery-list">
 
@@ -248,92 +249,50 @@
 			<!--<div class="loader"></div>-->
 		<!--</div>-->
 
-		<style>
+		<a href="#assis" class="HighlightedAlbum" style="background-image: url('https://scontent.xx.fbcdn.net/v/t31.0-0/p600x600/20368996_1929509733975510_6919608120889740573_o.jpg?oh=015be32f605fd90145511454d4fd9c52&oe=5A024C8A');">
 
-			.Teste {
-				width: 300px;
-				height: 300px;
-				border: 2px solid red;
-				position: relative;
-				background-repeat: no-repeat;
-				background-position: center center;
-				-webkit-background-size: cover;
-				-moz-background-size: cover;
-				-o-background-size: cover;
-				background-size: cover;
+			<div class="HighlightedAlbum-overlay marrom-couro--darkest"></div>
 
-				-webkit-transition: all .4s ease;
-				-moz-transition: all .4s ease;
-				-ms-transition: all .4s ease;
-				-o-transition: all .4s ease;
-				transition: all .4s ease;
+			<div class="HighlightedAlbumContent">
+				<h1 class="HighlightedAlbumContent-date">05/05/2017</h1>
+				<h2 class="HighlightedAlbumContent-title">DESFILE CHEIA DE CHARME DUB'S PALMITAL</h2>
+			</div>
 
-				-webkit-align-items: center;
-				align-items: center;
-				display: -webkit-box;
-				display: -moz-box;
-				display: -ms-flexbox;
-				display: -webkit-flex;
-				display: flex;
-				-webkit-justify-content: center;
-				justify-content: center;
-				-webkit-flex-flow: column;
-				flex-flow: column;
-			}
+		</a>
 
-			.Teste:hover {
-				border-color: green;
-			}
+		<a href="#ourinhos" class="HighlightedAlbum" style="background-image: url('https://scontent.xx.fbcdn.net/v/t31.0-0/p600x600/20368996_1929509733975510_6919608120889740573_o.jpg?oh=015be32f605fd90145511454d4fd9c52&oe=5A024C8A');">
 
-			.Teste:hover:after {
-				bottom: -.75em;
-				right: -.75em;
-				background-color: darkgreen;
-			}
+			<div class="HighlightedAlbum-overlay marrom-couro--darkest"></div>
 
-			.Teste:after {
-				content: '';
-				background-color: darkred;
-				position: absolute;
-				z-index: -1;
-				bottom: -.5em;
-				right: -.5em;
-				display: block;
-				width: 100%;
-				height: 100%;
+			<div class="HighlightedAlbumContent">
+				<h1 class="HighlightedAlbumContent-date">01.02.2017</h1>
+				<h2 class="HighlightedAlbumContent-title">SEXTA-FEIRA</h2>
+			</div>
 
-				-webkit-transition: all .4s ease;
-				-moz-transition: all .4s ease;
-				-ms-transition: all .4s ease;
-				-o-transition: all .4s ease;
-				transition: all .4s ease;
-			}
+		</a>
 
-			.Teste:hover h1 {
-				/*padding: .575em .75em;*/
-				background-color: rgba(0,0,0,.8);
-				/*font-size: 1.5em;*/
-				border-color: green;
-			}
+		<a href="#paraguacu" class="HighlightedAlbum" style="background-image: url('https://scontent.xx.fbcdn.net/v/t31.0-0/p600x600/20368996_1929509733975510_6919608120889740573_o.jpg?oh=015be32f605fd90145511454d4fd9c52&oe=5A024C8A');">
 
-			.Teste h1 {
-				font-size: 1.25em;
-				padding: .5em;
-				background-color: rgba(0,0,0,.7);
-				border: 2px solid red;
-				-webkit-transition: all .3s ease;
-				-moz-transition: all .3s ease;
-				-ms-transition: all .3s ease;
-				-o-transition: all .3s ease;
-				transition: all .3s ease;
-			}
+			<div class="HighlightedAlbum-overlay marrom-couro--darkest"></div>
 
-		</style>
+			<div class="HighlightedAlbumContent">
+				<h1 class="HighlightedAlbumContent-date">05-05-2017</h1>
+				<h2 class="HighlightedAlbumContent-title">SÁBADO</h2>
+			</div>
 
-		<div class="Teste" style="background-image: url('https://scontent.xx.fbcdn.net/v/t31.0-0/p600x600/20368996_1929509733975510_6919608120889740573_o.jpg?oh=015be32f605fd90145511454d4fd9c52&oe=5A024C8A');">
-			<h1>05/05/2017</h1>
-			<!--<h4>SEXTA-FEIRA</h4>-->
-		</div>
+		</a>
+
+
+		<a href="#see-more" title="Ver todos os álbuns" class="HighlightedAlbum HighlightedAlbum--more" style="background-image: url('https://scontent.xx.fbcdn.net/v/t31.0-0/p600x600/20368996_1929509733975510_6919608120889740573_o.jpg?oh=015be32f605fd90145511454d4fd9c52&oe=5A024C8A');">
+
+			<div class="HighlightedAlbum-overlay marrom-couro--darkest"></div>
+
+			<div class="HighlightedAlbumContent">
+				<!--<h1 class="HighlightedAlbumContent-date"><span class="icon-angle-double-right"></span></h1>-->
+				<h2 class="HighlightedAlbumContent-title">Ver todos os álbuns</h2>
+			</div>
+
+		</a>
 
 	</div>
 
@@ -384,13 +343,13 @@
 
 	function galleryInit() {
 
-		enabledRef.orderByKey().limitToLast(3).once('value', function (snapshot) {
+		enabledRef.orderByKey().limitToLast(4).once('value', function (snapshot) {
 
 			snapshot.forEach(function (child) {
 
 				batch_list.push({
 					"method": "GET",
-					"relative_url": child.key + "?fields=name, link, type, cover_photo.fields(id, height, width, picture, images)"
+					"relative_url": child.key + "?fields=name, link, type, cover_photo.fields(id, height, width, picture, images, link)"
 				});
 
 			});
@@ -411,7 +370,7 @@
 
 			batched_albums = response.data;
 
-//			transformDataArrayIntoAlbumsElements(batched_albums);
+			transformDataArrayIntoAlbumsElements(batched_albums);
 
 //            document.getElementById('gallery-list').innerHTML = '<pre><code>' + JSON.stringify(response.data, undefined, 2) +'</code></pre>';
 
@@ -432,48 +391,86 @@
 
 			var album = JSON.parse(received_albums[i].body);
 
-			var albumNode = document.createElement('div');
-			albumNode.className = 'Album';
+			var highlightedAlbumNode = document.createElement('a');
+			highlightedAlbumNode.href = album.link;
+			highlightedAlbumNode.className = 'HighlightedAlbum';
+			highlightedAlbumNode.title = album.name;
+			highlightedAlbumNode.style.backgroundImage = 'url(' + album.cover_photo.images[4].source +')';
 
-			var albumLinkNode = document.createElement('a');
-			albumLinkNode.className = 'Album-link';
-			albumLinkNode.href = album.link;
-			albumLinkNode.target = '_blank';
-			albumLinkNode.innerHTML = '<span class="icon-link-ext"></span>';
+			var albumOverlayNode = document.createElement('div');
+			albumOverlayNode.className = 'HighlightedAlbum-overlay marrom-couro--darkest';
 
-			var albumCoverNode = document.createElement('div');
-			albumCoverNode.className = 'AlbumCover';
-			albumCoverNode.dataset.id = album.id;
+			var albumContentNode = document.createElement('div');
+			albumContentNode.className = 'HighlightedAlbumContent';
 
-			var albumBodyNode = document.createElement('div');
-			albumBodyNode.className = 'AlbumBody';
+			var formattedDate = converterData(separarDataTitulo(album.name).date[0]);
+			var title = separarDataTitulo(album.name).title;
 
-			var albumImgNode = document.createElement('img');
-			albumImgNode.className = 'Album-image';
-			albumImgNode.src = album.cover_photo.picture;
-			console.log(album.cover_photo.images);
+			var albumContentDate = document.createElement('h1');
+			albumContentDate.className = 'HighlightedAlbumContent-date';
+			albumContentDate.textContent = formattedDate;
 
-			if (album.cover_photo.height > album.cover_photo.width) {
-				albumImgNode.src = 'http://lorempixel.com/g/130/89/abstract/retrato/';
+			var albumContentTitle = document.createElement('h2');
+			albumContentTitle.className = 'HighlightedAlbumContent-title';
+			albumContentTitle.textContent = title;
+
+			if (i == 0) {
+
+				highlightedAlbumNode.className = 'HighlightedAlbum HighlightedAlbum--more';
+				highlightedAlbumNode.title = 'Ver todos os álbuns';
+				highlightedAlbumNode.href = '/galeria';
+				albumContentTitle.textContent = 'Ver todos os álbuns';
+
+				albumContentNode.appendChild(albumContentTitle);
+
+				highlightedAlbumNode.appendChild(albumOverlayNode);
+				highlightedAlbumNode.appendChild(albumContentNode);
+
+				galleryNode.appendChild(highlightedAlbumNode);
+
+			} else {
+
+				albumContentNode.appendChild(albumContentDate);
+				albumContentNode.appendChild(albumContentTitle);
+
+				highlightedAlbumNode.appendChild(albumOverlayNode);
+				highlightedAlbumNode.appendChild(albumContentNode);
+
+				galleryNode.appendChild(highlightedAlbumNode);
+
 			}
-
-			var albumCaptionNode = document.createElement('p');
-			albumCaptionNode.className = 'Album-caption';
-			albumCaptionNode.textContent = album.name;
-
-			albumBodyNode.appendChild(albumImgNode);
-			albumBodyNode.appendChild(albumCaptionNode);
-
-			albumCoverNode.appendChild(albumBodyNode);
-
-			albumNode.appendChild(albumLinkNode);
-			albumNode.appendChild(albumCoverNode);
-
-			galleryNode.appendChild(albumNode);
 
 		}
 
 //		addFirebaseListeners();
+
+	}
+
+	function procurarDataSubtitulo(string) {
+
+		var regex_date = /(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](((19|20)\d\d)|(\d\d))/gm;
+
+		return regex_date.test(string);
+
+	}
+
+	function converterData(date) {
+
+		var regex_separator = /[- .]/gm;
+
+		return date.replace(regex_separator, '/');
+
+	}
+
+	function separarDataTitulo(string) {
+
+		var content = [];
+
+		var regex_date = /(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](((19|20)\d\d)|(\d\d))/gm;
+		content.date = regex_date.exec(string);
+		content.title = string.replace(regex_date, '');
+
+		return content;
 
 	}
 
