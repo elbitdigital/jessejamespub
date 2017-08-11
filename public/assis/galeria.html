@@ -7,31 +7,31 @@
 <link rel="icon" type="image/png" href="icon.png"/>
 
 <meta name="description" content="O melhor pub sertanejo do interior paulista">
-<meta name="image" content="https://jessejamespub.com.br/dist/img/meta.png">
+<meta name="image" content="https://jessejamespub.com.br/../dist/img/meta.png">
 
 <meta itemprop="name" content="Jesse James Pub">
 <meta itemprop="description" content="O melhor pub sertanejo do interior paulista">
-<meta itemprop="image" content="https://jessejamespub.com.br/dist/img/meta.png">
+<meta itemprop="image" content="https://jessejamespub.com.br/../dist/img/meta.png">
 
 <meta name="og:title" content="Jesse James Pub">
 <meta name="og:description" content="O melhor pub sertanejo do interior paulista">
-<meta name="og:image" content="https://jessejamespub.com.br/dist/img/meta.png">
+<meta name="og:image" content="https://jessejamespub.com.br/../dist/img/meta.png">
 <meta name="og:url" content="https://jessejamespub.com.br">
 <meta name="og:site_name" content="Jesse James Pub">
 <meta name="og:locale" content="pt_BR">
 <meta name="fb:app_id" content="1586666258259861">
 <meta name="og:type" content="website">
 
-<script src="dist/js/villa.min.js"></script>
+<script src="../dist/js/villa.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Rye|Noto+Serif|Roboto+Condensed:400,700" rel="stylesheet">
-<link rel="stylesheet" href="dist/css/villa.min.css"/>
-<link rel="stylesheet" href="dist/css/jessejamespub.css"/>
+<link rel="stylesheet" href="../dist/css/villa.min.css"/>
+<link rel="stylesheet" href="../dist/css/jessejamespub.css"/>
 <!--[if lt IE 9]>
-<link rel="stylesheet" type="text/css" href="dist/css/material-colors.css"/>
-<link rel="stylesheet" type="text/css" href="dist/css/villa-cross.min.css"/>
-<script src="dist/js/html5shiv.js"></script>
-<script src="dist/js/html5shiv-printshiv.js"></script>
-<script src="dist/js/classList.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../dist/css/material-colors.css"/>
+<link rel="stylesheet" type="text/css" href="../dist/css/villa-cross.min.css"/>
+<script src="../dist/js/html5shiv.js"></script>
+<script src="../dist/js/html5shiv-printshiv.js"></script>
+<script src="../dist/js/classList.min.js"></script>
 <![endif]-->
 
 <style>
@@ -145,18 +145,6 @@
 		margin: .5em;
 		border: 2px solid #442a0d; /* marrom couro darker */
 		position: relative;
-		background-repeat: no-repeat;
-		background-position: center center;
-		-webkit-background-size: cover;
-		-moz-background-size: cover;
-		-o-background-size: cover;
-		background-size: cover;
-
-		-webkit-transition: all .4s ease;
-		-moz-transition: all .4s ease;
-		-ms-transition: all .4s ease;
-		-o-transition: all .4s ease;
-		transition: all .4s ease;
 
 		-webkit-align-items: center;
 		align-items: center;
@@ -167,10 +155,6 @@
 		display: flex;
 		-webkit-justify-content: center;
 		justify-content: center;
-	}
-
-	.HighlightedAlbum:hover {
-		border-color: #301c09; /* marrom couro darkest */
 	}
 
 	.HighlightedAlbum--more .HighlightedAlbumContent-date {
@@ -200,6 +184,36 @@
 		font-size: 1.25em;
 		text-transform: uppercase;
 		margin: .5em;
+	}
+
+	.HighlightedAlbum {
+		overflow: hidden;
+	}
+
+	.HighlightedAlbum-background {
+		width: 100%;
+		height: 100%;
+		background-color: black; /* fallback color */
+		background-repeat: no-repeat;
+		background-position: center center;
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
+		position: absolute;
+		top: 0;
+		right: 0;
+		/*opacity: .4;*/
+		z-index: 1;
+		-webkit-transition: transform .5s ease;
+		-moz-transition: transform .5s ease;
+		-ms-transition: transform .5s ease;
+		-o-transition: transform .5s ease;
+		transition: transform .5s ease;
+	}
+
+	.HighlightedAlbum:hover .HighlightedAlbum-background {
+		transform: scale(1.05);
 	}
 
 	.HighlightedAlbum-overlay {
@@ -237,12 +251,157 @@
 
 </style>
 
+<style>
+
+	.EditorAlbum {
+		width: 15em;
+		height: 15em;
+		margin: .25em;
+		border: 1px solid #442a0d; /* marrom couro darker */
+		position: relative;
+		overflow: hidden;
+
+		-webkit-align-items: center;
+		align-items: center;
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-justify-content: center;
+		justify-content: center;
+	}
+
+	.EditorAlbum-background {
+		width: 100%;
+		height: 100%;
+		background-color: black; /* fallback color */
+		background-repeat: no-repeat;
+		background-position: center center;
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
+		position: absolute;
+		top: 0;
+		right: 0;
+		/*opacity: .4;*/
+		z-index: 1;
+		-webkit-transition: transform .5s ease;
+		-moz-transition: transform .5s ease;
+		-ms-transition: transform .5s ease;
+		-o-transition: transform .5s ease;
+		transition: transform .5s ease;
+	}
+
+	.EditorAlbum:hover .EditorAlbum-background {
+		transform: scale(1.05);
+	}
+
+	.EditorAlbum-overlay {
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		right: 0;
+		opacity: .4;
+		z-index: 1;
+		-webkit-transition: all .3s ease;
+		-moz-transition: all .3s ease;
+		-ms-transition: all .3s ease;
+		-o-transition: all .3s ease;
+		transition: all .3s ease;
+	}
+
+	.EditorAlbum:hover .EditorAlbum-overlay {
+		opacity: .3;
+	}
+
+	.EditorAlbumContent {
+		color: #fafafa;
+		font-family: 'Roboto Condensed', 'Roboto', sans-serif;
+		z-index: 2;
+		width: 100%;
+		height: 100%;
+
+		-webkit-align-items: center;
+		align-items: center;
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-justify-content: space-around;
+		justify-content: space-around;
+		-webkit-flex-flow: column;
+		flex-flow: column;
+	}
+
+	.EditorAlbumContent-date {
+		display: inline-block;
+		font-size: 1.5em;
+		padding: .25em;
+		min-width: 5em;
+		background-color: rgba(0,0,0,.5);
+		border: 2px solid #442a0d; /* marrom couro darker */
+		-webkit-transition: all .3s ease;
+		-moz-transition: all .3s ease;
+		-ms-transition: all .3s ease;
+		-o-transition: all .3s ease;
+		transition: all .3s ease;
+	}
+
+	.EditorAlbum:hover .EditorAlbumContent-date {
+		background-color: rgba(0,0,0,.7);
+		border-color: #301c09; /* marrom couro darkest */
+	}
+
+	.EditorAlbumContent-title {
+		font-size: 1.25em;
+		text-transform: uppercase;
+		margin: .5em;
+	}
+
+	.EditorAlbumInfo input {
+		display: inline-block;
+		font-size: 1.25em;
+		width: 80%;
+		margin: .125em;
+		padding: .25em .5em;
+		color: white;
+		font-family: 'Roboto Condensed', 'Roboto', sans-serif;
+		font-weight: 800;
+		background-color: rgba(255,255,255,.3);
+		text-transform: uppercase;
+		border: 2px solid #442a0d; /* marrom couro darker */
+		text-align: center;
+	}
+
+	.EditorAlbumInfo input.EditorAlbumInfo-date {
+		background-color: rgba(0,0,0,.3);
+	}
+
+	.EditorAlbumInfo input::-webkit-input-placeholder {
+		color: rgba(255,255,255,.8) !important;
+	}
+	.EditorAlbumInfo input:-moz-placeholder {
+		color: rgba(255,255,255,.8) !important;
+	}
+	.EditorAlbumInfo input::-moz-placeholder {
+		color: rgba(255,255,255,.8) !important;
+	}
+	.EditorAlbumInfo input:-ms-input-placeholder {
+		color: rgba(255,255,255,.8) !important;
+	}
+
+</style>
+
 <body class="roboto marrom-poeira--lighter">
 
 <section class="Gallery container">
 
 	<h1 class="title rye f-vermelho-terra--darkest">Galeria de fotos</h1>
-	<div id="gallery-list" class="Gallery Gallery-list">
+	<div id="gallery-list" class="Gallery-list">
 
 		<!--<div class="PlaceholderExternal">-->
 			<!--<p>Carregando álbums...</p>-->
@@ -293,29 +452,104 @@
 
 		</a>
 
-		<div class="Album" style="background-image: url('https://scontent.xx.fbcdn.net/v/t31.0-0/p600x600/20368996_1929509733975510_6919608120889740573_o.jpg?oh=015be32f605fd90145511454d4fd9c52&oe=5A024C8A');">
+		<div class="EditorAlbum">
 
-			<div class="Album-overlay marrom-couro--darkest"></div>
+			<div class="EditorAlbum-background" style="background-image: url('https://scontent.xx.fbcdn.net/v/t31.0-0/p600x600/20368996_1929509733975510_6919608120889740573_o.jpg?oh=015be32f605fd90145511454d4fd9c52&oe=5A024C8A');">
 
-			<div class="AlbumContent">
+				<div class="EditorAlbum-overlay marrom-couro--darkest"></div>
 
-				<div class="AlbumInfo">
+			</div>
 
-					<input class="AlbumInfo-date" type="text">
-					<input class="AlbumInfo-title" type="text">
+			<div class="EditorAlbumContent">
+
+				<div class="EditorAlbumInfo">
+
+					<input class="EditorAlbumInfo-date" type="text" placeholder="DD/MM/AAAA" onclick="this.select();">
+					<input class="EditorAlbumInfo-title" type="text" placeholder="Título" onclick="this.select();">
 
 				</div>
 
-				<div class="AlbumAction">
+				<div class="EditorAlbumAction">
 
-					<a href="#" class="Btn Btn--primary">Visualizar</a>
-					<button class="Btn Btn--primary">Desabilitar</button>
+					<a href="#" class="Btn Btn--narrow Btn--filled">Visualizar</a>
+					<button class="Btn Btn--narrow Btn--filled">Desabilitar</button>
 
 				</div>
 
 			</div>
 
 		</div>
+
+		<div class="EditorAlbum">
+
+			<div class="EditorAlbum-background" style="background-image: url('https://scontent.xx.fbcdn.net/v/t31.0-0/p600x600/20368996_1929509733975510_6919608120889740573_o.jpg?oh=015be32f605fd90145511454d4fd9c52&oe=5A024C8A');">
+
+				<div class="EditorAlbum-overlay marrom-couro--darkest"></div>
+
+			</div>
+
+			<div class="EditorAlbumContent">
+
+				<div class="EditorAlbumInfo">
+
+					<input class="EditorAlbumInfo-date" type="text" placeholder="Data" onclick="this.select();">
+					<input class="EditorAlbumInfo-title" type="text" placeholder="Título" onclick="this.select();">
+
+				</div>
+
+				<div class="EditorAlbumAction">
+
+					<a href="#" class="Btn Btn--narrow Btn--filled">Visualizar</a>
+					<button class="Btn Btn--narrow Btn--filled">Desabilitar</button>
+
+				</div>
+
+			</div>
+
+		</div>
+
+		<div class="EditorAlbum">
+
+			<div class="EditorAlbum-background" style="background-image: url('https://scontent.xx.fbcdn.net/v/t31.0-0/p600x600/20368996_1929509733975510_6919608120889740573_o.jpg?oh=015be32f605fd90145511454d4fd9c52&oe=5A024C8A');">
+
+				<div class="EditorAlbum-overlay marrom-couro--darkest"></div>
+
+			</div>
+
+			<div class="EditorAlbumContent">
+
+				<div class="EditorAlbumInfo">
+
+					<input class="EditorAlbumInfo-date" type="text" placeholder="Data" onclick="this.select();">
+					<input class="EditorAlbumInfo-title" type="text" placeholder="Título" onclick="this.select();">
+
+				</div>
+
+				<div class="EditorAlbumAction">
+
+					<a href="#" class="Btn Btn--narrow Btn--filled">Visualizar</a>
+					<button class="Btn Btn--narrow Btn--filled">Desabilitar</button>
+
+				</div>
+
+			</div>
+
+		</div>
+
+		<a href="#paraguacu" class="HighlightedAlbum">
+
+			<div class="HighlightedAlbum-background" style="background-image: url('https://scontent.xx.fbcdn.net/v/t31.0-0/p600x600/20368996_1929509733975510_6919608120889740573_o.jpg?oh=015be32f605fd90145511454d4fd9c52&oe=5A024C8A');">
+
+				<div class="HighlightedAlbum-overlay marrom-couro--darkest"></div>
+
+			</div>
+
+			<div class="HighlightedAlbumContent">
+				<h1 class="HighlightedAlbumContent-date">05-05-2017</h1>
+				<h2 class="HighlightedAlbumContent-title">SÁBADO</h2>
+			</div>
+
+		</a>
 
 	</div>
 
@@ -357,7 +591,7 @@
 
 </script>
 
-<script src="dist/js/axios.min.js"></script>
+<script src="../dist/js/axios.min.js"></script>
 
 <script>
 

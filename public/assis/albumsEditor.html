@@ -4,16 +4,17 @@
 <title>Editor de álbums - Jesse James Assis</title>
 <meta name="viewport"
       content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
-<script src="dist/js/villa.min.js"></script>
-<link rel="stylesheet" href="dist/css/villa.min.css"/>
-<link rel="stylesheet" href="dist/css/jessejamespub.css"/>
+<script src="../dist/js/villa.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Rye|Noto+Serif|Roboto+Condensed:400,700" rel="stylesheet">
+<link rel="stylesheet" href="../dist/css/villa.min.css"/>
+<link rel="stylesheet" href="../dist/css/jessejamespub.css"/>
 
 <!--[if lt IE 9]>
-<link rel="stylesheet" type="text/css" href="dist/css/material-colors.css"/>
-<link rel="stylesheet" type="text/css" href="dist/css/villa-cross.min.css"/>
-<script src="dist/js/html5shiv.js"></script>
-<script src="dist/js/html5shiv-printshiv.js"></script>
-<script src="dist/js/classList.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../dist/css/material-colors.css"/>
+<link rel="stylesheet" type="text/css" href="../dist/css/villa-cross.min.css"/>
+<script src="../dist/js/html5shiv.js"></script>
+<script src="../dist/js/html5shiv-printshiv.js"></script>
+<script src="../dist/js/classList.min.js"></script>
 <![endif]-->
 
 <style>
@@ -42,60 +43,31 @@
 	@media (min-width: 48em) {
 
 		.AlbumsGallery {
-			width: 90%;
+			/*width: 90%;*/
 		}
 
 	}
+</style>
 
-	.Album {
-		height: auto;
-		/*margin: .5em;*/
-		max-width: 150px;
-		/*min-height: 200px;*/
-		padding: .5em;
-		position: relative;
+<style>
+
+	.Gallery {
+		padding: 3em 0 2.5em;
 		text-align: center;
-		width: 175px;
 	}
 
-	@media (min-width: 48em) {
+</style>
 
-		.Album {
-			height: 210px;
-			margin: .75em;
-			max-width: 175px;
-			width: 175px;
-		}
+<style>
 
-	}
-
-	.AlbumCover {
-		background-color: #EEEEEE;
-		color: #212121;
-		border: 2px solid #0277bd;
-		height: 100%;
-		/*padding: 1.5em 1em;*/
+	.EditorAlbum {
+		width: 15em;
+		height: 15em;
+		margin: .25em;
+		border: 1px solid #442a0d; /* marrom couro darker */
 		position: relative;
-		width: 100%;
+		overflow: hidden;
 
-		-moz-user-select: none;
-		-ms-user-select: none;
-		-khtml-user-select: none;
-		-webkit-user-select: none;
-		-webkit-touch-callout: none;
-	}
-
-	.AlbumCover.is-disabled {
-		background-color: #E0E0E0;
-		border-color: #bdbdbd;
-		color: #9E9E9E;
-	}
-
-	.AlbumCover:hover {
-		cursor: pointer;
-	}
-
-	.AlbumBody {
 		-webkit-align-items: center;
 		align-items: center;
 		display: -webkit-box;
@@ -103,91 +75,249 @@
 		display: -ms-flexbox;
 		display: -webkit-flex;
 		display: flex;
-		-webkit-justify-content: space-between;
-		justify-content: space-between;
-		-webkit-flex-flow: column;
-		flex-flow: column;
-		padding: 1.5em 1em; /* user should click on album body to toggle disabled */
+		-webkit-justify-content: center;
+		justify-content: center;
+	}
 
-		position: relative;
-		top: 0;
-		left: 0;
+	.EditorAlbum-background {
 		width: 100%;
 		height: 100%;
-	}
-
-	.Album-link {
-		background-color: #0277bd;
-		border-radius: .25em;
-		color: #fff;
-		font-size: .875em;
-		height: 1.5em;
-		line-height: 1.5em;
+		background-color: black; /* fallback color */
+		background-repeat: no-repeat;
+		background-position: center center;
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
 		position: absolute;
-		right: 0;
 		top: 0;
-		text-align: center;
-		width: 1.5em;
-		z-index: 5;
+		right: 0;
+		/*opacity: .4;*/
+		z-index: 1;
+		-webkit-transition: transform .5s ease;
+		-moz-transition: transform .5s ease;
+		-ms-transition: transform .5s ease;
+		-o-transition: transform .5s ease;
+		transition: transform .5s ease;
 	}
 
-	/*.AlbumCover.is-disabled .Album-link {*/
-		/*background-color: #bdbdbd;*/
+	.EditorAlbum:hover .EditorAlbum-background {
+		transform: scale(1.05);
+	}
+
+	.EditorAlbum-overlay {
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		right: 0;
+		opacity: .4;
+		z-index: 1;
+		-webkit-transition: all .3s ease;
+		-moz-transition: all .3s ease;
+		-ms-transition: all .3s ease;
+		-o-transition: all .3s ease;
+		transition: all .3s ease;
+	}
+
+	.EditorAlbum.is-disabled {
+		border-color: #B71C1C;
+	}
+
+	.EditorAlbum.is-disabled .EditorAlbum-overlay {
+		opacity: .2;
+		background-color: #B71C1C;
+	}
+
+	/*.EditorAlbum.is-enabled {*/
+		/*border-color: #1B5E20;*/
 	/*}*/
 
-	.Album-image {
-		margin-bottom: .5em;
+	/*.EditorAlbum.is-enabled .EditorAlbum-overlay {*/
+		/*opacity: .2;*/
+		/*background-color: #1B5E20;*/
+	/*}*/
+
+	.EditorAlbum:hover .EditorAlbum-overlay {
+		opacity: .3;
 	}
 
-	.Album-caption {
-		font-size: .875em;
-		font-weight: 800;
+	.EditorAlbumContent {
+		color: #fafafa;
+		font-family: 'Roboto Condensed', 'Roboto', sans-serif;
+		z-index: 2;
+		width: 100%;
+		height: 100%;
+
+		-webkit-align-items: center;
+		align-items: center;
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-justify-content: space-around;
+		justify-content: space-around;
+		-webkit-flex-flow: column;
+		flex-flow: column;
+	}
+
+	.EditorAlbumContent-date {
+		display: inline-block;
+		font-size: 1.5em;
+		padding: .25em;
+		min-width: 5em;
+		background-color: rgba(0,0,0,.5);
+		border: 2px solid #442a0d; /* marrom couro darker */
+		-webkit-transition: all .3s ease;
+		-moz-transition: all .3s ease;
+		-ms-transition: all .3s ease;
+		-o-transition: all .3s ease;
+		transition: all .3s ease;
+	}
+
+	.EditorAlbum:hover .EditorAlbumContent-date {
+		background-color: rgba(0,0,0,.7);
+		border-color: #301c09; /* marrom couro darkest */
+	}
+
+	.EditorAlbumContent-title {
+		font-size: 1.25em;
 		text-transform: uppercase;
+		margin: .5em;
 	}
 
-	/*.FeaturedAlbums .Album {*/
-		/*-webkit-justify-content: space-between;*/
-		/*justify-content: space-between;*/
-		/*margin: 1em;*/
-		/*min-height: 175px;*/
-		/*padding: 1em;*/
-		/*width: 200px;*/
-		/*max-width: 215px;*/
-		/*background-color: #bdbdbd;*/
-	/*}*/
+	.EditorAlbumInfo input {
+		display: inline-block;
+		font-size: 1.25em;
+		width: 80%;
+		margin: .125em;
+		padding: .25em .5em;
+		color: white;
+		font-family: 'Roboto Condensed', 'Roboto', sans-serif;
+		font-weight: 800;
+		background-color: rgba(255,255,255,.3);
+		text-transform: uppercase;
+		border: 2px solid #442a0d; /* marrom couro darker */
+		text-align: center;
+	}
+
+	.EditorAlbumInfo input.EditorAlbumInfo-date {
+		background-color: rgba(0,0,0,.3);
+	}
+
+	.EditorAlbumInfo input::-webkit-input-placeholder {
+		color: rgba(255,255,255,.8) !important;
+	}
+	.EditorAlbumInfo input:-moz-placeholder {
+		color: rgba(255,255,255,.8) !important;
+	}
+	.EditorAlbumInfo input::-moz-placeholder {
+		color: rgba(255,255,255,.8) !important;
+	}
+	.EditorAlbumInfo input:-ms-input-placeholder {
+		color: rgba(255,255,255,.8) !important;
+	}
 
 </style>
 
 <body class="grey-900 font-white roboto">
 
-	<!--<button class="Btn Btn&#45;&#45;primary" onclick="getAllPageAlbums();">Receber álbums da página</button>-->
+<!--<button class="Btn Btn&#45;&#45;primary" onclick="getAllPageAlbums();">Receber álbums da página</button>-->
 
-	<header>
+<header>
 
-		<h1>o <span class="purple font-white">expectacular</span> gerenciador de álbums</h1>
+	<h1>o <span class="purple font-white">expectacular</span> gerenciador de álbums</h1>
 
-	</header>
+</header>
 
-	<div id="albums-gallery" class="AlbumsGallery">
+<div id="albums-gallery" class="Gallery AlbumsGallery container">
 
-		<!--<div class="Album">-->
+	<div class="EditorAlbum">
 
-			<!--<a href="https://google.com" target="_blank" class="Album-link">-->
-				<!--<span class="icon-link-ext"></span>-->
-			<!--</a>-->
+		<div class="EditorAlbum-background" style="background-image: url('https://scontent.xx.fbcdn.net/v/t31.0-0/p600x600/20368996_1929509733975510_6919608120889740573_o.jpg?oh=015be32f605fd90145511454d4fd9c52&oe=5A024C8A');">
 
-			<!--<div class="AlbumCover">-->
+			<div class="EditorAlbum-overlay marrom-couro--darkest"></div>
 
-				<!--<div class="AlbumBody">-->
-					<!--<img class="Album-image" src="https://scontent.xx.fbcdn.net/v/t1.0-0/s130x130/19665675_1917823568477460_7416851733986222613_n.jpg?oh=3042d0adfa4c613923bf3b97c3c8348e&oe=5A05294E" />-->
-					<!--<p class="Album-caption">SEXTA-FEIRA 02.04.17</p>-->
-				<!--</div>-->
+		</div>
 
-			<!--</div>-->
+		<div class="EditorAlbumContent">
 
-		<!--</div>-->
+			<div class="EditorAlbumInfo">
+
+				<input class="EditorAlbumInfo-date" type="text" placeholder="DD/MM/AAAA" onclick="this.select();">
+				<input class="EditorAlbumInfo-title" type="text" placeholder="Título" onclick="this.select();">
+
+			</div>
+
+			<div class="EditorAlbumAction">
+
+				<a href="#" target="_blank" class="Btn Btn--narrow Btn--filled">Ver álbum</a>
+				<button class="Btn Btn--narrow Btn--filled Btn--turnoff">Desabilitar</button>
+
+			</div>
+
+		</div>
 
 	</div>
+
+	<div class="EditorAlbum is-disabled">
+
+		<div class="EditorAlbum-background" style="background-image: url('https://scontent.xx.fbcdn.net/v/t31.0-0/p600x600/20368996_1929509733975510_6919608120889740573_o.jpg?oh=015be32f605fd90145511454d4fd9c52&oe=5A024C8A');">
+
+			<div class="EditorAlbum-overlay marrom-couro--darkest"></div>
+
+		</div>
+
+		<div class="EditorAlbumContent">
+
+			<div class="EditorAlbumInfo">
+
+				<input class="EditorAlbumInfo-date" type="text" placeholder="DD/MM/AAAA" onclick="this.select();">
+				<input class="EditorAlbumInfo-title" type="text" placeholder="Título" onclick="this.select();">
+
+			</div>
+
+			<div class="EditorAlbumAction">
+
+				<a href="#" target="_blank" class="Btn Btn--narrow Btn--filled">Ver álbum</a>
+				<button class="Btn Btn--narrow Btn--filled Btn--turnon">Habilitar</button>
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<div class="EditorAlbum is-enabled">
+
+		<div class="EditorAlbum-background" style="background-image: url('https://scontent.xx.fbcdn.net/v/t31.0-0/p600x600/20368996_1929509733975510_6919608120889740573_o.jpg?oh=015be32f605fd90145511454d4fd9c52&oe=5A024C8A');">
+
+			<div class="EditorAlbum-overlay marrom-couro--darkest"></div>
+
+		</div>
+
+		<div class="EditorAlbumContent">
+
+			<div class="EditorAlbumInfo">
+
+				<input class="EditorAlbumInfo-date" type="text" placeholder="DD/MM/AAAA" onclick="this.select();">
+				<input class="EditorAlbumInfo-title" type="text" placeholder="Título" onclick="this.select();">
+
+			</div>
+
+			<div class="EditorAlbumAction">
+
+				<a href="#" target="_blank" class="Btn Btn--narrow Btn--filled">Ver álbum</a>
+				<button class="Btn Btn--narrow Btn--filled Btn--turnoff">Desabilitar</button>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
 
 
 <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
@@ -198,7 +328,6 @@
 		authDomain: "jessejamespub-com-br.firebaseapp.com",
 		databaseURL: "https://jessejamespub-com-br.firebaseio.com",
 		projectId: "jessejamespub-com-br",
-		storageBucket: "jessejamespub-com-br.appspot.com",
 		messagingSenderId: "118227352953"
 	};
 	firebase.initializeApp(config);
@@ -206,6 +335,7 @@
 	var databaseRef = firebase.database().ref('/');
 	var houseRef = databaseRef.child('assis');
 	var galleryRef = houseRef.child('gallery');
+	var enabledRef = galleryRef.child('enabledAlbums');
 	var disabledRef = galleryRef.child('disabledAlbums');
 
 </script>
@@ -224,16 +354,32 @@
 
 </script>
 
-<script src="dist/js/axios.min.js"></script>
+<script src="../dist/js/axios.min.js"></script>
 
 <script>
 
+	var save_new_as_disabled = true;
+	var tracked_albums = [];
+	var enabled_albums = [];
 	var disabled_albums = [];
 
 	function galleryInit() {
 
-		getAllPageAlbums();
-		addFirebaseListeners();
+		galleryRef.once('value', function(snapshot) {
+
+			snapshot.forEach(function (childSnapshot) {
+
+				childSnapshot.forEach(function (grandChildSnapshot) {
+
+					tracked_albums.push(grandChildSnapshot.key);
+
+				});
+
+			});
+
+			getAllPageAlbums();
+
+		});
 
 	}
 
@@ -249,8 +395,8 @@
 
 		axios.get('https://graph.facebook.com/v2.10/' + PAGE_ID, {
 			params: {
-//				fields: 'albums.fields(name, link, type, cover_photo.fields(id,height,width,images)).limit(9999)',
-				fields: 'albums.fields(name, link, type, cover_photo.fields(id,height,width,picture)).limit(9999)',
+				fields: 'albums.fields(name, link, type, cover_photo.fields(id,height,width,images)).limit(9999)',
+//				fields: 'albums.fields(name, link, type, cover_photo.fields(id,height,width,picture)).limit(9999)',
 				access_token: '146544439255115|3_8Ip3wrGqx-BfnrEVVRhJeUpLA' //token do aplicativo
 			}
 		}).then(function (response) {
@@ -263,6 +409,7 @@
 				/* #2 - display albums to user with disabled style */
 				var normal_albums = removeUndesiredTypes(response.data.albums.data);
 				transformDataArrayIntoAlbumsElements(normal_albums);
+//				addFirebaseListeners();
 
 			} else {
 
@@ -278,35 +425,7 @@
 
 	}
 
-	/**
-	 * Create a filtered json object from the request response (all albums) without disabled albums
-	 * WARNING: it might not act as intended at this stage, as disabled_albums array is asynchronously created by the
-	 *  firebase child listeners (precisely on child_added)
-	 * This was left for possible future use and documentation pourposes only
-	 * @param {JSON} all_albums Provided by the Graph API request (gathered from response.data.albums.data)
-	 */
-	function removeDisabledAlbums(all_albums) {
 
-//		var disabled_albums = ['1594575264135627', '1586670551592765', '1885754275017723', '1875326966060454', '1586667811593039'];
-		// ['Timeline Photos', 'Cover Photos', 'Instagram Photos', 'VIOLADA DUBS - DESFILE CHEIAS DE CHARME', 'Profile Pictures']
-
-		// filter albums that appears on disabled_albums
-		var filtered_albums = all_albums.filter(function(album) {
-
-			return disabled_albums.indexOf(album.id) == -1;
-
-		});
-
-		/* #1 - do not display disabled albums to user */
-//		transformDataArrayIntoAlbumsElements(filtered_albums);
-
-	}
-
-	/**
-	 * Returns a filtered json object without undesired page albums types (like profile, cover, app, wall, etc)
-	 * @param {JSON} all_albums Provided by the Graph API request (gathered from response.data.albums.data)
-	 * @returns {JSON} All albums without the undesired album types
-	 */
 	function removeUndesiredTypes(all_albums) {
 
 		// undesired album types => {app, cover, profile, mobile, wall}
@@ -321,86 +440,123 @@
 
 	}
 
-	/**
-	 * Create all albums elements and append them to album gallery element
-	 * @param {JSON} received_albums Provided by the Graph API request (gathered from removeUndesiredTypes() return)
-	 */
+
 	function transformDataArrayIntoAlbumsElements(received_albums) {
 
 		var albums = received_albums;
 
 		var galleryNode = document.getElementById('albums-gallery');
+		galleryNode.innerHTML = '';
 
 		for (var i = 0; i < albums.length; i++) {
 
-			var albumNode = document.createElement('div');
-			albumNode.className = 'Album';
+//			if (tracked_albums.indexOf(albums[i].id) == -1) {
+//
+//				if (save_new_as_disabled)
+//					saveDisabledAlbum(albums[i].id);
+//				else
+//					saveEnabledAlbum(albums[i].id);
+//
+//			}
 
-			var albumLinkNode = document.createElement('a');
-			albumLinkNode.className = 'Album-link';
-			albumLinkNode.href = albums[i].link;
-			albumLinkNode.target = '_blank';
-			albumLinkNode.innerHTML = '<span class="icon-link-ext"></span>';
+			var editorAlbumNode = document.createElement('div');
+			editorAlbumNode.className = 'EditorAlbum';
+			editorAlbumNode.id = albums[i].id;
 
-			var albumCoverNode = document.createElement('div');
-			albumCoverNode.className = 'AlbumCover';
-			albumCoverNode.dataset.id = albums[i].id;
+			var editorAlbumBackgroundNode = document.createElement('div');
+			editorAlbumBackgroundNode.className = 'EditorAlbum-background';
+			editorAlbumBackgroundNode.style.backgroundImage = 'url(' + albums[i].cover_photo.images[4].source +')';
 
-			var albumBodyNode = document.createElement('div');
-			albumBodyNode.className = 'AlbumBody';
-			albumBodyNode.addEventListener('click', function(ev) {
-				toggleDisabledAlbum(this.parentElement);
+			var editorAlbumOverlayNode = document.createElement('div');
+			editorAlbumOverlayNode.className = 'EditorAlbum-overlay marrom-couro--darkest';
+
+			var editorAlbumContentNode = document.createElement('div');
+			editorAlbumContentNode.className = 'EditorAlbumContent';
+
+			var editorAlbumInfoNode = document.createElement('div');
+			editorAlbumInfoNode.className = 'EditorAlbumInfo';
+
+			var editorAlbumInfoDate = document.createElement('input');
+			editorAlbumInfoDate.className = 'EditorAlbumInfo-date';
+			editorAlbumInfoDate.type = 'text';
+			editorAlbumInfoDate.placeholder = 'DD/MM/AAAA';
+			editorAlbumInfoDate.addEventListener('click', function () {
+				this.select();
 			});
 
-			var albumImgNode = document.createElement('img');
-			albumImgNode.className = 'Album-image';
-			albumImgNode.src = albums[i].cover_photo.picture;
+			var editorAlbumInfoTitle = document.createElement('input');
+			editorAlbumInfoTitle.className = 'EditorAlbumInfo-title';
+			editorAlbumInfoTitle.type = 'text';
+			editorAlbumInfoTitle.placeholder = 'Título';
+			editorAlbumInfoTitle.value = albums[i].name;
+			editorAlbumInfoTitle.addEventListener('click', function () {
+				this.select();
+			});
 
-			if (albums[i].cover_photo.height > albums[i].cover_photo.width) {
-				albumImgNode.src = 'http://lorempixel.com/g/130/89/abstract/retrato/';
-			}
+			var editorAlbumActionNode = document.createElement('div');
+			editorAlbumActionNode.className = 'EditorAlbumAction';
 
-			var albumCaptionNode = document.createElement('p');
-			albumCaptionNode.className = 'Album-caption';
-			albumCaptionNode.textContent = albums[i].name;
+			var editorAlbumLink = document.createElement('a');
+			editorAlbumLink.className = 'Btn Btn--narrow Btn--filled';
+			editorAlbumLink.href = albums[i].link;
+			editorAlbumLink.target = '_blank';
+			editorAlbumLink.textContent = 'Ver álbum';
 
-			albumBodyNode.appendChild(albumImgNode);
-			albumBodyNode.appendChild(albumCaptionNode);
+			var editorAlbumButton = document.createElement('button');
+			editorAlbumButton.className = 'Btn Btn--narrow Btn--filled Btn--turnoff';
+			editorAlbumButton.textContent = 'Desabilitar';
+			editorAlbumButton.dataset.id = albums[i].id;
+			editorAlbumButton.addEventListener('click', function(ev) {
+				toggleAlbumStatus(this.dataset.id);
+			});
 
-			albumCoverNode.appendChild(albumBodyNode);
+			editorAlbumActionNode.appendChild(editorAlbumLink);
+			editorAlbumActionNode.appendChild(editorAlbumButton);
 
-			albumNode.appendChild(albumLinkNode);
-			albumNode.appendChild(albumCoverNode);
+			editorAlbumInfoNode.appendChild(editorAlbumInfoDate);
+			editorAlbumInfoNode.appendChild(editorAlbumInfoTitle);
 
-			galleryNode.appendChild(albumNode);
+			editorAlbumContentNode.appendChild(editorAlbumInfoNode);
+			editorAlbumContentNode.appendChild(editorAlbumActionNode);
+
+			editorAlbumBackgroundNode.appendChild(editorAlbumOverlayNode);
+
+			editorAlbumNode.appendChild(editorAlbumBackgroundNode);
+			editorAlbumNode.appendChild(editorAlbumContentNode);
+
+			galleryNode.appendChild(editorAlbumNode);
 
 		}
 
 	}
 
-	/**
-	 * When user click on AlbumBody, get the AlbumCover of the clicked element and check if it's in the disabled_albums
-	 * array, if it is (and is styled accordingly) ask to turn it on again, otherwise ask to disable it
-	 * @param {Element} albumCover Provided by user click event on the AlbumBody element (gathered as albumBody.parentElement)
-	 */
-	function toggleDisabledAlbum(albumCover) {
+
+	function toggleAlbumStatus(albumCover) {
 
 		var msg = "";
 		var id = albumCover.dataset.id;
 
-		if (disabled_albums.indexOf(id) > -1 && albumCover.classList.contains('is-disabled')) {
+		if (disabled_albums.indexOf(id) > -1) {
 
 			msg = "Deseja habilitar o álbum?";
 
-			if(confirm(msg))
-				removeDisabledAlbum(id);
+			if(confirm(msg)) {
 
-		} else if (disabled_albums.indexOf(id) == -1 && !albumCover.classList.contains('is-disabled')) {
+//				removeDisabledAlbum(id);
+//				saveEnabledAlbum(id);
+
+			}
+
+		} else if (enabled_albums.indexOf(id) > -1) {
 
 			msg = "Deseja desabilitar o álbum?";
 
-			if(confirm(msg))
-				saveDisabledAlbum(id);
+			if(confirm(msg)) {
+
+//				removeEnabledAlbum(id);
+//				saveDisabledAlbum(id);
+
+			}
 
 		} else {
 
@@ -410,10 +566,21 @@
 
 	}
 
-	/**
-	 * Save the newly disabled album to the firebase reference
-	 * @param {Number} albumId Album identifier, provided by the Graph API request and gathered from AlbumCover dataset
-	 */
+	function saveEnabledAlbum(albumId) {
+
+		enabledRef.child(albumId).set({
+			enabled_on: firebase.database.ServerValue.TIMESTAMP
+		});
+
+	}
+
+	function removeEnabledAlbum(albumId) {
+
+//		enabledRef.child(albumId).set(null);
+		enabledRef.child(albumId).remove();
+
+	}
+
 	function saveDisabledAlbum(albumId) {
 
 		disabledRef.child(albumId).set({
@@ -422,10 +589,6 @@
 
 	}
 
-	/**
-	 * Remove the disabled album from the firebase reference, making it enabled again
-	 * @param {Number} albumId Album identifier, provided by the Graph API request and gathered from AlbumCover dataset
-	 */
 	function removeDisabledAlbum(albumId) {
 
 //		disabledRef.child(albumId).set(null);
@@ -433,32 +596,49 @@
 
 	}
 
-	/**
-	 * Style an album element (to disabled state) by adding 'is-disabled' class to AlbumCover element
-	 * @param {Number} albumId Album identifier, provided by the Graph API request and gathered from firebase disabledRef
-	 */
+
 	function turnOnDisabledAlbum(albumId) {
 
-		var albumCover = document.querySelector("[data-id='" + albumId + "']");
-		albumCover.classList.add('is-disabled');
+		var album = document.getElementById(albumId);
+		album.classList.add('is-disabled');
+
+		var albumButton = document.querySelector("[data-id='" + albumId + "']");
+		albumButton.classList.remove('Btn--turnoff');
+		albumButton.classList.add('Btn--turnon');
 
 	}
 
-	/**
-	 * Style an album element (to enabled state) by removing 'is-disabled' class from AlbumCover element
-	 * @param {Number} albumId Album identifier, provided by the Graph API request and gathered from firebase disabledRef
-	 */
+
 	function turnOffDisabledAlbum(albumId) {
 
+		var album = document.getElementById(albumId);
+		album.classList.remove('is-disabled');
+
+		var albumButton = document.querySelector("[data-id='" + albumId + "']");
+		albumButton.classList.remove('Btn--turnon');
+		albumButton.classList.add('Btn--turnoff');
+
 		var albumCover = document.querySelector("[data-id='" + albumId + "']");
-		albumCover.classList.remove('is-disabled');
+		albumCover.parentNode.classList.remove('is-disabled');
 
 	}
 
-	/**
-	 * Enable firebase child listeners on the disabled albums reference
-	 *  the on child_added is trigged for every already persisted child, not only future added childs
-	 */
+	function turnOnEnabledAlbum(albumId) {
+
+		var albumCover = document.querySelector("[data-id='" + albumId + "']");
+		albumCover.parentNode.classList.add('is-enabled');
+
+	}
+
+
+	function turnOffEnabledAlbum(albumId) {
+
+		var albumCover = document.querySelector("[data-id='" + albumId + "']");
+		albumCover.parentNode.classList.remove('is-enabled');
+
+	}
+
+
 	function addFirebaseListeners() {
 
 		disabledRef.on('child_added', function(snapshot) {
@@ -478,10 +658,23 @@
 
 		});
 
-	}
+		enabledRef.on('child_added', function(snapshot) {
 
-	function showDisabled() {
-		console.log(disabled_albums);
+			enabled_albums.push(snapshot.key);
+			turnOnEnabledAlbum(snapshot.key);
+
+		});
+
+		enabledRef.on('child_removed', function(snapshot) {
+
+			var index = enabled_albums.indexOf(snapshot.key);
+			if (index > -1)
+				enabled_albums.splice(index, 1);
+
+			turnOffEnabledAlbum(snapshot.key);
+
+		});
+
 	}
 
 </script>

@@ -38,7 +38,7 @@
 
 	body {
 		/* https://i.ebayimg.com/images/g/rHYAAOSwvg9XZBBO/s-l300.jpg */
-		/*background-image: url("https://i.ebayimg.com/images/g/rHYAAOSwvg9XZBBO/s-l300.jpg");*/
+		/*background-image: url("https://images.designtrends.com/wp-content/uploads/2015/11/06084012/Brown-Vintage-Pattern-Background.jpg");*/
 		/*background-repeat: repeat;*/
 	}
 
@@ -586,23 +586,12 @@
 <style>
 
 	.HighlightedAlbum {
-		width: 18em;
-		height: 18em;
-		margin: .5em;
-		border: 2px solid #7d381b;
+		width: 20em;
+		height: 20em;
+		margin: .25em;
+		/*border: 2px solid #442a0d; !* marrom couro darker *!*/
+		border: 1px solid #442a0d; /* marrom couro darker */
 		position: relative;
-		background-repeat: no-repeat;
-		background-position: center center;
-		-webkit-background-size: cover;
-		-moz-background-size: cover;
-		-o-background-size: cover;
-		background-size: cover;
-
-		-webkit-transition: all .4s ease;
-		-moz-transition: all .4s ease;
-		-ms-transition: all .4s ease;
-		-o-transition: all .4s ease;
-		transition: all .4s ease;
 
 		-webkit-align-items: center;
 		align-items: center;
@@ -615,10 +604,6 @@
 		justify-content: center;
 	}
 
-	.HighlightedAlbum:hover {
-		border-color: #6e3118;
-	}
-
 	.HighlightedAlbum--more .HighlightedAlbumContent-date {
 		background-color: rgba(0,0,0,.9);
 	}
@@ -629,7 +614,7 @@
 		padding: .25em;
 		min-width: 5em;
 		background-color: rgba(0,0,0,.5);
-		border: 2px solid #7d381b;
+		border: 2px solid #442a0d; /* marrom couro darker */
 		-webkit-transition: all .3s ease;
 		-moz-transition: all .3s ease;
 		-ms-transition: all .3s ease;
@@ -639,13 +624,43 @@
 
 	.HighlightedAlbum:hover .HighlightedAlbumContent-date {
 		background-color: rgba(0,0,0,.7);
-		border-color: #6e3118; /* marrom couro darkest */
+		border-color: #301c09; /* marrom couro darkest */
 	}
 
 	.HighlightedAlbumContent-title {
 		font-size: 1.25em;
 		text-transform: uppercase;
 		margin: .5em;
+	}
+
+	.HighlightedAlbum {
+		overflow: hidden;
+	}
+
+	.HighlightedAlbum-background {
+		width: 100%;
+		height: 100%;
+		background-color: black; /* fallback color */
+		background-repeat: no-repeat;
+		background-position: center center;
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
+		position: absolute;
+		top: 0;
+		right: 0;
+		/*opacity: .4;*/
+		z-index: 1;
+		-webkit-transition: transform .5s ease;
+		-moz-transition: transform .5s ease;
+		-ms-transition: transform .5s ease;
+		-o-transition: transform .5s ease;
+		transition: transform .5s ease;
+	}
+
+	.HighlightedAlbum:hover .HighlightedAlbum-background {
+		transform: scale(1.025);
 	}
 
 	.HighlightedAlbum-overlay {
@@ -1091,7 +1106,7 @@
 
 	var eventListElement = document.getElementById('event-list');
 
-	eventsRef.limitToFirst(2).on('child_added', function (snap) {
+	eventsRef.limitToFirst(5).on('child_added', function (snap) {
 
 		var eventData = snap.val();
 		var eventReferenceKey = snap.key;
@@ -1241,10 +1256,30 @@
 			highlightedAlbumNode.href = album.link;
 			highlightedAlbumNode.className = 'HighlightedAlbum';
 			highlightedAlbumNode.title = album.name;
-			highlightedAlbumNode.style.backgroundImage = 'url(' + album.cover_photo.images[4].source +')';
+
+			var albumBackgroundNode = document.createElement('div');
+			albumBackgroundNode.className = 'HighlightedAlbum-background';
+			albumBackgroundNode.style.backgroundImage = 'url(' + album.cover_photo.images[4].source +')';
 
 			var albumOverlayNode = document.createElement('div');
 			albumOverlayNode.className = 'HighlightedAlbum-overlay marrom-couro--darkest';
+
+			/*
+			 <a href="#paraguacu" class="HighlightedAlbum">
+
+			 <div class="HighlightedAlbum-background" style="background-image: url('https://scontent.xx.fbcdn.net/v/t31.0-0/p600x600/20368996_1929509733975510_6919608120889740573_o.jpg?oh=015be32f605fd90145511454d4fd9c52&oe=5A024C8A');">
+
+			 <div class="HighlightedAlbum-overlay marrom-couro--darkest"></div>
+
+			 </div>
+
+			 <div class="HighlightedAlbumContent">
+			 <h1 class="HighlightedAlbumContent-date">05-05-2017</h1>
+			 <h2 class="HighlightedAlbumContent-title">SÁBADO</h2>
+			 </div>
+
+			 </a>
+			*/
 
 			var albumContentNode = document.createElement('div');
 			albumContentNode.className = 'HighlightedAlbumContent';
@@ -1279,7 +1314,9 @@
 				albumContentNode.appendChild(albumContentDate);
 				albumContentNode.appendChild(albumContentTitle);
 
-				highlightedAlbumNode.appendChild(albumOverlayNode);
+				albumBackgroundNode.appendChild(albumOverlayNode);
+
+				highlightedAlbumNode.appendChild(albumBackgroundNode);
 				highlightedAlbumNode.appendChild(albumContentNode);
 
 				galleryNode.appendChild(highlightedAlbumNode);
