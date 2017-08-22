@@ -827,6 +827,8 @@
 
 	</div>
 
+	<a href="galeria" class="Btn Btn--primary" title="Ver todos os álbuns">Ver todos os álbuns</a>
+
 </section>
 
 <section class="Specials">
@@ -1199,18 +1201,57 @@
 
 <script>
 
-	var batched_albums = [];
 	var batch_list = [];
 
 	function galleryInit() {
 
 		enabledRef.orderByKey().limitToLast(3).once('value', function (snapshot) {
 
+			var galleryNode = document.getElementById('gallery-list');
+			galleryNode.innerHTML = '';
+
 			snapshot.forEach(function (child) {
+
+				var album = child.val();
+
+				var highlightedAlbumNode = document.createElement('a');
+				highlightedAlbumNode.href = album.fb_link;
+				highlightedAlbumNode.className = 'HighlightedAlbum';
+				highlightedAlbumNode.title = album.title;
+				highlightedAlbumNode.id = album.fb_id;
+
+				var albumBackgroundNode = document.createElement('div');
+				albumBackgroundNode.className = 'HighlightedAlbum-background';
+//				albumBackgroundNode.style.backgroundImage = 'url(' + album.cover_photo.images[4].source +')';
+
+				var albumOverlayNode = document.createElement('div');
+				albumOverlayNode.className = 'HighlightedAlbum-overlay marrom-couro--darkest';
+
+				var albumContentNode = document.createElement('div');
+				albumContentNode.className = 'HighlightedAlbumContent';
+
+				var albumContentDate = document.createElement('h1');
+				albumContentDate.className = 'HighlightedAlbumContent-date';
+				albumContentDate.textContent = album.date;
+
+				var albumContentTitle = document.createElement('h2');
+				albumContentTitle.className = 'HighlightedAlbumContent-title';
+				albumContentTitle.textContent = album.title;
+
+				albumContentNode.appendChild(albumContentDate);
+				albumContentNode.appendChild(albumContentTitle);
+
+				albumBackgroundNode.appendChild(albumOverlayNode);
+
+				highlightedAlbumNode.appendChild(albumBackgroundNode);
+				highlightedAlbumNode.appendChild(albumContentNode);
+
+//				galleryNode.appendChild(highlightedAlbumNode);
+				galleryNode.insertBefore(highlightedAlbumNode, galleryNode.firstChild);
 
 				batch_list.push({
 					"method": "GET",
-					"relative_url": child.key + "?fields=name, link, type, cover_photo.fields(id, height, width, picture, images, link)"
+					"relative_url": child.key + "?fields=id,cover_photo.fields(picture, images)"
 				});
 
 			});
@@ -1229,11 +1270,7 @@
 			include_headers: "false"
 		}).then(function (response) {
 
-			batched_albums = response.data;
-
-			transformDataArrayIntoAlbumsElements(batched_albums);
-
-//            document.getElementById('gallery-list').innerHTML = '<pre><code>' + JSON.stringify(response.data, undefined, 2) +'</code></pre>';
+			appendBackgroundImages(response.data);
 
 		}).catch(function (err) {
 
@@ -1243,125 +1280,18 @@
 
 	}
 
-	function transformDataArrayIntoAlbumsElements(received_albums) {
+	function appendBackgroundImages(received_covers) {
 
-		var galleryNode = document.getElementById('gallery-list');
-		galleryNode.innerHTML = '';
+		for (var i = received_covers.length; i--;) {
 
-		for (var i = received_albums.length; i--;) {
+			var album = JSON.parse(received_covers[i].body);
 
-			var album = JSON.parse(received_albums[i].body);
+			var albumElement = document.getElementById(album.id);
 
-			var highlightedAlbumNode = document.createElement('a');
-			highlightedAlbumNode.href = album.link;
-			highlightedAlbumNode.className = 'HighlightedAlbum';
-			highlightedAlbumNode.title = album.name;
-
-			var albumBackgroundNode = document.createElement('div');
-			albumBackgroundNode.className = 'HighlightedAlbum-background';
-			albumBackgroundNode.style.backgroundImage = 'url(' + album.cover_photo.images[4].source +')';
-
-			var albumOverlayNode = document.createElement('div');
-			albumOverlayNode.className = 'HighlightedAlbum-overlay marrom-couro--darkest';
-
-			/*
-			 <a href="#paraguacu" class="HighlightedAlbum">
-
-			 <div class="HighlightedAlbum-background" style="background-image: url('https://scontent.xx.fbcdn.net/v/t31.0-0/p600x600/20368996_1929509733975510_6919608120889740573_o.jpg?oh=015be32f605fd90145511454d4fd9c52&oe=5A024C8A');">
-
-			 <div class="HighlightedAlbum-overlay marrom-couro--darkest"></div>
-
-			 </div>
-
-			 <div class="HighlightedAlbumContent">
-			 <h1 class="HighlightedAlbumContent-date">05-05-2017</h1>
-			 <h2 class="HighlightedAlbumContent-title">SÁBADO</h2>
-			 </div>
-
-			 </a>
-			*/
-
-			var albumContentNode = document.createElement('div');
-			albumContentNode.className = 'HighlightedAlbumContent';
-
-			var formattedDate = convertDate(splitDateFromTitle(album.name).date[0]);
-			var title = splitDateFromTitle(album.name).title;
-
-			var albumContentDate = document.createElement('h1');
-			albumContentDate.className = 'HighlightedAlbumContent-date';
-			albumContentDate.textContent = formattedDate;
-
-			var albumContentTitle = document.createElement('h2');
-			albumContentTitle.className = 'HighlightedAlbumContent-title';
-			albumContentTitle.textContent = title;
-
-//			if (i == 0) {
-//
-//				highlightedAlbumNode.className = 'HighlightedAlbum HighlightedAlbum--more';
-//				highlightedAlbumNode.title = 'Ver todos os álbuns';
-//				highlightedAlbumNode.href = '/galeria';
-//				albumContentTitle.textContent = 'Ver todos os álbuns';
-//
-//				albumContentNode.appendChild(albumContentTitle);
-//
-//				highlightedAlbumNode.appendChild(albumOverlayNode);
-//				highlightedAlbumNode.appendChild(albumContentNode);
-//
-//				galleryNode.appendChild(highlightedAlbumNode);
-//
-//			} else {
-
-				albumContentNode.appendChild(albumContentDate);
-				albumContentNode.appendChild(albumContentTitle);
-
-				albumBackgroundNode.appendChild(albumOverlayNode);
-
-				highlightedAlbumNode.appendChild(albumBackgroundNode);
-				highlightedAlbumNode.appendChild(albumContentNode);
-
-				galleryNode.appendChild(highlightedAlbumNode);
-
-//			}
+			var albumBackgroundElement = albumElement.querySelector(".HighlightedAlbum-background");
+			albumBackgroundElement.style.backgroundImage = 'url(' + album.cover_photo.images[4].source +')';
 
 		}
-
-		var seeAllButton = document.createElement('a');
-		seeAllButton.href = 'galeria';
-		seeAllButton.title = 'Ver todos os álbuns';
-		seeAllButton.className = 'Btn Btn--primary';
-		seeAllButton.textContent = 'Ver todos os álbuns';
-
-		galleryNode.parentNode.appendChild(seeAllButton);
-
-//		addFirebaseListeners();
-
-	}
-
-	function searchDate(string) {
-
-		var regex_date = /(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](((19|20)\d\d)|(\d\d))/gm;
-
-		return regex_date.test(string);
-
-	}
-
-	function convertDate(date) {
-
-		var regex_separator = /[- .]/gm;
-
-		return date.replace(regex_separator, '/');
-
-	}
-
-	function splitDateFromTitle(string) {
-
-		var content = [];
-
-		var regex_date = /(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](((19|20)\d\d)|(\d\d))/gm;
-		content.date = regex_date.exec(string);
-		content.title = string.replace(regex_date, '');
-
-		return content;
 
 	}
 

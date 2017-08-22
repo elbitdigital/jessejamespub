@@ -9,6 +9,11 @@
         "source": "/home",
         "destination": "/",
         "type": 301
+      },
+      {
+        "source": "/seja-franqueado",
+        "destination": "/franqueado",
+        "type": 301
       }
     ],
     "headers": [

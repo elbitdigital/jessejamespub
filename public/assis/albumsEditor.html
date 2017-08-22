@@ -125,7 +125,7 @@
 	}
 
 	.EditorAlbum.is-disabled .EditorAlbum-overlay {
-		opacity: .2;
+		opacity: .3;
 		background-color: #B71C1C;
 	}
 
@@ -187,23 +187,37 @@
 		margin: .5em;
 	}
 
-	.EditorAlbumInfo input {
-		display: inline-block;
+	.EditorAlbumInfo-title {
+		background-color: transparent;
+		-webkit-box-shadow: none;
+		-moz-box-shadow: none;
+		box-shadow: none;
+		border: none;
+		outline: none;
+		resize: none;
+		overflow: hidden;
+		padding: .5em;
+		max-width: 190px;
+	}
+
+	.EditorAlbumInfo-date,
+	.EditorAlbumInfo-title {
 		font-size: 1.25em;
-		width: 80%;
 		margin: .125em;
-		padding: .25em .5em;
 		color: white;
 		font-family: 'Roboto Condensed', 'Roboto', sans-serif;
 		font-weight: 800;
 		background-color: rgba(255,255,255,.3);
-		text-transform: uppercase;
 		border: 2px solid #442a0d; /* marrom couro darker */
+		text-transform: uppercase;
 		text-align: center;
 	}
 
-	.EditorAlbumInfo input.EditorAlbumInfo-date {
+	.EditorAlbumInfo-date {
 		background-color: rgba(0,0,0,.3);
+		display: inline-block;
+		padding: .25em .5em;
+		width: 80%;
 	}
 
 	.EditorAlbumInfo input::-webkit-input-placeholder {
@@ -246,7 +260,7 @@
 			<div class="EditorAlbumInfo">
 
 				<input class="EditorAlbumInfo-date" type="text" placeholder="DD/MM/AAAA" onclick="this.select();">
-				<input class="EditorAlbumInfo-title" type="text" placeholder="Título" onclick="this.select();">
+				<textarea class="EditorAlbumInfo-title" rows="3">Título</textarea>
 
 			</div>
 
@@ -274,7 +288,7 @@
 			<div class="EditorAlbumInfo">
 
 				<input class="EditorAlbumInfo-date" type="text" placeholder="DD/MM/AAAA" onclick="this.select();">
-				<input class="EditorAlbumInfo-title" type="text" placeholder="Título" onclick="this.select();">
+				<textarea class="EditorAlbumInfo-title" rows="3">Título</textarea>
 
 			</div>
 
@@ -302,7 +316,7 @@
 			<div class="EditorAlbumInfo">
 
 				<input class="EditorAlbumInfo-date" type="text" placeholder="DD/MM/AAAA" onclick="this.select();">
-				<input class="EditorAlbumInfo-title" type="text" placeholder="Título" onclick="this.select();">
+				<textarea class="EditorAlbumInfo-title" rows="3">Título</textarea>
 
 			</div>
 
@@ -365,7 +379,7 @@
 
 	function galleryInit() {
 
-		galleryRef.once('value', function(snapshot) {
+		galleryRef.once('value').then(function(snapshot) {
 
 			snapshot.forEach(function (childSnapshot) {
 
@@ -377,8 +391,12 @@
 
 			});
 
+		}).then(function() {
+
 			getAllPageAlbums();
 
+		}, function(error) {
+			console.error(error);
 		});
 
 	}
@@ -395,8 +413,8 @@
 
 		axios.get('https://graph.facebook.com/v2.10/' + PAGE_ID, {
 			params: {
-				fields: 'albums.fields(name, link, type, cover_photo.fields(id,height,width,images)).limit(9999)',
-//				fields: 'albums.fields(name, link, type, cover_photo.fields(id,height,width,picture)).limit(9999)',
+				fields: 'albums.fields(name, description, link, type, updated_time, cover_photo.fields(id,height,width,images)).limit(9999)',
+//				fields: 'albums.fields(name, description, link, type, updated_time, cover_photo.fields(id,height,width,picture)).limit(9999)',
 				access_token: '146544439255115|3_8Ip3wrGqx-BfnrEVVRhJeUpLA' //token do aplicativo
 			}
 		}).then(function (response) {
@@ -409,7 +427,8 @@
 				/* #2 - display albums to user with disabled style */
 				var normal_albums = removeUndesiredTypes(response.data.albums.data);
 				transformDataArrayIntoAlbumsElements(normal_albums);
-//				addFirebaseListeners();
+
+				addFirebaseListeners();
 
 			} else {
 
@@ -420,6 +439,7 @@
 		}).catch(function (err) {
 
 			document.getElementById('albums-gallery').innerHTML = '<span style="color: red;">' + err.message + '</span>';
+			console.log(err);
 
 		});
 
@@ -440,28 +460,66 @@
 
 	}
 
-
 	function transformDataArrayIntoAlbumsElements(received_albums) {
 
 		var albums = received_albums;
+		var regexDateSearch = /(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](((19|20)\d\d)|(\d\d))/;
+		var regexDateFormat = /[- .]/g;
+//		var albumRef = {};
 
 		var galleryNode = document.getElementById('albums-gallery');
 		galleryNode.innerHTML = '';
 
 		for (var i = 0; i < albums.length; i++) {
 
-//			if (tracked_albums.indexOf(albums[i].id) == -1) {
-//
-//				if (save_new_as_disabled)
-//					saveDisabledAlbum(albums[i].id);
-//				else
-//					saveEnabledAlbum(albums[i].id);
-//
-//			}
+			var albumRef = enabledRef.child(albums[i].id);
+
+			var albumInfo = {
+				fb_id: albums[i].id,
+				fb_link: albums[i].link,
+				fb_name: albums[i].name,
+				fb_description: (albums[i].description) ? albums[i].description : '',
+				fb_updated_time: albums[i].updated_time,
+				date: '',
+				title: '',
+				type: 'parsed'
+			};
+
+			if (regexDateSearch.test(albumInfo.fb_name)) {
+
+				var regexDate = regexDateSearch.exec(albumInfo.fb_name);
+				albumInfo.date = regexDate[0].replace(regexDateFormat, '/');
+				albumInfo.title = albumInfo.fb_name.replace(regexDateSearch, '');
+				albumInfo.title = albumInfo.title.trim();
+
+				if (albumInfo.title == '') {
+
+					albumInfo.title = albumInfo.fb_description;
+
+				}
+
+			} else {
+
+				albumInfo.title = albumInfo.fb_name;
+
+				function pad(x) {
+					return (x < 10) ? '0'+x : x;
+				}
+
+				var fb_date = new Date(albumInfo.fb_updated_time);
+				var date = {
+					day: pad(fb_date.getDate()),
+					month: pad(fb_date.getMonth() + 1),
+					year: fb_date.getFullYear()
+				};
+
+				albumInfo.date = date.day + '/' + date.month + '/' + date.year + '*';
+
+			}
 
 			var editorAlbumNode = document.createElement('div');
 			editorAlbumNode.className = 'EditorAlbum';
-			editorAlbumNode.id = albums[i].id;
+			editorAlbumNode.id = albumInfo.fb_id;
 
 			var editorAlbumBackgroundNode = document.createElement('div');
 			editorAlbumBackgroundNode.className = 'EditorAlbum-background';
@@ -477,35 +535,38 @@
 			editorAlbumInfoNode.className = 'EditorAlbumInfo';
 
 			var editorAlbumInfoDate = document.createElement('input');
-			editorAlbumInfoDate.className = 'EditorAlbumInfo-date';
+			editorAlbumInfoDate.className = 'EditorAlbumInfo-date EditorAlbumInfo--input';
 			editorAlbumInfoDate.type = 'text';
 			editorAlbumInfoDate.placeholder = 'DD/MM/AAAA';
-			editorAlbumInfoDate.addEventListener('click', function () {
-				this.select();
+			editorAlbumInfoDate.value = albumInfo.date;
+			editorAlbumInfoDate.addEventListener('input', function (e) {
+//				enabledRef.child(self.id).child('date').set(this.value);
 			});
 
-			var editorAlbumInfoTitle = document.createElement('input');
-			editorAlbumInfoTitle.className = 'EditorAlbumInfo-title';
-			editorAlbumInfoTitle.type = 'text';
-			editorAlbumInfoTitle.placeholder = 'Título';
-			editorAlbumInfoTitle.value = albums[i].name;
-			editorAlbumInfoTitle.addEventListener('click', function () {
-				this.select();
-			});
+			var editorAlbumInfoTitle = document.createElement('textarea');
+			editorAlbumInfoTitle.className = 'EditorAlbumInfo-title EditorAlbumInfo--input';
+			editorAlbumInfoTitle.rows = '3';
+			editorAlbumInfoTitle.textContent = albumInfo.title;
+//			editorAlbumInfoTitle.addEventListener('input', function () {
+//				albumRef.update({
+//					title: this.value,
+//					type: 'modified'
+//				});
+//			});
 
 			var editorAlbumActionNode = document.createElement('div');
 			editorAlbumActionNode.className = 'EditorAlbumAction';
 
 			var editorAlbumLink = document.createElement('a');
 			editorAlbumLink.className = 'Btn Btn--narrow Btn--filled';
-			editorAlbumLink.href = albums[i].link;
+			editorAlbumLink.href = albumInfo.link;
 			editorAlbumLink.target = '_blank';
 			editorAlbumLink.textContent = 'Ver álbum';
 
 			var editorAlbumButton = document.createElement('button');
 			editorAlbumButton.className = 'Btn Btn--narrow Btn--filled Btn--turnoff';
 			editorAlbumButton.textContent = 'Desabilitar';
-			editorAlbumButton.dataset.id = albums[i].id;
+			editorAlbumButton.dataset.id = albumInfo.fb_id;
 			editorAlbumButton.addEventListener('click', function(ev) {
 				toggleAlbumStatus(this.dataset.id);
 			});
@@ -526,15 +587,30 @@
 
 			galleryNode.appendChild(editorAlbumNode);
 
+			if (tracked_albums.indexOf(albums[i].id) == -1) {
+
+				if (save_new_as_disabled) {
+
+					albumRef = disabledRef.child(albums[i].id);
+					saveAlbum(albumRef, albumInfo);
+
+				} else {
+
+					saveAlbum(albumRef, albumInfo);
+
+				}
+
+			}
+
 		}
 
 	}
 
 
-	function toggleAlbumStatus(albumCover) {
+	function toggleAlbumStatus(album_id) {
 
 		var msg = "";
-		var id = albumCover.dataset.id;
+		var id = album_id;
 
 		if (disabled_albums.indexOf(id) > -1) {
 
@@ -542,8 +618,8 @@
 
 			if(confirm(msg)) {
 
-//				removeDisabledAlbum(id);
-//				saveEnabledAlbum(id);
+//				moveAlbum(old, new);
+				moveAlbum(disabledRef.child(id), enabledRef.child(id));
 
 			}
 
@@ -553,8 +629,8 @@
 
 			if(confirm(msg)) {
 
-//				removeEnabledAlbum(id);
-//				saveDisabledAlbum(id);
+//				moveAlbum(old, new);
+				moveAlbum(enabledRef.child(id), disabledRef.child(id));
 
 			}
 
@@ -566,45 +642,77 @@
 
 	}
 
-	function saveEnabledAlbum(albumId) {
+	function moveAlbum(oldRef, newRef) {
 
-		enabledRef.child(albumId).set({
-			enabled_on: firebase.database.ServerValue.TIMESTAMP
+		oldRef.once('value', function(snap)  {
+
+			newRef.set(snap.val(), function(error) {
+
+				if(!error) {
+					oldRef.remove();
+				} else if(typeof(console) !== 'undefined' && console.error) {
+					console.error(error);
+				}
+
+			});
+
 		});
 
 	}
 
-	function removeEnabledAlbum(albumId) {
+	function saveAlbum(albumRef, albumInfo) {
 
-//		enabledRef.child(albumId).set(null);
-		enabledRef.child(albumId).remove();
-
-	}
-
-	function saveDisabledAlbum(albumId) {
-
-		disabledRef.child(albumId).set({
-			disabled_on: firebase.database.ServerValue.TIMESTAMP
-		});
+		albumRef.set(albumInfo);
 
 	}
 
-	function removeDisabledAlbum(albumId) {
+//	function saveEnabledAlbum(albumId) {
+//
+//		enabledRef.child(albumId).set({
+//			enabled_on: firebase.database.ServerValue.TIMESTAMP
+//		});
+//
+//	}
+//
+//	function removeEnabledAlbum(albumId) {
+//
+////		enabledRef.child(albumId).set(null);
+//		enabledRef.child(albumId).remove();
+//
+//	}
 
-//		disabledRef.child(albumId).set(null);
-		disabledRef.child(albumId).remove();
+//	function saveDisabledAlbum(albumId) {
+//
+//		disabledRef.child(albumId).set({
+//			disabled_on: firebase.database.ServerValue.TIMESTAMP
+//		});
+//
+//	}
 
-	}
+//	function removeDisabledAlbum(albumId) {
+//
+////		disabledRef.child(albumId).set(null);
+//		disabledRef.child(albumId).remove();
+//
+//	}
 
 
 	function turnOnDisabledAlbum(albumId) {
 
 		var album = document.getElementById(albumId);
+
+		album.classList.remove('is-enabled');
 		album.classList.add('is-disabled');
 
-		var albumButton = document.querySelector("[data-id='" + albumId + "']");
+		var albumInput = album.querySelectorAll(".EditorAlbumInfo--input");
+		for (var i = albumInput.length; i--;) {
+			albumInput[i].disabled = true;
+		}
+
+		var albumButton = album.querySelector("[data-id='" + albumId + "']");
 		albumButton.classList.remove('Btn--turnoff');
 		albumButton.classList.add('Btn--turnon');
+		albumButton.textContent = "Habilitar";
 
 	}
 
@@ -612,29 +720,62 @@
 	function turnOffDisabledAlbum(albumId) {
 
 		var album = document.getElementById(albumId);
+
 		album.classList.remove('is-disabled');
 
 		var albumButton = document.querySelector("[data-id='" + albumId + "']");
 		albumButton.classList.remove('Btn--turnon');
 		albumButton.classList.add('Btn--turnoff');
-
-		var albumCover = document.querySelector("[data-id='" + albumId + "']");
-		albumCover.parentNode.classList.remove('is-disabled');
+		albumButton.textContent = "Desabilitar";
 
 	}
 
 	function turnOnEnabledAlbum(albumId) {
 
-		var albumCover = document.querySelector("[data-id='" + albumId + "']");
-		albumCover.parentNode.classList.add('is-enabled');
+		var album = document.getElementById(albumId);
+
+		album.classList.remove('is-disabled');
+		album.classList.add('is-enabled');
+
+		var albumInput = album.querySelectorAll(".EditorAlbumInfo--input");
+		for (var i = albumInput.length; i--;) {
+			albumInput[i].disabled = false;
+		}
+
+		var albumInputDate = album.querySelector("input.EditorAlbumInfo-date");
+		albumInputDate.addEventListener('input', function () {
+			enabledRef.child(albumId).update({
+				date: this.value,
+				type: 'modified'
+			});
+		});
+
+		var albumInputTitle = album.querySelector("textarea.EditorAlbumInfo-title");
+		albumInputTitle.addEventListener('input', function () {
+			enabledRef.child(albumId).update({
+				title: this.value,
+				type: 'modified'
+			});
+		});
+
+		var albumButton = document.querySelector("[data-id='" + albumId + "']");
+		albumButton.classList.remove('Btn--turnon');
+		albumButton.classList.add('Btn--turnoff');
+		albumButton.textContent = "Desabilitar";
 
 	}
 
 
 	function turnOffEnabledAlbum(albumId) {
 
-		var albumCover = document.querySelector("[data-id='" + albumId + "']");
-		albumCover.parentNode.classList.remove('is-enabled');
+		var album = document.getElementById(albumId);
+
+		album.classList.remove('is-enabled');
+
+		var albumButton = document.querySelector("[data-id='" + albumId + "']");
+		albumButton.classList.remove('Btn--turnoff');
+		albumButton.classList.add('Btn--turnon');
+		albumButton.textContent = "Habilitar";
 
 	}
 
