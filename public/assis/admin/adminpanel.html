@@ -22,16 +22,73 @@
 <meta name="fb:app_id" content="1586666258259861">
 <meta name="og:type" content="website">
 
-<script src="../dist/js/villa.min.js"></script>
-<link rel="stylesheet" href="../dist/css/villa.min.css"/>
-<link rel="stylesheet" href="../dist/css/jessejamespub.min.css"/>
+<script src="../../dist/js/villa.min.js"></script>
+<link rel="stylesheet" href="../../dist/css/villa.min.css"/>
+<link rel="stylesheet" href="../../dist/css/jessejamespub.min.css"/>
 <!--[if lt IE 9]>
-<link rel="stylesheet" type="text/css" href="../dist/css/material-colors.css"/>
-<link rel="stylesheet" type="text/css" href="../dist/css/villa-cross.min.css"/>
-<script src="../dist/js/html5shiv.js"></script>
-<script src="../dist/js/html5shiv-printshiv.js"></script>
-<script src="../dist/js/classList.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../../dist/css/material-colors.css"/>
+<link rel="stylesheet" type="text/css" href="../../dist/css/villa-cross.min.css"/>
+<script src="../../dist/js/html5shiv.js"></script>
+<script src="../../dist/js/html5shiv-printshiv.js"></script>
+<script src="../../dist/js/classList.min.js"></script>
 <![endif]-->
+
+<style>
+
+	.HeaderAdmin {
+		-webkit-align-items: center;
+		align-items: center;
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-justify-content: space-between;
+		justify-content: space-between;
+		width: 100%;
+	}
+
+	.HeaderAdmin-toggle {
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+		cursor: pointer;
+		padding: .5em;
+		border-radius: 2px;
+	}
+
+	.HeaderAdmin-toggle .toggle-text {
+		display: none;
+	}
+
+	.HeaderAdmin-toggle:hover {
+		background-color: #301c09;
+	}
+
+	.HeaderAdmin-toggle .will-close {
+		display: none;
+	}
+
+	.HeaderAdmin-toggle.is-open .will-close {
+		display: inline-block;
+	}
+
+	.HeaderAdmin-toggle.is-open .will-open {
+		display: none;
+	}
+
+	@media (min-width: 48em) {
+
+		.HeaderAdmin-toggle .toggle-text {
+			display: inline-block;
+		}
+
+	}
+
+</style>
+
 
 <body class="roboto">
 
@@ -43,48 +100,23 @@
 
 		<header class="HeaderUpper-inner container">
 
-			<div class="LogoFranchise LogoFranchise--compact">
+			<div class="HeaderAdmin">
 
-				<img class="LogoFranchise-img" src="../dist/img/logo-assis-branco.png"/>
+				<div class="HeaderAdminLeft">
 
-			</div>
-
-			<div class="Connections">
-
-				<div class="ConnectionTraditional">
-
-					<p class="ConnectionTraditional-email">
-						<span class="icon-mail-alt"></span> assis@jessejamespub.com.br
-					</p>
-
-					<p class="ConnectionTraditional-phone">
-						<span class="icon-phone"></span> 18 99783 2412
-					</p>
+					<h4 id="sidebar-toggle" class="HeaderAdmin-toggle">
+						<span class="icon-menu will-open"></span>
+						<span class="icon-cancel will-close"></span>
+						<span class="toggle-text">MENU</span>
+					</h4>
 
 				</div>
 
-				<div class="LogoFranchise LogoFranchise--full">
+				<img class="HeaderAdmin-logo" src="../../dist/img/logo-assis-branco-sm.png" alt="" style="max-height: 4em;">
 
-					<img class="LogoFranchise-img" src="../dist/img/logo-assis-branco.png"/>
+				<div class="HeaderAdminRight">
 
-				</div>
-
-				<div class="ConnectionSocial">
-
-					<a href="mailto:assis@jessejamespub.com.br"
-					   class="ConnectionSocial-icon ConnectionSocial-icon--mail">
-						<span class="icon-mail-alt"></span>
-					</a>
-
-					<a href="https://facebook.com/jessejamespubassis"
-					   class="ConnectionSocial-icon ConnectionSocial-icon--facebook">
-						<span class="icon-facebook-official"></span>
-					</a>
-
-					<a href="https://instagram.com/jessejamespubassis"
-					   class="ConnectionSocial-icon ConnectionSocial-icon--instagram">
-						<span class="icon-instagram"></span>
-					</a>
+					<a href="#" class="Btn Btn-primary Btn--filled Btn--narrow">Sair</a>
 
 				</div>
 
@@ -187,10 +219,10 @@
 
 <section class="Body Body--admin marrom-poeira--lighter">
 
-	<aside id="sidebar" class="Sidebar Sidebar--admin marrom-couro">
+	<aside id="sidebar" class="Sidebar Sidebar--admin marrom-couro is-hide">
 
 		<h2 class="Sidebar-title">
-			<span class="icon-right-dir"></span>MENU
+			<span class="icon-right-dir"></span> ASSIS
 		</h2>
 
 		<ul class="SidebarList marrom-couro--lighter">
@@ -206,7 +238,7 @@
 
 			<li class="SidebarList-item">
 
-				<a href="#" class="SidebarList-item-link">
+				<a href="galeria.html" class="SidebarList-item-link">
 					<span class="icon-picture"></span>
 					<p>Galeria</p>
 				</a>
@@ -241,20 +273,33 @@
 	</style>
 
 	<div class="Content Content--admin f-marrom-couro--darkest">
+
 		<h1 class="Content-title">Painel administrativo</h1>
 		<button id="btn-toggle">Toggle</button>
+
+
 	</div>
 
 </section>
 
 <script>
 
-	var btn = document.getElementById('btn-toggle');
+	var btn = document.getElementById('sidebar-toggle');
 	btn.addEventListener('click', function(e) {
 		var sidebar = document.getElementById('sidebar');
 		sidebar.classList.toggle('is-hide');
+		this.classList.toggle('is-open');
 	});
 
+
+	window.onload = function () {
+
+		if (window.innerWidth > 768) {
+			var sidebar = document.getElementById('sidebar').classList.toggle('is-hide');
+			var btn = document.getElementById('sidebar-toggle').classList.toggle('is-open');
+		}
+
+	}
 </script>
 
 </body>
