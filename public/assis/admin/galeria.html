@@ -549,6 +549,7 @@
 		<p>Os álbuns listados nesta página são recebidos e sincronizados com os álbuns das respectivas páginas no Facebook das franquias.</p>
 		<p>Os álbuns habilitados são exibidos publicamente na página da franquia (os três mais recentes na página inicial).</p>
 
+		<button id="gallery-rebase" class="Content-button Btn Btn--primary Btn--filled">Reiniciar álbums</button>
 		<button id="gallery-update" class="Content-button Btn Btn--primary Btn--filled">Sincronizar álbums</button>
 		<a href="#" class="Content-button Btn Btn--primary">Ir para galeria</a>
 
@@ -678,11 +679,16 @@
 
 	window.addEventListener('load', function () {
 
-		var btn = document.getElementById('sidebar-toggle');
-		btn.addEventListener('click', function() {
+		var btnMenu = document.getElementById('sidebar-toggle');
+		btnMenu.addEventListener('click', function() {
 			var sidebar = document.getElementById('sidebar');
 			sidebar.classList.toggle('is-hide');
 			this.classList.toggle('is-open');
+		});
+
+		var btnRebase = document.getElementById('gallery-rebase');
+		btnRebase.addEventListener('click', function() {
+			rebaseDatabase();
 		});
 
 		if (window.innerWidth > 768) {
@@ -719,10 +725,17 @@
 </script>
 
 <script>
+	var franchise_config = {
+		CITY: 'assis',
+		PAGE_ID: 1586666258259861,
+		APP_TOKEN: '146544439255115|3_8Ip3wrGqx-BfnrEVVRhJeUpLA'
+	};
 
 	var saveNewAsDisabled = true;
 	var initialLoadComplete = false;
-	var tracked_albums = [];
+	var database_albums = [];
+	var page_albums = [];
+	var backgrounds_index = [];
 	var enabled_albums = [];
 	var disabled_albums = [];
 	var total_of_albums = 0;
@@ -736,7 +749,22 @@
 
 				childSnapshot.forEach(function (grandChildSnapshot) {
 
-					tracked_albums.push(grandChildSnapshot.key);
+					database_albums.push(grandChildSnapshot.val());
+
+					var nodeParentPath = grandChildSnapshot.ref.parent.path.o;
+					var nodeParentText = nodeParentPath[nodeParentPath.length -1];
+
+					if (nodeParentText == "enabledAlbums") {
+
+//						enabled_albums[grandChildSnapshot.key] = grandChildSnapshot.val();
+						enabled_albums.push(grandChildSnapshot.val());
+
+					} else if (nodeParentText == "disabledAlbums") {
+
+//						disabled_albums[grandChildSnapshot.key] = grandChildSnapshot.val();
+						disabled_albums.push(grandChildSnapshot.val());
+
+					}
 
 				});
 
@@ -744,8 +772,7 @@
 
 		}).then(function() {
 
-//			getAllPageAlbums();
-			addFirebaseListeners();
+			getAllAlbumsFromPage(franchise_config.PAGE_ID, franchise_config.APP_TOKEN);
 
 		}, function(error) {
 			console.error(error);
@@ -757,28 +784,22 @@
 	 * Make a request to Facebook Graph API requesting all the albums from Jesse James Assis page
 	 * And proceed to pass the information to a function that transform the json response to elements
 	 */
-	function getAllPageAlbums() {
+	function getAllAlbumsFromPage(id, token) {
 
 		var showRequestData = false;
 
-		var PAGE_ID = 1586666258259861;
-
-		axios.get('https://graph.facebook.com/v2.10/' + PAGE_ID, {
+		axios.get('https://graph.facebook.com/v2.10/' + id, {
 			params: {
-				fields: 'albums.fields(name, description, link, type, updated_time, cover_photo.fields(id,height,width,images)).limit(9999)',
+				fields: 'albums.fields(name, description, link, type, updated_time, cover_photo.fields(id,height,width,images)).limit(100)',
 //				fields: 'albums.fields(name, description, link, type, updated_time, cover_photo.fields(id,height,width,picture)).limit(9999)',
-				access_token: '146544439255115|3_8Ip3wrGqx-BfnrEVVRhJeUpLA' //token do aplicativo
+				access_token: token //token do aplicativo
 			}
 		}).then(function (response) {
 
 			if (!showRequestData) {
 
-				/* #1 - do not display disabled albums to user */
-//			    removeDisabledAlbums(response.data.albums.data);
-
-				/* #2 - display albums to user with disabled style */
 				var normal_albums = removeUndesiredTypes(response.data.albums.data);
-				transformDataArrayIntoAlbumsElements(normal_albums);
+				page_albums = transformDataToDatabaseFormat(normal_albums);
 
 				addFirebaseListeners();
 
@@ -812,19 +833,14 @@
 
 	}
 
-	function transformDataArrayIntoAlbumsElements(received_albums) {
+	function transformDataToDatabaseFormat(received_albums) {
 
 		var albums = received_albums;
 		var regexDateSearch = /(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](((19|20)\d\d)|(\d\d))/;
 		var regexDateFormat = /[- .]/g;
-//		var albumRef = {};
-
-		var galleryNode = document.getElementById('albums-gallery');
-		galleryNode.innerHTML = '';
+		var parsed_albums = [];
 
 		for (var i = 0; i < albums.length; i++) {
-
-			var albumRef = enabledRef.child(albums[i].id);
 
 			var albumInfo = {
 				fb_id: albums[i].id,
@@ -865,106 +881,26 @@
 					year: fb_date.getFullYear()
 				};
 
-				albumInfo.date = date.day + '/' + date.month + '/' + date.year + '*';
+				albumInfo.date = date.day + '/' + date.month + '/' + date.year;
+				albumInfo.type = 'modified';
 
 			}
 
-			var editorAlbumNode = document.createElement('div');
-			editorAlbumNode.className = 'EditorAlbum';
-			editorAlbumNode.id = albumInfo.fb_id;
-
-			var editorAlbumBackgroundNode = document.createElement('div');
-			editorAlbumBackgroundNode.className = 'EditorAlbum-background';
-			editorAlbumBackgroundNode.style.backgroundImage = 'url(' + albums[i].cover_photo.images[4].source +')';
-
-			var editorAlbumOverlayNode = document.createElement('div');
-			editorAlbumOverlayNode.className = 'EditorAlbum-overlay marrom-couro--darkest';
-
-			var editorAlbumContentNode = document.createElement('div');
-			editorAlbumContentNode.className = 'EditorAlbumContent';
-
-			var editorAlbumInfoNode = document.createElement('div');
-			editorAlbumInfoNode.className = 'EditorAlbumInfo';
-
-			var editorAlbumInfoDate = document.createElement('input');
-			editorAlbumInfoDate.className = 'EditorAlbumInfo-date EditorAlbumInfo--input';
-			editorAlbumInfoDate.type = 'text';
-			editorAlbumInfoDate.placeholder = 'DD/MM/AAAA';
-			editorAlbumInfoDate.value = albumInfo.date;
-			editorAlbumInfoDate.addEventListener('input', function (e) {
-//				enabledRef.child(self.id).child('date').set(this.value);
-			});
-
-			var editorAlbumInfoTitle = document.createElement('textarea');
-			editorAlbumInfoTitle.className = 'EditorAlbumInfo-title EditorAlbumInfo--input';
-			editorAlbumInfoTitle.rows = '3';
-			editorAlbumInfoTitle.textContent = albumInfo.title;
-//			editorAlbumInfoTitle.addEventListener('input', function () {
-//				albumRef.update({
-//					title: this.value,
-//					type: 'modified'
-//				});
-//			});
-
-			var editorAlbumActionNode = document.createElement('div');
-			editorAlbumActionNode.className = 'EditorAlbumAction';
-
-			var editorAlbumLink = document.createElement('a');
-			editorAlbumLink.className = 'Btn Btn--narrow Btn--filled';
-			editorAlbumLink.href = albumInfo.link;
-			editorAlbumLink.target = '_blank';
-			editorAlbumLink.textContent = 'Ver álbum';
-
-			var editorAlbumButton = document.createElement('button');
-			editorAlbumButton.className = 'Btn Btn--narrow Btn--filled Btn--turnoff';
-			editorAlbumButton.textContent = 'Desabilitar';
-			editorAlbumButton.dataset.id = albumInfo.fb_id;
-			editorAlbumButton.addEventListener('click', function(ev) {
-				toggleAlbumStatus(this.dataset.id);
-			});
-
-			editorAlbumActionNode.appendChild(editorAlbumLink);
-			editorAlbumActionNode.appendChild(editorAlbumButton);
-
-			editorAlbumInfoNode.appendChild(editorAlbumInfoDate);
-			editorAlbumInfoNode.appendChild(editorAlbumInfoTitle);
-
-			editorAlbumContentNode.appendChild(editorAlbumInfoNode);
-			editorAlbumContentNode.appendChild(editorAlbumActionNode);
-
-			editorAlbumBackgroundNode.appendChild(editorAlbumOverlayNode);
-
-			editorAlbumNode.appendChild(editorAlbumBackgroundNode);
-			editorAlbumNode.appendChild(editorAlbumContentNode);
-
-			galleryNode.appendChild(editorAlbumNode);
-
-			if (tracked_albums.indexOf(albums[i].id) == -1) {
-
-				if (saveNewAsDisabled) {
-
-					albumRef = disabledRef.child(albums[i].id);
-					saveAlbum(albumRef, albumInfo);
-
-				} else {
-
-					saveAlbum(albumRef, albumInfo);
-
-				}
-
-			}
+			backgrounds_index[albums[i].id] = albums[i].cover_photo;
+			parsed_albums.push(albumInfo);
 
 		}
 
-	}
+		return parsed_albums;
 
+	}
 
 	function toggleAlbumStatus(album_id) {
 
 		var msg = "";
 		var id = album_id;
 
-		if (disabled_albums.indexOf(id) > -1) {
+		if (searchAlbumIndex(id, disabled_albums) > -1) {
 
 			msg = "Deseja habilitar o álbum?";
 
@@ -975,7 +911,7 @@
 
 			}
 
-		} else if (enabled_albums.indexOf(id) > -1) {
+		} else if (searchAlbumIndex(id, enabled_albums) > -1) {
 
 			msg = "Deseja desabilitar o álbum?";
 
@@ -1012,93 +948,142 @@
 
 	}
 
+	function rebaseDatabase() {
+
+		var msg = "";
+
+		if (page_albums.length > 0) {
+
+			msg = "Deseja reiniciar todos os álbums?";
+
+			if(confirm(msg)) {
+
+				msg = "Reiniciar os álbums sobrescreve as modificações salvas anteriormente. ";
+				msg += "Digite '" + franchise_config.CITY + "' e confirme para continuar.";
+				var confirmation = prompt(msg);
+
+				if(confirmation == franchise_config.CITY) {
+
+					if(saveAndOverrideAlbums(page_albums)) {
+
+						alert('Os álbums foram atualizados!');
+						window.location.reload(true);
+
+					}
+
+				} else {
+
+					alert('Confirmação cancelada ou inválida, os álbums não foram reiniciados.');
+
+				}
+
+			}
+
+		} else {
+
+			alert('A página ainda não terminou de receber todo os álbums, aguarde um momento e tente novamente.');
+
+		}
+
+	}
+
+	function saveAndOverrideAlbums(albums) {
+
+		var updates = {};
+		var clearTarget = '/enabledAlbums/';
+
+		if (saveNewAsDisabled) {
+
+			clearTarget = '/disabledAlbums/';
+
+		}
+
+		if (clearGallery()) {
+
+			for (var i = 0; i < albums.length; i++) {
+
+				updates[clearTarget + albums[i].fb_id] = albums[i];
+
+			}
+
+			return galleryRef.update(updates);
+
+		}
+
+		return false;
+
+	}
+
+	function clearGallery() {
+
+		var updates = {};
+
+		updates['/disabledAlbums'] = true;
+		updates['/enabledAlbums'] = true;
+
+		return galleryRef.update(updates);
+
+	}
+
 	function saveAlbum(albumRef, albumInfo) {
 
 		albumRef.set(albumInfo);
 
 	}
 
-	function turnOnDisabledAlbum(albumId) {
+//	function turnOnDisabledAlbum(albumId) {
+//
+//		var album = document.getElementById(albumId);
+//
+//		album.classList.remove('is-enabled');
+//		album.classList.add('is-disabled');
+//
+//		var albumInput = album.querySelectorAll(".EditorAlbumInfo--input");
+//		for (var i = albumInput.length; i--;) {
+//			albumInput[i].disabled = true;
+//		}
+//
+//		var albumButton = album.querySelector("[data-id='" + albumId + "']");
+//		albumButton.classList.remove('Btn--turnoff');
+//		albumButton.classList.add('Btn--turnon');
+//		albumButton.textContent = "Habilitar";
+//
+//	}
 
-		var album = document.getElementById(albumId);
+//	function turnOnEnabledAlbum(albumId) {
+//
+//		var album = document.getElementById(albumId);
+//
+//		album.classList.remove('is-disabled');
+//		album.classList.add('is-enabled');
 
-		album.classList.remove('is-enabled');
-		album.classList.add('is-disabled');
-
-		var albumInput = album.querySelectorAll(".EditorAlbumInfo--input");
-		for (var i = albumInput.length; i--;) {
-			albumInput[i].disabled = true;
-		}
-
-		var albumButton = album.querySelector("[data-id='" + albumId + "']");
-		albumButton.classList.remove('Btn--turnoff');
-		albumButton.classList.add('Btn--turnon');
-		albumButton.textContent = "Habilitar";
-
-	}
-
-
-	function turnOffDisabledAlbum(albumId) {
-
-		var album = document.getElementById(albumId);
-
-		album.classList.remove('is-disabled');
-
-		var albumButton = document.querySelector("[data-id='" + albumId + "']");
-		albumButton.classList.remove('Btn--turnon');
-		albumButton.classList.add('Btn--turnoff');
-		albumButton.textContent = "Desabilitar";
-
-	}
-
-	function turnOnEnabledAlbum(albumId) {
-
-		var album = document.getElementById(albumId);
-
-		album.classList.remove('is-disabled');
-		album.classList.add('is-enabled');
-
-		var albumInput = album.querySelectorAll(".EditorAlbumInfo--input");
-		for (var i = albumInput.length; i--;) {
-			albumInput[i].disabled = false;
-		}
-
-		var albumInputDate = album.querySelector("input.EditorAlbumInfo-date");
-		albumInputDate.addEventListener('input', function () {
-			enabledRef.child(albumId).update({
-				date: this.value,
-				type: 'modified'
-			});
-		});
-
-		var albumInputTitle = album.querySelector("textarea.EditorAlbumInfo-title");
-		albumInputTitle.addEventListener('input', function () {
-			enabledRef.child(albumId).update({
-				title: this.value,
-				type: 'modified'
-			});
-		});
-
-		var albumButton = document.querySelector("[data-id='" + albumId + "']");
-		albumButton.classList.remove('Btn--turnon');
-		albumButton.classList.add('Btn--turnoff');
-		albumButton.textContent = "Desabilitar";
-
-	}
-
-
-	function turnOffEnabledAlbum(albumId) {
-
-		var album = document.getElementById(albumId);
-
-		album.classList.remove('is-enabled');
-
-		var albumButton = document.querySelector("[data-id='" + albumId + "']");
-		albumButton.classList.remove('Btn--turnoff');
-		albumButton.classList.add('Btn--turnon');
-		albumButton.textContent = "Habilitar";
-
-	}
+//		var albumInput = album.querySelectorAll(".EditorAlbumInfo--input");
+//		for (var i = albumInput.length; i--;) {
+//			albumInput[i].disabled = false;
+//		}
+//
+//		var albumInputDate = album.querySelector("input.EditorAlbumInfo-date");
+//		albumInputDate.addEventListener('input', function () {
+//			enabledRef.child(albumId).update({
+//				date: this.value,
+//				type: 'modified'
+//			});
+//		});
+//
+//		var albumInputTitle = album.querySelector("textarea.EditorAlbumInfo-title");
+//		albumInputTitle.addEventListener('input', function () {
+//			enabledRef.child(albumId).update({
+//				title: this.value,
+//				type: 'modified'
+//			});
+//		});
+//
+//		var albumButton = document.querySelector("[data-id='" + albumId + "']");
+//		albumButton.classList.remove('Btn--turnon');
+//		albumButton.classList.add('Btn--turnoff');
+//		albumButton.textContent = "Desabilitar";
+//
+//	}
 
 	function appendBackgroundImages() {
 
@@ -1114,7 +1099,7 @@
 
 				var album = JSON.parse(received_covers[i].body);
 
-				var albumElement = document.getElementById(album.id);
+				var albumElement = document.getElementById('album-' + album.id);
 
 				var albumBackgroundElement = albumElement.querySelector(".EditorAlbum-background");
 				albumBackgroundElement.style.backgroundImage = 'url(' + album.cover_photo.images[4].source +')';
@@ -1131,16 +1116,84 @@
 
 	}
 
+	function createDateObject(strDate) {
+
+		var d = strDate.split('/');
+
+		return new Date(d[2], d[1] -1, d[0]);
+
+	}
+
+	function calculateDestination(albumId, targetArray) {
+
+		var albumIndex = searchAlbumIndex(albumId, page_albums);
+
+		var i = albumIndex;
+		var s = 0;
+
+		while (i < page_albums.length) {
+
+			s = 0;
+
+			while (s < targetArray.length) {
+
+				if (page_albums[albumIndex]) {
+
+					if (createDateObject(page_albums[albumIndex].date) < createDateObject(targetArray[s].date)) {
+
+						return document.getElementById('album-' + targetArray[s].fb_id);
+
+					}
+
+				}
+
+				s++;
+
+			}
+
+			i++;
+
+		}
+
+		console.log('não há mais recentes, ele é o primeiro');
+		return false;
+
+	}
+
+	function searchAlbumIndex(albumId, targetArray) {
+
+		var i = 0;
+
+		while (i < targetArray.length) {
+
+			if (targetArray[i].fb_id == albumId) {
+
+				return i;
+
+			}
+
+			i++;
+
+		}
+
+		return -1;
+
+	}
+
 	function checkCompletation() {
 
 		total_of_albums++;
 
-		if (total_of_albums == tracked_albums.length) {
+		if (total_of_albums == database_albums.length) {
 
 			console.log('todos os álbums verificados');
 			appendBackgroundImages();
 
+			return true;
+
 		}
+
+		return false;
 
 	}
 
@@ -1148,46 +1201,50 @@
 
 		disabledRef.on('child_added', function(snapshot) {
 
-			if(initialLoadComplete) {
+			if (document.querySelector('#album-' + snapshot.key + '.is-enabled')) {
 
-				// procurar pelo album mais próximo que esteja ativo e transferir o nó para os habilitados
-				// não é necessário remover o nó usando child_removed se o nó for apenas movido
-				// vale pensar se é necessário child_removed caso a sincronização dos álbums com a página retornar álbums que foram deletados
+				var el = document.querySelector('#album-' + snapshot.key + '.is-enabled');
+				el.parentNode.removeChild(el);
 
-			} else {
+				var ind = searchAlbumIndex(snapshot.key, enabled_albums);
+				if (ind > -1) {
+					enabled_albums.splice(ind, 1);
+				}
 
-				var album = snapshot.val();
+			}
 
-				var editorAlbumNode = document.createElement('div');
-				editorAlbumNode.className = 'EditorAlbum';
-				editorAlbumNode.id = album.fb_id;
+			var album = snapshot.val();
 
-				var editorAlbumBackgroundNode = document.createElement('div');
-				editorAlbumBackgroundNode.className = 'EditorAlbum-background';
+			var editorAlbumNode = document.createElement('div');
+			editorAlbumNode.className = 'EditorAlbum is-disabled';
+			editorAlbumNode.id = 'album-' + album.fb_id;
+
+			var editorAlbumBackgroundNode = document.createElement('div');
+			editorAlbumBackgroundNode.className = 'EditorAlbum-background';
 //			editorAlbumBackgroundNode.style.backgroundImage = 'url(' + albums[i].cover_photo.images[4].source +')';
 
-				var editorAlbumOverlayNode = document.createElement('div');
-				editorAlbumOverlayNode.className = 'EditorAlbum-overlay marrom-couro--darkest';
+			var editorAlbumOverlayNode = document.createElement('div');
+			editorAlbumOverlayNode.className = 'EditorAlbum-overlay marrom-couro--darkest';
 
-				var editorAlbumContentNode = document.createElement('div');
-				editorAlbumContentNode.className = 'EditorAlbumContent';
+			var editorAlbumContentNode = document.createElement('div');
+			editorAlbumContentNode.className = 'EditorAlbumContent';
 
-				var editorAlbumInfoNode = document.createElement('div');
-				editorAlbumInfoNode.className = 'EditorAlbumInfo';
+			var editorAlbumInfoNode = document.createElement('div');
+			editorAlbumInfoNode.className = 'EditorAlbumInfo';
 
-				var editorAlbumInfoDate = document.createElement('input');
-				editorAlbumInfoDate.className = 'EditorAlbumInfo-date EditorAlbumInfo--input';
-				editorAlbumInfoDate.type = 'text';
-				editorAlbumInfoDate.placeholder = 'DD/MM/AAAA';
-				editorAlbumInfoDate.value = album.date;
+			var editorAlbumInfoDate = document.createElement('input');
+			editorAlbumInfoDate.className = 'EditorAlbumInfo-date EditorAlbumInfo--input';
+			editorAlbumInfoDate.type = 'text';
+			editorAlbumInfoDate.placeholder = 'DD/MM/AAAA';
+			editorAlbumInfoDate.value = album.date;
 //			editorAlbumInfoDate.addEventListener('input', function (e) {
 //				enabledRef.child(self.id).child('date').set(this.value);
 //			});
 
-				var editorAlbumInfoTitle = document.createElement('textarea');
-				editorAlbumInfoTitle.className = 'EditorAlbumInfo-title EditorAlbumInfo--input';
-				editorAlbumInfoTitle.rows = '3';
-				editorAlbumInfoTitle.textContent = album.title;
+			var editorAlbumInfoTitle = document.createElement('textarea');
+			editorAlbumInfoTitle.className = 'EditorAlbumInfo-title EditorAlbumInfo--input';
+			editorAlbumInfoTitle.rows = '3';
+			editorAlbumInfoTitle.textContent = album.title;
 //			editorAlbumInfoTitle.addEventListener('input', function () {
 //				albumRef.update({
 //					title: this.value,
@@ -1195,68 +1252,83 @@
 //				});
 //			});
 
-				var editorAlbumActionNode = document.createElement('div');
-				editorAlbumActionNode.className = 'EditorAlbumAction';
+			var editorAlbumActionNode = document.createElement('div');
+			editorAlbumActionNode.className = 'EditorAlbumAction';
 
-				var editorAlbumLink = document.createElement('a');
-				editorAlbumLink.className = 'Btn Btn--narrow Btn--filled';
-				editorAlbumLink.href = album.fb_link;
-				editorAlbumLink.target = '_blank';
-				editorAlbumLink.textContent = 'Ver';
+			var editorAlbumLink = document.createElement('a');
+			editorAlbumLink.className = 'Btn Btn--narrow Btn--filled';
+			editorAlbumLink.href = album.fb_link;
+			editorAlbumLink.target = '_blank';
+			editorAlbumLink.textContent = 'Ver';
 
-				var editorAlbumButton = document.createElement('button');
-				editorAlbumButton.className = 'Btn Btn--narrow Btn--filled Btn--turnon';
-				editorAlbumButton.textContent = 'Habilitar';
-				editorAlbumButton.dataset.id = album.fb_id;
-//			editorAlbumButton.addEventListener('click', function(ev) {
-//				toggleAlbumStatus(this.dataset.id);
-//			});
+			var editorAlbumButton = document.createElement('button');
+			editorAlbumButton.className = 'Btn Btn--narrow Btn--filled Btn--turnon';
+			editorAlbumButton.textContent = 'Habilitar';
+			editorAlbumButton.dataset.id = album.fb_id;
+			editorAlbumButton.addEventListener('click', function(ev) {
+				toggleAlbumStatus(this.dataset.id);
+			});
 
-				editorAlbumActionNode.appendChild(editorAlbumLink);
-				editorAlbumActionNode.appendChild(editorAlbumButton);
+			editorAlbumActionNode.appendChild(editorAlbumLink);
+			editorAlbumActionNode.appendChild(editorAlbumButton);
 
-				editorAlbumInfoNode.appendChild(editorAlbumInfoDate);
-				editorAlbumInfoNode.appendChild(editorAlbumInfoTitle);
+			editorAlbumInfoNode.appendChild(editorAlbumInfoDate);
+			editorAlbumInfoNode.appendChild(editorAlbumInfoTitle);
 
-				editorAlbumContentNode.appendChild(editorAlbumInfoNode);
-				editorAlbumContentNode.appendChild(editorAlbumActionNode);
+			editorAlbumContentNode.appendChild(editorAlbumInfoNode);
+			editorAlbumContentNode.appendChild(editorAlbumActionNode);
 
-				editorAlbumBackgroundNode.appendChild(editorAlbumOverlayNode);
+			editorAlbumBackgroundNode.appendChild(editorAlbumOverlayNode);
 
-				editorAlbumNode.appendChild(editorAlbumBackgroundNode);
-				editorAlbumNode.appendChild(editorAlbumContentNode);
+			editorAlbumNode.appendChild(editorAlbumBackgroundNode);
+			editorAlbumNode.appendChild(editorAlbumContentNode);
 
-				var galleryNode = document.getElementById('disabled-albums');
+			var galleryNode = document.getElementById('disabled-albums');
+			var galleryTargetNode = calculateDestination(album.fb_id, disabled_albums);
+
+			if (galleryTargetNode) {
+
+				galleryNode.insertBefore(editorAlbumNode, galleryTargetNode.nextSibling);
+
+			} else {
+
 				galleryNode.insertBefore(editorAlbumNode, galleryNode.firstChild);
-
-				batch_list.push({
-					"method": "GET",
-					"relative_url": snapshot.key + "?fields=id,cover_photo.fields(picture, images)"
-				});
-
-				checkCompletation();
 
 			}
 
+			var index = searchAlbumIndex(snapshot.key, disabled_albums);
+			if (index == -1) {
+				disabled_albums.push(album);
+			}
+
+			batch_list.push({
+				"method": "GET",
+				"relative_url": snapshot.key + "?fields=id,cover_photo.fields(picture, images)"
+			});
+
+			checkCompletation();
+
 		});
 
-//		disabledRef.on('child_removed', function(snapshot) {
-//
-//			var index = disabled_albums.indexOf(snapshot.key);
-//			if (index > -1)
-//				disabled_albums.splice(index, 1);
-//
-//			turnOffDisabledAlbum(snapshot.key);
-//
-//		});
-//
 		enabledRef.on('child_added', function(snapshot) {
+
+			if (document.querySelector('#album-' + snapshot.key + '.is-disabled')) {
+
+				var el = document.querySelector('#album-' + snapshot.key + '.is-disabled');
+				el.parentNode.removeChild(el);
+
+				var ind = searchAlbumIndex(snapshot.key, disabled_albums);
+				if (ind > -1) {
+					disabled_albums.splice(ind, 1);
+				}
+
+			}
 
 			var album = snapshot.val();
 
 			var editorAlbumNode = document.createElement('div');
-			editorAlbumNode.className = 'EditorAlbum';
-			editorAlbumNode.id = album.fb_id;
+			editorAlbumNode.className = 'EditorAlbum is-enabled';
+			editorAlbumNode.id = 'album-' + album.fb_id;
 
 			var editorAlbumBackgroundNode = document.createElement('div');
 			editorAlbumBackgroundNode.className = 'EditorAlbum-background';
@@ -1304,9 +1376,9 @@
 			editorAlbumButton.className = 'Btn Btn--narrow Btn--filled Btn--turnoff';
 			editorAlbumButton.textContent = 'Desabilitar';
 			editorAlbumButton.dataset.id = album.fb_id;
-//			editorAlbumButton.addEventListener('click', function(ev) {
-//				toggleAlbumStatus(this.dataset.id);
-//			});
+			editorAlbumButton.addEventListener('click', function(ev) {
+				toggleAlbumStatus(this.dataset.id);
+			});
 
 			editorAlbumActionNode.appendChild(editorAlbumLink);
 			editorAlbumActionNode.appendChild(editorAlbumButton);
@@ -1323,7 +1395,22 @@
 			editorAlbumNode.appendChild(editorAlbumContentNode);
 
 			var galleryNode = document.getElementById('enabled-albums');
-			galleryNode.insertBefore(editorAlbumNode, galleryNode.firstChild);
+			var galleryTargetNode = calculateDestination(album.fb_id, enabled_albums);
+
+			if (galleryTargetNode) {
+
+				galleryNode.insertBefore(editorAlbumNode, galleryTargetNode.nextSibling);
+
+			} else {
+
+				galleryNode.insertBefore(editorAlbumNode, galleryNode.firstChild);
+
+			}
+
+			var index = searchAlbumIndex(snapshot.key, enabled_albums);
+			if (index == -1) {
+				enabled_albums.push(album);
+			}
 
 			batch_list.push({
 				"method": "GET",
@@ -1333,14 +1420,18 @@
 			checkCompletation();
 
 		});
+
+//		disabledRef.on('child_removed', function(snapshot) {
+//
+//			console.log(enabled_albums);
+//			console.log(disabled_albums);
+//
+//		});
 //
 //		enabledRef.on('child_removed', function(snapshot) {
 //
-//			var index = enabled_albums.indexOf(snapshot.key);
-//			if (index > -1)
-//				enabled_albums.splice(index, 1);
-//
-//			turnOffEnabledAlbum(snapshot.key);
+//			console.log(enabled_albums);
+//			console.log(disabled_albums);
 //
 //		});
 
