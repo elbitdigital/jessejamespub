@@ -725,13 +725,14 @@
 </script>
 
 <script>
+
 	var franchise_config = {
 		CITY: 'assis',
 		PAGE_ID: 1586666258259861,
 		APP_TOKEN: '146544439255115|3_8Ip3wrGqx-BfnrEVVRhJeUpLA'
 	};
 
-	var saveNewAsDisabled = true;
+	var saveNewAsDisabled = false;
 	var initialLoadComplete = false;
 	var database_albums = [];
 	var page_albums = [];
@@ -741,6 +742,14 @@
 	var total_of_albums = 0;
 	var batch_list = [];
 
+
+	/**
+	 * Initialize the gallery behavior, listing all persisted albums at the database ref to the
+	 *  database_albums containing all the database albums
+	 *  enabled_albums containing all the albums in the enabledAlbums ref
+	 *  disabled_albums containing all the albums in the disabledAlbums ref
+	 * Proceeds to call the getAllAlbumsFromPageFirstBite() that requests all the albums from the facebook page
+	 */
 	function galleryInit() {
 
 		galleryRef.once('value').then(function(snapshot) {
@@ -772,7 +781,7 @@
 
 		}).then(function() {
 
-			getAllAlbumsFromPage(franchise_config.PAGE_ID, franchise_config.APP_TOKEN);
+			getAllAlbumsFromPageFirstBite(franchise_config.PAGE_ID, franchise_config.APP_TOKEN);
 
 		}, function(error) {
 			console.error(error);
@@ -781,10 +790,12 @@
 	}
 
 	/**
-	 * Make a request to Facebook Graph API requesting all the albums from Jesse James Assis page
-	 * And proceed to pass the information to a function that transform the json response to elements
+	 * Make a request to Facebook Graph API requesting all the albums from Jesse James franchise page
+	 * And proceed to pass the information to a function that transform the json response to the database format
+	 * Facebook caps the object limit to 50 each request, if there is more, it provides an url ('next') to retrieve the
+	 *  remaining data
 	 */
-	function getAllAlbumsFromPage(id, token) {
+	function getAllAlbumsFromPageFirstBite(id, token) {
 
 		var showRequestData = false;
 
@@ -801,11 +812,65 @@
 				var normal_albums = removeUndesiredTypes(response.data.albums.data);
 				page_albums = transformDataToDatabaseFormat(normal_albums);
 
-				addFirebaseListeners();
+				var next = response.data.albums.paging.next;
+
+				if (next) {
+
+					getAllAlbumsFromPageNextBite(response.data.albums.paging.next);
+
+				} else {
+
+					addFirebaseListeners();
+
+				}
 
 			} else {
 
 				document.getElementById('albums-gallery').innerHTML = '<pre><code>' + JSON.stringify(response.data, undefined, 2) +'</code></pre>';
+
+			}
+
+		}).catch(function (err) {
+
+			document.getElementById('albums-gallery').innerHTML = '<span style="color: red;">' + err.message + '</span>';
+			console.log(err);
+
+		});
+
+	}
+
+	/**
+	 * Uses the nextUrl provided by a previous Graph API request response to handle the remaining albums, if there is
+	 *  more than 50 objects again, it calls itself recursively.
+	 *
+	 * @param nextUrl url provided by Facebook Graph API if there is more elements than the limit (max. 50 objects)
+	 */
+	function getAllAlbumsFromPageNextBite(nextUrl) {
+
+		var showRequestData = false;
+
+		axios.get(nextUrl).then(function (response) {
+
+			if (!showRequestData) {
+
+				var normal_albums = removeUndesiredTypes(response.data.data);
+				page_albums = page_albums.concat(transformDataToDatabaseFormat(normal_albums));
+
+				var next = response.data.paging.next;
+
+				if (next) {
+
+					getAllAlbumsFromPageNextBite(response.data.albums.paging.next);
+
+				} else {
+
+					addFirebaseListeners();
+
+				}
+
+			} else {
+
+				document.getElementById('albums-gallery').innerHTML += '<pre><code>' + JSON.stringify(response.data, undefined, 2) +'</code></pre>';
 
 			}
 
@@ -1031,60 +1096,6 @@
 
 	}
 
-//	function turnOnDisabledAlbum(albumId) {
-//
-//		var album = document.getElementById(albumId);
-//
-//		album.classList.remove('is-enabled');
-//		album.classList.add('is-disabled');
-//
-//		var albumInput = album.querySelectorAll(".EditorAlbumInfo--input");
-//		for (var i = albumInput.length; i--;) {
-//			albumInput[i].disabled = true;
-//		}
-//
-//		var albumButton = album.querySelector("[data-id='" + albumId + "']");
-//		albumButton.classList.remove('Btn--turnoff');
-//		albumButton.classList.add('Btn--turnon');
-//		albumButton.textContent = "Habilitar";
-//
-//	}
-
-//	function turnOnEnabledAlbum(albumId) {
-//
-//		var album = document.getElementById(albumId);
-//
-//		album.classList.remove('is-disabled');
-//		album.classList.add('is-enabled');
-
-//		var albumInput = album.querySelectorAll(".EditorAlbumInfo--input");
-//		for (var i = albumInput.length; i--;) {
-//			albumInput[i].disabled = false;
-//		}
-//
-//		var albumInputDate = album.querySelector("input.EditorAlbumInfo-date");
-//		albumInputDate.addEventListener('input', function () {
-//			enabledRef.child(albumId).update({
-//				date: this.value,
-//				type: 'modified'
-//			});
-//		});
-//
-//		var albumInputTitle = album.querySelector("textarea.EditorAlbumInfo-title");
-//		albumInputTitle.addEventListener('input', function () {
-//			enabledRef.child(albumId).update({
-//				title: this.value,
-//				type: 'modified'
-//			});
-//		});
-//
-//		var albumButton = document.querySelector("[data-id='" + albumId + "']");
-//		albumButton.classList.remove('Btn--turnon');
-//		albumButton.classList.add('Btn--turnoff');
-//		albumButton.textContent = "Desabilitar";
-//
-//	}
-
 	function appendBackgroundImages() {
 
 		axios.post('https://graph.facebook.com/v2.10/', {
@@ -1115,6 +1126,26 @@
 		});
 
 	}
+
+//	function searchAlbumBackground(albumId) {
+//
+//		var i = 0;
+//
+//		while (i < backgrounds_index.length) {
+//
+//			if (backgrounds_index[i].fb_id == albumId) {
+//
+//				return ;
+//
+//			}
+//
+//			i++;
+//
+//		}
+//
+//		return -1;
+//
+//	}
 
 	function createDateObject(strDate) {
 
@@ -1187,7 +1218,11 @@
 		if (total_of_albums == database_albums.length) {
 
 			console.log('todos os álbums verificados');
-			appendBackgroundImages();
+//			appendBackgroundImages();
+			console.log('banco');
+			console.log(database_albums);
+			console.log('página');
+			console.log(page_albums);
 
 			return true;
 
@@ -1221,6 +1256,7 @@
 
 			var editorAlbumBackgroundNode = document.createElement('div');
 			editorAlbumBackgroundNode.className = 'EditorAlbum-background';
+			editorAlbumBackgroundNode.style.backgroundImage = 'url(' + backgrounds_index[album.fb_id].images[4].source +')';
 //			editorAlbumBackgroundNode.style.backgroundImage = 'url(' + albums[i].cover_photo.images[4].source +')';
 
 			var editorAlbumOverlayNode = document.createElement('div');
@@ -1301,10 +1337,10 @@
 				disabled_albums.push(album);
 			}
 
-			batch_list.push({
-				"method": "GET",
-				"relative_url": snapshot.key + "?fields=id,cover_photo.fields(picture, images)"
-			});
+//			batch_list.push({
+//				"method": "GET",
+//				"relative_url": snapshot.key + "?fields=id,cover_photo.fields(picture, images)"
+//			});
 
 			checkCompletation();
 
@@ -1332,6 +1368,7 @@
 
 			var editorAlbumBackgroundNode = document.createElement('div');
 			editorAlbumBackgroundNode.className = 'EditorAlbum-background';
+			editorAlbumBackgroundNode.style.backgroundImage = 'url(' + backgrounds_index[album.fb_id].images[4].source +')';
 //			editorAlbumBackgroundNode.style.backgroundImage = 'url(' + albums[i].cover_photo.images[4].source +')';
 
 			var editorAlbumOverlayNode = document.createElement('div');
@@ -1412,10 +1449,10 @@
 				enabled_albums.push(album);
 			}
 
-			batch_list.push({
-				"method": "GET",
-				"relative_url": snapshot.key + "?fields=id,cover_photo.fields(picture, images)"
-			});
+//			batch_list.push({
+//				"method": "GET",
+//				"relative_url": snapshot.key + "?fields=id,cover_photo.fields(picture, images)"
+//			});
 
 			checkCompletation();
 
