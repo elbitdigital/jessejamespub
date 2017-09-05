@@ -550,8 +550,12 @@
 		<p>Os álbuns habilitados são exibidos publicamente na página da franquia (os três mais recentes na página inicial).</p>
 
 		<button id="gallery-rebase" class="Content-button Btn Btn--primary Btn--filled">Reiniciar álbums</button>
-		<button id="gallery-update" class="Content-button Btn Btn--primary Btn--filled">Sincronizar álbums</button>
-		<a href="#" class="Content-button Btn Btn--primary">Ir para galeria</a>
+		<!--<button id="gallery-update" class="Content-button Btn Btn&#45;&#45;primary Btn&#45;&#45;filled">Atualizar álbums</button>-->
+		<a href="../galeria" class="Content-button Btn Btn--primary">Ir para galeria</a>
+
+		<div id="gallery-messages" class="Content-section">
+
+		</div>
 
 		<!--<h1 class="ContentSection-title">Álbuns modificados</h1>-->
 		<!--<div id="modified-albums" class="Gallery AlbumsGallery">-->
@@ -595,33 +599,33 @@
 		<h1 class="ContentSection-title">Álbuns desabilitados</h1>
 		<div id="disabled-albums" class="Gallery AlbumsGallery">
 
-			<div class="EditorAlbum is-disabled">
+			<!--<div class="EditorAlbum is-disabled">-->
 
-				<div class="EditorAlbum-background" style="background-image: url('https://scontent.xx.fbcdn.net/v/t31.0-0/p600x600/20368996_1929509733975510_6919608120889740573_o.jpg?oh=015be32f605fd90145511454d4fd9c52&oe=5A024C8A');">
+				<!--<div class="EditorAlbum-background" style="background-image: url('https://scontent.xx.fbcdn.net/v/t31.0-0/p600x600/20368996_1929509733975510_6919608120889740573_o.jpg?oh=015be32f605fd90145511454d4fd9c52&oe=5A024C8A');">-->
 
-					<div class="EditorAlbum-overlay marrom-couro--darkest"></div>
+					<!--<div class="EditorAlbum-overlay marrom-couro&#45;&#45;darkest"></div>-->
 
-				</div>
+				<!--</div>-->
 
-				<div class="EditorAlbumContent">
+				<!--<div class="EditorAlbumContent">-->
 
-					<div class="EditorAlbumInfo">
+					<!--<div class="EditorAlbumInfo">-->
 
-						<input class="EditorAlbumInfo-date" type="text" placeholder="DD/MM/AAAA" onclick="this.select();">
-						<textarea class="EditorAlbumInfo-title" rows="3">Título</textarea>
+						<!--<input class="EditorAlbumInfo-date" type="text" placeholder="DD/MM/AAAA" onclick="this.select();">-->
+						<!--<textarea class="EditorAlbumInfo-title" rows="3">Título</textarea>-->
 
-					</div>
+					<!--</div>-->
 
-					<div class="EditorAlbumAction">
+					<!--<div class="EditorAlbumAction">-->
 
-						<a href="#" target="_blank" class="Btn Btn--narrow Btn--filled">Ver álbum</a>
-						<button class="Btn Btn--narrow Btn--filled Btn--turnon">Habilitar</button>
+						<!--<a href="#" target="_blank" class="Btn Btn&#45;&#45;narrow Btn&#45;&#45;filled">Ver álbum</a>-->
+						<!--<button class="Btn Btn&#45;&#45;narrow Btn&#45;&#45;filled Btn&#45;&#45;turnon">Habilitar</button>-->
 
-					</div>
+					<!--</div>-->
 
-				</div>
+				<!--</div>-->
 
-			</div>
+			<!--</div>-->
 
 		</div>
 
@@ -634,42 +638,35 @@
 		<h1 class="ContentSection-title">Álbuns habilitados</h1>
 		<div id="enabled-albums" class="Gallery AlbumsGallery">
 
-			<div class="EditorAlbum">
+			<!--<div class="EditorAlbum">-->
 
-				<div class="EditorAlbum-background" style="background-image: url('https://scontent.xx.fbcdn.net/v/t31.0-0/p600x600/20368996_1929509733975510_6919608120889740573_o.jpg?oh=015be32f605fd90145511454d4fd9c52&oe=5A024C8A');">
+				<!--<div class="EditorAlbum-background" style="background-image: url('https://scontent.xx.fbcdn.net/v/t31.0-0/p600x600/20368996_1929509733975510_6919608120889740573_o.jpg?oh=015be32f605fd90145511454d4fd9c52&oe=5A024C8A');">-->
 
-					<div class="EditorAlbum-overlay marrom-couro--darkest"></div>
+					<!--<div class="EditorAlbum-overlay marrom-couro&#45;&#45;darkest"></div>-->
 
-				</div>
+				<!--</div>-->
 
-				<div class="EditorAlbumContent">
+				<!--<div class="EditorAlbumContent">-->
 
-					<div class="EditorAlbumInfo">
+					<!--<div class="EditorAlbumInfo">-->
 
-						<input class="EditorAlbumInfo-date" type="text" placeholder="DD/MM/AAAA" onclick="this.select();">
-						<textarea class="EditorAlbumInfo-title" rows="3">Título</textarea>
+						<!--<input class="EditorAlbumInfo-date" type="text" placeholder="DD/MM/AAAA" onclick="this.select();">-->
+						<!--<textarea class="EditorAlbumInfo-title" rows="3">Título</textarea>-->
 
-					</div>
+					<!--</div>-->
 
-					<div class="EditorAlbumAction">
+					<!--<div class="EditorAlbumAction">-->
 
-						<a href="#" target="_blank" class="Btn Btn--narrow Btn--filled">Ver álbum</a>
-						<button class="Btn Btn--narrow Btn--filled Btn--turnoff">Desabilitar</button>
+						<!--<a href="#" target="_blank" class="Btn Btn&#45;&#45;narrow Btn&#45;&#45;filled">Ver álbum</a>-->
+						<!--<button class="Btn Btn&#45;&#45;narrow Btn&#45;&#45;filled Btn&#45;&#45;turnoff">Desabilitar</button>-->
 
-					</div>
+					<!--</div>-->
 
-				</div>
+				<!--</div>-->
 
-			</div>
+			<!--</div>-->
 
 		</div>
-
-
-
-
-
-
-
 
 	</div>
 
@@ -690,6 +687,11 @@
 		btnRebase.addEventListener('click', function() {
 			rebaseDatabase();
 		});
+
+//		var btnUpdate = document.getElementById('gallery-update');
+//		btnUpdate.addEventListener('click', function() {
+//			updateDatabase();
+//		});
 
 		if (window.innerWidth > 768) {
 			document.getElementById('sidebar').classList.toggle('is-hide');
@@ -918,9 +920,11 @@
 				type: 'parsed'
 			};
 
+			var regexDate = "";
+
 			if (regexDateSearch.test(albumInfo.fb_name)) {
 
-				var regexDate = regexDateSearch.exec(albumInfo.fb_name);
+				regexDate = regexDateSearch.exec(albumInfo.fb_name);
 				albumInfo.date = regexDate[0].replace(regexDateFormat, '/');
 				albumInfo.title = albumInfo.fb_name.replace(regexDateSearch, '');
 				albumInfo.title = albumInfo.title.trim();
@@ -930,6 +934,13 @@
 					albumInfo.title = albumInfo.fb_description;
 
 				}
+
+			} else if (regexDateSearch.test(albumInfo.fb_description)) {
+
+				regexDate = regexDateSearch.exec(albumInfo.fb_description);
+				albumInfo.date = regexDate[0].replace(regexDateFormat, '/');
+				albumInfo.title = albumInfo.fb_name;
+				albumInfo.title = albumInfo.title.trim();
 
 			} else {
 
@@ -947,7 +958,7 @@
 				};
 
 				albumInfo.date = date.day + '/' + date.month + '/' + date.year;
-				albumInfo.type = 'modified';
+				albumInfo.type = 'customParsed';
 
 			}
 
@@ -1019,11 +1030,11 @@
 
 		if (page_albums.length > 0) {
 
-			msg = "Deseja reiniciar todos os álbums?";
+			msg = "Deseja reiniciar todos os álbuns?";
 
 			if(confirm(msg)) {
 
-				msg = "Reiniciar os álbums sobrescreve as modificações salvas anteriormente. ";
+				msg = "Reiniciar os álbuns sobrescreve as modificações salvas anteriormente. ";
 				msg += "Digite '" + franchise_config.CITY + "' e confirme para continuar.";
 				var confirmation = prompt(msg);
 
@@ -1031,14 +1042,14 @@
 
 					if(saveAndOverrideAlbums(page_albums)) {
 
-						alert('Os álbums foram atualizados!');
+						alert('Os álbuns foram reiniciados!');
 						window.location.reload(true);
 
 					}
 
 				} else {
 
-					alert('Confirmação cancelada ou inválida, os álbums não foram reiniciados.');
+					alert('Confirmação cancelada ou inválida, os álbuns não foram reiniciados.');
 
 				}
 
@@ -1046,7 +1057,7 @@
 
 		} else {
 
-			alert('A página ainda não terminou de receber todo os álbums, aguarde um momento e tente novamente.');
+			alert('A página ainda não terminou de receber todo os álbuns, aguarde um momento e tente novamente.');
 
 		}
 
@@ -1096,54 +1107,42 @@
 
 	}
 
-	function appendBackgroundImages() {
-
-		axios.post('https://graph.facebook.com/v2.10/', {
-			access_token: '146544439255115|3_8Ip3wrGqx-BfnrEVVRhJeUpLA',
-			batch: batch_list,
-			include_headers: "false"
-		}).then(function (response) {
-
-			var received_covers = response.data;
-
-			for (var i = received_covers.length; i--;) {
-
-				var album = JSON.parse(received_covers[i].body);
-
-				var albumElement = document.getElementById('album-' + album.id);
-
-				var albumBackgroundElement = albumElement.querySelector(".EditorAlbum-background");
-				albumBackgroundElement.style.backgroundImage = 'url(' + album.cover_photo.images[4].source +')';
-
-			}
-
-			initialLoadComplete = true;
-
-		}).catch(function (err) {
-
-			console.log(err.message);
-
-		});
-
-	}
-
-//	function searchAlbumBackground(albumId) {
+//	function updateDatabase() {
 //
-//		var i = 0;
+//		var msg = "";
 //
-//		while (i < backgrounds_index.length) {
+//		if (page_albums.length > 0) {
 //
-//			if (backgrounds_index[i].fb_id == albumId) {
+//			msg = "Deseja atualizar os álbuns?";
 //
-//				return ;
+//			if(confirm(msg)) {
+//
+//				msg = "Atualizar os álbuns não modifica os álbuns alterados anteriormente. ";
+//				msg += "Digite '" + franchise_config.CITY + "' e confirme para continuar.";
+//				var confirmation = prompt(msg);
+//
+//				if(confirmation == franchise_config.CITY) {
+//
+//					if(saveAndUpdateAlbums(page_albums)) {
+//
+//						alert('Os álbuns foram atualizados!');
+//						window.location.reload(true);
+//
+//					}
+//
+//				} else {
+//
+//					alert('Confirmação cancelada ou inválida, os álbums não foram reiniciados.');
+//
+//				}
 //
 //			}
 //
-//			i++;
+//		} else {
+//
+//			alert('A página ainda não terminou de receber todo os álbums, aguarde um momento e tente novamente.');
 //
 //		}
-//
-//		return -1;
 //
 //	}
 
@@ -1218,11 +1217,16 @@
 		if (total_of_albums == database_albums.length) {
 
 			console.log('todos os álbums verificados');
-//			appendBackgroundImages();
 			console.log('banco');
 			console.log(database_albums);
 			console.log('página');
 			console.log(page_albums);
+
+			if (page_albums.length > database_albums.length) {
+				var msg = document.getElementById('gallery-messages');
+				msg.innerHTML = '<h1 class="ContentSection-title">Novos álbuns!</h1>';
+				msg.innerHTML += '<p>Há novos álbuns na página que ainda não foram adicionados no banco.</p>';
+			}
 
 			return true;
 
@@ -1235,6 +1239,9 @@
 	function addFirebaseListeners() {
 
 		disabledRef.on('child_added', function(snapshot) {
+
+			var disabledReferenceKey = snapshot.key;
+			var albumRef = disabledRef.child(disabledReferenceKey);
 
 			if (document.querySelector('#album-' + snapshot.key + '.is-enabled')) {
 
@@ -1257,7 +1264,6 @@
 			var editorAlbumBackgroundNode = document.createElement('div');
 			editorAlbumBackgroundNode.className = 'EditorAlbum-background';
 			editorAlbumBackgroundNode.style.backgroundImage = 'url(' + backgrounds_index[album.fb_id].images[4].source +')';
-//			editorAlbumBackgroundNode.style.backgroundImage = 'url(' + albums[i].cover_photo.images[4].source +')';
 
 			var editorAlbumOverlayNode = document.createElement('div');
 			editorAlbumOverlayNode.className = 'EditorAlbum-overlay marrom-couro--darkest';
@@ -1273,20 +1279,39 @@
 			editorAlbumInfoDate.type = 'text';
 			editorAlbumInfoDate.placeholder = 'DD/MM/AAAA';
 			editorAlbumInfoDate.value = album.date;
-//			editorAlbumInfoDate.addEventListener('input', function (e) {
-//				enabledRef.child(self.id).child('date').set(this.value);
-//			});
+			editorAlbumInfoDate.addEventListener('input', function (e) {
+
+				albumRef.update({
+					date: this.value,
+					type: 'modified'
+				});
+			});
+			albumRef.child('date').on('value', function (snap) {
+
+				if (editorAlbumInfoDate.value !== snap.val())
+					editorAlbumInfoDate.value = snap.val();
+
+			});
 
 			var editorAlbumInfoTitle = document.createElement('textarea');
 			editorAlbumInfoTitle.className = 'EditorAlbumInfo-title EditorAlbumInfo--input';
 			editorAlbumInfoTitle.rows = '3';
-			editorAlbumInfoTitle.textContent = album.title;
-//			editorAlbumInfoTitle.addEventListener('input', function () {
-//				albumRef.update({
-//					title: this.value,
-//					type: 'modified'
-//				});
-//			});
+			editorAlbumInfoTitle.value = album.title;
+			editorAlbumInfoTitle.addEventListener('input', function () {
+
+				var newTitle = this.value.toUpperCase().trim();
+				albumRef.update({
+					title: newTitle,
+					type: 'modified'
+				});
+
+			});
+			albumRef.child('title').on('value', function (snap) {
+
+				if (editorAlbumInfoTitle.value !== snap.val())
+					editorAlbumInfoTitle.value = snap.val();
+
+			});
 
 			var editorAlbumActionNode = document.createElement('div');
 			editorAlbumActionNode.className = 'EditorAlbumAction';
@@ -1337,16 +1362,14 @@
 				disabled_albums.push(album);
 			}
 
-//			batch_list.push({
-//				"method": "GET",
-//				"relative_url": snapshot.key + "?fields=id,cover_photo.fields(picture, images)"
-//			});
-
 			checkCompletation();
 
 		});
 
 		enabledRef.on('child_added', function(snapshot) {
+
+			var enabledReferenceKey = snapshot.key;
+			var albumRef = enabledRef.child(enabledReferenceKey);
 
 			if (document.querySelector('#album-' + snapshot.key + '.is-disabled')) {
 
@@ -1369,7 +1392,6 @@
 			var editorAlbumBackgroundNode = document.createElement('div');
 			editorAlbumBackgroundNode.className = 'EditorAlbum-background';
 			editorAlbumBackgroundNode.style.backgroundImage = 'url(' + backgrounds_index[album.fb_id].images[4].source +')';
-//			editorAlbumBackgroundNode.style.backgroundImage = 'url(' + albums[i].cover_photo.images[4].source +')';
 
 			var editorAlbumOverlayNode = document.createElement('div');
 			editorAlbumOverlayNode.className = 'EditorAlbum-overlay marrom-couro--darkest';
@@ -1385,20 +1407,36 @@
 			editorAlbumInfoDate.type = 'text';
 			editorAlbumInfoDate.placeholder = 'DD/MM/AAAA';
 			editorAlbumInfoDate.value = album.date;
-//			editorAlbumInfoDate.addEventListener('input', function (e) {
-//				enabledRef.child(self.id).child('date').set(this.value);
-//			});
+			editorAlbumInfoDate.addEventListener('input', function (e) {
+				albumRef.update({
+					date: this.value,
+					type: 'modified'
+				});
+			});
+			albumRef.child('date').on('value', function (snap) {
+
+				if (editorAlbumInfoDate.value !== snap.val())
+					editorAlbumInfoDate.value = snap.val();
+
+			});
 
 			var editorAlbumInfoTitle = document.createElement('textarea');
 			editorAlbumInfoTitle.className = 'EditorAlbumInfo-title EditorAlbumInfo--input';
 			editorAlbumInfoTitle.rows = '3';
-			editorAlbumInfoTitle.textContent = album.title;
-//			editorAlbumInfoTitle.addEventListener('input', function () {
-//				albumRef.update({
-//					title: this.value,
-//					type: 'modified'
-//				});
-//			});
+			editorAlbumInfoTitle.value = album.title;
+			editorAlbumInfoTitle.addEventListener('input', function () {
+				var newTitle = this.value.toUpperCase().trim();
+				albumRef.update({
+					title: newTitle,
+					type: 'modified'
+				});
+			});
+			albumRef.child('title').on('value', function (snap) {
+
+				if (editorAlbumInfoTitle.value !== snap.val())
+					editorAlbumInfoTitle.value = snap.val();
+
+			});
 
 			var editorAlbumActionNode = document.createElement('div');
 			editorAlbumActionNode.className = 'EditorAlbumAction';
@@ -1448,11 +1486,6 @@
 			if (index == -1) {
 				enabled_albums.push(album);
 			}
-
-//			batch_list.push({
-//				"method": "GET",
-//				"relative_url": snapshot.key + "?fields=id,cover_photo.fields(picture, images)"
-//			});
 
 			checkCompletation();
 
