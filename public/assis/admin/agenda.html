@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<meta charset="UTF-8">
+<title>Galeria - Jesse James Assis</title>
+<meta name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+<link rel="icon" type="image/png" href="icon.png" />
+
+<meta name="description" content="O melhor pub sertanejo do interior paulista">
+<meta name="image" content="https://jessejamespub.com.br/dist/img/meta.png">
+
+<meta itemprop="name" content="Jesse James Pub">
+<meta itemprop="description" content="O melhor pub sertanejo do interior paulista">
+<meta itemprop="image" content="https://jessejamespub.com.br/dist/img/meta.png">
+
+<meta name="og:title" content="Jesse James Pub">
+<meta name="og:description" content="O melhor pub sertanejo do interior paulista">
+<meta name="og:image" content="https://jessejamespub.com.br/dist/img/meta.png">
+<meta name="og:url" content="https://jessejamespub.com.br">
+<meta name="og:site_name" content="Jesse James Pub">
+<meta name="og:locale" content="pt_BR">
+<meta name="fb:app_id" content="1586666258259861">
+<meta name="og:type" content="website">
+
+<script src="../../dist/js/villa.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700" rel="stylesheet">
+<link rel="stylesheet" href="../../dist/css/villa.min.css"/>
+<link rel="stylesheet" href="../../dist/css/jessejamespub.min.css"/>
+<!--[if lt IE 9]>
+<link rel="stylesheet" type="text/css" href="../../dist/css/material-colors.css"/>
+<link rel="stylesheet" type="text/css" href="../../dist/css/villa-cross.min.css"/>
+<script src="../../dist/js/html5shiv.js"></script>
+<script src="../../dist/js/html5shiv-printshiv.js"></script>
+<script src="../../dist/js/classList.min.js"></script>
+<![endif]-->
+
+<style>
+
+	.HeaderAdmin {
+		-webkit-align-items: center;
+		align-items: center;
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-justify-content: space-between;
+		justify-content: space-between;
+		width: 100%;
+	}
+
+	.HeaderAdmin-toggle {
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+		cursor: pointer;
+		padding: .5em;
+		border-radius: 2px;
+	}
+
+	.HeaderAdmin-toggle .toggle-text {
+		display: none;
+	}
+
+	.HeaderAdmin-toggle:hover {
+		background-color: #301c09;
+	}
+
+	.HeaderAdmin-toggle .will-close {
+		display: none;
+	}
+
+	.HeaderAdmin-toggle.is-open .will-close {
+		display: inline-block;
+	}
+
+	.HeaderAdmin-toggle.is-open .will-open {
+		display: none;
+	}
+
+	@media (min-width: 48em) {
+
+		.HeaderAdmin-toggle .toggle-text {
+			display: inline-block;
+		}
+
+	}
+
+</style>
+
+<style>
+
+	.Header--admin {
+		-webkit-box-shadow: 0 0 10px 0 #000000;
+		box-shadow: 0 0 10px 0 #000000;
+	}
+
+	.Body {
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		min-height: 100%;
+		margin: 0;
+	}
+
+	.Content {
+		padding: .75em 1em 2em;
+	}
+
+	@media (min-width: 48em) {
+
+		.Content {
+			padding: 1em 1.5em 3em;
+		}
+
+	}
+
+	.Sidebar {
+		flex: 0 0 250px;
+		-webkit-box-shadow: 3px 0 7px -3px #000000;
+		box-shadow: 3px 0 7px -3px #000000;
+		-webkit-transition: all .3s ease;
+		-moz-transition: all .3s ease;
+		-ms-transition: all .3s ease;
+		-o-transition: all .3s ease;
+		transition: all .3s ease;
+	}
+
+	.Sidebar.is-hide {
+		margin-left: -250px;
+		box-shadow: none;
+	}
+
+	.Sidebar-title {
+		font-size: 1.5em;
+		margin: .5em;
+	}
+
+	.Content {
+		flex: 1 1;
+	}
+
+</style>
+
+
+<style>
+
+	.SidebarList {
+
+	}
+
+	.SidebarList-item {
+		-webkit-transition: background .2s ease;
+		-moz-transition: background .2s ease;
+		-ms-transition: background .2s ease;
+		-o-transition: background .2s ease;
+		transition: background .2s ease;
+	}
+
+	.SidebarList-item.is-current,
+	.SidebarList-item:hover {
+		background-color: #f2d9a7;
+		color: #301c09;
+	}
+
+	.SidebarList-item-link {
+		border-bottom: 3px solid #301c09;
+		display: inline-block;
+		width: 100%;
+		padding: .5em;
+	}
+
+	.SidebarList-item p {
+		display: inline-block;
+		font-weight: 600;
+	}
+
+	.SidebarList-item span {
+		padding: .25em .5em;
+		font-size: 1.125em;
+	}
+
+</style>
+
+<style>
+
+	.Content-title {
+		font-size: 1.5em;
+		display: inline-block;
+		width: 100%;
+		margin-bottom: .25em;
+		border-bottom: 2px solid black;
+		text-transform: uppercase;
+		font-weight: 800;
+	}
+
+	.Content-subtitle {
+		font-size: 1.25em;
+		font-weight: 600;
+		margin-bottom: .5em;
+	}
+
+	.Content-button {
+		margin: .5em 0;
+	}
+
+	.ContentSection-title {
+		font-size: 1.25em;
+		text-transform: uppercase;
+		font-weight: 600;
+		display: inline-block;
+		width: 100%;
+		margin: .5em 0;
+		border-bottom: 1px solid black;
+	}
+
+	@media (min-width: 48em) {
+
+		.Content-title {
+			font-size: 2em;
+			padding-bottom: .25em;
+		}
+
+	}
+
+</style>
+
+<body class="roboto marrom-poeira--lighter">
+
+<div class="Header Header--admin">
+
+	<div class="HeaderUpper">
+
+		<div class="HeaderUpper-background marrom-couro--darker"></div>
+
+		<header class="HeaderUpper-inner container">
+
+			<div class="HeaderAdmin">
+
+				<div class="HeaderAdminLeft">
+
+					<h4 id="sidebar-toggle" class="HeaderAdmin-toggle">
+						<span class="icon-menu will-open"></span>
+						<span class="icon-cancel will-close"></span>
+						<span class="toggle-text">MENU</span>
+					</h4>
+
+				</div>
+
+				<img class="HeaderAdmin-logo" src="../../dist/img/logo-assis-branco-sm.png" alt="" style="max-height: 4em;">
+
+				<div class="HeaderAdminRight">
+
+					<a href="../" class="Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-beer"></span> Asssis</a>
+					<a href="#" class="Btn Btn-primary Btn--filled Btn--narrow">Sair</a>
+
+				</div>
+
+			</div>
+
+		</header>
+
+	</div>
+
+</div>
+
+<section class="Body Body--admin">
+
+	<aside id="sidebar" class="Sidebar Sidebar--admin marrom-couro is-hide">
+
+		<h2 class="Sidebar-title">
+			<span class="icon-down-dir"></span> ASSIS
+		</h2>
+
+		<ul class="SidebarList marrom-couro--lighter">
+
+			<li class="SidebarList-item is-current">
+
+				<a href="agenda.html" class="SidebarList-item-link">
+					<span class="icon-pin"></span>
+					<p>Eventos</p>
+				</a>
+
+			</li>
+
+			<li class="SidebarList-item">
+
+				<a href="galeria.html" class="SidebarList-item-link">
+					<span class="icon-picture"></span>
+					<p>Álbuns</p>
+				</a>
+
+			</li>
+
+			<li class="SidebarList-item">
+
+				<a href="#" class="SidebarList-item-link">
+					<span class="icon-lock"></span>
+					<p>Administradores</p>
+				</a>
+
+			</li>
+
+		</ul>
+
+	</aside>
+
+	<div class="Content Content--admin f-marrom-couro--darkest">
+
+		<h1 class="Content-title">Agenda</h1>
+		<h2 class="Content-subtitle">Gerenciamento de eventos - Jesse James Assis</h2>
+
+		<p>Os eventos cadastrados aqui aparecerão no topo da página inicial do site.</p>
+		
+		<!-- <button id="gallery-rebase" class="Content-button Btn Btn--primary Btn--filled">Reiniciar álbums</button> -->
+		<!-- <button id="gallery-update" class="Content-button Btn Btn--primary Btn--filled">Atualizar álbums</button> -->
+		<a href="../agenda" class="Content-button Btn Btn--primary">Ir para agenda</a>
+
+		<div id="gallery-messages" class="Content-section"></div>
+
+		<h1 class="ContentSection-title">Eventos cadastrados</h1>
+		<div id="enabled-albums" class="Gallery AlbumsGallery">
+
+		</div>
+
+	</div>
+
+</section>
+
+<script>
+
+    window.addEventListener('load', function () {
+
+        var btnMenu = document.getElementById('sidebar-toggle');
+        btnMenu.addEventListener('click', function() {
+            var sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('is-hide');
+            this.classList.toggle('is-open');
+        });
+
+        // var btnRebase = document.getElementById('gallery-rebase');
+        // btnRebase.addEventListener('click', function() {
+        //     rebaseDatabase();
+        // });
+
+        // var btnUpdate = document.getElementById('gallery-update');
+        // btnUpdate.addEventListener('click', function() {
+        //     updateDatabase();
+        // });
+
+        if (window.innerWidth > 768) {
+            document.getElementById('sidebar').classList.toggle('is-hide');
+            document.getElementById('sidebar-toggle').classList.toggle('is-open');
+        }
+
+        // galleryInit();
+
+    });
+
+</script>
+
+<script src="../../dist/js/axios.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
+
+<script>
+
+    var config = {
+        apiKey: "AIzaSyAMTCtuJ2DyPiBx5qBHeDg_OU1KW4UzURY",
+        authDomain: "jessejamespub-com-br.firebaseapp.com",
+        databaseURL: "https://jessejamespub-com-br.firebaseio.com",
+        projectId: "jessejamespub-com-br",
+        messagingSenderId: "118227352953"
+    };
+    firebase.initializeApp(config);
+
+    var databaseRef = firebase.database().ref('/');
+    var houseRef = databaseRef.child('assis');
+    var galleryRef = houseRef.child('gallery');
+    var enabledRef = galleryRef.child('enabledAlbums');
+    var disabledRef = galleryRef.child('disabledAlbums');
+
+</script>
+
+</body>
+
+</html>

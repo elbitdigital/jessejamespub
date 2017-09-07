@@ -488,6 +488,7 @@
 
 				<div class="HeaderAdminRight">
 
+					<a href="../" class="Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-beer"></span> Asssis</a>
 					<a href="#" class="Btn Btn-primary Btn--filled Btn--narrow">Sair</a>
 
 				</div>
@@ -512,7 +513,7 @@
 
 			<li class="SidebarList-item">
 
-				<a href="#" class="SidebarList-item-link">
+				<a href="agenda.html" class="SidebarList-item-link">
 					<span class="icon-pin"></span>
 					<p>Eventos</p>
 				</a>
@@ -521,7 +522,7 @@
 
 			<li class="SidebarList-item is-current">
 
-				<a href="#" class="SidebarList-item-link">
+				<a href="galeria.html" class="SidebarList-item-link">
 					<span class="icon-picture"></span>
 					<p>Álbuns</p>
 				</a>
@@ -550,7 +551,7 @@
 		<p>Os álbuns habilitados são exibidos publicamente na página da franquia (os três mais recentes na página inicial).</p>
 
 		<button id="gallery-rebase" class="Content-button Btn Btn--primary Btn--filled">Reiniciar álbums</button>
-		<!--<button id="gallery-update" class="Content-button Btn Btn&#45;&#45;primary Btn&#45;&#45;filled">Atualizar álbums</button>-->
+		<button id="gallery-update" class="Content-button Btn Btn--primary Btn--filled">Atualizar álbums</button>
 		<a href="../galeria" class="Content-button Btn Btn--primary">Ir para galeria</a>
 
 		<div id="gallery-messages" class="Content-section">
@@ -688,17 +689,17 @@
 			rebaseDatabase();
 		});
 
-//		var btnUpdate = document.getElementById('gallery-update');
-//		btnUpdate.addEventListener('click', function() {
-//			updateDatabase();
-//		});
+		var btnUpdate = document.getElementById('gallery-update');
+		btnUpdate.addEventListener('click', function() {
+			updateDatabase();
+		});
 
 		if (window.innerWidth > 768) {
 			document.getElementById('sidebar').classList.toggle('is-hide');
 			document.getElementById('sidebar-toggle').classList.toggle('is-open');
 		}
 
-		galleryInit();
+		// galleryInit();
 
 	});
 
@@ -734,7 +735,7 @@
 		APP_TOKEN: '146544439255115|3_8Ip3wrGqx-BfnrEVVRhJeUpLA'
 	};
 
-	var saveNewAsDisabled = false;
+	var saveNewAsDisabled = true;
 	var initialLoadComplete = false;
 	var database_albums = [];
 	var page_albums = [];
@@ -902,10 +903,13 @@
 
 	function transformDataToDatabaseFormat(received_albums) {
 
-		var albums = received_albums;
-		var regexDateSearch = /(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](((19|20)\d\d)|(\d\d))/;
-		var regexDateFormat = /[- .]/g;
+		var albums = received_albums;		
 		var parsed_albums = [];
+
+		// look for dates as 01/01/2017, 01.01.2017, 01-01-2017, 01 01 2017 (with year as two digits included)
+		var regexDateSearch = /(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](((19|20)\d\d)|(\d\d))/;
+		// characters to be replaced with "/" in the date to be displayed
+		var regexDateFormat = /[- .]/g;
 
 		for (var i = 0; i < albums.length; i++) {
 
@@ -1107,44 +1111,74 @@
 
 	}
 
-//	function updateDatabase() {
-//
-//		var msg = "";
-//
-//		if (page_albums.length > 0) {
-//
-//			msg = "Deseja atualizar os álbuns?";
-//
-//			if(confirm(msg)) {
-//
-//				msg = "Atualizar os álbuns não modifica os álbuns alterados anteriormente. ";
-//				msg += "Digite '" + franchise_config.CITY + "' e confirme para continuar.";
-//				var confirmation = prompt(msg);
-//
-//				if(confirmation == franchise_config.CITY) {
-//
-//					if(saveAndUpdateAlbums(page_albums)) {
-//
-//						alert('Os álbuns foram atualizados!');
-//						window.location.reload(true);
-//
-//					}
-//
-//				} else {
-//
-//					alert('Confirmação cancelada ou inválida, os álbums não foram reiniciados.');
-//
-//				}
-//
-//			}
-//
-//		} else {
-//
-//			alert('A página ainda não terminou de receber todo os álbums, aguarde um momento e tente novamente.');
-//
-//		}
-//
-//	}
+	function compareAndUpdateAlbums(albumsCurrent, albums) {
+		
+		for (var s = 0; s < albumsCurrent.length; s++) {
+
+			if (albumsCurrent[s].type != "modified") {
+
+				var index = searchAlbumIndex(albumsCurrent[s].fb_id, page_albums);
+				if (index > -1) {
+
+					var disabledIndex = searchAlbumIndex(albumsCurrent[s].fb_id, disabled_albums);
+					if (disabledIndex > -1) {
+
+						saveAlbum(disabledRef.child(albumsCurrent[s].fb_id), page_albums[index]);
+
+					} else {
+
+						saveAlbum(enabledRef.child(albumsCurrent[s].fb_id), page_albums[index]);
+
+					}
+
+				}
+
+			}
+
+		}
+
+		return true;
+
+	}
+
+	function updateDatabase() {
+
+		var msg = "";
+
+		if (page_albums.length > 0) {
+
+			msg = "Deseja atualizar os álbuns?";
+
+			if(confirm(msg)) {
+
+				msg = "Atualizar os álbuns modifica apenas os álbuns que não tiveram a data ou título alteradas por meio do gerenciador. ";
+				msg += "Digite '" + franchise_config.CITY + "' e confirme para continuar.";
+				var confirmation = prompt(msg);
+
+				if(confirmation == franchise_config.CITY) {
+
+					if(compareAndUpdateAlbums(database_albums, page_albums)) {
+
+						alert('Os álbuns foram atualizados!');
+						window.location.reload(true);
+
+					}
+
+				} else {
+
+					alert('Confirmação cancelada ou inválida, os álbums não foram reiniciados.');
+
+				}
+
+			}
+
+		} else {
+
+			alert('A página ainda não terminou de receber todo os álbums, aguarde um momento e tente novamente.');
+
+		}
+
+	}
 
 	function createDateObject(strDate) {
 
@@ -1210,13 +1244,36 @@
 
 	}
 
-	function checkCompletation() {
+	function syncPageAndDatabaseAlbums() {
+
+		var albumRef = {};
+
+		for (var i = 0; i < page_albums.length; i++) {
+			
+			if (searchAlbumIndex(page_albums[i].fb_id, database_albums) == -1) {
+
+				if (saveNewAsDisabled) {
+
+					saveAlbum(disabledRef.child(page_albums[i].fb_id), page_albums[i]);
+
+				} else {
+
+					saveAlbum(enabledRef.child(page_albums[i].fb_id), page_albums[i]);
+
+				}
+
+			}
+
+		}
+
+	}
+
+	function checkCompleteness() {
 
 		total_of_albums++;
 
 		if (total_of_albums == database_albums.length) {
 
-			console.log('todos os álbums verificados');
 			console.log('banco');
 			console.log(database_albums);
 			console.log('página');
@@ -1224,8 +1281,10 @@
 
 			if (page_albums.length > database_albums.length) {
 				var msg = document.getElementById('gallery-messages');
-				msg.innerHTML = '<h1 class="ContentSection-title">Novos álbuns!</h1>';
-				msg.innerHTML += '<p>Há novos álbuns na página que ainda não foram adicionados no banco.</p>';
+				msg.innerHTML = '<h1 class="ContentSection-title">Novos álbuns adicionados na página!</h1>';
+				msg.innerHTML += '<p>Habilite os álbuns que foram adicionados recentemente para que se tornem visíveis no site.</p>';
+
+				syncPageAndDatabaseAlbums();
 			}
 
 			return true;
@@ -1362,7 +1421,7 @@
 				disabled_albums.push(album);
 			}
 
-			checkCompletation();
+			checkCompleteness();
 
 		});
 
@@ -1487,23 +1546,9 @@
 				enabled_albums.push(album);
 			}
 
-			checkCompletation();
+			checkCompleteness();
 
 		});
-
-//		disabledRef.on('child_removed', function(snapshot) {
-//
-//			console.log(enabled_albums);
-//			console.log(disabled_albums);
-//
-//		});
-//
-//		enabledRef.on('child_removed', function(snapshot) {
-//
-//			console.log(enabled_albums);
-//			console.log(disabled_albums);
-//
-//		});
 
 	}
 
