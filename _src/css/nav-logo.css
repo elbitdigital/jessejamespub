@@ -16,6 +16,7 @@
 	text-decoration: none;
 }
 
+.NavbarLogo svg,
 .NavbarLogo img {
 	display: inline-block;
 	max-width: 13em;
@@ -24,6 +25,7 @@
 
 @media (min-width: 768px) {
 
+	.NavbarLogo svg,
 	.NavbarLogo img {
 		max-width: 18em;
 	}
@@ -32,6 +34,7 @@
 
 @media (max-height: 320px) {
 
+	.NavbarLogo svg,
 	.NavbarLogo img {
 		max-width: 10em;
 	}

@@ -2,6 +2,14 @@
 /* Logo */
 
 .logo-pub {
+	fill: white;
+}
+
+.logo-pub-index {
+	fill: #ebc373;
+}
+
+#franchises .logo-pub {
 	fill: #323232;
 	-webkit-transition: all .3s ease;
 	-moz-transition: all .3s ease;
