@@ -1,0 +1,88 @@
+
+/* Leading Title */
+
+.LeadingTitle {
+	-webkit-align-items: center;
+	align-items: center;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-justify-content: center;
+	justify-content: center;
+	margin: 0;
+	padding: 0;
+}
+
+.LeadingTitle-orn {
+	display: none;
+}
+
+.LeadingTitle-text {
+	font-family: 'High Noon', serif;
+	font-weight: normal;
+	font-style: normal;
+	display: inline-block;
+	text-transform: uppercase;
+	letter-spacing: 3px;
+	font-size: 4em;
+	text-align: center;
+	margin: 0;
+	padding: 0;
+}
+
+.LeadingTitle--main .LeadingTitle-text {
+	letter-spacing: 3px;
+	font-size: 5em;
+}
+
+@media (min-width: 48em) {
+
+	.LeadingTitle--main .LeadingTitle-orn {
+		display: inline-block;
+	}
+
+	.LeadingTitle-orn.icon-orn-left::before,
+	.LeadingTitle-orn.icon-orn-right::before {
+		width: 8em; /* this matches the size of the svg-icon, not the element, don't change it */
+		font-size: 1.25em;
+		margin: 0 0 .25em 0;
+	}
+
+	.LeadingTitle--main .LeadingTitle-orn.icon-orn-left::before,
+	.LeadingTitle--main .LeadingTitle-orn.icon-orn-right::before {
+		width: 8em;
+		font-size: 1.5em;
+		margin: 0 0 .25em 0;
+	}
+
+	.LeadingTitle-text {
+		letter-spacing: 5px;
+		font-size: 6em;
+	}
+
+	.LeadingTitle--main .LeadingTitle-text {
+		/*letter-spacing: 5px;*/
+		font-size: 7em;
+	}
+
+}
+
+@media (min-width: 60em) {
+
+	.LeadingTitle-orn {
+		display: inline-block;
+	}
+
+	.LeadingTitle-orn.icon-orn-left::before,
+	.LeadingTitle-orn.icon-orn-right::before {
+		font-size: 2em;
+	}
+
+	.LeadingTitle--main .LeadingTitle-orn.icon-orn-left::before,
+	.LeadingTitle--main .LeadingTitle-orn.icon-orn-right::before {
+		font-size: 2.5em;
+	}
+
+}

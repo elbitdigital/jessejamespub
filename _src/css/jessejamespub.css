@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'jessejamespub';
-  src: url('../font/jessejamespub.eot?51339718');
-  src: url('../font/jessejamespub.eot?51339718#iefix') format('embedded-opentype'),
-       url('../font/jessejamespub.woff2?51339718') format('woff2'),
-       url('../font/jessejamespub.woff?51339718') format('woff'),
-       url('../font/jessejamespub.ttf?51339718') format('truetype'),
-       url('../font/jessejamespub.svg?51339718#jessejamespub') format('svg');
+  src: url('../font/jessejamespub.eot?70405474');
+  src: url('../font/jessejamespub.eot?70405474#iefix') format('embedded-opentype'),
+       url('../font/jessejamespub.woff2?70405474') format('woff2'),
+       url('../font/jessejamespub.woff?70405474') format('woff'),
+       url('../font/jessejamespub.ttf?70405474') format('truetype'),
+       url('../font/jessejamespub.svg?70405474#jessejamespub') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -15,7 +15,7 @@
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'jessejamespub';
-    src: url('../font/jessejamespub.svg?51339718#jessejamespub') format('svg');
+    src: url('../font/jessejamespub.svg?70405474#jessejamespub') format('svg');
   }
 }
 */
@@ -103,6 +103,13 @@
 .icon-check:before { content: '\e82d'; } /* '' */
 .icon-stop:before { content: '\e82e'; } /* '' */
 .icon-attention:before { content: '\e82f'; } /* '' */
+.icon-beer-1:before { content: '\e830'; } /* '' */
+.icon-left-open-1:before { content: '\e831'; } /* '' */
+.icon-right-open-1:before { content: '\e832'; } /* '' */
+.icon-ok-1:before { content: '\e833'; } /* '' */
+.icon-cancel-1:before { content: '\e834'; } /* '' */
+.icon-orn-left:before { content: '\e835'; } /* '' */
+.icon-orn-right:before { content: '\e836'; } /* '' */
 .icon-move:before { content: '\f047'; } /* '' */
 .icon-link-ext:before { content: '\f08e'; } /* '' */
 .icon-check-empty:before { content: '\f096'; } /* '' */
@@ -147,6 +154,7 @@
 .icon-mars:before { content: '\f222'; } /* '' */
 .icon-facebook-official:before { content: '\f230'; } /* '' */
 .icon-whatsapp:before { content: '\f232'; } /* '' */
+.icon-tripadvisor:before { content: '\f262'; } /* '' */
 .icon-calendar-plus-o:before { content: '\f271'; } /* '' */
 .icon-calendar-minus-o:before { content: '\f272'; } /* '' */
 .icon-calendar-times-o:before { content: '\f273'; } /* '' */
@@ -155,5 +163,6 @@
 .icon-universal-access:before { content: '\f29a'; } /* '' */
 .icon-question-circle-o:before { content: '\f29c'; } /* '' */
 .icon-snapchat-ghost:before { content: '\f2ac'; } /* '' */
+.icon-id-badge:before { content: '\f2c1'; } /* '' */
 .icon-facebook-squared:before { content: '\f308'; } /* '' */
 .icon-comment:before { content: '\f4ac'; } /* '' */

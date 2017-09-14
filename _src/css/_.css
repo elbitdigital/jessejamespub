@@ -37,8 +37,13 @@ body {
 	text-shadow: none;
 }
 
+.roboto-slab {
+	font-family: 'Robot Slab', serif;
+	font-weight: normal;
+}
+
 .josefin {
-	font-family: 'Josefin Sans', 'Roboto', sans-serif;
+	font-family: 'Josefin Sans', serif;
 }
 
 .rye {

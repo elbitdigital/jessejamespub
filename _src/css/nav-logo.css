@@ -19,11 +19,11 @@
 .NavbarLogo svg,
 .NavbarLogo img {
 	display: inline-block;
-	max-width: 13em;
+	max-width: 15em;
 	width: 100%;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 48em) {
 
 	.NavbarLogo svg,
 	.NavbarLogo img {
@@ -32,11 +32,11 @@
 
 }
 
-@media (max-height: 320px) {
+@media (max-height: 20em) {
 
 	.NavbarLogo svg,
 	.NavbarLogo img {
-		max-width: 10em;
+		max-width: 12em;
 	}
 
 }

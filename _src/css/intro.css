@@ -49,12 +49,13 @@
 }
 
 .Intro-heading {
-	font-size: 40px;
+	font-size: 2.5em;
 	text-transform: uppercase;
 }
 
 .Intro-text {
-	font-size: 18px;
+	/*font-weight: normal;*/
+	font-size: 1.125em;
 }
 
 @media (min-width: 48em) {

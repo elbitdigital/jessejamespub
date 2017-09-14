@@ -11,13 +11,9 @@
 	display: flex;
 	-webkit-flex-flow: column;
 	flex-flow: column;
-	left: 0;
-	position: absolute;
-	top: 100%;
-	width: 100%;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 48em) {
 
 	.Franchises {
 		-webkit-flex-flow: row wrap;
@@ -45,7 +41,7 @@
 
 }
 
-@media (min-height: 1000px) {
+@media (min-height: 90em) {
 
 	/* Display full layout on screens higher than 1000px (ipad) */
 

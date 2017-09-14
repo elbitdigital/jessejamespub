@@ -1,0 +1,31 @@
+
+/* Franchise partnership */
+
+.FranchisePartnership {
+	position: relative;
+	text-align: center;
+	width: 100%;
+	z-index: 0;
+}
+
+/* Franchise partnership background */
+
+.FranchisePartnership-background {
+	height: 100%;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 100%;
+	z-index: -1;
+}
+
+/* Franchise partnership inner */
+
+.FranchisePartnership-inner {
+	min-height: 250px;
+	width: 100%;
+	text-align: center;
+	margin: 0 auto;
+	color: white;
+	padding: 8em;
+}
