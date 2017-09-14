@@ -10,8 +10,8 @@
 }
 
 #franchises .logo-pub {
-	fill: #323232;
-	/*fill: #ebc373;*/
+	/*fill: #323232;*/
+	fill: #ebc373;
 	-webkit-transition: all .3s ease;
 	-moz-transition: all .3s ease;
 	-ms-transition: all .3s ease;

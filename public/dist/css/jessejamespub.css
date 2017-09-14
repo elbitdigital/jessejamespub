@@ -1,3 +1,5 @@
+/* Button - administrative/internal pages style */
+
 .Btn {
   background-clip: padding-box;
   background-color: transparent;
@@ -117,7 +119,54 @@
   line-height: 30px;
   min-height: 0;
 }
-/* Button */
+/* Button - General Button */
+
+.ButtonStyle {
+  background-clip: padding-box;
+  background-color: transparent;
+  background-image: url("../img/svg/btn-crop.svg");
+  background-size: 100% 100%;
+  /*border: none;*/
+  /*border: 3px solid #cccccc;*/
+  /*border-radius: 3px;*/
+  box-sizing: border-box;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /*font-size: .875em;*/
+  /*font-weight: 500;*/
+  /*line-height: 36px;*/
+  /*letter-spacing: 0;*/
+  margin: .25em;
+  /*min-height: 36px;*/
+  overflow: hidden;
+  /*padding: 0 24px;*/
+  /*padding: .725em 1em;*/
+  padding: .5em 1.75em;
+  min-width: 100px;
+  min-height: 24px;
+  line-height: 24px;
+  font-size: 1em;
+  /**/
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  position: relative;
+  text-overflow: ellipsis;
+  /*-webkit-transition: none;*/
+  /*-webkit-transition: background-color 0.3s ease;*/
+  /*-moz-transition: background-color 0.3s ease;*/
+  /*-o-transition: background-color 0.3s ease;*/
+  /*transition: background-color 0.3s ease;*/
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  vertical-align: middle;
+  white-space: nowrap;
+}
 
 .Button {
   background-clip: padding-box;
@@ -601,7 +650,23 @@
   text-align: center;
   margin: 0 auto;
   color: white;
-  padding: 8em;
+  padding: 5em 1.25em;
+}
+
+.FranchisePartnership-text {
+  font-size: 1.25em;
+  font-weight: 700;
+  margin: 1em 0;
+}
+
+.FranchisePartnership-button {
+  margin: 1em 0;
+}
+
+@media (min-width: 60em) {
+  .FranchisePartnership-button {
+    margin: 2em 0;
+  }
 }
 /* Locations */
 
@@ -4229,6 +4294,7 @@ h1.Guider-heading {
   display: inline-block;
   text-transform: uppercase;
   letter-spacing: 3px;
+  line-height: .875;
   font-size: 4em;
   text-align: center;
   margin: 0;
@@ -4332,8 +4398,8 @@ h1.Guider-heading {
 }
 
 #franchises .logo-pub {
-  fill: #323232;
-  /*fill: #ebc373;*/
+  /*fill: #323232;*/
+  fill: #ebc373;
   -webkit-transition: all .3s ease;
   -moz-transition: all .3s ease;
   -ms-transition: all .3s ease;
@@ -4510,7 +4576,7 @@ h1.Guider-heading {
 
 .Pub {
   background-color: black;
-  color: #000;
+  /*color: #000;*/
   position: relative;
   width: 100%;
   z-index: 0;
@@ -4531,6 +4597,17 @@ h1.Guider-heading {
   top: 0;
   width: 100%;
   z-index: -1;
+}
+
+.Pub-background:after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #301c09;
+  opacity: 0.7;
 }
 
 .Pub--assis .Pub-background {
@@ -4557,9 +4634,9 @@ h1.Guider-heading {
 .Pub-inner {
   -webkit-align-items: center;
   align-items: center;
-  border-bottom: 1px solid #d3d3d3;
-  background-color: #fff;
-  background-color: rgba(255, 255, 255, 0.8);
+  border-bottom: 1px solid #301c09;
+  /*background-color: #fff;*/
+  /*background-color: rgba(255, 255, 255, 0.8);*/
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -4580,7 +4657,7 @@ h1.Guider-heading {
 
 .Pub-inner:hover,
 .Pub-inner:focus {
-  background-color: rgba(255, 255, 255, 0.8);
+  /*background-color: rgba(255, 255, 255, 0.8);*/
 }
 
 .Pub-inner:hover .Button--dark.Button--fill,
@@ -4611,7 +4688,7 @@ h1.Guider-heading {
 }
 
 .Pub-address {
-  color: #161616;
+  /*color: #161616;*/
   font-size: .925em;
   font-weight: 600;
   text-transform: uppercase;
@@ -4619,7 +4696,7 @@ h1.Guider-heading {
 
 .Pub-inner:hover .Pub-address,
 .Pub-inner:focus .Pub-address {
-  color: #000;
+  /*color: #000;*/
 }
 
 .Pub-contact {
@@ -4628,7 +4705,7 @@ h1.Guider-heading {
 
 @media (min-width: 768px) {
   .Pub-inner {
-    background-color: rgba(255, 255, 255, 0.6);
+    /*background-color: rgba(255, 255, 255, 0.6);*/
     -webkit-flex-flow: column;
     flex-flow: column;
     padding: 1em 0;

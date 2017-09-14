@@ -27,5 +27,23 @@
 	text-align: center;
 	margin: 0 auto;
 	color: white;
-	padding: 8em;
+	padding: 5em 1.25em;
+}
+
+.FranchisePartnership-text {
+	font-size: 1.25em;
+	font-weight: 700;
+	margin: 1em 0;
+}
+
+.FranchisePartnership-button {
+	margin: 1em 0;
+}
+
+@media (min-width: 60em) {
+
+	.FranchisePartnership-button {
+		margin: 2em 0;
+	}
+
 }

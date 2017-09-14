@@ -3,7 +3,7 @@
 
 .Pub {
 	background-color: black;
-	color: #000;
+	/*color: #000;*/
 	position: relative;
 	width: 100%;
 	z-index: 0;
@@ -24,6 +24,17 @@
 	top: 0;
 	width: 100%;
 	z-index: -1;
+}
+
+.Pub-background:after {
+	content: '';
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: #301c09;
+	opacity: 0.7;
 }
 
 .Pub--assis .Pub-background {
@@ -50,9 +61,9 @@
 .Pub-inner {
 	-webkit-align-items: center;
 	align-items: center;
-	border-bottom: 1px solid #d3d3d3;
-	background-color: #fff;
-	background-color: rgba(255, 255, 255, 0.8);
+	border-bottom: 1px solid #301c09;
+	/*background-color: #fff;*/
+	/*background-color: rgba(255, 255, 255, 0.8);*/
 	display: -webkit-box;
 	display: -moz-box;
 	display: -ms-flexbox;
@@ -73,7 +84,7 @@
 
 .Pub-inner:hover,
 .Pub-inner:focus {
-	background-color: rgba(255, 255, 255, 0.8);
+	/*background-color: rgba(255, 255, 255, 0.8);*/
 }
 
 .Pub-inner:hover .Button--dark.Button--fill,
@@ -104,7 +115,7 @@
 }
 
 .Pub-address {
-	color: #161616;
+	/*color: #161616;*/
 	font-size: .925em;
 	font-weight: 600;
 	text-transform: uppercase;
@@ -112,7 +123,7 @@
 
 .Pub-inner:hover .Pub-address,
 .Pub-inner:focus .Pub-address {
-	color: #000;
+	/*color: #000;*/
 }
 
 .Pub-contact {
@@ -122,7 +133,7 @@
 @media (min-width: 768px) {
 
 	.Pub-inner {
-		background-color: rgba(255, 255, 255, 0.6);
+		/*background-color: rgba(255, 255, 255, 0.6);*/
 		-webkit-flex-flow: column;
 		flex-flow: column;
 		padding: 1em 0;
