@@ -40,7 +40,6 @@
 
 .Btn:hover,
 .Btn:focus {
-  /*opacity: 0.9;*/
   outline: 0;
   background-color: #6e3118;
   color: #fafafa;
@@ -112,6 +111,18 @@
   border-radius: 3px;
 }
 
+.Btn--white {
+  color: #fff;
+  box-shadow: inset 0 0 0 2px #fafafa;
+}
+
+.Btn--white.Btn:hover,
+.Btn--white.Btn:focus {
+  outline: 0;
+  background-color: #e1e1e1;
+  color: #000;
+}
+
 .Btn--narrow {
   font-size: .725em;
   font-weight: 600;
@@ -121,46 +132,32 @@
 }
 /* Button - General Button */
 
-.ButtonStyle {
+.Button {
   background-clip: padding-box;
   background-color: transparent;
-  background-image: url("../img/svg/btn-crop.svg");
+  background-image: url("../img/svg/btn-escuro.svg");
   background-size: 100% 100%;
-  /*border: none;*/
-  /*border: 3px solid #cccccc;*/
-  /*border-radius: 3px;*/
   box-sizing: border-box;
   color: white;
   cursor: pointer;
   display: inline-block;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /*font-size: .875em;*/
-  /*font-weight: 500;*/
-  /*line-height: 36px;*/
-  /*letter-spacing: 0;*/
   margin: .25em;
-  /*min-height: 36px;*/
   overflow: hidden;
-  /*padding: 0 24px;*/
-  /*padding: .725em 1em;*/
   padding: .5em 1.75em;
-  min-width: 100px;
-  min-height: 24px;
-  line-height: 24px;
-  font-size: 1em;
-  /**/
-  font-weight: 700;
+  min-width: 15em;
+  max-width: 20em;
+  min-height: 1.75em;
+  line-height: 1.75em;
+  letter-spacing: 1px;
+  font-size: .875em;
+  font-weight: 600;
   text-align: center;
   text-decoration: none;
   text-transform: uppercase;
   position: relative;
   text-overflow: ellipsis;
-  /*-webkit-transition: none;*/
-  /*-webkit-transition: background-color 0.3s ease;*/
-  /*-moz-transition: background-color 0.3s ease;*/
-  /*-o-transition: background-color 0.3s ease;*/
-  /*transition: background-color 0.3s ease;*/
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
@@ -168,49 +165,29 @@
   white-space: nowrap;
 }
 
-.Button {
-  background-clip: padding-box;
-  background-color: transparent;
-  /*border: none;*/
-  border: 3px solid #cccccc;
-  border-radius: 3px;
-  box-sizing: border-box;
-  color: #fff;
-  cursor: pointer;
-  display: inline-block;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-size: .875em;
-  font-weight: 500;
-  /*line-height: 36px;*/
-  /*letter-spacing: 0;*/
-  margin: .25em;
-  /*min-height: 36px;*/
-  overflow: hidden;
-  /*padding: 0 24px;*/
-  padding: .725em 1em;
-  text-align: center;
-  text-decoration: none;
-  text-transform: uppercase;
-  position: relative;
-  text-overflow: ellipsis;
-  -webkit-transition: none;
-  -webkit-transition: background-color 0.3s ease;
-  -moz-transition: background-color 0.3s ease;
-  -o-transition: background-color 0.3s ease;
-  transition: background-color 0.3s ease;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  vertical-align: middle;
-  white-space: nowrap;
+.Button--branco {
+  color: black;
+  background-image: url("../img/svg/btn-branco.svg");
+}
+
+.Button--branco.Button:hover,
+.Button--branco.Button:focus {
+  opacity: .85;
+}
+
+.Button--claro {
+  color: black;
+  background-image: url("../img/svg/btn-claro.svg");
+}
+
+.Button--claro.Button:hover,
+.Button--claro.Button:focus {
+  opacity: .85;
 }
 
 .Button:hover,
 .Button:focus {
-  background-color: rgba(255, 255, 255, 0.2);
-  /*opacity: 0.9;*/
-  outline: 0;
+  opacity: .9;
 }
 
 .Button:active {
@@ -235,66 +212,10 @@
   opacity: 0.5;
 }
 
-/* Custom styles modifiers */
-
-.Button--primary {
-  border: 3px solid #009688;
-  color: #009688;
-}
-
-.Button--primary:active {
-  color: #00796B;
-}
-
-.Button--light {
-  color: #fff !important;
-}
-
-.Button--light:active {
-  color: #e0e0e0 !important;
-}
-
-.Button--dark {
-  border: 2px solid #323232;
-  color: #262626 !important;
-  -webkit-transition: background-color .2s ease, color .2s ease;
-  -moz-transition: background-color .2s ease, color .2s ease;
-  -ms-transition: background-color .2s ease, color .2s ease;
-  -o-transition: background-color .2s ease, color .2s ease;
-  transition: background-color .2s ease, color .2s ease;
-}
-
-.Button--dark:active {
-  color: #323232 !important;
-}
-
-/* See .Pub-inner:hover/:focus on pub.css */
-
-/*.Button--dark.Button--fill {*/
-
-/*background-color: #323232;*/
-
-/*color: #e0e0e0 !important;*/
-
-/*}*/
-
-.Button--squared {
-  border-radius: 0;
-}
-
-.Button--black {
-  background-color: #323232;
-  border: 2px solid #262626;
-  color: #e0e0e0 !important;
-}
-
-.Button--black:hover {
-  background-color: #262626;
-}
-
 .Button--narrow {
   font-size: .725em;
   font-weight: 600;
+  min-width: 8em;
   line-height: 30px;
   min-height: 0;
   padding: 0 1.5em;
@@ -634,6 +555,8 @@
 /* Franchise partnership background */
 
 .FranchisePartnership-background {
+  background-image: url("../img/background-texture.jpg");
+  background-repeat: repeat;
   height: 100%;
   position: absolute;
   right: 0;
@@ -650,22 +573,28 @@
   text-align: center;
   margin: 0 auto;
   color: white;
-  padding: 5em 1.25em;
+  padding: 4em 1.25em;
 }
 
 .FranchisePartnership-text {
   font-size: 1.25em;
   font-weight: 700;
-  margin: 1em 0;
+  margin: 0 0 1em;
 }
 
 .FranchisePartnership-button {
-  margin: 1em 0;
+  /*margin: 1em 0;*/
+}
+
+@media (min-width: 48em) {
+  .FranchisePartnership-inner {
+    padding: 6em 1.25em;
+  }
 }
 
 @media (min-width: 60em) {
-  .FranchisePartnership-button {
-    margin: 2em 0;
+  .FranchisePartnership-text {
+    margin: 0 0 2em;
   }
 }
 /* Locations */
@@ -908,9 +837,10 @@
 .Guider {
   /*background-color: white;*/
   bottom: 0;
-  /*-webkit-box-shadow: 0 3px 6px 0 rgba(0,0,0,.3);*/
-  /*-moz-box-shadow: 0 3px 6px 0 rgba(0,0,0,.3);*/
-  /*box-shadow: 0 3px 6px 0 rgba(0,0,0,.3);*/
+  border-top: 2px solid #f2d9a7;
+  -webkit-box-shadow: 0 3px 6px 0 rgba(0,0,0,.3);
+  -moz-box-shadow: 0 3px 6px 0 rgba(0,0,0,.3);
+  box-shadow: 0 3px 6px 0 rgba(0,0,0,.3);
   color: black;
   left: 0;
   padding: 1em 0;
@@ -919,6 +849,10 @@
   text-align: center;
   width: 100%;
   z-index: 5;
+  height: 65px;
+  background-image: url("../img/guider-line.png");
+  background-repeat: repeat-x;
+  background-position: bottom;
 }
 
 #to-franchises {
@@ -1177,7 +1111,7 @@ h1.Guider-heading {
 }
 
 .Intro-background {
-  background: url("../img/bg.jpg") no-repeat bottom center scroll;
+  background: url("../img/bg-hero.jpg") no-repeat bottom center scroll;
   bottom: 0;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -4580,6 +4514,7 @@ h1.Guider-heading {
   position: relative;
   width: 100%;
   z-index: 0;
+  color: #fff;
 }
 
 /* Pub background */
@@ -4660,10 +4595,11 @@ h1.Guider-heading {
   /*background-color: rgba(255, 255, 255, 0.8);*/
 }
 
-.Pub-inner:hover .Button--dark.Button--fill,
-.Pub-inner:focus .Button--dark.Button--fill {
-  background-color: #323232;
-  color: #e0e0e0 !important;
+.Pub-inner:hover .Btn--white,
+.Pub-inner:focus .Btn--white {
+  outline: 0;
+  background-color: #e1e1e1;
+  color: #000;
 }
 
 .Pub-logo {

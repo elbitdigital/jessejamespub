@@ -7,6 +7,7 @@
 	position: relative;
 	width: 100%;
 	z-index: 0;
+	color: #fff;
 }
 
 /* Pub background */
@@ -87,10 +88,11 @@
 	/*background-color: rgba(255, 255, 255, 0.8);*/
 }
 
-.Pub-inner:hover .Button--dark.Button--fill,
-.Pub-inner:focus .Button--dark.Button--fill {
-	background-color: #323232;
-	color: #e0e0e0 !important;
+.Pub-inner:hover .Btn--white,
+.Pub-inner:focus .Btn--white {
+	outline: 0;
+	background-color: #e1e1e1;
+	color: #000;
 }
 
 .Pub-logo {

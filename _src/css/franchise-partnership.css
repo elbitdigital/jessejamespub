@@ -11,6 +11,8 @@
 /* Franchise partnership background */
 
 .FranchisePartnership-background {
+	background-image: url("../img/background-texture.jpg");
+	background-repeat: repeat;
 	height: 100%;
 	position: absolute;
 	right: 0;
@@ -27,23 +29,31 @@
 	text-align: center;
 	margin: 0 auto;
 	color: white;
-	padding: 5em 1.25em;
+	padding: 4em 1.25em;
 }
 
 .FranchisePartnership-text {
 	font-size: 1.25em;
 	font-weight: 700;
-	margin: 1em 0;
+	margin: 0 0 1em;
 }
 
 .FranchisePartnership-button {
-	margin: 1em 0;
+	/*margin: 1em 0;*/
+}
+
+@media (min-width: 48em) {
+
+	.FranchisePartnership-inner {
+		padding: 6em 1.25em;
+	}
+
 }
 
 @media (min-width: 60em) {
 
-	.FranchisePartnership-button {
-		margin: 2em 0;
+	.FranchisePartnership-text {
+		margin: 0 0 2em;
 	}
 
 }

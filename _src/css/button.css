@@ -1,47 +1,33 @@
 
 /* Button - General Button */
 
-.ButtonStyle {
+.Button {
 	background-clip: padding-box;
 	background-color: transparent;
-	background-image: url('../img/svg/btn-crop.svg');
+	background-image: url('../img/svg/btn-escuro.svg');
 	background-size: 100% 100%;
-	/*border: none;*/
-	/*border: 3px solid #cccccc;*/
-	/*border-radius: 3px;*/
 	box-sizing: border-box;
 	color: white;
 	cursor: pointer;
 	display: inline-block;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	/*font-size: .875em;*/
-	/*font-weight: 500;*/
-	/*line-height: 36px;*/
-	/*letter-spacing: 0;*/
 	margin: .25em;
-	/*min-height: 36px;*/
 	overflow: hidden;
-	/*padding: 0 24px;*/
-	/*padding: .725em 1em;*/
-
 	padding: .5em 1.75em;
-	min-width: 100px;
-	min-height: 24px;
-	line-height: 24px;
-	font-size: 1em;/**/
-	font-weight: 700;
+	min-width: 15em;
+	max-width: 20em;
+	min-height: 1.75em;
+	line-height: 1.75em;
+	letter-spacing: 1px;
+	font-size: .875em;
+	font-weight: 600;
 
 	text-align: center;
 	text-decoration: none;
 	text-transform: uppercase;
 	position: relative;
 	text-overflow: ellipsis;
-	/*-webkit-transition: none;*/
-	/*-webkit-transition: background-color 0.3s ease;*/
-	/*-moz-transition: background-color 0.3s ease;*/
-	/*-o-transition: background-color 0.3s ease;*/
-	/*transition: background-color 0.3s ease;*/
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
@@ -49,49 +35,29 @@
 	white-space: nowrap;
 }
 
-.Button {
-	background-clip: padding-box;
-	background-color: transparent;
-	/*border: none;*/
-	border: 3px solid #cccccc;
-	border-radius: 3px;
-	box-sizing: border-box;
-	color: #fff;
-	cursor: pointer;
-	display: inline-block;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	font-size: .875em;
-	font-weight: 500;
-	/*line-height: 36px;*/
-	/*letter-spacing: 0;*/
-	margin: .25em;
-	/*min-height: 36px;*/
-	overflow: hidden;
-	/*padding: 0 24px;*/
-	padding: .725em 1em;
-	text-align: center;
-	text-decoration: none;
-	text-transform: uppercase;
-	position: relative;
-	text-overflow: ellipsis;
-	-webkit-transition: none;
-	-webkit-transition: background-color 0.3s ease;
-	-moz-transition: background-color 0.3s ease;
-	-o-transition: background-color 0.3s ease;
-	transition: background-color 0.3s ease;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-	vertical-align: middle;
-	white-space: nowrap;
+.Button--branco {
+	color: black;
+	background-image: url('../img/svg/btn-branco.svg');
+}
+
+.Button--branco.Button:hover,
+.Button--branco.Button:focus {
+	opacity: .85;
+}
+
+.Button--claro {
+	color: black;
+	background-image: url('../img/svg/btn-claro.svg');
+}
+
+.Button--claro.Button:hover,
+.Button--claro.Button:focus {
+	opacity: .85;
 }
 
 .Button:hover,
 .Button:focus {
-	background-color: rgba(255, 255, 255, 0.2);
-	/*opacity: 0.9;*/
-	outline: 0;
+	opacity: .9;
 }
 
 .Button:active {
@@ -116,62 +82,10 @@
 	opacity: 0.5;
 }
 
-/* Custom styles modifiers */
-
-.Button--primary {
-	border: 3px solid #009688;
-	color: #009688;
-}
-
-.Button--primary:active {
-	color: #00796B;
-}
-
-.Button--light {
-	color: #fff !important;
-}
-
-.Button--light:active {
-	color: #e0e0e0 !important;
-}
-
-.Button--dark {
-	border: 2px solid #323232;
-	color: #262626 !important;
-	-webkit-transition: background-color .2s ease, color .2s ease;
-	-moz-transition: background-color .2s ease, color .2s ease;
-	-ms-transition: background-color .2s ease, color .2s ease;
-	-o-transition: background-color .2s ease, color .2s ease;
-	transition: background-color .2s ease, color .2s ease;
-}
-
-.Button--dark:active {
-	color: #323232 !important;
-}
-
-/* See .Pub-inner:hover/:focus on pub.css */
-/*.Button--dark.Button--fill {*/
-	/*background-color: #323232;*/
-	/*color: #e0e0e0 !important;*/
-/*}*/
-
-.Button--squared {
-	border-radius: 0;
-}
-
-.Button--black {
-	background-color: #323232;
-	border: 2px solid #262626;
-	color: #e0e0e0 !important;
-}
-
-.Button--black:hover {
-	background-color: #262626;
-}
-
 .Button--narrow {
 	font-size: .725em;
 	font-weight: 600;
+	min-width: 8em;
 	line-height: 30px;
 	min-height: 0;
 	padding: 0 1.5em;
