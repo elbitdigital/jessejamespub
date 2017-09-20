@@ -2,7 +2,10 @@
 /* Navbar */
 
 .Navbar {
-	position: relative;
+	/*position: relative;*/
+	position: absolute;
+	top: 0;
+	left: 0;
 	text-align: center;
 	margin-bottom: 1.5em;
 	width: 100%;

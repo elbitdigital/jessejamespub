@@ -1,34 +1,62 @@
 
 /* INTRO */
 
+body, html {
+	/* important */
+	height: 100% !important;
+}
+
 .Intro {
 	/*background-color: black;*/
 	color: white;
-	display: table;
+	/*display: table;*/
 	font-weight: 900;
-	height: auto;
+	/*min-height: 100%;*/
 	/*margin-bottom: 1em;*/
 	/*padding: 100px 0;*/
 	position: relative;
 	text-align: center;
+	height: 100%;
 	width: 100%;
 	z-index: 0;
+
+	-webkit-align-items: center;
+	align-items: center;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-justify-content: center;
+	justify-content: center;
 }
 
 .Intro-background {
-	background: url(../img/bg-hero.jpg) no-repeat bottom center scroll;
+	/*background: url(../img/bg-hero.jpg) no-repeat center center scroll;*/
+	/*-webkit-background-size: cover;*/
+	/*-moz-background-size: cover;*/
+	/*-o-background-size: cover;*/
+	/*background-size: cover;*/
+
+	min-height: 100%;
+
+
 	bottom: 0;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
 	filter: alpha(Opacity=40);
 	left: 0;
 	/*opacity: 0.4;*/
 	position: fixed;
+
+	width: 100%;
 	right: 0;
 	top: 0;
 	z-index: -5;
+
+	background-image: url("../img/bg-hero.jpg");
+	background-attachment: scroll;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
 }
 
 .Intro-background:after {
@@ -60,9 +88,9 @@
 
 @media (min-width: 48em) {
 
-	.Intro {
-		height: 100%;
-	}
+	/*.Intro {*/
+		/*height: 100%;*/
+	/*}*/
 
 	.Intro-inner {
 		padding-top: 4em;

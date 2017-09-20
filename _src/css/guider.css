@@ -35,7 +35,11 @@ h1.Guider-heading {
 
 .Guider-arrow {
 	display: inline-block;
-	margin: 0 .5em;
+	margin: 0 .25em;
+}
+
+.Guider-arrow.Guider--right {
+	display: none;
 }
 
 .Guider-arrow svg {
@@ -108,6 +112,10 @@ h1.Guider-heading {
 /*}*/
 
 @media (min-width: 40em) {
+
+	.Guider-arrow.Guider--right {
+		display: inline-block;
+	}
 
 	h1.Guider-heading {
 		font-size: 1.5em;

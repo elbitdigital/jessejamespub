@@ -3,7 +3,7 @@
 
 .NavbarLogo {
 	display: inline-block;
-	margin-bottom: .5em;
+	margin: 2em 0 1em;
 }
 
 .NavbarLogo:active {
@@ -19,7 +19,8 @@
 .NavbarLogo svg,
 .NavbarLogo img {
 	display: inline-block;
-	max-width: 15em;
+	max-width: 10em;
+	margin-top: 1em;
 	width: 100%;
 }
 
@@ -36,7 +37,7 @@
 
 	.NavbarLogo svg,
 	.NavbarLogo img {
-		max-width: 12em;
+		margin-top: 0;
 	}
 
 }

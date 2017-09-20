@@ -11,12 +11,25 @@
 	display: flex;
 	-webkit-justify-content: center;
 	justify-content: center;
+	-webkit-flex-direction: column;
+	flex-direction: column;
 	margin: 0;
 	padding: 0;
 }
 
 .LeadingTitle-orn {
 	display: none;
+}
+
+.LeadingTitle-orn.LeadingTitle-orn--bot {
+	display: block;
+}
+
+.LeadingTitle-orn.LeadingTitle-orn--bot.icon-orn-bot::before {
+	width: 18em; /* this matches the size of the svg-icon, not the element, scale using font-size */
+	text-align: center;
+	/*font-size: 1.5em;*/
+	margin: 1em auto 1.5em;
 }
 
 .LeadingTitle-text {
@@ -39,6 +52,11 @@
 }
 
 @media (min-width: 48em) {
+
+	.LeadingTitle.LeadingTitle--main {
+		-webkit-flex-direction: row;
+		flex-direction: row;
+	}
 
 	.LeadingTitle--main .LeadingTitle-orn {
 		display: inline-block;
@@ -72,8 +90,17 @@
 
 @media (min-width: 60em) {
 
+	.LeadingTitle {
+		-webkit-flex-direction: row;
+		flex-direction: row;
+	}
+
 	.LeadingTitle-orn {
 		display: inline-block;
+	}
+
+	.LeadingTitle-orn.LeadingTitle-orn--bot {
+		display: none;
 	}
 
 	.LeadingTitle-orn.icon-orn-left::before,
@@ -84,6 +111,14 @@
 	.LeadingTitle--main .LeadingTitle-orn.icon-orn-left::before,
 	.LeadingTitle--main .LeadingTitle-orn.icon-orn-right::before {
 		font-size: 2.5em;
+	}
+
+}
+
+@media (max-height: 20em) {
+
+	.LeadingTitle--main .LeadingTitle-text {
+		margin-top: .75em;
 	}
 
 }
