@@ -23,9 +23,9 @@
 <meta name="og:type" content="website">
 
 <script src="dist/js/villa.min.js"></script>
-<link href="https://fonts.googleapis.com/css?family=Josefin+Sans:400,700|Volkhov:400,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700" rel="stylesheet">
 <link rel="stylesheet" href="dist/css/villa.min.css"/>
-<link rel="stylesheet" href="dist/css/jessejamespub.css"/>
+<link rel="stylesheet" href="dist/css/jessejamespub.min.css"/>
 <!--[if lt IE 9]>
 <link rel="stylesheet" type="text/css" href="dist/css/material-colors.css"/>
 <link rel="stylesheet" type="text/css" href="dist/css/villa-cross.min.css"/>
@@ -34,106 +34,140 @@
 <script src="dist/js/classList.min.js"></script>
 <![endif]-->
 
-<body class="Franq josefin">
+<style>
 
-<nav class="Navbar Navbar-sticky-top" role="navigation">
+	html * {
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
 
-	<div class="Navbar-background"></div>
+	body, html {
+		height: 100%;
+	}
 
-	<div class="Navbar-inner container">
+	.FranqSectionCollection {
+		height: 100%;
+		position: relative;
+		z-index: 1;
+	}
 
-		<a class="NavbarLogo" href=".">
-			<img src="dist/img/logo-pub-metalico.png" alt="Logo Pub"/>
-		</a>
+</style>
 
-		<ul class="NavList NavList-franq">
+<body class="Franq roboto-slab">
 
-			<li class="NavList-item">
+<main class="FranqSectionCollection">
 
-				<a href="mailto:franquias@jessejamespub.com.br" class="Button">
-					franquias@jessejamespub.com.br
+	<section class="FranqSection FranqSection--intro">
+
+		<div class="FranqSection-background"></div>
+
+		<div class="FranqSection-inner">
+
+			<nav class="Navbar Navbar-sitcky-top">
+
+				<a href="mailto:franquias@jessejamespub.com.br" class="Btn Btn--white Btn--rounded Btn--narrow Btn--preserve-case  roboto">
+					<span class="icon-mail-alt"></span> franquias@jessejamespub.com.br
 				</a>
 
-			</li>
+			</nav>
 
-		</ul>
+			<a href="." class="FranqSectionBox--header-logo">
 
-	</div>
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 728.53058 367.21402" class="logo--shadow">
+					<g id="logo-pub" class="logo-pub">
+						<path fill-rule="evenodd" d="M211.0884 95.58151c0-18.8603 12.7021-40.3548 34.6261-32.3226 7.7862 2.8537 11.7893 6.6685 18.3537 11.5892.0607.053.7849.7081.906.8223l2.6762 2.5061c5.3872 4.9663 10.1392 10.6268 15.5911 15.5033 13.7418 11.469 26.7083 23.6599 43.922 29.785 4.4725 1.5908 10.0332 3.0028 14.9428 2.3227 5.2455-.7262-2.1574-3.1178-2.9605-3.3638-10.7297-3.0754-27.1315-13.6438-33.8434-21.5544 4.2489-.9902 8.4852-2.4545 12.8115-3.6405 12.0483-3.3027 28.7348-5.1095 44.8795-5.3142.1409-.002.2812-.002.4221-.001 16.1779.1982 32.9116 2.0052 44.9869 5.3153 4.3263 1.186 8.5627 2.6503 12.8115 3.6405-6.7119 7.9106-23.1137 18.479-33.8434 21.5544-.8031.246-8.206 2.6376-2.9605 3.3638 4.9096.6801 10.4703-.7319 14.9428-2.3227 17.2137-6.1251 30.1802-18.316 43.922-29.785 5.4519-4.8765 10.2039-10.537 15.5911-15.5033l2.6762-2.5061c.1211-.1142.8453-.7693.906-.8223 6.5644-4.9207 10.5675-8.7355 18.3537-11.5892 21.924-8.0322 34.6261 13.4623 34.6261 32.3226 0 2.2621-.7625 13.8201-3.4552 13.8201h-31.6709c-2.8831 0-4.5833-2.9858-7.1867-4.3297-14.2914-7.376-32.9261 5.8904-41.792 11.2062l-10.4119 6.8639c-17.2922 12.0166-37.0222 18.1057-56.7851 18.2701l-.2012.001c-.2223.001-.4445.003-.6667.003-.2223 0-.4445-.001-.6668-.003l-.2012-.001c-19.7632-.1641-39.4929-6.2532-56.7851-18.2701l-10.4119-6.8639c-8.8659-5.3158-27.5006-18.5822-41.792-11.2062-2.6034 1.3439-4.3036 4.3297-7.1867 4.3297h-31.6709c-2.6927 0-3.4552-11.558-3.4552-13.8201zm155.4038-13.2468c19.0123.2568 37.9208 3.1459 55.8017 9.0646 2.2995.762 3.9019 1.4678 5.2084 1.9922l1.313-1.7436c-19.9996-8.0093-38.7337-11.8942-55.7578-12.8979-8.1314-.4788-16.4667-.3603-24.5744.3722-15.6756 1.4196-32.7123 5.2891-50.7821 12.5257l1.313 1.7436c1.3065-.5244 2.9089-1.2302 5.2084-1.9922 17.5096-5.7957 36.0037-8.6865 54.6168-9.0453 2.5506-.0499 5.1021-.0548 7.653-.0193zm3.6836-11.4149c21.4512.7291 43.9251 5.9381 63.9295 12.871 2.0106-3.2524 3.8024-6.5202 5.2991-9.8093-2.6674-13.1513-4.2528-24.91-10.7447-36.7426-1.3207-2.4075-4.7934-6.0721-7.0881-9.0346-1.2087-1.5611-2.2532-2.4628-3.4605-4.0249-4.7472-6.143-17.8237-20.6192-24.6447-23.15-5.2526-1.9486-10.2841-.7243-15.4293.3489-2.55.5318-4.8999.9888-7.2657 1.3043-4.7432.6321-9.9085.6505-14.6659.047-2.488-.3161-4.9467-.7926-7.6263-1.3513-5.1452-1.0732-10.1767-2.2975-15.4293-.3489-6.821 2.5308-19.8975 17.007-24.6447 23.15-1.2073 1.5621-2.2518 2.4638-3.4605 4.0249-2.2947 2.9625-5.7674 6.6271-7.0881 9.0346-6.4919 11.8326-8.0773 23.5913-10.7447 36.7426 1.4967 3.2891 3.2885 6.5569 5.2991 9.8093 18.4949-6.4097 39.1008-11.3459 59.0576-12.6306 5.9388-.3804 12.6785-.4447 18.7072-.2404zm49.8555-32.2123c-4.5525 6.7564-47.8837-4.8512-38.3355-32.3221.1273-.3659.2883-.7018.4896-1.0009 1.6163-2.3978 2.9497-.949 3.5566 1.188.5434 1.914.8776 4.7642 3.5484 9.5738 4.5462 8.1867 9.7651 12.4818 18.5 16.0494 2.3831.9732 9.3983 2.6082 11.8041 4.2078.9453.6279 1.0831 1.3453.4368 2.304zm-113.5463 0c4.5525 6.7564 47.8837-4.8512 38.3355-32.3221-.1273-.3659-.2883-.7018-.4896-1.0009-1.6163-2.3978-2.9497-.949-3.5566 1.188-.5434 1.914-.8776 4.7642-3.5484 9.5738-4.5462 8.1867-9.7651 12.4818-18.5 16.0494-2.3831.9732-9.3983 2.6082-11.8041 4.2078-.9453.6279-1.0831 1.3453-.4368 2.304z"/>
+						<path fill-rule="evenodd" d="M636.6546 61.07461c-1.9899.485-2.8528 1.0641-4.7596 1.9264-12.4248 6.7175-19.1608 12.5246-30.2712 20.9778-21.7525 16.55-30.2273 27.5051-57.3004 33.3391-5.7841 1.2461-9.3129 1.6517-15.156 1.6622l-66.9033.123c6.1308 10.9914 4.1528 22.402.0938 30.6069h42.0356c24.2796 0 46.6982-1.5798 66.2298-16.6907 18.9385-14.6495 24.927-25.0019 39.8571-43.0631 9.2602-11.1997 13.147-17.7554 24.6356-27.2801.5836-.4838 1.131-.8288 1.6228-1.506.0737-.1273-.0479-.1046-.0842-.0955zM464.2512 153.43161l.0862.1757.0861-.1757h-.1723zm-113.4629 142.1333c1.6704.9046 3.5501 1.6583 5.5326 1.6583 21.5028 0 29.4356-15.2203 29.4356-41.8926v-74.4415h8.664v-19.7405h-39.2476v19.7405h8.977v74.4415c0 16.1243-3.4449 21.6997-8.6641 21.6997-1.879 0-3.34-.4521-4.6975-1.3561v19.8907zm124.6643-23.0096v-22.7773l-6.7632-.4495-19.0196-88.1799H409.587v19.4391h4.2801l-14.0069 65.7769-7.1827.0116v20.8448l33.1937 1.2291v-21.7088l-8.0682-.3447 2.3882-10.9117 21.1288 1.0091 2.4492 10.7093-10.1739-.462v21.9333l41.8573 3.8807zm-51.5506-54.5874l6.6654-32.106 6.8904 32.5491-13.5558-.4431zm127.9264-28.438v67.7588l-5.8456-.7869.3266 25.799 32.6576 6.1577v-27.6829l-5.7401-1.1248v-76.6873l5.7401.0555v-21.8698h-39.7692l-9.6936 64.6956-10.8689-64.6956h-39.5612v20.8014l5.5327.3096v68.4904l-5.6367-.3855v22.6573l28.2875 3.2054.0672-23.4238-6.0177-.5272v-62.7469h.4184c.3129 8.0629 1.669 17.2545 2.192 19.9953l13.0493 68.3901 22.0876 2.9795 9.3291-69.7569c.5014-3.7494 2.192-14.3519 3.0274-21.608h.4175zm31.701-28.3822v22.4881l6.1815.1613.3952 78.4769-6.5767-1.2373v28.1251l62.9422 14.1715v-42.2623l-18.0573-5.0808v13.9875l-16.7009-3.5991v-31.4258l19.8323 2.6995v-25.82l-19.8323-1.237v-26.2845l16.7009 1.0119v16.299l18.0573 1.5746v-42.0486h-62.9422zm68.9797 170.0813l20.3666 8.1437-.0116-19.1384c.006 9.57 16.5084 28.1795 28.3881 28.1795 13.9975 0 27.2784-7.1504 27.2784-46.3686 0-58.8662-51.2924-64.4644-51.2924-95.8362 0-18.296 17.5465-19.637 25.7967 8.4722l21.2891 4.221v-57.8012h-21.4498l.0431 22.3364c-4.7044-18.8549-14.9335-22.7126-24.8134-22.7126-9.0283 0-21.7955 5.9627-26.9044 26.4294-4.1695 16.7017-1.8471 31.0929 5.4286 46.6016 6.1858 13.185 14.5928 21.7987 22.3384 28.7314 11.632 10.4114 23.6495 21.5331 22.5403 34.156 0 5.4358-1.7079 9.2869-4.2993 11.189-3.5833 2.6305-8.8577 1.5352-13.6432-4.2458-4.5981-5.5547-10.9638-20.6064-10.9638-33.4409l-21.4438-7.6518 1.3524 68.7353zM0 345.97741c1.9159 1.2541 4.0711 2.2995 6.3468 2.2995 24.6693 0 33.77-21.1116 33.77-58.108v-100.3153l9.9391-.2741v-29.1472H5.0295v30.3882l10.2983-.2837v99.6321c0 22.3645-3.9515 30.0994-9.9391 30.0994-2.1561 0-3.8319-.627-5.3887-1.8813v27.5904zm53.9606-185.5088v29.0038l6.5761-.182-.7033 93.3333-6.5769 1.5188v27.9788l62.9422-16.4194v-46.9854l-18.0576 2.6994v22.4351l-16.7012 4.0487.7033-35.2437 19.8329-2.4744v-26.1241l-19.8329 1.9684v-27.3305l16.7009-.4603v16.2805l18.0587-1.012v-43.035H53.9606zm66.8461 134.3469l18.1842-4.1984 1.2302-15.0211c3.9666 8.286 10.5373 10.6112 21.0796 10.6112 12.4217 0 28.2665-9.625 28.2665-38.3485 0-43.2697-41.2044-33.2079-41.2044-52.1731 0-6.444 4.1754-9.7582 7.2026-9.7582 7.3071 0 13.3616 7.7329 13.3616 21.3585h18.8929v-46.8624h-17.9537l-1.044 16.1135c-4.1752-13.8098-12.9651-16.0514-21.733-16.0514-10.2305 0-24.9259 9.6066-24.9259 36.8575 0 46.9519 39.6646 38.4893 39.6646 52.8505 0 14.0825-21.9874 17.4033-21.9874-4.881l-19.0338 2.8681v46.6348zm72.138-14.1273l18.2665-2.8443 1.148-14.048c3.9674 7.4557 9.3611 11.2091 19.9032 11.2091 12.4217 0 30.6618-7.7185 30.6618-33.5659 0-38.9367-42.4225-32.4856-42.4225-49.5513 0-5.7994 4.1752-8.7818 7.2026-8.7818 7.3063 0 13.3608 6.9591 13.3608 19.2195h18.8923v-41.8612h-17.9538l-1.0434 14.192c-4.284-10.4582-13.2656-14.2008-22.0329-14.2008-10.2296 0-24.6259 8.4016-24.6259 32.9233 0 42.2501 40.0836 36.7826 40.0836 49.7064 0 10.8504-22.0258 12.0339-22.0258-8.2846l-19.4145 2.7499v43.1377zm72.7957-120.2196v23.1658l6.5767-.1803v65.0053l-6.5767.3373v21.0538l62.9422-4.0488v-35.3063l-18.057.4376v15.5024l-16.7017.7869v-26.0254h19.8323v-20.0418h-19.8323v-18.2965l16.7017-.4604v11.3729h18.057v-33.3025h-62.9422zM521.3313 348.09341c-23.6684-3.4971-52.6768-7.0523-75.9437-6.3967-12.7183.3592-10.8013-12.4584-1.8256-11.3167 15.6833 1.9957 63.5971 10.2871 77.7693 17.7134zM89.9651 61.07461c1.99.485 2.8528 1.0641 4.7597 1.9264 12.4248 6.7175 19.1608 12.5246 30.2712 20.9778 21.7525 16.55 30.2272 27.5051 57.3004 33.3391 5.7841 1.2461 9.3129 1.6517 15.156 1.6622l66.9033.123c-6.1308 10.9914-4.1528 22.402-.0939 30.6069h-42.0355c-24.2796 0-46.6982-1.5798-66.2298-16.6907-18.9385-14.6495-24.927-25.0019-39.8571-43.0631-9.2602-11.1997-13.1471-17.7554-24.6356-27.2801-.5837-.4838-1.131-.8288-1.6228-1.506-.0737-.1273.0479-.1046.0841-.0955zM203.3787 348.09341c23.6684-3.4971 52.6768-7.0523 75.9437-6.3967 12.7184.3592 10.8013-12.4584 1.8257-11.3167-15.6834 1.9957-63.5971 10.2871-77.7694 17.7134zM686.0754 108.59881c2.6041 0 5.1448.6667 7.6296 2.0071 2.4776 1.3337 4.4148 3.2499 5.7975 5.7347 1.3826 2.4916 2.0777 5.0886 2.0777 7.7836 0 2.6744-.681 5.2501-2.0496 7.7137-1.3618 2.4707-3.2708 4.387-5.7344 5.7487-2.4635 1.3686-5.0395 2.0493-7.7208 2.0493-2.6882 0-5.2642-.6807-7.7277-2.0493-2.4636-1.3617-4.3798-3.278-5.7484-5.7487-1.3686-2.4636-2.0565-5.0393-2.0565-7.7137 0-2.695.6948-5.292 2.0846-7.7836 1.3967-2.4848 3.3339-4.401 5.8115-5.7347 2.4848-1.3404 5.0255-2.0071 7.6365-2.0071zm-6.1904 24.0885v-16.6766h5.7415c1.9653 0 3.3829.1543 4.2604.463.8841.3089 1.5792.8425 2.1056 1.6144.5192.7651.7791 1.5792.7791 2.4426 0 1.2143-.4352 2.2812-1.3127 3.1796-.8703.9053-2.0284 1.4108-3.4741 1.5229.5894.2459 1.0668.5405 1.4176.8844.6738.6529 1.4951 1.7547 2.4707 3.3061l2.0356 3.2636h-3.2708l-1.4882-2.6251c-1.1649-2.0705-2.1124-3.3688-2.8285-3.8883-.4913-.379-1.2074-.5686-2.1549-.5614h-1.586v7.0748h-2.6953zm2.6953-9.3912h3.2708c1.5651 0 2.6319-.2315 3.2005-.6948.5685-.4633.8563-1.0809.8563-1.8391 0-.4911-.1403-.9334-.4143-1.3195-.2736-.393-.6526-.6807-1.1368-.8704-.4914-.1893-1.3898-.2877-2.7094-.2877h-3.0671v5.0115zm3.4951-12.1285c-2.1827 0-4.3095.5614-6.3732 1.6776-2.0634 1.1159-3.6778 2.7163-4.8427 4.7937-1.1653 2.0777-1.7479 4.2395-1.7479 6.4853 0 2.2393.5754 4.3798 1.7197 6.4294 1.144 2.0493 2.7444 3.6497 4.8009 4.7937 2.0565 1.1443 4.2043 1.7198 6.4432 1.7198 2.2321 0 4.3798-.5755 6.4363-1.7198 2.0565-1.144 3.6569-2.7444 4.794-4.7937 1.1368-2.0496 1.7054-4.1901 1.7054-6.4294 0-2.2458-.5823-4.4076-1.7407-6.4853-1.1581-2.0774-2.7722-3.6778-4.8428-4.7937-2.0705-1.1162-4.1904-1.6776-6.3522-1.6776zM313.2352 366.70861v-13.5609h9.265c6.2331 0 17.3514-3.7903 17.3514-18.4462 0-5.6435-1.853-9.9391-5.5593-13.0558-3.7902-3.1164-7.749-4.6324-12.0447-4.6324h-22.3208v49.6953h13.3084zm9.1808-36.724c2.0217 0 4.2114 1.853 4.2114 4.8853 0 3.7902-2.1897 5.3064-4.2114 5.3064h-9.1808v-10.1917h9.1808zm40.2704 37.2294c13.5609-.0842 20.3837-7.8332 20.3837-23.2475v-26.9532h-13.2242v28.0482c0 7.3282-2.8639 9.1812-7.3279 9.1812-4.4643 0-7.3281-1.853-7.3281-9.1812v-28.0482H341.966v26.9532c0 15.4143 6.8224 23.1633 20.3834 23.2475h.337zm38.2484-37.2294h6.7386c1.9372 0 3.706.9264 3.706 2.611 0 1.9372-1.2634 2.8639-3.706 2.8639h-6.7386v-5.4749zm0 18.362h8.8441c2.4429 0 3.7063.8422 3.7063 2.5268 0 1.9372-1.2634 2.8639-3.7063 2.8639h-8.8441v-5.3907zm8.2545 18.362c6.4857 0 11.5396-2.2742 13.9822-5.4748 2.4426-3.2009 3.5376-6.4857 3.5376-9.7708 0-5.1381-1.6001-8.6757-4.8852-10.6971 1.853-2.4426 2.7797-5.2222 2.7797-8.3387 0-12.4659-9.5182-15.4139-16.846-15.4139h-20.0467v49.6953h21.4784z"/>
+					</g>
+				</svg>
 
-</nav>
+			</a>
 
-<header class="FranqSection FranqSection--intro">
+			<div class="FranqSectionBox FranqSectionBox--header">
 
-	<div class="FranqSection-background"></div>
+				<p>Criar um conceito de boa música, bom atendimento e conforto fez com que o Jesse James Pub se tornasse referência no interior paulista.</p>
+				<p>Nossa ideia de expansão passa por pessoas que gostam e fazem da noite a oportunidade perfeita para proporcionar alegria sem medo de inovar.</p>
 
-	<div class="FranqSection-inner container">
-
-		<div class="FranqSectionBox">
-
-			<h2>PUB</h2>
-			<hr>
-			<p>Já imaginou um pub sertanejo na sua cidade?</p>
-			<p>Se identifica com a nossa proposta?</p>
-			<p>Que tal ajudar a expandir o Jesse James Pub pelo mundo?!</p>
+			</div>
 
 		</div>
 
-	</div>
+	</section>
 
-</header>
+	<section class="FranqSection FranqSection--espaco-pub">
 
-<section class="FranqSection FranqSection--espaco-pub">
+		<div class="FranqSection-background"></div>
 
-	<div class="FranqSection-background"></div>
+		<div class="FranqSection-inner container">
 
-	<div class="FranqSection-inner container">
+			<div class="FranqSectionBox FranqSectionBox--left">
 
-		<div class="FranqSectionBox FranqSectionBox--left">
-			<h2>Espaço</h2>
-			<hr>
-			<p>O Jesse James Pub tem a proposta ideal para um público ávido por boa música sertaneja, conforto, qualidade e bom atendimento.</p>
-		</div>
+				<div class="LeadingTitle LeadingTitle--simple">
 
-	</div>
+					<h1 class="LeadingTitle-text f-marrom-poeira--lighter">Espaço</h1>
 
-</section>
+					<i class="LeadingTitle-orn LeadingTitle-orn--bot icon-orn-bot"></i>
 
-<section class="FranqSection FranqSection--marca">
+				</div>
 
-	<div class="FranqSection-background"></div>
+				<p>Com decoração temática "far west", o Jesse James Pub prioriza o conforto do público para que todas as opções da casa possam ser usufruidas sem problemas.</p>
 
-	<div class="FranqSection-inner container">
-
-		<div class="FranqSectionBox">
-			<h2>Marca</h2>
-			<hr>
-			<p>Em 2015 a região de Assis/SP passava por uma época que, apesar do sucesso das "baladas sertanejas", as casas deixavam muito a desejar em quesitos como qualidade, conforto e atendimento.</p>
-			<p>Com a proposta de manter o sucesso da música sertaneja e suprir essas necessidades surgiu o JESSE JAMES PUB.</p>
-		</div>
-
-	</div>
-
-</section>
-
-<section class="FranqSection FranqSection--evento">
-
-	<div class="FranqSection-background"></div>
-
-	<div class="FranqSection-inner container">
-
-		<div class="FranqSectionBox FranqSectionBox--left">
-
-			<h2>Eventos</h2>
-			<hr>
-			<p>Nosso pub conta com diversas temáticas e promoções exclusivas, alguns exemplos:</p>
-			<p><strong>UFS - Ultimate Fighter Sertanejo:</strong> Campeonato anual de duplas regionais.</p>
-			<p><strong>COMBDAY & DESPEDIDA DE SOLTEIRO:</strong> Combos exclusivos para aniversariantes e outras datas especiais.</p>
+			</div>
 
 		</div>
 
-	</div>
+	</section>
 
-</section>
+	<section class="FranqSection FranqSection--marca">
+
+		<div class="FranqSection-background"></div>
+
+		<div class="FranqSection-inner container">
+
+			<div class="FranqSectionBox FranqSectionBox--right">
+
+				<div class="LeadingTitle LeadingTitle--simple">
+
+					<h1 class="LeadingTitle-text f-marrom-poeira--lighter">Marca</h1>
+
+					<i class="LeadingTitle-orn LeadingTitle-orn--bot icon-orn-bot"></i>
+
+				</div>
+
+				<p>Em meados de 2015, a região de Assis - SP passava por uma época que, apesar do relativo sucesso das "baladas sertanejas", as casas foram se tornando sinônimo de desconforto por vários motivos. Criar uma marca forte que resgatasse esse quesito foi um dos maiores desafios encontrados, tanto que até os dias de hoje estamos aprimorando todos nossos processos para que nosso público sempre seja priorizado.</p>
+
+			</div>
+
+		</div>
+
+	</section>
+
+	<section class="FranqSection FranqSection--evento">
+
+		<div class="FranqSection-background"></div>
+
+		<div class="FranqSection-inner container">
+
+			<div class="FranqSectionBox FranqSectionBox--left">
+
+				<div class="LeadingTitle LeadingTitle--simple">
+
+					<h1 class="LeadingTitle-text f-marrom-poeira--lighter">Eventos</h1>
+
+					<i class="LeadingTitle-orn LeadingTitle-orn--bot icon-orn-bot"></i>
+
+				</div>
+
+				<p>Nosso pub conta com diversas temáticas e promoções exclusivas, alguns exemplos:</p>
+				<p><strong>UFS - Ultimate Fighter Sertanejo:</strong> Campeonato anual de duplas regionais.</p>
+				<p><strong>COMBDAY & DESPEDIDA DE SOLTEIRO:</strong> Combos exclusivos para aniversariantes e outras datas especiais.</p>
+
+			</div>
+
+		</div>
+
+	</section>
+
+</main>
 
 </body>
 

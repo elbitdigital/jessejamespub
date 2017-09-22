@@ -42,8 +42,8 @@ body, html {
 
 
 	bottom: 0;
-	filter: alpha(Opacity=40);
 	left: 0;
+	/*filter: alpha(Opacity=40);*/
 	/*opacity: 0.4;*/
 	position: fixed;
 
@@ -67,7 +67,8 @@ body, html {
 	top: 0;
 	left: 0;
 	background-color: #301c09;
-	opacity: 0.85;
+	filter: alpha(Opacity=75);
+	opacity: 0.75;
 }
 
 .Intro-inner {

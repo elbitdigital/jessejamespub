@@ -170,6 +170,7 @@ gulp.task('serve', function () {
 				"/ourinhos": "./public/ourinhos.html",
 				"/paraguacu": "./public/paraguacu.html",
 				"/franqueado": "./public/franqueado.html",
+				"/franqueado2": "./public/franqueado2.html",
 				"/admin/login": "./public/admin/login.html",
 				"/admin/logout": "./public/admin/logout.html",
 				"/admin/signup": "./public/admin/signup.html",

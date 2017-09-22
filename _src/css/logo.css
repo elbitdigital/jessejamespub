@@ -5,6 +5,11 @@
 	fill: white;
 }
 
+.logo--shadow {
+	-webkit-filter: drop-shadow( 1px 1px 5px rgba(0,0,0,.5));
+	filter: drop-shadow( 1px 1px 5px rgba(0,0,0,.5));
+}
+
 .logo-pub-index {
 	fill: #ebc373;
 }

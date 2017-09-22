@@ -32,6 +32,11 @@
 	margin: 1em auto 1.5em;
 }
 
+.LeadingTitle--simple .LeadingTitle-orn.LeadingTitle-orn--bot.icon-orn-bot::before {
+	width: 20em;
+	font-size: .725em;
+}
+
 .LeadingTitle-text {
 	font-family: 'High Noon', serif;
 	font-weight: normal;
@@ -49,6 +54,10 @@
 .LeadingTitle--main .LeadingTitle-text {
 	letter-spacing: 3px;
 	font-size: 5em;
+}
+
+.LeadingTitle.LeadingTitle--simple .LeadingTitle-orn {
+	display: block;
 }
 
 @media (min-width: 48em) {
@@ -93,6 +102,11 @@
 	.LeadingTitle {
 		-webkit-flex-direction: row;
 		flex-direction: row;
+	}
+
+	.LeadingTitle.LeadingTitle--simple {
+		-webkit-flex-direction: column;
+		flex-direction: column;
 	}
 
 	.LeadingTitle-orn {

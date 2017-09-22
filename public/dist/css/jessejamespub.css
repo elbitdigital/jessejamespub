@@ -12,7 +12,7 @@
   display: inline-block;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: 'Roboto Condensed', 'Noto', sans-serif;
+  font-family: 'Roboto Condensed', sans-serif;
   font-size: 1.125em;
   font-weight: bold;
   line-height: 40px;
@@ -124,11 +124,15 @@
 }
 
 .Btn--narrow {
-  font-size: .725em;
+  font-size: .875em;
   font-weight: 600;
   padding: 0 1.5em;
   line-height: 30px;
   min-height: 0;
+}
+
+.Btn--preserve-case {
+  text-transform: none;
 }
 /* Button - General Button */
 
@@ -664,7 +668,7 @@
   /*color: black;*/
   /*background-color: #262626;*/
   /*background-color: rgba(19, 19, 19, .8);*/
-  background-color: rgba(42, 25, 19, .8);
+  /*background-color: rgba(42, 25, 19, .8);*/
   /*background-color: rgba(167,168,174,.4);*/
   /*background-color: #2A1913;*/
   /*color: white;*/
@@ -672,17 +676,15 @@
   /*position: absolute;*/
   /*right: 0;*/
   padding: 1em;
-  margin: 0 auto;
-  width: 100%;
+  /*margin: 0 auto;*/
+  /*width: 100%;*/
+  /*height: 100%;*/
   text-align: center;
-}
-
-.FranqSectionBox h1,
-.FranqSectionBox h2 {
-  font-family: 'Volkhov', serif;
-  letter-spacing: 2px;
-  /*font-weight: 400 !important;*/
-  text-transform: uppercase;
+  border-image-slice: 55 55 55 55 fill;
+  border-image-width: 1.5em 1.5em 1.5em 1.5em;
+  border-image-outset: 0.5em 0.5em 0.5em 0.5em;
+  border-image-repeat: repeat repeat;
+  border-image-source: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjxzdmcKICAgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIgogICB4bWxuczpjYz0iaHR0cDovL2NyZWF0aXZlY29tbW9ucy5vcmcvbnMjIgogICB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiCiAgIHhtbG5zOnN2Zz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgdmVyc2lvbj0iMS4xIgogICBpZD0ic3ZnMiIKICAgdmlld0JveD0iMCAwIDEwNy4wODc1NiAxMDcuMDg3NTUiCiAgIGhlaWdodD0iMzAuMjIyNDg4bW0iCiAgIHdpZHRoPSIzMC4yMjI0ODhtbSI+CiAgPGRlZnMKICAgICBpZD0iZGVmczQiIC8+CiAgPG1ldGFkYXRhCiAgICAgaWQ9Im1ldGFkYXRhNyI+CiAgICA8cmRmOlJERj4KICAgICAgPGNjOldvcmsKICAgICAgICAgcmRmOmFib3V0PSIiPgogICAgICAgIDxkYzpmb3JtYXQ+aW1hZ2Uvc3ZnK3htbDwvZGM6Zm9ybWF0PgogICAgICAgIDxkYzp0eXBlCiAgICAgICAgICAgcmRmOnJlc291cmNlPSJodHRwOi8vcHVybC5vcmcvZGMvZGNtaXR5cGUvU3RpbGxJbWFnZSIgLz4KICAgICAgICA8ZGM6dGl0bGU+PC9kYzp0aXRsZT4KICAgICAgPC9jYzpXb3JrPgogICAgPC9yZGY6UkRGPgogIDwvbWV0YWRhdGE+CiAgPGcKICAgICB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMzE0LjAzNzMyLC00NzAuNDc4MzQpIgogICAgIGlkPSJsYXllcjEiPgogICAgPGZsb3dSb290CiAgICAgICB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzNjYuOTYwMiwtNzMyLjM4NzAxKSIKICAgICAgIHN0eWxlPSJmb250LXN0eWxlOm5vcm1hbDtmb250LXdlaWdodDpub3JtYWw7bGluZS1oZWlnaHQ6MC4wMSU7Zm9udC1mYW1pbHk6c2Fucy1zZXJpZjt0ZXh0LWFsaWduOmNlbnRlcjtsZXR0ZXItc3BhY2luZzowcHg7d29yZC1zcGFjaW5nOjBweDt0ZXh0LWFuY2hvcjptaWRkbGU7ZmlsbDojMDAwMDAwO2ZpbGwtb3BhY2l0eToxO3N0cm9rZTpub25lO3N0cm9rZS13aWR0aDoxcHg7c3Ryb2tlLWxpbmVjYXA6YnV0dDtzdHJva2UtbGluZWpvaW46bWl0ZXI7c3Ryb2tlLW9wYWNpdHk6MSIKICAgICAgIGlkPSJmbG93Um9vdDQzOTEiCiAgICAgICB4bWw6c3BhY2U9InByZXNlcnZlIj48Zmxvd1JlZ2lvbgogICAgICAgICBpZD0iZmxvd1JlZ2lvbjQzOTMiPjxyZWN0CiAgICAgICAgICAgeT0iOTEwLjk0MDg2IgogICAgICAgICAgIHg9IjIzOC4zOTYiCiAgICAgICAgICAgaGVpZ2h0PSIxMzkuNDAxMDUiCiAgICAgICAgICAgd2lkdGg9IjYzOC40MTYzOCIKICAgICAgICAgICBpZD0icmVjdDQzOTUiIC8+PC9mbG93UmVnaW9uPjxmbG93UGFyYQogICAgICAgICBzdHlsZT0iZm9udC1zaXplOjQwcHg7bGluZS1oZWlnaHQ6MS4yNSIKICAgICAgICAgaWQ9ImZsb3dQYXJhNDM5NyI+wqA8L2Zsb3dQYXJhPjwvZmxvd1Jvb3Q+ICAgIDxwYXRoCiAgICAgICBpZD0icmVjdDMzMzgiCiAgICAgICBkPSJtIDM0OC43MjE3Miw0NzguOTc5MTMgYSA2OS42ODUyNzIsNjkuNjg1MjcyIDAgMCAxIC0yNi4xODM1OSwyNi4xNDA2MyBsIDAsMzcuNzYxNzIgYSA2OS42ODUyNzIsNjkuNjg1MjcyIDAgMCAxIDI2LjEzODY3LDI2LjE4MzU5IGwgMzcuNzYzNjcsMCBhIDY5LjY4NTI3Miw2OS42ODUyNzIgMCAwIDEgMjYuMTgzNiwtMjYuMTQwNjIgbCAwLC0zNy43NjE3MiBhIDY5LjY4NTI3Miw2OS42ODUyNzIgMCAwIDEgLTI2LjE0MDYzLC0yNi4xODM2IGwgLTM3Ljc2MTcyLDAgeiIKICAgICAgIHN0eWxlPSJvcGFjaXR5OjE7ZmlsbDojZmZmZmZmO2ZpbGwtb3BhY2l0eTowLjI5MzcyOTM2O3N0cm9rZTojZmZmZmZmO3N0cm9rZS13aWR0aDo5LjkxNDk5OTk2O3N0cm9rZS1saW5lY2FwOmJ1dHQ7c3Ryb2tlLWxpbmVqb2luOm1pdGVyO3N0cm9rZS1taXRlcmxpbWl0OjQ7c3Ryb2tlLWRhc2hhcnJheTpub25lO3N0cm9rZS1kYXNob2Zmc2V0OjA7c3Ryb2tlLW9wYWNpdHk6MSIgLz4KICA8L2c+Cjwvc3ZnPgo=");
 }
 
 .FranqSectionBox hr {
@@ -700,7 +702,28 @@
 }
 
 .FranqSectionBox p {
-  margin-bottom: .25em;
+  /*font-size: .875em;*/
+  max-width: 36em;
+  margin: 0 auto .25em;
+  text-shadow: 1px 1px 5px rgba(0,0,0,.3);
+}
+
+.FranqSectionBox.FranqSectionBox--header {
+  margin-top: 2em;
+}
+
+.FranqSectionBox--header-logo {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+  display: block;
+  text-decoration: none;
+}
+
+.FranqSectionBox--header-logo svg {
+  width: 80%;
+  max-width: 20em;
+  margin-bottom: 1.5em;
 }
 
 @media (min-width: 48em) {
@@ -708,44 +731,64 @@
     /*background-color: #262626;*/
     /*background-color: rgba(76,76,76,.6);*/
     /*background-color: rgba(206,212,218,.4);*/
-    background-color: rgba(167,168,174,.4);
+    /*background-color: rgba(167,168,174,.4);*/
     /*background-color: rgba(42, 25, 19, .6);*/
-    border: 1px solid #A7A8AE;
+    /*border: 1px solid #A7A8AE;*/
     color: white;
     /*color: #323232;*/
     border-radius: 2px;
-    padding: 4em 1.5em;
-    position: absolute;
-    max-width: 23em;
-    right: 1em;
-    bottom: 3em;
+    padding: 3em 1.5em;
+    /*position: relative;*/
+    max-width: 30em;
+    /*height: 25em;*/
+    /*right: 1em;*/
+    /*bottom: 3em;*/
     /*margin: 0 auto;*/
     /*display: inline-block;*/
     /*left: 100%;*/
   }
 
   .FranqSectionBox.FranqSectionBox--left {
-    right: auto;
-    left: 3em;
+    margin-right: auto;
+  }
+
+  .FranqSectionBox.FranqSectionBox--right {
+    margin-left: auto;
+  }
+
+  .FranqSectionBox--header-logo svg {
+    width: 100%;
+    max-width: 25em;
+    margin-bottom: 2em;
   }
 
   .FranqSectionBox p {
     font-size: 1.175em;
   }
 }
+
+@media (min-width: 60em) {
+  .FranqSectionBox.FranqSectionBox--header {
+    width: 100%;
+    max-width: 65em;
+  }
+}
 /* Franq Section */
 
 .FranqSection {
   position: relative;
-  height: 90%;
+  height: 100%;
+  min-height: 100%;
   width: 100%;
-  display: block;
-  padding: 1em 1em 1.5em;
+  /*display: block;*/
   z-index: 1;
   /*border-bottom: 1.5em solid #5B382C;*/
   /*border-bottom: 1.5em solid #332B2A;*/
   /*border-bottom: 1.5em solid #1C110D;*/
-  border-bottom: 1.5em solid #2A1913;
+  /*border-bottom: 1.5em solid #2A1913;*/
+  -webkit-box-shadow: 0 -1px 15px 1px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0 -1px 15px 1px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 -1px 15px 1px rgba(0, 0, 0, 0.25);
 }
 
 /* Franq Section background */
@@ -755,81 +798,105 @@
   position: absolute;
   right: 0;
   top: 0;
-  filter: alpha(Opacity=50);
-  opacity: 0.5;
+  filter: alpha(Opacity=75);
+  opacity: .75;
   width: 100%;
   z-index: -1;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.FranqSection-background::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #301c09;
+  opacity: .65;
+  z-index: 1;
 }
 
 /* Franq Section Inner */
 
 .FranqSection-inner {
+  -webkit-align-items: center;
+  align-items: center;
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
-  -webkit-flex-flow: column;
-  flex-flow: column;
-  -webkit-align-items: flex-end;
-  align-items: flex-end;
-  -webkit-justify-content: flex-end;
-  justify-content: flex-end;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  padding: 1em 1em 1.5em;
   position: relative;
   width: 100%;
   height: 100%;
-  max-width: 70em;
+  /*max-width: 70em;*/
 }
 
 .FranqSection--intro .FranqSection-background {
   /*background-color: red;*/
-  background: url("../img/bg-franq.jpg") no-repeat center center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  /*background: url(../img/bg-franq.jpg) no-repeat center center;*/
+  /*-webkit-background-size: cover;*/
+  /*-moz-background-size: cover;*/
+  /*-o-background-size: cover;*/
+  /*background-size: cover;*/
+  background-image: url("../img/bg-franq.jpg");
 }
 
 .FranqSection--espaco-pub .FranqSection-background {
   /*background-color: blue;*/
-  background: url("../img/bg-franq2.jpg") no-repeat center center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  /*background: url(../img/bg-franq2.jpg) no-repeat center center;*/
+  /*-webkit-background-size: cover;*/
+  /*-moz-background-size: cover;*/
+  /*-o-background-size: cover;*/
+  /*background-size: cover;*/
+  background-image: url("../img/bg-franq2.jpg");
 }
 
 .FranqSection--marca .FranqSection-background {
   /*background-color: green;*/
-  background: url("../img/bg-estilo.jpg") no-repeat center center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  /*background: url(../img/bg-estilo.jpg) no-repeat center center;*/
+  /*-webkit-background-size: cover;*/
+  /*-moz-background-size: cover;*/
+  /*-o-background-size: cover;*/
+  /*background-size: cover;*/
+  background-image: url("../img/bg-estilo.jpg");
 }
 
 .FranqSection--evento .FranqSection-background {
   /*background-color: yellow;*/
-  background: url("../img/hero-bar.jpeg") no-repeat center center;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  /*background: url(../img/hero-bar.jpeg) no-repeat center center;*/
+  /*-webkit-background-size: cover;*/
+  /*-moz-background-size: cover;*/
+  /*-o-background-size: cover;*/
+  /*background-size: cover;*/
+  background-image: url("../img/hero-bar.jpeg");
 }
 
-@media (min-width: 768px) {
+@media (min-width: 48em) {
   .FranqSection-inner {
-    padding: 1.5em 1em 0;
+    padding: 0 1.5em;
+  }
+
+  .FranqSection-background {
+    background-attachment: fixed;
   }
 }
 
-@media (max-height: 320px) {
+@media (max-height: 20em) {
   .FranqSection.FranqSection--intro {
-    padding-top: 65%;
+    /*padding-top: 65%;*/
   }
 
   .FranqSection--intro .FranqSectionBox {
-    margin-bottom: 0;
+    /*margin-bottom: 0;*/
   }
 }
 /* Guider */
@@ -1142,8 +1209,8 @@ html {
   /*background-size: cover;*/
   min-height: 100%;
   bottom: 0;
-  filter: alpha(Opacity=40);
   left: 0;
+  /*filter: alpha(Opacity=40);*/
   /*opacity: 0.4;*/
   position: fixed;
   width: 100%;
@@ -1165,7 +1232,8 @@ html {
   top: 0;
   left: 0;
   background-color: #301c09;
-  opacity: 0.85;
+  filter: alpha(Opacity=75);
+  opacity: 0.75;
 }
 
 .Intro-inner {
@@ -4294,6 +4362,11 @@ html {
   margin: 1em auto 1.5em;
 }
 
+.LeadingTitle--simple .LeadingTitle-orn.LeadingTitle-orn--bot.icon-orn-bot::before {
+  width: 20em;
+  font-size: .725em;
+}
+
 .LeadingTitle-text {
   font-family: 'High Noon', serif;
   font-weight: normal;
@@ -4311,6 +4384,10 @@ html {
 .LeadingTitle--main .LeadingTitle-text {
   letter-spacing: 3px;
   font-size: 5em;
+}
+
+.LeadingTitle.LeadingTitle--simple .LeadingTitle-orn {
+  display: block;
 }
 
 @media (min-width: 48em) {
@@ -4353,6 +4430,11 @@ html {
   .LeadingTitle {
     -webkit-flex-direction: row;
     flex-direction: row;
+  }
+
+  .LeadingTitle.LeadingTitle--simple {
+    -webkit-flex-direction: column;
+    flex-direction: column;
   }
 
   .LeadingTitle-orn {
@@ -4418,6 +4500,11 @@ html {
 
 .logo-pub {
   fill: white;
+}
+
+.logo--shadow {
+  -webkit-filter: drop-shadow( 1px 1px 5px rgba(0,0,0,.5));
+  filter: drop-shadow( 1px 1px 5px rgba(0,0,0,.5));
 }
 
 .logo-pub-index {
@@ -4524,7 +4611,7 @@ html {
 
 .Franq .Navbar {
   position: absolute;
-  top: 0;
+  top: 1em;
   left: 0;
   height: 100%;
   max-height: 10em;
@@ -4543,13 +4630,6 @@ html {
   top: 0;
   width: 100%;
   z-index: -1;
-}
-
-.Franq .Navbar-background {
-  background: -moz-linear-gradient(top, rgba(0,0,0,0.7) 15%, rgba(255,255,255,0) 100%);
-  background: -webkit-linear-gradient(top, rgba(0,0,0,0.7) 15%, rgba(255,255,255,0) 100%);
-  background: linear-gradient(to bottom, rgba(0,0,0,0.7) 15%, rgba(255,255,255,0) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e6000000', endColorstr='#00ffffff', GradientType=0);
 }
 
 .Navbar-inner {
@@ -4590,11 +4670,8 @@ html {
     /*padding: 1.5em 1em 0;*/
   }
 
-  .Franq .Navbar-background {
-    background: -moz-linear-gradient(top, rgba(0,0,0,0.7) 45%, rgba(255,255,255,0) 100%);
-    background: -webkit-linear-gradient(top, rgba(0,0,0,0.7) 45%, rgba(255,255,255,0) 100%);
-    background: linear-gradient(to bottom, rgba(0,0,0,0.7) 45%, rgba(255,255,255,0) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e6000000', endColorstr='#00ffffff', GradientType=0);
+  .Franq .Navbar {
+    top: 2em;
   }
 }
 
