@@ -1,0 +1,28 @@
+
+/* Franchise Header Contact */
+
+.FranchiseHeaderContact {
+	/*margin: 1.5em 0;*/
+	padding: .5em 0;
+	text-align: right;
+}
+
+.FranchiseHeaderContact-inner {
+	margin: 0 auto;
+	padding-right: 2em;
+}
+
+.FranchiseHeaderContact-item:after {
+	content: '\2022';
+	margin: 0 .5em;
+}
+
+.FranchiseHeaderContact-item:last-of-type:after {
+	content: '';
+	padding-left: 0;
+}
+
+.FranchiseHeaderContact-item {
+	/*display: inline-block;*/
+	/*margin: 0 .25em;*/
+}

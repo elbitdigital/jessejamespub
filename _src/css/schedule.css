@@ -1,0 +1,31 @@
+
+/* Schedule section */
+
+.Schedule {
+	padding: 5em 0 3.5em;
+	text-align: center;
+}
+
+.Schedule-list {
+	/*padding-top: 1em;*/
+	/*background-image: url("https://images.designtrends.com/wp-content/uploads/2015/11/06084012/Brown-Vintage-Pattern-Background.jpg");*/
+	/*background-repeat: repeat-x;*/
+}
+
+@media (min-width: 48em) {
+
+	.Schedule-list {
+		-webkit-align-items: center;
+		align-items: center;
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-justify-content: center;
+		justify-content: center;
+		-webkit-flex-flow: row wrap;
+		flex-flow: row wrap;
+	}
+
+}

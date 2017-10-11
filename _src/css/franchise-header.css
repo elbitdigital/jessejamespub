@@ -1,0 +1,21 @@
+
+/* Franchise Header */
+
+.FranchiseHeader {
+	/*-webkit-align-items: center;*/
+	/*align-items: center;*/
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-justify-content: space-between;
+	justify-content: space-between;
+	min-height: 150px;
+	/*max-width: 75em;*/
+	margin: 0 auto;
+	padding-top: 2em;
+	/*background-color: blue;*/
+	/*-webkit-flex-direction: column;*/
+	/*flex-direction: column;*/
+}

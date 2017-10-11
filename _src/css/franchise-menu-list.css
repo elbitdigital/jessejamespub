@@ -1,0 +1,30 @@
+
+/* Franchise Menu List */
+
+.FranchiseMenuList {
+	/*text-align: center;*/
+	width: 100%;
+	padding: 1em 3em .75em;
+
+	background-color: transparent;
+	background-image: url('../../dist/img/svg/btn-escuro.svg');
+	background-size: 100% 100%;
+	/*background-color: red;*/
+}
+
+.FranchiseMenuList-item {
+	display: inline-block;
+	/*margin: 0 .25em;*/
+
+	/*display: block;*/
+	font-size: 1em;
+	font-weight: 900;
+	padding: 0 .5em;
+	position: relative;
+	text-transform: uppercase;
+	margin: 0 0 3px 0;
+}
+
+.FranchiseMenuList-item:last-of-type {
+	padding-right: 0;
+}

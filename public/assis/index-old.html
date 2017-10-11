@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<meta charset="UTF-8">
+<title>Assis | Jesse James Pub</title>
+<meta name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+<link rel="icon" type="image/png" href="../icon.png"/>
+
+<meta name="description" content="O melhor pub sertanejo do interior paulista">
+<meta name="image" content="https://jessejamespub.com.br/dist/img/meta.png">
+
+<meta itemprop="name" content="Jesse James Pub">
+<meta itemprop="description" content="O melhor pub sertanejo do interior paulista">
+<meta itemprop="image" content="https://jessejamespub.com.br/dist/img/meta.png">
+
+<meta name="og:title" content="Jesse James Pub">
+<meta name="og:description" content="O melhor pub sertanejo do interior paulista">
+<meta name="og:image" content="https://jessejamespub.com.br/dist/img/meta.png">
+<meta name="og:url" content="https://jessejamespub.com.br">
+<meta name="og:site_name" content="Jesse James Pub">
+<meta name="og:locale" content="pt_BR">
+<meta name="fb:app_id" content="1586666258259861">
+<meta name="og:type" content="website">
+
+<script src="../dist/js/villa.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Rye|Noto+Serif|Roboto+Condensed:400,700" rel="stylesheet">
+<link rel="stylesheet" href="../dist/css/villa.min.css"/>
+<link rel="stylesheet" href="../dist/css/jessejamespub.css"/>
+<!--[if lt IE 9]>
+<link rel="stylesheet" type="text/css" href="../dist/css/material-colors.css"/>
+<link rel="stylesheet" type="text/css" href="../dist/css/villa-cross.min.css"/>
+<script src="../dist/js/html5shiv.js"></script>
+<script src="../dist/js/html5shiv-printshiv.js"></script>
+<script src="../dist/js/classList.min.js"></script>
+<![endif]-->
+
+<style>
+
+	body {
+		/* https://i.ebayimg.com/images/g/rHYAAOSwvg9XZBBO/s-l300.jpg */
+		/*background-image: url("https://images.designtrends.com/wp-content/uploads/2015/11/06084012/Brown-Vintage-Pattern-Background.jpg");*/
+		/*background-repeat: repeat;*/
+	}
+
+	.Schedule-list {
+		/*padding-top: 1em;*/
+		/*background-image: url("https://images.designtrends.com/wp-content/uploads/2015/11/06084012/Brown-Vintage-Pattern-Background.jpg");*/
+		/*background-repeat: repeat-x;*/
+	}
+
+	@media (min-width: 48em) {
+
+		.Schedule-list {
+			-webkit-align-items: center;
+			align-items: center;
+			display: -webkit-box;
+			display: -moz-box;
+			display: -ms-flexbox;
+			display: -webkit-flex;
+			display: flex;
+			-webkit-justify-content: center;
+			justify-content: center;
+			-webkit-flex-flow: row wrap;
+			flex-flow: row wrap;
+		}
+
+	}
+
+</style>
+
+<style>
+
+	.Event {
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-flex-flow: column;
+		flex-flow: column;
+		margin-bottom: 1em;
+		padding: 0 1em;
+	}
+
+	/* content */
+	.EventContent {
+		background-color: rgba(0, 0, 0, 1);
+		-webkit-align-items: center;
+		align-items: center;
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-flex-flow: row;
+		flex-flow: row;
+		padding: 1em 2pt;
+		width: 100%;
+	}
+
+	/* space */
+	.EventContent-space {
+		border-right: solid 2px #ffffff;
+		-webkit-align-items: center;
+		align-items: center;
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		height: 3rem;
+		flex: 1;
+		-webkit-justify-content: center;
+		justify-content: center;
+	}
+
+	.EventContent-space:last-of-type {
+		border-right: 0;
+	}
+
+	/* space span */
+	.EventContent-space > span {
+		color: #ffffff;
+		-webkit-align-items: center;
+		align-items: center;
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-justify-content: center;
+		justify-content: center;
+		margin-bottom: 0;
+		padding: 0 .5rem;
+		text-transform: uppercase;
+		text-align: center;
+		width: 100%;
+	}
+
+	/* span */
+	.EventContent-date {
+		-webkit-align-items: center;
+		align-items: center;
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-flex-flow: column;
+		flex-flow: column;
+		flex: 3;
+		-webkit-justify-content: center;
+		justify-content: center;
+	}
+
+	.EventContent-date span.monthDay {
+		font-size: .75em;
+		font-weight: 400;
+	}
+
+	.EventContent-date span.weekDay {
+		color: #b388ff;
+		font-size: 1.125em;
+		font-weight: 900;
+	}
+
+	/* title */
+	.EventContent-title {
+		flex: 6;
+	}
+
+	.EventContent-title span {
+		font-size: 1em;
+		font-weight: 900;
+	}
+
+	/* link list */
+	.EventContent-linkList {
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		flex: 4;
+	}
+
+	.EventContent-linkList a {
+		-webkit-align-items: center;
+		align-items: center;
+		border: solid 3px #ffffff;
+		border-radius: 6px;
+		color: #ffffff;
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		font-weight: 900;
+		padding: .375em;
+		-webkit-transition: all .4s;
+		-moz-transition: all .4s;
+		-ms-transition: all .4s;
+		-o-transition: all .4s;
+		transition: all .4s;
+		margin-right: .375rem;
+	}
+
+	.EventContent-linkList a:hover {
+		color: #2962ff;
+		background-color: #ffffff;
+	}
+
+	.EventContent-linkList a:last-of-type {
+		margin-right: 0;
+	}
+
+	.EventContent-linkList .eventShowMoreButton {
+		border-radius: 50%;
+		border-color: transparent;
+		padding: 3pt 2pt;
+	}
+
+	.Event-headerImage {
+		-webkit-align-items: center;
+		align-items: center;
+		background-color: #212121;
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		height: calc(100vw - 2em);
+		-webkit-justify-content: center;
+		justify-content: center;
+		width: 100%;
+	}
+
+	@media (min-width: 48em) {
+
+		.Event {
+			width: 350px;
+			/*height: 550px;*/
+		}
+
+		.Event-headerImage {
+			height: 300px;
+		}
+
+	}
+
+</style>
+
+<style>
+
+	pre {
+		max-width: 1000px;
+		margin: 0 auto;
+		word-wrap: break-word;
+	}
+
+	.Gallery-list {
+		-webkit-align-items: center;
+		align-items: center;
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-justify-content: center;
+		justify-content: center;
+		-webkit-flex-flow: row wrap;
+		flex-flow: row wrap;
+		margin: 0 auto;
+	}
+
+	@media (min-width: 48em) {
+
+		.Gallery-list {
+			width: 90%;
+		}
+
+	}
+
+	.Album {
+		height: auto;
+		/*margin: .5em;*/
+		max-width: 150px;
+		/*min-height: 200px;*/
+		padding: .5em;
+		position: relative;
+		text-align: center;
+		width: 175px;
+	}
+
+	@media (min-width: 48em) {
+
+		.Album {
+			height: 210px;
+			margin: .75em;
+			max-width: 175px;
+			width: 175px;
+		}
+
+	}
+
+	.AlbumCover {
+		background-color: #EEEEEE;
+		color: #212121;
+		border: 2px solid #0277bd;
+		height: 100%;
+		/*padding: 1.5em 1em;*/
+		position: relative;
+		width: 100%;
+
+		-moz-user-select: none;
+		-ms-user-select: none;
+		-khtml-user-select: none;
+		-webkit-user-select: none;
+		-webkit-touch-callout: none;
+	}
+
+	.AlbumCover.is-disabled {
+		background-color: #E0E0E0;
+		border-color: #bdbdbd;
+		color: #9E9E9E;
+	}
+
+	.AlbumCover:hover {
+		cursor: pointer;
+	}
+
+	.AlbumBody {
+		-webkit-align-items: center;
+		align-items: center;
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-justify-content: space-between;
+		justify-content: space-between;
+		-webkit-flex-flow: column;
+		flex-flow: column;
+		padding: 1.5em 1em; /* user should click on album body to toggle disabled */
+
+		position: relative;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+
+	.Album-link {
+		background-color: #0277bd;
+		border-radius: .25em;
+		color: #fff;
+		font-size: .875em;
+		height: 1.5em;
+		line-height: 1.5em;
+		position: absolute;
+		right: 0;
+		top: 0;
+		text-align: center;
+		width: 1.5em;
+		z-index: 5;
+	}
+
+	/*.AlbumCover.is-disabled .Album-link {*/
+	/*background-color: #bdbdbd;*/
+	/*}*/
+
+	.Album-image {
+		margin-bottom: .5em;
+	}
+
+	.Album-caption {
+		font-size: .875em;
+		font-weight: 800;
+		text-transform: uppercase;
+	}
+
+</style>
+
+<style>
+
+	.text-black {
+		color: #111;
+	}
+
+	.text-white {
+		color: #fafafa;
+	}
+
+	/*.teste {*/
+	/*text-align: center;*/
+	/*margin: 0 auto;*/
+	/*!*padding: 2em 0;*!*/
+	/*}*/
+
+	.title {
+		font-size: 3.75em;
+		margin: .25em 0;
+		font-weight: normal;
+		text-align: center;
+	}
+
+</style>
+
+<style>
+
+	.Specials {
+		padding: 3em 0 0;
+		text-align: center;
+	}
+
+	.Tile {
+		display: flex;
+		flex-wrap: wrap;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		/*height: 80vh;*/
+		min-height: 35em;
+	}
+
+	.TileHalf--right {
+		text-align: right;
+	}
+
+	.TileHalf {
+		padding: 2em;
+		/*flex: 1;*/
+		flex: 0 0 50%;
+		position: relative;
+	}
+
+	.TileHalf--info {
+		align-self: center;
+	}
+
+	.TileHalf--background {
+		overflow: hidden;
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
+		box-shadow: -25px 0 25px -25px black inset, 25px 0 25px -25px black inset;
+	}
+
+	.TileHalf--background-combday {
+		background: url(../dist/img/bg2.jpg) no-repeat center center;
+	}
+
+	.TileHalf--background-despedida {
+		background: url(../dist/img/bg3.jpg) no-repeat center center;
+	}
+
+	.TileHalf--background-misc {
+		background: url(../dist/img/bg-franq.jpg) no-repeat center center;
+	}
+
+	.TileHalf-title {
+		font-weight: normal;
+		font-size: 3.5em;
+		display: inline-block;
+		padding: 0;
+		/*margin-bottom: .75em;*/
+	}
+
+	.TileHalf-title span {
+		vertical-align: 25%;
+		margin: 0;
+		font-size: .5em;
+	}
+
+	.TileHalf-subtitle {
+		font-size: 1.5em;
+		margin: .5em 0;
+	}
+
+	.TileHalf-text {
+		font-size: 1.25em;
+	}
+
+	.TileHalf-button {
+		margin: 1.5em 0;
+	}
+
+	.TileHalf-mask {
+		width: 100%;
+		height: 100%;
+		/*background-color: white;*/
+		position: absolute;
+		top: 0;
+		right: 0;
+		opacity: .4;
+	}
+
+</style>
+
+<style>
+
+	.Schedule,
+	.Booking,
+	.Gallery {
+		padding: 3em 0 2.5em;
+		text-align: center;
+	}
+
+	.Booking-subtitle {
+		font-size: 1.25em;
+		margin: .5em;
+	}
+
+	.Booking-button {
+		margin: 2em;
+	}
+
+</style>
+
+<style>
+
+	.PlaceholderExternal {
+		border-radius: 2px;
+		background-color: rgba(0, 0, 0, .2);
+		width: 600px;
+		margin: 1em 0;
+		padding: 1em 1em;
+	}
+
+</style>
+
+<style>
+
+	.loader {
+		height: 5px;
+		width: 100%;
+		position: relative;
+		overflow: hidden;
+		background-color: #ddd;
+	}
+
+	.loader:before {
+		display: block;
+		position: absolute;
+		content: "";
+		left: -200px;
+		width: 1px;
+		height: 5px;
+		background-color: #6e3118;
+		animation: loading 2s linear infinite;
+	}
+
+	@keyframes loading {
+		from {
+			left: -200px;
+			width: 10%;
+		}
+		30% {
+			width: 20%;
+		}
+		50% {
+			width: 30%;
+		}
+		70% {
+			width: 70%;
+		}
+		80% {
+			left: 50%;
+			width: 100%;
+		}
+		95% {
+			left: 120%;
+		}
+		to {
+			left: 100%;
+		}
+	}
+
+</style>
+
+<style>
+
+	.HighlightedAlbum {
+		width: 20em;
+		height: 20em;
+		margin: .25em;
+		/*border: 2px solid #442a0d; !* marrom couro darker *!*/
+		border: 1px solid #442a0d; /* marrom couro darker */
+		position: relative;
+
+		-webkit-align-items: center;
+		align-items: center;
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-justify-content: center;
+		justify-content: center;
+	}
+
+	.HighlightedAlbum--more .HighlightedAlbumContent-date {
+		background-color: rgba(0,0,0,.9);
+	}
+
+	.HighlightedAlbumContent-date {
+		display: inline-block;
+		font-size: 1.5em;
+		padding: .25em;
+		min-width: 5em;
+		background-color: rgba(0,0,0,.5);
+		border: 2px solid #442a0d; /* marrom couro darker */
+		-webkit-transition: all .3s ease;
+		-moz-transition: all .3s ease;
+		-ms-transition: all .3s ease;
+		-o-transition: all .3s ease;
+		transition: all .3s ease;
+	}
+
+	.HighlightedAlbum:hover .HighlightedAlbumContent-date {
+		background-color: rgba(0,0,0,.7);
+		border-color: #301c09; /* marrom couro darkest */
+	}
+
+	.HighlightedAlbumContent-title {
+		font-size: 1.25em;
+		text-transform: uppercase;
+		margin: .5em;
+	}
+
+	.HighlightedAlbum {
+		overflow: hidden;
+	}
+
+	.HighlightedAlbum-background {
+		width: 100%;
+		height: 100%;
+		background-color: black; /* fallback color */
+		background-repeat: no-repeat;
+		background-position: center center;
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
+		position: absolute;
+		top: 0;
+		right: 0;
+		/*opacity: .4;*/
+		z-index: 1;
+		-webkit-transition: transform .5s ease;
+		-moz-transition: transform .5s ease;
+		-ms-transition: transform .5s ease;
+		-o-transition: transform .5s ease;
+		transition: transform .5s ease;
+	}
+
+	.HighlightedAlbum:hover .HighlightedAlbum-background {
+		transform: scale(1.025);
+	}
+
+	.HighlightedAlbum-overlay {
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		right: 0;
+		opacity: .4;
+		z-index: 1;
+		-webkit-transition: all .3s ease;
+		-moz-transition: all .3s ease;
+		-ms-transition: all .3s ease;
+		-o-transition: all .3s ease;
+		transition: all .3s ease;
+	}
+
+	.HighlightedAlbum:hover .HighlightedAlbum-overlay {
+		opacity: .3;
+	}
+
+	.HighlightedAlbum--more .HighlightedAlbum-overlay {
+		opacity: .7;
+	}
+
+	.HighlightedAlbum--more:hover .HighlightedAlbum-overlay {
+		opacity: .8;
+	}
+
+	.HighlightedAlbumContent {
+		color: #fafafa;
+		font-family: 'Roboto Condensed', 'Roboto', sans-serif;
+		z-index: 2;
+	}
+
+</style>
+
+<body class="roboto marrom-poeira--lighter">
+
+<div class="Header">
+
+	<div class="HeaderUpper">
+
+		<div class="HeaderUpper-background marrom-couro--darker"></div>
+
+		<header class="HeaderUpper-inner container">
+
+			<div class="LogoFranchise LogoFranchise--compact">
+
+				<img class="LogoFranchise-img" src="../dist/img/logo-assis-branco.png"/>
+
+			</div>
+
+			<div class="Connections">
+
+				<div class="ConnectionTraditional">
+
+					<p class="ConnectionTraditional-email">
+						<span class="icon-mail-alt"></span> assis@jessejamespub.com.br
+					</p>
+
+					<p class="ConnectionTraditional-phone">
+						<span class="icon-phone"></span> 18 99783 2412
+					</p>
+
+				</div>
+
+				<div class="LogoFranchise LogoFranchise--full">
+
+					<img class="LogoFranchise-img" src="../dist/img/logo-assis-branco.png"/>
+
+				</div>
+
+				<div class="ConnectionSocial">
+
+					<a href="mailto:assis@jessejamespub.com.br"
+					   class="ConnectionSocial-icon ConnectionSocial-icon--mail">
+						<span class="icon-mail-alt"></span>
+					</a>
+
+					<a href="https://facebook.com/jessejamespubassis"
+					   class="ConnectionSocial-icon ConnectionSocial-icon--facebook">
+						<span class="icon-facebook-official"></span>
+					</a>
+
+					<a href="https://instagram.com/jessejamespubassis"
+					   class="ConnectionSocial-icon ConnectionSocial-icon--instagram">
+						<span class="icon-instagram"></span>
+					</a>
+
+				</div>
+
+			</div>
+
+		</header>
+
+	</div>
+
+	<div class="HeaderLower roboto-condensed-c">
+
+		<div class="HeaderLower-background marrom-couro--lighter"></div>
+
+		<nav class="HeaderLower-inner container">
+
+			<ul class="FranchiseNavList">
+
+				<li class="FranchiseNavList-item">
+					<a href="#">Agenda</a>
+				</li>
+
+				<li class="FranchiseNavList-item">
+					<a href="#">Galeria</a>
+				</li>
+
+				<li class="FranchiseNavList-item">
+					<a href="#">Eventos</a>
+				</li>
+
+				<li class="FranchiseNavList-item">
+					<a href="#">Reservas</a>
+				</li>
+
+				<li class="FranchiseNavList-item">
+					<a href="#">A casa</a>
+				</li>
+
+				<li class="FranchiseNavList-item">
+					<a href="#">Seja promoter</a>
+				</li>
+
+			</ul>
+
+		</nav>
+
+	</div>
+
+</div>
+
+<section class="Schedule">
+
+	<h1 class="title rye f-vermelho-terra--darkest">Agenda da semana</h1>
+	<div id="event-list" class="Schedule-list"></div>
+
+</section>
+
+<section class="Booking marrom-poeira f-marrom-couro--darkest">
+
+	<h1 class="Booking-title rye f-vermelho-terra--darkest">Faça sua reserva</h1>
+	<h2 class="Booking-subtitle noto">Escolha uma mesa e reserve com antecedência!</h2>
+	<a href="#" class="Booking-button Btn Btn--primary">Reservar uma mesa</a>
+
+</section>
+
+<section class="Gallery">
+
+	<!-- TODO: style album cover (limit to last 3 and 4th as link to gallery page -->
+	<h1 class="title rye f-vermelho-terra--darkest">Galeria de fotos</h1>
+	<div id="gallery-list" class="Gallery Gallery-list">
+
+		<div class="PlaceholderExternal">
+			<p>Carregando álbums...</p>
+			<div class="loader"></div>
+		</div>
+
+	</div>
+
+	<a href="galeria" class="Btn Btn--primary" title="Ver todos os álbuns">Ver todos os álbuns</a>
+
+</section>
+
+<section class="Specials">
+
+	<div class="Tile marrom-poeira f-marrom-couro--darkest">
+
+		<div class="TileHalf TileHalf--background TileHalf--background-combday">
+			<div class="TileHalf-mask marrom-couro--darkest"></div>
+		</div>
+
+		<div class="TileHalf TileHalf--info">
+
+			<h1 class="TileHalf-title rye">
+				<span class="icon-star"></span>
+				Combday
+				<span class="icon-star"></span>
+			</h1>
+
+			<h2 class="TileHalf-subtitle noto">O dia mais festejado!</h2>
+
+			<p class="TileHalf-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad eum exercitationem
+				itaque laborum minus
+				perspiciatis quidem quos sapiente sit vel. At eligendi harum quaerat sed voluptates. Ea inventore
+				molestiae repudiandae!</p>
+
+		</div>
+
+	</div>
+
+	<div class="Tile marrom-poeira f-marrom-couro--darkest">
+
+		<div class="TileHalf TileHalf--info">
+
+			<h1 class="TileHalf-title rye">
+				<span class="icon-star"></span>
+				Despedida de Solteiro
+				<span class="icon-star"></span>
+			</h1>
+
+			<h2 class="TileHalf-subtitle noto">O último adeus!</h2>
+
+			<p class="TileHalf-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad eum exercitationem
+				itaque laborum minus
+				perspiciatis quidem quos sapiente sit vel. At eligendi harum quaerat sed voluptates. Ea inventore
+				molestiae repudiandae!</p>
+
+		</div>
+
+		<div class="TileHalf TileHalf--background TileHalf--background-despedida">
+			<div class="TileHalf-mask marrom-couro--darkest"></div>
+		</div>
+
+	</div>
+
+	<div class="Tile marrom-poeira f-marrom-couro--darkest">
+
+		<div class="TileHalf TileHalf--background TileHalf--background-misc">
+			<div class="TileHalf-mask marrom-couro--darkest"></div>
+		</div>
+
+		<div class="TileHalf TileHalf--info">
+
+			<h1 class="TileHalf-title rye">
+				<span class="icon-star"></span>
+				UFS
+				<span class="icon-star"></span>
+			</h1>
+
+			<h2 class="TileHalf-subtitle noto">O combate sertanejo!</h2>
+
+			<p class="TileHalf-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad eum exercitationem
+				itaque laborum minus
+				perspiciatis quidem quos sapiente sit vel. At eligendi harum quaerat sed voluptates. Ea inventore
+				molestiae repudiandae!</p>
+
+			<a href="#" class="TileHalf-button Btn Btn--primary">Ir para o site</a>
+
+		</div>
+
+	</div>
+
+</section>
+
+<style>
+
+	.FranchiseFooter {
+		width: 100%;
+		height: auto;
+		position: relative;
+	}
+
+	/* FranchiseFooter background */
+
+	.FranchiseFooter-background {
+		height: 100%;
+		position: absolute;
+		right: 0;
+		top: 0;
+		width: 100%;
+	}
+
+	/* FranchiseFooter inner */
+
+	.FranchiseFooter-inner {
+		position: relative;
+		padding: 1.5em 1em;
+		text-align: center;
+	}
+
+	.FranchiseInfo {
+		margin-bottom: 1em;
+		text-align: left;
+	}
+
+	.FranchiseInfo img {
+		max-width: 2em;
+		height: auto;
+	}
+
+	.FranchiseInfo-title {
+		font-family: 'Noto Serif', serif;
+		font-size: 1em;
+		margin: .75em 0 .25em;
+	}
+
+	@media(min-width: 48em) {
+
+		.FranchiseFooter-inner {
+			-webkit-align-items: center;
+			align-items: center;
+			display: -webkit-box;
+			display: -moz-box;
+			display: -ms-flexbox;
+			display: -webkit-flex;
+			display: flex;
+			-webkit-justify-content: space-between;
+			justify-content: space-between;
+
+			/*-webkit-flex-flow: row-reverse;*/
+			/*flex-flow: row-reverse;*/
+		}
+
+		.FranchiseInfo {
+			flex: 0 70%;
+			display: -webkit-box;
+			display: -moz-box;
+			display: -ms-flexbox;
+			display: -webkit-flex;
+			display: flex;
+		}
+
+		.FranchiseContact {
+			/*text-align: center;*/
+			flex: 0 30%;
+		}
+
+	}
+
+	@media(min-width: 60em) {
+
+		.FranchiseInfo {
+			flex: 0 60%;
+		}
+
+		.FranchiseContact {
+			flex: 0 40%;
+		}
+
+	}
+
+
+</style>
+
+<footer class="FranchiseFooter">
+
+	<div class="FranchiseFooter-background marrom-couro--darker"></div>
+
+	<div class="FranchiseFooter-inner container">
+
+		<div class="FranchiseInfo">
+
+			<div style="margin: 0 2em;">
+
+				<h3 class="FranchiseInfo-title">Telefone:</h3>
+				<p>18 99783 2412</p>
+
+				<h3 class="FranchiseInfo-title">Endereço:</h3>
+				<p>Avenida Rui Barbosa, 1400</p>
+				<p>Centro - Assis - SP</p>
+
+				<h3 class="FranchiseInfo-title">Email:</h3>
+				<p>assis@jessejamespub.com.br</p>
+
+			</div>
+
+			<div>
+
+				<h3 class="FranchiseInfo-title">Horário de funcionamento:</h3>
+				<p>Quinta, Sexta e Sábado: das 21h às 04h</p>
+
+				<h3 class="FranchiseInfo-title">Cartões:</h3>
+				<div class="AcceptedCards">
+					<img src="../dist/img/visa-48px.png" alt="">
+					<img src="../dist/img/mastercard-48px.png" alt="">
+					<img src="../dist/img/amex-48px.png" alt="">
+					<img src="../dist/img/elo-48px.png" alt="">
+				</div>
+
+			</div>
+
+		</div>
+
+		<div class="FranchiseContact">
+
+			<div class="LogoFranchise LogoFranchise--full LogoFranchise--footer">
+
+				<img class="LogoFranchise-img" src="../dist/img/logo-assis-branco.png"/>
+
+			</div>
+
+			<a href="https://facebook.com/jessejamespubassis"
+			   class="ConnectionSocial-icon ConnectionSocial-icon--facebook">
+				<span class="icon-facebook-official"></span>
+			</a>
+
+			<a href="https://instagram.com/jessejamespubassis"
+			   class="ConnectionSocial-icon ConnectionSocial-icon--instagram">
+				<span class="icon-instagram"></span>
+			</a>
+
+		</div>
+
+	</div>
+
+</footer>
+
+<script>
+
+	window.addEventListener('load', function () {
+
+		galleryInit();
+
+	});
+
+</script>
+
+<script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
+
+<script>
+
+	var config = {
+		apiKey: "AIzaSyAMTCtuJ2DyPiBx5qBHeDg_OU1KW4UzURY",
+		authDomain: "jessejamespub-com-br.firebaseapp.com",
+		databaseURL: "https://jessejamespub-com-br.firebaseio.com",
+		projectId: "jessejamespub-com-br",
+		storageBucket: "jessejamespub-com-br.appspot.com",
+		messagingSenderId: "118227352953"
+	};
+
+	firebase.initializeApp(config);
+
+	var databaseRef = firebase.database().ref('/');
+	var houseRef = databaseRef.child('assis');
+	var scheduleRef = houseRef.child('schedule');
+	var eventsRef = scheduleRef.child('items');
+
+	var galleryRef = houseRef.child('gallery');
+	var enabledRef = galleryRef.child('enabledAlbums');
+	var disabledRef = galleryRef.child('disabledAlbums');
+
+	var storageRef = firebase.storage().ref();
+	var eventImageStorageRef = storageRef.child('eventImage');
+
+</script>
+
+<script>
+
+	var eventListElement = document.getElementById('event-list');
+
+	eventsRef.limitToFirst(5).on('child_added', function (snap) {
+
+		var eventData = snap.val();
+		var eventReferenceKey = snap.key;
+		var eventRef = eventsRef.child(eventReferenceKey);
+
+		if (eventData.active) {
+
+			// O EVENTO
+			var eventElement = document.createElement('div');
+			eventElement.className = 'Event';
+			eventElement.dataset.eventReferenceKey = eventReferenceKey;
+			eventListElement.appendChild(eventElement);
+
+			// HEADER (IMAGEM)
+			var headerImageElement = document.createElement('div');
+			headerImageElement.className = 'Event-headerImage';
+			eventRef.child('headerImageURL').on('value', function (snap) {
+
+				headerImageElement.style.backgroundImage = 'url("' + snap.val() + '")';
+
+			});
+			eventElement.appendChild(headerImageElement);
+
+			// CONTENT
+			var contentElement = document.createElement('div');
+			contentElement.className = 'EventContent';
+			eventElement.appendChild(contentElement);
+
+			// DATA DO EVENTO
+			var dateElement = document.createElement('div');
+			dateElement.className = 'EventContent-date EventContent-space';
+			contentElement.appendChild(dateElement);
+
+			// DIA DA SEMANA
+			var weekDayElement = document.createElement('span');
+			weekDayElement.className = 'weekDay';
+			eventRef.child('weekDay').on('value', function (snap) {
+
+				weekDayElement.innerText = snap.val();
+
+			});
+			dateElement.appendChild(weekDayElement);
+
+			// DIA DO MÊS
+			var monthDayElement = document.createElement('span');
+			monthDayElement.className = 'monthDay';
+			eventRef.child('date').on('value', function (snap) {
+
+				monthDayElement.innerText = snap.val();
+
+			});
+			dateElement.appendChild(monthDayElement);
+
+			// TITULO DO EVENTO
+			var titleElement = document.createElement('div');
+			titleElement.className = 'EventContent-title EventContent-space';
+			eventRef.child('title').on('value', function (snap) {
+
+				titleElement.innerHTML = '<span>' + snap.val() + '</span>';
+
+			});
+			contentElement.appendChild(titleElement);
+
+			var linkList = document.createElement('div');
+			linkList.className = 'EventContent-linkList EventContent-space';
+			contentElement.appendChild(linkList);
+
+			var facebookLink = document.createElement('a');
+			facebookLink.className = 'facebookLink';
+			facebookLink.innerHTML = '<span class="icon-facebook"></span>';
+			eventRef.child('facebookEventURL').on('value', function (snap) {
+
+				facebookLink.href = snap.val();
+
+			});
+			linkList.appendChild(facebookLink);
+
+			var eventShowMoreButton = document.createElement('a');
+			eventShowMoreButton.className = 'eventShowMoreButton';
+			eventShowMoreButton.innerHTML = '<span class="icon-down-dir"></span>';
+			linkList.appendChild(eventShowMoreButton);
+
+		}
+
+	});
+
+</script>
+
+<script src="../dist/js/axios.min.js"></script>
+
+<script>
+
+	var batch_list = [];
+
+	function galleryInit() {
+
+		enabledRef.orderByKey().limitToLast(3).once('value', function (snapshot) {
+
+			var galleryNode = document.getElementById('gallery-list');
+			galleryNode.innerHTML = '';
+
+			snapshot.forEach(function (child) {
+
+				var album = child.val();
+
+				var highlightedAlbumNode = document.createElement('a');
+				highlightedAlbumNode.href = album.fb_link;
+				highlightedAlbumNode.className = 'HighlightedAlbum';
+				highlightedAlbumNode.title = album.title;
+				highlightedAlbumNode.id = album.fb_id;
+
+				var albumBackgroundNode = document.createElement('div');
+				albumBackgroundNode.className = 'HighlightedAlbum-background';
+//				albumBackgroundNode.style.backgroundImage = 'url(' + album.cover_photo.images[4].source +')';
+
+				var albumOverlayNode = document.createElement('div');
+				albumOverlayNode.className = 'HighlightedAlbum-overlay marrom-couro--darkest';
+
+				var albumContentNode = document.createElement('div');
+				albumContentNode.className = 'HighlightedAlbumContent';
+
+				var albumContentDate = document.createElement('h1');
+				albumContentDate.className = 'HighlightedAlbumContent-date';
+				albumContentDate.textContent = album.date;
+
+				var albumContentTitle = document.createElement('h2');
+				albumContentTitle.className = 'HighlightedAlbumContent-title';
+				albumContentTitle.textContent = album.title;
+
+				albumContentNode.appendChild(albumContentDate);
+				albumContentNode.appendChild(albumContentTitle);
+
+				albumBackgroundNode.appendChild(albumOverlayNode);
+
+				highlightedAlbumNode.appendChild(albumBackgroundNode);
+				highlightedAlbumNode.appendChild(albumContentNode);
+
+//				galleryNode.appendChild(highlightedAlbumNode);
+				galleryNode.insertBefore(highlightedAlbumNode, galleryNode.firstChild);
+
+				batch_list.push({
+					"method": "GET",
+					"relative_url": child.key + "?fields=id,cover_photo.fields(picture, images)"
+				});
+
+			});
+
+			batchRequestAlbums(batch_list);
+
+		});
+
+	}
+
+	function batchRequestAlbums(batch_list) {
+
+		axios.post('https://graph.facebook.com/v2.10/', {
+			access_token: '146544439255115|3_8Ip3wrGqx-BfnrEVVRhJeUpLA',
+			batch: batch_list,
+			include_headers: "false"
+		}).then(function (response) {
+
+			appendBackgroundImages(response.data);
+
+		}).catch(function (err) {
+
+			document.getElementById('gallery-list').innerHTML = '<span style="color: red;">' + err.message + '</span>';
+
+		});
+
+	}
+
+	function appendBackgroundImages(received_covers) {
+
+		for (var i = received_covers.length; i--;) {
+
+			var album = JSON.parse(received_covers[i].body);
+
+			var albumElement = document.getElementById(album.id);
+
+			var albumBackgroundElement = albumElement.querySelector(".HighlightedAlbum-background");
+			albumBackgroundElement.style.backgroundImage = 'url(' + album.cover_photo.images[4].source +')';
+
+		}
+
+	}
+
+</script>
+
+</body>
+
+</html>

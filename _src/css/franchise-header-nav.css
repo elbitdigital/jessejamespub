@@ -1,0 +1,15 @@
+
+/* Franchise Header Nav */
+
+.FranchiseHeaderNav {
+	text-align: right;
+	-webkit-align-items: center;
+	align-items: center;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-justify-content: space-between;
+	justify-content: space-between;
+}

@@ -48,7 +48,7 @@
 }
 
 .FranqSectionBox.FranqSectionBox--header {
-	margin-top: 2em;
+	margin-top: 1em;
 }
 
 .FranqSectionBox--header-logo {
@@ -62,7 +62,7 @@
 .FranqSectionBox--header-logo svg {
 	width: 80%;
 	max-width: 20em;
-	margin-bottom: 1.5em;
+	margin-top: 2em;
 }
 
 @media (min-width: 48em) {

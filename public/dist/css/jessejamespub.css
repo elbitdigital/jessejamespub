@@ -1,3 +1,26 @@
+/* Booking section */
+
+.Booking {
+  padding: 5em 0 3.5em;
+  text-align: center;
+}
+
+.Booking {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-image: url("../../dist/img/bg-paper.jpg");
+}
+
+.Booking-subtitle {
+  font-size: 1.25em;
+  margin: .5em;
+}
+
+.Booking-button {
+  margin: 2em;
+}
 /* Button - administrative/internal pages style */
 
 .Btn {
@@ -89,6 +112,7 @@
 }
 
 .Btn--filled.Btn--error,
+.Btn--filled.Btn--cancel,
 .Btn--filled.Btn--turnoff {
   background-color: #C62828;
   color: #fafafa;
@@ -487,6 +511,499 @@
 .f-marrom-poeira--lightest {
   color: #f2d9a7;
 }
+/* Franchise Event Style */
+
+.Event {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column;
+  flex-flow: column;
+  margin: 1em .5em;
+  /*padding: 0 1em;*/
+  /*border: 2px solid #ebc373;*/
+  border: 2px solid #442a0d;
+  /*box-shadow: 0 0 6px 2px rgba(0, 0, 0, .2);*/
+  box-shadow: 0 0 6px 2px rgba(0, 0, 0, .3);
+  /*padding: 10px;*/
+  /*background-color: white;*/
+  /*background-size: cover;*/
+  /*background-repeat: no-repeat;*/
+  /*background-position: center center;*/
+  /*background-image: url("../../dist/img/bg-paper.jpg");*/
+}
+
+/* content */
+
+.EventContent {
+  /*background-color: rgba(0, 0, 0, 1);*/
+  background-color: #442a0d;
+  -webkit-align-items: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row;
+  flex-flow: row;
+  padding: 1em 2pt;
+  width: 100%;
+}
+
+/* space */
+
+.EventContent-space {
+  border-right: solid 2px #ffffff;
+  -webkit-align-items: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  height: 3rem;
+  flex: 1;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+
+.EventContent-space:last-of-type {
+  border-right: 0;
+}
+
+/* space span */
+
+.EventContent-space > span {
+  color: #ffffff;
+  /*color: #301c09;*/
+  -webkit-align-items: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+  margin-bottom: 0;
+  padding: 0 .5rem;
+  text-transform: uppercase;
+  text-align: center;
+  width: 100%;
+}
+
+/* span */
+
+.EventContent-date {
+  -webkit-align-items: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column;
+  flex-flow: column;
+  flex: 3;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+
+.EventContent-date span.monthDay {
+  font-size: .75em;
+  font-weight: 400;
+}
+
+.EventContent-date span.weekDay {
+  color: #ebc373;
+  /*color: #442a0d;*/
+  font-size: 1.125em;
+  font-weight: 900;
+}
+
+/* title */
+
+.EventContent-title {
+  flex: 6;
+}
+
+.EventContent-title span {
+  font-size: 1em;
+  font-weight: 900;
+}
+
+/* link list */
+
+.EventContent-linkList {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex: 4;
+}
+
+.EventContent-linkList a {
+  -webkit-align-items: center;
+  align-items: center;
+  border: solid 3px #ffffff;
+  border-radius: 6px;
+  color: #ffffff;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  font-weight: 900;
+  padding: .375em;
+  -webkit-transition: all .4s;
+  -moz-transition: all .4s;
+  -ms-transition: all .4s;
+  -o-transition: all .4s;
+  transition: all .4s;
+  margin-right: .375rem;
+}
+
+.EventContent-linkList a:hover {
+  color: #2962ff;
+  background-color: #ffffff;
+}
+
+.EventContent-linkList a:last-of-type {
+  margin-right: 0;
+}
+
+.EventContent-linkList .eventShowMoreButton {
+  border-radius: 50%;
+  border-color: transparent;
+  padding: 3pt 2pt;
+}
+
+.Event-headerImage {
+  -webkit-align-items: center;
+  align-items: center;
+  background-color: #212121;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  height: calc(100vw - 2em);
+  -webkit-justify-content: center;
+  justify-content: center;
+  width: 100%;
+}
+
+@media (min-width: 48em) {
+  .Event {
+    width: 350px;
+    /*height: 550px;*/
+  }
+
+  .Event-headerImage {
+    height: 300px;
+  }
+}
+/* Franchise footer adress */
+
+.FranchiseFooterAddress {
+  text-align: left;
+  width: 100%;
+}
+
+.FranchiseFooterAddress-icon {
+  font-size: 3em;
+}
+
+.FranchiseFooterAddress-text {
+  display: inline-block;
+}
+/* Franchise footer */
+
+.FranchiseFooter {
+  width: 100%;
+  height: auto;
+  position: relative;
+}
+
+/* FranchiseFooter background */
+
+.FranchiseFooter-background {
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+}
+
+/* FranchiseFooter inner */
+
+.FranchiseFooter-inner {
+  position: relative;
+  padding: 1.5em 1em;
+  text-align: center;
+}
+
+.FranchiseInfo {
+  margin-bottom: 1em;
+  text-align: left;
+}
+
+.FranchiseInfo img {
+  max-width: 2em;
+  height: auto;
+}
+
+.FranchiseInfo-title {
+  font-size: 1em;
+  margin: .75em 0 .25em;
+}
+
+@media (min-width: 48em) {
+  .FranchiseFooter-inner {
+    -webkit-align-items: center;
+    align-items: center;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+    /*-webkit-flex-flow: row-reverse;*/
+    /*flex-flow: row-reverse;*/
+  }
+
+  .FranchiseInfo {
+    flex: 0 70%;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+  }
+
+  .FranchiseContact {
+    /*text-align: center;*/
+    flex: 0 30%;
+  }
+}
+
+@media (min-width: 60em) {
+  .FranchiseInfo {
+    flex: 0 60%;
+  }
+
+  .FranchiseContact {
+    flex: 0 40%;
+  }
+}
+/* Franchise Gallery Style */
+
+.FranchiseGallery {
+  padding: 5em 0 3.5em;
+  text-align: center;
+}
+
+.FranchiseGallery-list {
+  -webkit-align-items: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-flex-flow: row wrap;
+  flex-flow: row wrap;
+  margin: 0 auto;
+  padding: 4em 0;
+}
+
+@media (min-width: 48em) {
+  .FranchiseGallery-list {
+    width: 90%;
+  }
+}
+/* Franchise Header Contact */
+
+.FranchiseHeaderContact {
+  /*margin: 1.5em 0;*/
+  padding: .5em 0;
+  text-align: right;
+}
+
+.FranchiseHeaderContact-inner {
+  margin: 0 auto;
+  padding-right: 2em;
+}
+
+.FranchiseHeaderContact-item:after {
+  content: '\2022';
+  margin: 0 .5em;
+}
+
+.FranchiseHeaderContact-item:last-of-type:after {
+  content: '';
+  padding-left: 0;
+}
+
+.FranchiseHeaderContact-item {
+  /*display: inline-block;*/
+  /*margin: 0 .25em;*/
+}
+/* Franchise Header Logo */
+
+.FranchiseHeaderLogo {
+  -ms-flex-item-align: center;
+  align-self: center;
+}
+
+.FranchiseHeaderLogo svg {
+  height: 90px;
+  width: auto;
+}
+/* Franchise Header Nav */
+
+.FranchiseHeaderNav {
+  text-align: right;
+  -webkit-align-items: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+}
+/* Franchise Header */
+
+.FranchiseHeader {
+  /*-webkit-align-items: center;*/
+  /*align-items: center;*/
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  min-height: 150px;
+  /*max-width: 75em;*/
+  margin: 0 auto;
+  padding-top: 2em;
+  /*background-color: blue;*/
+  /*-webkit-flex-direction: column;*/
+  /*flex-direction: column;*/
+}
+/* Franchise hero */
+
+.FranchiseHero {
+  position: relative;
+  min-height: 100%;
+  width: 100%;
+  z-index: 1;
+  -webkit-box-shadow: 0 -1px 15px 1px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0 -1px 15px 1px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 -1px 15px 1px rgba(0, 0, 0, 0.25);
+}
+
+.FranchiseHero-background {
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  filter: alpha(Opacity=75);
+  opacity: .75;
+  width: 100%;
+  z-index: -1;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.FranchiseHero-background::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #4c2f0f;
+  opacity: .5;
+  z-index: 1;
+}
+
+.FranchiseHero-inner {
+  /*-webkit-align-items: center;*/
+  /*align-items: center;*/
+  /*display: -webkit-box;*/
+  /*display: -moz-box;*/
+  /*display: -ms-flexbox;*/
+  /*display: -webkit-flex;*/
+  /*display: flex;*/
+  /*-webkit-justify-content: space-between;*/
+  /*justify-content: space-between;*/
+  /*-webkit-flex-direction: column;*/
+  /*flex-direction: column;*/
+  /*padding: 1em 1em 1.5em;*/
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.FranchiseHero--assis .FranchiseHero-background {
+  /*background-color: red;*/
+  /*background: url(../img/bg-franq.jpg) no-repeat center center;*/
+  /*-webkit-background-size: cover;*/
+  /*-moz-background-size: cover;*/
+  /*-o-background-size: cover;*/
+  /*background-size: cover;*/
+  background-image: url("../../dist/img/hero-assis-crop.jpg");
+}
+/* Franchise main section */
+
+.FranchiseMain {
+  height: 100%;
+  position: relative;
+  z-index: 1;
+}
+/* Franchise Menu List */
+
+.FranchiseMenuList {
+  /*text-align: center;*/
+  width: 100%;
+  padding: 1em 3em .75em;
+  background-color: transparent;
+  background-image: url("../../dist/img/svg/btn-escuro.svg");
+  background-size: 100% 100%;
+  /*background-color: red;*/
+}
+
+.FranchiseMenuList-item {
+  display: inline-block;
+  /*margin: 0 .25em;*/
+  /*display: block;*/
+  font-size: 1em;
+  font-weight: 900;
+  padding: 0 .5em;
+  position: relative;
+  text-transform: uppercase;
+  margin: 0 0 3px 0;
+}
+
+.FranchiseMenuList-item:last-of-type {
+  padding-right: 0;
+}
 /* Franchise nav list */
 
 .FranchiseNavList {
@@ -709,7 +1226,7 @@
 }
 
 .FranqSectionBox.FranqSectionBox--header {
-  margin-top: 2em;
+  margin-top: 1em;
 }
 
 .FranqSectionBox--header-logo {
@@ -723,7 +1240,7 @@
 .FranqSectionBox--header-logo svg {
   width: 80%;
   max-width: 20em;
-  margin-bottom: 1.5em;
+  margin-top: 2em;
 }
 
 @media (min-width: 48em) {
@@ -1126,6 +1643,121 @@ h1.Guider-heading {
 .Header {
   position: relative;
   width: 100%;
+}
+/* Franchise Page Highlighted Albums */
+
+.HighlightedAlbum {
+  width: 20em;
+  height: 20em;
+  margin: .25em;
+  /*border: 2px solid #442a0d; !* marrom couro darker *!*/
+  border: 1px solid #442a0d;
+  /* marrom couro darker */
+  position: relative;
+  -webkit-align-items: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+
+.HighlightedAlbum--more .HighlightedAlbumContent-date {
+  background-color: rgba(0, 0, 0, .9);
+}
+
+.HighlightedAlbumContent-date {
+  display: inline-block;
+  font-size: 1.5em;
+  padding: .25em;
+  min-width: 5em;
+  background-color: rgba(0, 0, 0, .5);
+  border: 2px solid #442a0d;
+  /* marrom couro darker */
+  -webkit-transition: all .3s ease;
+  -moz-transition: all .3s ease;
+  -ms-transition: all .3s ease;
+  -o-transition: all .3s ease;
+  transition: all .3s ease;
+}
+
+.HighlightedAlbum:hover .HighlightedAlbumContent-date {
+  background-color: rgba(0, 0, 0, .7);
+  border-color: #301c09;
+  /* marrom couro darkest */
+}
+
+.HighlightedAlbumContent-title {
+  font-size: 1.25em;
+  text-transform: uppercase;
+  margin: .5em;
+}
+
+.HighlightedAlbum {
+  overflow: hidden;
+}
+
+.HighlightedAlbum-background {
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  /* fallback color */
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  right: 0;
+  /*opacity: .4;*/
+  z-index: 1;
+  -webkit-transition: transform .5s ease;
+  -moz-transition: transform .5s ease;
+  -ms-transition: transform .5s ease;
+  -o-transition: transform .5s ease;
+  transition: transform .5s ease;
+}
+
+.HighlightedAlbum:hover .HighlightedAlbum-background {
+  transform: scale(1.025);
+}
+
+.HighlightedAlbum-overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  opacity: .4;
+  z-index: 1;
+  -webkit-transition: all .3s ease;
+  -moz-transition: all .3s ease;
+  -ms-transition: all .3s ease;
+  -o-transition: all .3s ease;
+  transition: all .3s ease;
+}
+
+.HighlightedAlbum:hover .HighlightedAlbum-overlay {
+  opacity: .3;
+}
+
+.HighlightedAlbum--more .HighlightedAlbum-overlay {
+  opacity: .7;
+}
+
+.HighlightedAlbum--more:hover .HighlightedAlbum-overlay {
+  opacity: .8;
+}
+
+.HighlightedAlbumContent {
+  color: #fafafa;
+  font-family: 'Roboto Condensed', 'Roboto', sans-serif;
+  z-index: 2;
 }
 /* This stylesheet generated by Transfonter (https://transfonter.org) on September 12, 2017 8:11 PM */
 
@@ -4344,6 +4976,7 @@ html {
   flex-direction: column;
   margin: 0;
   padding: 0;
+  text-shadow: 0 0 3px rgba(0,0,0,0.4);
 }
 
 .LeadingTitle-orn {
@@ -4500,6 +5133,7 @@ html {
 
 .logo-pub {
   fill: white;
+  /*fill: #ebc373;*/
 }
 
 .logo--shadow {
@@ -4826,7 +5460,11 @@ html {
   font-size: .9em;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 48em) {
+  .Pub {
+    height: 20em;
+  }
+
   .Pub-inner {
     /*background-color: rgba(255, 255, 255, 0.6);*/
     /*-webkit-flex-flow: column;*/
@@ -4850,6 +5488,34 @@ html {
     font-size: .925em;
   }
 }
+/* Schedule section */
+
+.Schedule {
+  padding: 5em 0 3.5em;
+  text-align: center;
+}
+
+.Schedule-list {
+  /*padding-top: 1em;*/
+  /*background-image: url("https://images.designtrends.com/wp-content/uploads/2015/11/06084012/Brown-Vintage-Pattern-Background.jpg");*/
+  /*background-repeat: repeat-x;*/
+}
+
+@media (min-width: 48em) {
+  .Schedule-list {
+    -webkit-align-items: center;
+    align-items: center;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-flex-flow: row wrap;
+    flex-flow: row wrap;
+  }
+}
 /*!
  * Elbit Jesse James Pub Project v0.0.1 (http://elbit.com.br/)
  * Copyright 2013-2017 Elbit Developers
@@ -4859,6 +5525,11 @@ html {
 html {
   height: 100%;
   width: 100%;
+}
+
+html * {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body,
@@ -4879,38 +5550,38 @@ body {
   height: 100%;
   margin: 0;
   position: relative;
-  webkit-tap-highlight-color: rgba(255, 255, 255, 0.2);
+  /*webkit-tap-highlight-color: rgba(255, 255, 255, 0.2);*/
   width: 100%;
 }
 
-::-moz-selection {
-  background: #fcfcfc;
-  background: rgba(255, 255, 255, 0.2);
-  text-shadow: none;
-}
+/*::-moz-selection {*/
 
-::selection {
-  background: #fcfcfc;
-  background: rgba(255, 255, 255, 0.2);
-  text-shadow: none;
-}
+/*background: #fcfcfc;*/
+
+/*background: rgba(255, 255, 255, 0.2);*/
+
+/*text-shadow: none;*/
+
+/*}*/
+
+/*::selection {*/
+
+/*background: #fcfcfc;*/
+
+/*background: rgba(255, 255, 255, 0.2);*/
+
+/*text-shadow: none;*/
+
+/*}*/
 
 .roboto-slab {
   font-family: 'Robot Slab', serif;
   font-weight: normal;
 }
 
-.josefin {
-  font-family: 'Josefin Sans', serif;
-}
-
-.rye {
-  font-family: 'Rye', serif;
+.high-noon {
+  font-family: 'High Noon', serif;
   font-weight: normal;
-}
-
-.noto {
-  font-family: 'Noto Serif', serif;
 }
 
 .roboto-condensed-c {
@@ -4930,19 +5601,19 @@ img::-moz-selection {
   background: transparent;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 48em) {
   .container {
     width: 750px;
   }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 62em) {
   .container {
     width: 970px;
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 75em) {
   .container {
     width: 1170px;
   }

@@ -1,0 +1,86 @@
+
+/* Franchise footer */
+
+.FranchiseFooter {
+	width: 100%;
+	height: auto;
+	position: relative;
+}
+
+/* FranchiseFooter background */
+
+.FranchiseFooter-background {
+	height: 100%;
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 100%;
+}
+
+/* FranchiseFooter inner */
+
+.FranchiseFooter-inner {
+	position: relative;
+	padding: 1.5em 1em;
+	text-align: center;
+}
+
+.FranchiseInfo {
+	margin-bottom: 1em;
+	text-align: left;
+}
+
+.FranchiseInfo img {
+	max-width: 2em;
+	height: auto;
+}
+
+.FranchiseInfo-title {
+	font-size: 1em;
+	margin: .75em 0 .25em;
+}
+
+@media(min-width: 48em) {
+
+	.FranchiseFooter-inner {
+		-webkit-align-items: center;
+		align-items: center;
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-justify-content: space-between;
+		justify-content: space-between;
+
+		/*-webkit-flex-flow: row-reverse;*/
+		/*flex-flow: row-reverse;*/
+	}
+
+	.FranchiseInfo {
+		flex: 0 70%;
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+	}
+
+	.FranchiseContact {
+		/*text-align: center;*/
+		flex: 0 30%;
+	}
+
+}
+
+@media(min-width: 60em) {
+
+	.FranchiseInfo {
+		flex: 0 60%;
+	}
+
+	.FranchiseContact {
+		flex: 0 40%;
+	}
+
+}

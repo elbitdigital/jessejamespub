@@ -1,0 +1,31 @@
+
+/* Franchise Gallery Style */
+
+.FranchiseGallery {
+	padding: 5em 0 3.5em;
+	text-align: center;
+}
+
+.FranchiseGallery-list {
+	-webkit-align-items: center;
+	align-items: center;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-justify-content: center;
+	justify-content: center;
+	-webkit-flex-flow: row wrap;
+	flex-flow: row wrap;
+	margin: 0 auto;
+	padding: 4em 0;
+}
+
+@media (min-width: 48em) {
+
+	.FranchiseGallery-list {
+		width: 90%;
+	}
+
+}

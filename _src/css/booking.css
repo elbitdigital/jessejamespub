@@ -1,0 +1,24 @@
+
+/* Booking section */
+
+.Booking {
+	padding: 5em 0 3.5em;
+	text-align: center;
+}
+
+.Booking {
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-attachment: fixed;
+	background-image: url("../../dist/img/bg-paper.jpg");
+}
+
+.Booking-subtitle {
+	font-size: 1.25em;
+	margin: .5em;
+}
+
+.Booking-button {
+	margin: 2em;
+}

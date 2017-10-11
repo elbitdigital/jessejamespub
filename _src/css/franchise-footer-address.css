@@ -1,0 +1,15 @@
+
+/* Franchise footer adress */
+
+.FranchiseFooterAddress {
+	text-align: left;
+	width: 100%;
+}
+
+.FranchiseFooterAddress-icon {
+	font-size: 3em;
+}
+
+.FranchiseFooterAddress-text {
+	display: inline-block;
+}

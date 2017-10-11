@@ -90,6 +90,7 @@
 }
 
 .Btn--filled.Btn--error,
+.Btn--filled.Btn--cancel,
 .Btn--filled.Btn--turnoff {
 	background-color: #C62828;
 	color: #fafafa;

@@ -1,0 +1,68 @@
+
+/* Franchise hero */
+
+.FranchiseHero {
+	position: relative;
+	min-height: 100%;
+	width: 100%;
+	z-index: 1;
+	-webkit-box-shadow: 0 -1px 15px 1px rgba(0, 0, 0, 0.25);
+	-moz-box-shadow: 0 -1px 15px 1px rgba(0, 0, 0, 0.25);
+	box-shadow: 0 -1px 15px 1px rgba(0, 0, 0, 0.25);
+}
+
+.FranchiseHero-background {
+	height: 100%;
+	position: absolute;
+	right: 0;
+	top: 0;
+	filter: alpha(Opacity=75);
+	opacity: .75;
+	width: 100%;
+	z-index: -1;
+
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+.FranchiseHero-background::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #4c2f0f;
+	opacity: .5;
+	z-index: 1;
+}
+
+.FranchiseHero-inner {
+	/*-webkit-align-items: center;*/
+	/*align-items: center;*/
+	/*display: -webkit-box;*/
+	/*display: -moz-box;*/
+	/*display: -ms-flexbox;*/
+	/*display: -webkit-flex;*/
+	/*display: flex;*/
+	/*-webkit-justify-content: space-between;*/
+	/*justify-content: space-between;*/
+	/*-webkit-flex-direction: column;*/
+	/*flex-direction: column;*/
+
+	/*padding: 1em 1em 1.5em;*/
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+.FranchiseHero--assis .FranchiseHero-background {
+	/*background-color: red;*/
+	/*background: url(../img/bg-franq.jpg) no-repeat center center;*/
+	/*-webkit-background-size: cover;*/
+	/*-moz-background-size: cover;*/
+	/*-o-background-size: cover;*/
+	/*background-size: cover;*/
+	background-image: url("../../dist/img/hero-assis-crop.jpg");
+}
