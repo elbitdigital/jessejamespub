@@ -1,0 +1,134 @@
+
+/* Tile half */
+
+.Specials {
+	text-align: center;
+	position: relative;
+	min-height: 100%;
+	width: 100%;
+	z-index: 1;
+}
+
+.Tile {
+	width: 100%;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-image: url("../../dist/img/bg-paper.jpg");
+}
+
+.TileHalf {
+	padding: 2em 1.5em;
+}
+
+.TileHalf.TileHalf--background {
+	height: 15em;
+	overflow: hidden;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+	/*box-shadow: -25px 0 35px -20px black inset, 25px 0 35px -20px black inset;*/
+	box-shadow: 0 0 35px 0 black inset;
+}
+
+.TileHalf--background-combday {
+	background-image: url("../../dist/img/bg-combday.jpg");
+}
+
+.TileHalf--background-despedida {
+	background-image: url("../../dist/img/bg-despedida.jpg");
+}
+
+.TileHalf--background-ufs {
+	background-image: url("../../dist/img/bg-ufs.jpg");
+}
+
+.TileHalf--info .LeadingTitle {
+	font-size: 1.25em;
+}
+
+@media (min-width: 48em) {
+
+	.Tile {
+		/*-webkit-flex-wrap: wrap;*/
+		/*flex-wrap: wrap;*/
+		/*list-style: none;*/
+		margin: 0;
+		padding: 0;
+		position: relative;
+		min-height: 100%;
+		width: 100%;
+		z-index: 1;
+	}
+
+	.TileHalf.TileHalf--background {
+		height: auto;
+	}
+
+	.Tile-inner {
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		min-height: 600px;
+		min-height: 100vh;
+		-webkit-align-items: stretch;
+		align-items: stretch;
+	}
+
+	.Tile-right {
+		-webkit-flex-direction: row-reverse;
+		flex-direction: row-reverse;
+	}
+
+	.TileHalf {
+		padding: 2em;
+		/*flex: 1;*/
+		flex: 0 0 50%;
+		position: relative;
+		height: 100%;
+	}
+
+	.TileHalf--info {
+		align-self: center;
+	}
+
+	.TileHalf-subtitle {
+		font-size: 1.5em;
+		margin: .5em 0;
+	}
+
+	.TileHalf-text {
+		font-size: 1.25em;
+	}
+
+	.TileHalf-button {
+		margin: 1.5em 0;
+	}
+
+	/*.TileHalf-mask {*/
+		/*width: 100%;*/
+		/*height: 100%;*/
+		/*!*background-color: white;*!*/
+		/*position: absolute;*/
+		/*top: 0;*/
+		/*right: 0;*/
+		/*opacity: .4;*/
+	/*}*/
+
+}
+
+@media (min-width: 60em) {
+
+	.TileHalf--info .LeadingTitle {
+		font-size: 1.75em;
+	}
+
+}

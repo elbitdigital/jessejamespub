@@ -12,4 +12,27 @@
 	display: flex;
 	-webkit-justify-content: space-between;
 	justify-content: space-between;
+	position: relative;
+}
+
+.FranchiseHeaderNav-overlay {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-color: rgba(0,0,0,.5);
+	z-index: 2;
+	opacity: 0;
+	visibility: hidden;
+	-webkit-transition: all .5s ease;
+	-moz-transition: all .5s ease;
+	-ms-transition: all .5s ease;
+	-o-transition: all .5s ease;
+	transition: all .5s ease;
+}
+
+.FranchiseHeaderNav-overlay.is-active {
+	opacity: 1;
+	visibility: visible;
 }

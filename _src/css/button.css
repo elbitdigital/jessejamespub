@@ -7,6 +7,7 @@
 	background-image: url('../img/svg/btn-escuro.svg');
 	background-size: 100% 100%;
 	box-sizing: border-box;
+	border: none;
 	color: white;
 	cursor: pointer;
 	display: inline-block;

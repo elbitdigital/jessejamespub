@@ -1,0 +1,61 @@
+
+/* Promoter */
+
+.Promoter {
+	background-color: #cfa148;
+	padding: 5em 0 3.5em;
+	position: relative;
+	text-align: center;
+	box-shadow: inset 0 15px 25px -15px rgba(0, 0, 0, .3);
+}
+
+.Promoter::after {
+	position: absolute;
+	top: auto;
+	right: auto;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 0;
+	content: "";
+	box-shadow: 0 0 15px 3px rgba(0, 0, 0, .3);
+}
+
+.PromoterHalf {
+	padding: 2em 1.5em;
+}
+
+.PromoterHalf .LeadingTitle {
+	font-size: 1.25em;
+}
+
+.PromoterHalf.teste {
+	background-image: url("../../dist/img/background-texture.jpg");
+	background-repeat: repeat;
+}
+
+@media (min-width: 48em) {
+
+	.Promoter {
+		-webkit-align-items: stretch;
+		align-items: stretch;
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+	}
+
+	.PromoterHalf {
+		padding: 2em;
+		/*flex: 1;*/
+		flex: 0 0 50%;
+		position: relative;
+		height: 100%;
+	}
+
+	.PromoterHalf-text {
+		font-size: 1.25em;
+	}
+
+}

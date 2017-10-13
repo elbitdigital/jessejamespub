@@ -42,7 +42,7 @@
 
 </style>
 
-<body class="Franchise roboto-slab">
+<body class="Franchise roboto-slab marrom-couro-darker">
 
 <main class="FranchiseMain">
 
@@ -69,6 +69,8 @@
 
 		<div class="FranchiseHero-inner">
 
+			<div id="nav-overlay" class="FranchiseHeaderNav-overlay"></div>
+
 			<div class="FranchiseHeader container">
 
 				<div class="FranchiseHeaderLogo">
@@ -84,7 +86,9 @@
 
 				<div class="FranchiseHeaderNav">
 
-					<ul class="FranchiseMenuList">
+					<span id="nav-toggle" class="FranchiseMenuList-toggle icon-menu"></span>
+
+					<ul id="nav-menu" class="FranchiseMenuList FranchiseMenuList--header">
 
 						<li class="FranchiseMenuList-item">
 							<a href="#">Agenda</a>
@@ -111,6 +115,30 @@
 				</div>
 
 			</div>
+
+			<ul id="nav-menu-top" class="FranchiseMenuList FranchiseMenuList--top">
+
+				<li class="FranchiseMenuList-item">
+					<a href="#footer">Agenda</a>
+				</li>
+
+				<li class="FranchiseMenuList-item">
+					<a href="#">Galeria</a>
+				</li>
+
+				<li class="FranchiseMenuList-item">
+					<a href="#">Eventos</a>
+				</li>
+
+				<li class="FranchiseMenuList-item">
+					<a href="#">Reservas</a>
+				</li>
+
+				<li class="FranchiseMenuList-item">
+					<a href="#">Seja promoter</a>
+				</li>
+
+			</ul>
 
 			<section class="Schedule">
 
@@ -225,7 +253,186 @@
 
 	</section>
 
-	<footer class="FranchiseFooter">
+	<section class="Specials">
+
+		<div class="Tile marrom-poeira f-marrom-couro--darkest">
+
+			<div class="Tile-inner">
+
+				<div class="TileHalf TileHalf--background TileHalf--background-combday">
+					<div class="TileHalf-mask marrom-couro--darkest"></div>
+				</div>
+
+				<div class="TileHalf TileHalf--info">
+
+					<div class="LeadingTitle LeadingTitle--simple">
+
+						<h1 class="LeadingTitle-text">Combday</h1>
+
+						<i class="LeadingTitle-orn LeadingTitle-orn--bot icon-orn-bot"></i>
+
+					</div>
+
+					<h2 class="TileHalf-subtitle noto">O dia mais festejado!</h2>
+
+					<p class="TileHalf-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad eum exercitationem
+						itaque laborum minus
+						perspiciatis quidem quos sapiente sit vel. At eligendi harum quaerat sed voluptates. Ea inventore
+						molestiae repudiandae!</p>
+
+				</div>
+
+			</div>
+
+		</div>
+
+		<div class="Tile marrom-poeira f-marrom-couro--darkest">
+
+			<div class="Tile-inner Tile-right">
+
+				<div class="TileHalf TileHalf--background TileHalf--background-despedida">
+					<div class="TileHalf-mask marrom-couro--darkest"></div>
+				</div>
+
+				<div class="TileHalf TileHalf--info">
+
+					<div class="LeadingTitle LeadingTitle--simple">
+
+						<h1 class="LeadingTitle-text">Despedida</h1>
+
+						<i class="LeadingTitle-orn LeadingTitle-orn--bot icon-orn-bot"></i>
+
+					</div>
+
+					<h2 class="TileHalf-subtitle noto">O último adeus!</h2>
+
+					<p class="TileHalf-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad eum exercitationem
+						itaque laborum minus
+						perspiciatis quidem quos sapiente sit vel. At eligendi harum quaerat sed voluptates. Ea inventore
+						molestiae repudiandae!</p>
+
+				</div>
+
+			</div>
+
+		</div>
+
+		<div class="Tile marrom-poeira f-marrom-couro--darkest">
+
+			<div class="Tile-inner">
+
+				<div class="TileHalf TileHalf--background TileHalf--background-ufs">
+					<div class="TileHalf-mask marrom-couro--darkest"></div>
+				</div>
+
+				<div class="TileHalf TileHalf--info">
+
+					<div class="LeadingTitle LeadingTitle--simple">
+
+						<h1 class="LeadingTitle-text">UFS</h1>
+
+						<i class="LeadingTitle-orn LeadingTitle-orn--bot icon-orn-bot"></i>
+
+					</div>
+
+					<h2 class="TileHalf-subtitle noto">O combate sertanejo!</h2>
+
+					<p class="TileHalf-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad eum exercitationem
+						itaque laborum minus
+						perspiciatis quidem quos sapiente sit vel. At eligendi harum quaerat sed voluptates. Ea inventore
+						molestiae repudiandae!</p>
+
+					<a href="#" class="TileHalf-button Button">Ir para o site</a>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</section>
+
+	<section class="Promoter f-marrom-couro--darkest">
+
+		<div class="PromoterHalf teste">
+
+			<div class="LeadingTitle LeadingTitle--simple f-marrom-couro">
+
+				<h1 class="LeadingTitle-text">PROMOTERS</h1>
+
+				<i class="LeadingTitle-orn LeadingTitle-orn--bot icon-orn-bot"></i>
+
+			</div>
+
+			<p class="PromoterHalf-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad eum exercitationem
+				itaque laborum minus
+				perspiciatis quidem quos sapiente sit vel. At eligendi harum quaerat sed voluptates. Ea inventore
+				molestiae repudiandae!</p>
+
+		</div>
+
+		<div class="PromoterHalf">
+
+			<form id="cForm" class="ContactForm" novalidate>
+
+				<div class="ContactFormField" data-empty="Informe um nome" data-invalid="Informe dados válidos">
+
+					<label for="cName">NOME COMPLETO</label>
+					<input id="cName" type="text" autocomplete="off" spellcheck="false" class="ContactFormField-input" placeholder="Nome completo"/>
+
+				</div>
+
+				<div class="ContactFormField" data-field-group="communication" data-empty="Informe um telefone" data-invalid="Informe um telefone válido">
+
+					<label for="cPhone">TELEFONE/WHATSAPP</label>
+					<input id="cPhone" type="tel" autocomplete="off" class="ContactFormField-input" placeholder="Telefone/WhatsApp"/>
+
+				</div>
+
+				<div class="ContactFormField" data-empty="Informe um endereço válido" data-invalid="Informe dados válidos">
+
+					<label for="cCity">LINK DO PERFIL FACEBOOK</label>
+					<input id="cCity" type="text" autocomplete="off" spellcheck="false" class="ContactFormField-input" placeholder="Link do perfil Facebook"/>
+
+				</div>
+
+				<div class="ContactFormStatus">
+
+					<span class="ContactFormStatus-text ContactFormStatus-text--sending font-light-blue-a700">
+						Enviando...
+					</span>
+
+					<span class="ContactFormStatus-text ContactFormStatus-text--success font-light-green-a700">
+						Enviado com sucesso!
+					</span>
+
+					<span class="ContactFormStatus-text ContactFormStatus-text--error font-red-a700">
+						Não foi possível enviar, verifique os campos e tente novamente.
+					</span>
+
+					<span class="ContactFormStatus-text ContactFormStatus-text--fail font-red-a700">
+						Houve algum problema, tentando novamente...
+					</span>
+
+				</div>
+
+				<div class="ContactFormButton">
+
+					<button id="cSubmit" type="submit" value="Enviar" class="ContactFormField-button Button">
+
+						<span>Enviar</span>
+
+					</button>
+
+				</div>
+
+			</form>
+
+		</div>
+
+	</section>
+
+	<footer id="footer" class="FranchiseFooter">
 
 		<div class="FranchiseFooter-background marrom-couro--darker"></div>
 
@@ -319,6 +526,38 @@
 
 	window.addEventListener('load', function () {
 
+		var sweetScroll = new SweetScroll({
+			trigger: "a[href^='#']",
+			duration: 800,
+			quickMode: true
+		});
+
+		var navToggle = document.getElementById("nav-toggle");
+		var navOverlay = document.getElementById("nav-overlay");
+		var navMenu = document.getElementById("nav-menu-top");
+
+		navToggle.addEventListener('click', function(e){
+			e.preventDefault();
+			navOverlay.classList.toggle('is-active');
+			navMenu.classList.toggle('is-active');
+		});
+
+		navOverlay.addEventListener('click', function(e){
+			e.preventDefault();
+			navOverlay.classList.toggle('is-active');
+			navMenu.classList.toggle('is-active');
+		});
+
+		navMenu.addEventListener('click', function(){
+			navOverlay.classList.toggle('is-active');
+			navMenu.classList.toggle('is-active');
+		});
+
+		var requiredFields = document.querySelectorAll('.ContactFormField');
+
+		for (var i = requiredFields.length; i--; )
+			requiredFields[i].requiredField = new RequiredField(requiredFields[i], '.ContactFormField-input');
+
 		galleryInit();
 
 	});
@@ -327,8 +566,20 @@
 
 <script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
 <script src="../dist/js/jessejamespub.min.js"></script>
+<script src="../dist/js/contact.js"></script>
 
 <script>
+
+	var firebase_config = {
+		apiKey: "AIzaSyAMTCtuJ2DyPiBx5qBHeDg_OU1KW4UzURY",
+		authDomain: "jessejamespub-com-br.firebaseapp.com",
+		databaseURL: "https://jessejamespub-com-br.firebaseio.com",
+		projectId: "jessejamespub-com-br",
+		storageBucket: "jessejamespub-com-br.appspot.com",
+		messagingSenderId: "118227352953"
+	};
+
+	firebase.initializeApp(firebase_config);
 
 	var databaseRef = firebase.database().ref('/');
 	var houseRef = databaseRef.child('assis');

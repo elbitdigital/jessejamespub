@@ -1,30 +1,101 @@
 
 /* Franchise Menu List */
 
-.FranchiseMenuList {
-	/*text-align: center;*/
+.FranchiseMenuList.FranchiseMenuList--header {
+	display: none;
+}
+
+.FranchiseMenuList.FranchiseMenuList--top {
+	/*display: none;*/
+
+	position: absolute;
+	top: 150px;
 	width: 100%;
-	padding: 1em 3em .75em;
+	/*height: 0;*/
+	padding: 0;
+	overflow: hidden;
+	z-index: 3;
 
-	background-color: transparent;
-	background-image: url('../../dist/img/svg/btn-escuro.svg');
-	background-size: 100% 100%;
-	/*background-color: red;*/
+	font-size: 0;
+	opacity: 0;
+	transition: opacity .1s, font-size .25s .125s;
 }
 
-.FranchiseMenuList-item {
-	display: inline-block;
-	/*margin: 0 .25em;*/
-
-	/*display: block;*/
+.FranchiseMenuList.is-active {
+	height: auto;
 	font-size: 1em;
-	font-weight: 900;
-	padding: 0 .5em;
-	position: relative;
-	text-transform: uppercase;
-	margin: 0 0 3px 0;
+	opacity: 1;
+
+	transition: font-size .25s, opacity .4s .25s;
 }
 
-.FranchiseMenuList-item:last-of-type {
-	padding-right: 0;
+.FranchiseMenuList-toggle {
+	font-size: 1.5em;
+	background-color: #4c2f0f;
+	padding: .5em .25em;
+	border-radius: 3px;
+	z-index: 3;
+	cursor: pointer;
+}
+
+.FranchiseMenuList--top .FranchiseMenuList-item {
+	background-color: #442a0d;
+	border-bottom: 2px solid #4c2f0f;
+}
+
+.FranchiseMenuList--top .FranchiseMenuList-item:hover,
+.FranchiseMenuList--top .FranchiseMenuList-item:focus {
+	background-color: #4c2f0f;
+}
+
+.FranchiseMenuList--top  .FranchiseMenuList-item a {
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	padding: .75em 1em;
+	font-weight: 900;
+	text-transform: uppercase;
+	text-decoration: none;
+}
+
+/*.FranchiseMenuList-item:last-of-type {*/
+	/*padding-right: 0;*/
+/*}*/
+
+@media (min-width: 48em) {
+
+	.FranchiseMenuList-toggle,
+	.FranchiseMenuList.FranchiseMenuList--top {
+		display: none;
+	}
+
+	.FranchiseMenuList.FranchiseMenuList--header {
+		/*text-align: center;*/
+		display: block;
+		width: 100%;
+		padding: 1em 3em .75em;
+
+		background-color: transparent;
+		background-image: url('../../dist/img/svg/btn-escuro.svg');
+		background-size: 100% 100%;
+		/*background-color: red;*/
+	}
+
+	.FranchiseMenuList-item {
+		display: inline-block;
+		/*margin: 0 .25em;*/
+
+		/*display: block;*/
+		font-size: 1em;
+		font-weight: 900;
+		padding: 0 .5em;
+		position: relative;
+		text-transform: uppercase;
+		margin: 0 0 3px 0;
+	}
+
+	.FranchiseMenuList-item:last-of-type {
+		padding-right: 0;
+	}
+
 }

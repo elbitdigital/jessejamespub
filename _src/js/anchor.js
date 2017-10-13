@@ -150,11 +150,12 @@ var Anchor = (function () {
 		this.bodyElement.scrollTop = (timeFunction * (this.destinationPosition - this.start)) + this.start;
 
 		if (this.bodyElement.scrollTop === this.destinationPosition) {
-			return;
+			return true;
 		}
 
 		requestAnimationFrame(function () {
 
+			console.log('teste');
 			self.animate();
 
 		});

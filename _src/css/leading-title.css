@@ -37,6 +37,7 @@
 .LeadingTitle--simple .LeadingTitle-orn.LeadingTitle-orn--bot.icon-orn-bot::before {
 	width: 20em;
 	font-size: .725em;
+	margin-right: 14px;
 }
 
 .LeadingTitle-text {

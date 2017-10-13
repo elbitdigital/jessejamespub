@@ -8,21 +8,39 @@
 }
 
 .FranchiseHeaderContact-inner {
-	margin: 0 auto;
-	padding-right: 2em;
-}
-
-.FranchiseHeaderContact-item:after {
-	content: '\2022';
-	margin: 0 .5em;
-}
-
-.FranchiseHeaderContact-item:last-of-type:after {
-	content: '';
-	padding-left: 0;
+	/*margin: 0 auto;*/
+	padding-right: 1em;
 }
 
 .FranchiseHeaderContact-item {
-	/*display: inline-block;*/
-	/*margin: 0 .25em;*/
+	display: block;
+}
+
+@media (min-width: 35em) {
+
+	.FranchiseHeaderContact-inner {
+		margin: 0 auto;
+		padding-right: 2em;
+	}
+
+	.FranchiseHeaderContact-item {
+		display: inline-block;
+	}
+
+	.FranchiseHeaderContact-item:after {
+		content: '\2022';
+		margin: 0 .5em;
+	}
+
+	.FranchiseHeaderContact-item:last-of-type:after {
+		content: '';
+		padding-left: 0;
+	}
+
+}
+
+@media (min-width: 48em) {
+
+
+
 }
