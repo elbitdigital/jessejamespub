@@ -55,9 +55,16 @@
 .icon-orn-left:before { content: '\e835'; } /* '' */
 .icon-orn-right:before { content: '\e836'; } /* '' */
 .icon-orn-bot:before { content: '\e837'; } /* '' */
+.icon-cc-visa:before { content: '\e838'; } /* '' */
+.icon-cc-master:before { content: '\e839'; } /* '' */
+.icon-cc-elo:before { content: '\e83a'; } /* '' */
+.icon-cc-amex:before { content: '\e83b'; } /* '' */
+.icon-icon-trip-2:before { content: '\e83c'; } /* '' */
+.icon-phone-1:before { content: '\e83d'; } /* '' */
 .icon-move:before { content: '\f047'; } /* '' */
 .icon-link-ext:before { content: '\f08e'; } /* '' */
 .icon-check-empty:before { content: '\f096'; } /* '' */
+.icon-phone-squared:before { content: '\f098'; } /* '' */
 .icon-twitter:before { content: '\f099'; } /* '' */
 .icon-facebook:before { content: '\f09a'; } /* '' */
 .icon-resize-full-alt:before { content: '\f0b2'; } /* '' */
@@ -90,8 +97,8 @@
 .icon-instagram:before { content: '\f16d'; } /* '' */
 .icon-wheelchair:before { content: '\f193'; } /* '' */
 .icon-paypal:before { content: '\f1ed'; } /* '' */
-.icon-cc-visa:before { content: '\f1f0'; } /* '' */
-.icon-cc-mastercard:before { content: '\f1f1'; } /* '' */
+.icon-cc-visa-1:before { content: '\f1f0'; } /* '' */
+.icon-cc-master-1:before { content: '\f1f1'; } /* '' */
 .icon-trash:before { content: '\f1f8'; } /* '' */
 .icon-toggle-off:before { content: '\f204'; } /* '' */
 .icon-toggle-on:before { content: '\f205'; } /* '' */

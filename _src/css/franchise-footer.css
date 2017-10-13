@@ -21,30 +21,114 @@
 
 .FranchiseFooter-inner {
 	position: relative;
-	padding: 1.5em 1em;
+	padding: 2em 0 1.5em;
 	text-align: center;
 }
 
-.FranchiseInfo {
-	margin-bottom: 1em;
+
+/* FranchiseFooter items */
+
+.FranchiseFooter-item {
+	padding: 0 1.5em;
+	margin-bottom: 2em;
+}
+
+/* FranchiseFooter address */
+/* FranchiseFooter phone */
+
+.FranchiseFooterAddress,
+.FranchiseFooterPhone,
+.FranchiseFooterMail,
+.FranchiseFooterTime,
+.FranchiseFooterCards {
 	text-align: left;
+	width: 100%;
 }
 
-.FranchiseInfo img {
-	max-width: 2em;
-	height: auto;
+.FranchiseFooterLogo,
+.FranchiseFooterSocial {
+	margin-bottom: 1em;
+	text-align: center;
+	width: 100%;
 }
 
-.FranchiseInfo-title {
-	font-size: 1em;
-	margin: .75em 0 .25em;
+.FranchiseFooterAddress {
+	margin-bottom: 1.5em;
+}
+
+.FranchiseFooterPhone,
+.FranchiseFooterMail {
+	margin-bottom: .5em;
+	font-size: .975em;
+}
+
+.FranchiseFooterTime,
+.FranchiseFooterCards {
+	margin-bottom: 1em;
+}
+
+.FranchiseFooterAddress-icon {
+	font-size: 3em;
+}
+
+.FranchiseFooterPhone-icon,
+.FranchiseFooterMail-icon {
+	font-size: 1.5em;
+}
+
+.FranchiseFooterSocial-icon {
+	font-size: 2em;
+	padding: .25em;
+}
+
+.FranchiseFooterCards-icon {
+	font-size: 2em;
+}
+
+.FranchiseFooterAddress-icon.icon-location::before {
+	margin: 0;
+	width: 34px;
+}
+
+.FranchiseFooterCards-icon.icon-cc-visa::before {
+	margin-left: 2px;
+}
+
+.FranchiseFooterSocial-icon.icon-tripadvisor::before {
+	margin: 0;
+	width: 50px;
+}
+
+.FranchiseFooterAddress-icon,
+.FranchiseFooterPhone-icon,
+.FranchiseFooterMail-icon,
+.FranchiseFooterAddress-text,
+.FranchiseFooterPhone-text,
+.FranchiseFooterMail-text {
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+}
+
+.FranchiseFooterTime-title,
+.FranchiseFooterCards-title {
+	font-size: 1.25em;
+	margin-bottom: .25em;
+}
+
+.FranchiseFooterLogo {
+	text-align: center;
+}
+
+.FranchiseFooterLogo svg {
+	max-width: 10em;
 }
 
 @media(min-width: 48em) {
 
 	.FranchiseFooter-inner {
-		-webkit-align-items: center;
-		align-items: center;
+		-webkit-align-items: flex-start;
+		align-items: flex-start;
 		display: -webkit-box;
 		display: -moz-box;
 		display: -ms-flexbox;
@@ -52,35 +136,33 @@
 		display: flex;
 		-webkit-justify-content: space-between;
 		justify-content: space-between;
-
-		/*-webkit-flex-flow: row-reverse;*/
-		/*flex-flow: row-reverse;*/
+		padding: 3.5em 0 2em;
 	}
 
-	.FranchiseInfo {
-		flex: 0 70%;
-		display: -webkit-box;
-		display: -moz-box;
-		display: -ms-flexbox;
-		display: -webkit-flex;
-		display: flex;
+	.FranchiseFooter-item {
+		padding: 0 .5em;
 	}
 
-	.FranchiseContact {
-		/*text-align: center;*/
-		flex: 0 30%;
+	.FranchiseFooter-item--contact {
+		min-width: 270px;
+	}
+
+	.FranchiseFooterSocial-icon {
+		/*margin: .25em;*/
+		padding: 0;
 	}
 
 }
 
 @media(min-width: 60em) {
 
-	.FranchiseInfo {
-		flex: 0 60%;
+	.FranchiseFooter-item {
+		padding: 0 1.5em;
 	}
 
-	.FranchiseContact {
-		flex: 0 40%;
+	.FranchiseFooterAddress-icon,
+	.FranchiseFooterPhone-icon,
+	.FranchiseFooterMail-icon {
+		margin-right: .25em;
 	}
-
 }
