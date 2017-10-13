@@ -96,18 +96,20 @@ gulp.task('css', function() {
 	gulp.src(source.css.location + source.css.content)
 		.pipe(concatCSS(_PROJECTNAME + '.css'))
 		.pipe(gulp.dest(dist.css.location))
+		.pipe(browserSync.stream())
 		.pipe(plumber())
 		.pipe(cleanCSS())
 		.pipe(rename({
 			extname: '.min.css'
 		}))
-		.pipe(gulp.dest(dist.css.location));
+		.pipe(gulp.dest(dist.css.location))
+		.pipe(browserSync.stream());
 });
 
 gulp.task('css-watch', ['css'], function () {
 	watch(source.css.location + source.css.content, batch(function (events, done) {
 		gulp.start('css', done);
-		browserSync.reload();
+		// browserSync.reload();
 	}));
 });
 
@@ -117,6 +119,7 @@ gulp.task('js', function() {
 	gulp.src(source.js.location + source.js.content)
 		.pipe(concat(_PROJECTNAME + '.js'))
 		.pipe(gulp.dest(dist.js.location))
+		.pipe(browserSync.stream())
 		.pipe(plumber())
 		.pipe(uglify({
 			preserveComments: 'some'
@@ -124,13 +127,14 @@ gulp.task('js', function() {
 		.pipe(rename({
 			extname: '.min.js'
 		}))
-		.pipe(gulp.dest(dist.js.location));
+		.pipe(gulp.dest(dist.js.location))
+		.pipe(browserSync.stream());
 });
 
 gulp.task('js-watch', ['js'], function () {
 	watch(source.js.location + source.js.content, batch(function (events, done) {
 		gulp.start('js', done);
-		browserSync.reload();
+		// browserSync.reload();
 	}));
 });
 
@@ -176,7 +180,8 @@ gulp.task('serve', function () {
 				"/admin/signup": "./public/admin/signup.html",
 				"/admin/confirmation": "./public/admin/confirmation.html"
 			}
-		}
+		},
+		injectChanges: true
 	});
 
 	gulp.watch(source.index.content).on('change', browserSync.reload);
