@@ -22,6 +22,11 @@
 	padding: 4em 0;
 }
 
+.FranchiseGallery-subtitle {
+	font-size: 1.25em;
+	/*margin: 0 .5em 2em;*/
+}
+
 @media (min-width: 48em) {
 
 	.FranchiseGallery-list {

@@ -3,9 +3,11 @@
 
 .Promoter {
 	background-color: #cfa148;
-	padding: 5em 0 3.5em;
+	padding: 4em 0 2.5em;
 	position: relative;
 	text-align: center;
+	background-image: url("../../dist/img/background-texture.jpg");
+	background-repeat: repeat;
 	box-shadow: inset 0 15px 25px -15px rgba(0, 0, 0, .3);
 }
 
@@ -29,21 +31,34 @@
 	font-size: 1.25em;
 }
 
-.PromoterHalf.teste {
-	background-image: url("../../dist/img/background-texture.jpg");
-	background-repeat: repeat;
+.PromoterHalf .LeadingTitle-text {
+	text-transform: uppercase;
+	line-height: .75;
 }
+
+.PromoterHalf .LeadingTitle-orn.LeadingTitle-orn--bot.icon-orn-bot::before {
+	margin-top: 0;
+}
+
+/*.PromoterHalf.teste {*/
+	/*background-image: url("../../dist/img/background-texture.jpg");*/
+	/*background-repeat: repeat;*/
+/*}*/
 
 @media (min-width: 48em) {
 
 	.Promoter {
-		-webkit-align-items: stretch;
-		align-items: stretch;
+		-webkit-align-items: flex-start;
+		align-items: flex-start;
 		display: -webkit-box;
 		display: -moz-box;
 		display: -ms-flexbox;
 		display: -webkit-flex;
 		display: flex;
+	}
+
+	.PromoterHalf--info {
+		/*align-self: center;*/
 	}
 
 	.PromoterHalf {
@@ -55,7 +70,21 @@
 	}
 
 	.PromoterHalf-text {
-		font-size: 1.25em;
+		margin: 1em auto 0;
+		font-size: 1.125em;
+		max-width: 28rem;
+	}
+
+	.PromoterHalf .LeadingTitle {
+		font-size: 1em;
+	}
+
+}
+
+@media (min-width: 60em) {
+
+	.PromoterHalf-text {
+		max-width: 36rem;
 	}
 
 }

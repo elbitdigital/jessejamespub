@@ -54,6 +54,7 @@
 	.ContactForm {
 		max-width: 33em;
 		height: 20em;
+		margin-top: -1.5em; /* compensate hidden label */
 	}
 
 }

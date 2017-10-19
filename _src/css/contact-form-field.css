@@ -2,6 +2,8 @@
 /* Contact Form Field */
 
 .ContactFormField {
+	background-color: #f2d9a7;
+	background-color: rgba(242,217,167, .2);
 	border: solid 2px #424242;
 	/*border-radius: 3px;*/
 	display: block;

@@ -32,10 +32,27 @@
 .FranchiseMenuList-toggle {
 	font-size: 1.5em;
 	background-color: #4c2f0f;
-	padding: .5em .25em;
+	padding: 0 10px;
 	border-radius: 3px;
+	min-height: 50px;
 	z-index: 3;
 	cursor: pointer;
+}
+
+.FranchiseMenuList-toggle span {
+	line-height: 50px;
+}
+
+.FranchiseMenuList-toggle .icon-cancel {
+	display: none;
+}
+
+.FranchiseMenuList-toggle.is-active .icon-menu {
+	display: none;
+}
+
+.FranchiseMenuList-toggle.is-active .icon-cancel {
+	display: block;
 }
 
 .FranchiseMenuList--top .FranchiseMenuList-item {
@@ -73,7 +90,7 @@
 		/*text-align: center;*/
 		display: block;
 		width: 100%;
-		padding: 1em 3em .75em;
+		padding: .75em 3em;
 
 		background-color: transparent;
 		background-image: url('../../dist/img/svg/btn-escuro.svg');
@@ -86,7 +103,7 @@
 		/*margin: 0 .25em;*/
 
 		/*display: block;*/
-		font-size: 1em;
+		font-size: .875em;
 		font-weight: 900;
 		padding: 0 .5em;
 		position: relative;

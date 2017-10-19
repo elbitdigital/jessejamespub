@@ -6,9 +6,14 @@
 	/*fill: #ebc373;*/
 }
 
-.logo--shadow {
+.filter--shadow {
 	-webkit-filter: drop-shadow( 1px 1px 5px rgba(0,0,0,.5));
 	filter: drop-shadow( 1px 1px 5px rgba(0,0,0,.5));
+}
+
+.filter--shadow-white {
+	-webkit-filter: drop-shadow( 1px 1px 5px rgba(255,255,255,.5));
+	filter: drop-shadow( 1px 1px 5px rgba(255,255,255,.5));
 }
 
 .logo-pub-index {
