@@ -20,7 +20,7 @@
 	fill: #ebc373;
 }
 
-#franchises .logo-pub {
+#franquias .logo-pub {
 	/*fill: #323232;*/
 	fill: #ebc373;
 	-webkit-transition: all .3s ease;
@@ -30,7 +30,7 @@
 	transition: all .3s ease;
 }
 
-.Pub-inner:hover .logo-pub,
-.Pub-inner:focus .logo-pub {
-	fill: black;
-}
+/*.Pub-inner:hover .logo-pub,*/
+/*.Pub-inner:focus .logo-pub {*/
+	/*fill: black;*/
+/*}*/

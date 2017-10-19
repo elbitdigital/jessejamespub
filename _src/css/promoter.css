@@ -25,6 +25,7 @@
 
 .PromoterHalf {
 	padding: 2em 1.5em;
+	text-shadow: 0 0 2px rgba(0,0,0,.2);
 }
 
 .PromoterHalf .LeadingTitle {
