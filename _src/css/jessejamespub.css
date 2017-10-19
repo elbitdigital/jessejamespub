@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'jessejamespub';
-  src: url('../font/jessejamespub.eot?1490117');
-  src: url('../font/jessejamespub.eot?1490117#iefix') format('embedded-opentype'),
-       url('../font/jessejamespub.woff2?1490117') format('woff2'),
-       url('../font/jessejamespub.woff?1490117') format('woff'),
-       url('../font/jessejamespub.ttf?1490117') format('truetype'),
-       url('../font/jessejamespub.svg?1490117#jessejamespub') format('svg');
+  src: url('../font/jessejamespub.eot?29907997');
+  src: url('../font/jessejamespub.eot?29907997#iefix') format('embedded-opentype'),
+       url('../font/jessejamespub.woff2?29907997') format('woff2'),
+       url('../font/jessejamespub.woff?29907997') format('woff'),
+       url('../font/jessejamespub.ttf?29907997') format('truetype'),
+       url('../font/jessejamespub.svg?29907997#jessejamespub') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -15,7 +15,7 @@
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'jessejamespub';
-    src: url('../font/jessejamespub.svg?1490117#jessejamespub') format('svg');
+    src: url('../font/jessejamespub.svg?29907997#jessejamespub') format('svg');
   }
 }
 */
@@ -117,6 +117,7 @@
 .icon-cc-amex:before { content: '\e83b'; } /* '' */
 .icon-icon-trip-2:before { content: '\e83c'; } /* '' */
 .icon-phone-1:before { content: '\e83d'; } /* '' */
+.icon-home:before { content: '\e83e'; } /* '' */
 .icon-move:before { content: '\f047'; } /* '' */
 .icon-link-ext:before { content: '\f08e'; } /* '' */
 .icon-check-empty:before { content: '\f096'; } /* '' */
