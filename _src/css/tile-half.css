@@ -49,6 +49,10 @@
 	background-image: url("../../dist/img/bg-ufs.jpg");
 }
 
+.TileHalf-text {
+	margin-bottom: .5em;
+}
+
 .TileHalf--info .LeadingTitle {
 	font-size: 1.25em;
 }
@@ -115,9 +119,10 @@
 	}
 
 	.TileHalf-text {
-		margin: 0 auto;
+		margin: 0 auto .5em;
 		font-size: 1.25em;
-		max-width: 28rem;
+		/*max-width: 28rem;*/
+		max-width: 30rem;
 	}
 
 	.TileHalf-button {
@@ -143,7 +148,7 @@
 @media (min-width: 60em) {
 
 	.TileHalf-text {
-		max-width: 36rem;
+		max-width: 33rem;
 	}
 
 }
