@@ -59,13 +59,3 @@
 	width: 100%;
 	height: 100%;
 }
-
-.FranchiseHero--assis .FranchiseHero-background {
-	/*background-color: red;*/
-	/*background: url(../img/bg-franq.jpg) no-repeat center center;*/
-	/*-webkit-background-size: cover;*/
-	/*-moz-background-size: cover;*/
-	/*-o-background-size: cover;*/
-	/*background-size: cover;*/
-	background-image: url("../../dist/img/hero-assis-crop.jpg");
-}
