@@ -11,6 +11,7 @@
 	display: flex;
 	-webkit-flex-flow: column;
 	flex-flow: column;
+	border-bottom: 2px solid #4c2f0f;
 }
 
 @media (min-width: 48em) {

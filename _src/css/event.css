@@ -173,6 +173,9 @@
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
+
+
+
 	display: -webkit-box;
 	display: -moz-box;
 	display: -ms-flexbox;
