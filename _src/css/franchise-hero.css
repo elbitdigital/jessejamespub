@@ -41,6 +41,14 @@
 	z-index: 1;
 }
 
+#reservas .FranchiseHero-background {
+	opacity: 1;
+}
+
+#reservas .FranchiseHero-background::after {
+	display: none;
+}
+
 .FranchiseHero-inner {
 	/*-webkit-align-items: center;*/
 	/*align-items: center;*/

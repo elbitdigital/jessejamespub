@@ -36,3 +36,12 @@
 	opacity: 1;
 	visibility: visible;
 }
+
+@media (min-width: 48em) {
+
+	#reservas .FranchiseHeaderNav {
+		-webkit-align-items: flex-end;
+		align-items: flex-end;
+	}
+
+}

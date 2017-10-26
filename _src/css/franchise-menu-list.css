@@ -75,9 +75,16 @@
 	text-decoration: none;
 }
 
-/*.FranchiseMenuList-item:last-of-type {*/
-	/*padding-right: 0;*/
-/*}*/
+#reservas .FranchiseMenuList--header {
+	background: none;
+	padding-left: 0;
+	padding-right: 0;
+}
+
+#reservas .FranchiseMenuList--header .FranchiseMenuList-item {
+	font-size: 1em;
+	padding: 0 .5em;
+}
 
 @media (min-width: 48em) {
 
