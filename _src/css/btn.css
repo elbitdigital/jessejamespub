@@ -13,7 +13,7 @@
 	display: inline-block;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	font-family: 'Roboto Condensed', sans-serif;
+	font-family: 'Roboto', 'Arial', 'Helvetica Neue', 'Helvetica', sans-serif;
 	font-size: 1.125em;
 	font-weight: bold;
 	line-height: 40px;

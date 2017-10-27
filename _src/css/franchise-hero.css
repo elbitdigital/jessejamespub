@@ -41,11 +41,11 @@
 	z-index: 1;
 }
 
-#reservas .FranchiseHero-background {
+.FranchiseMain--internal .FranchiseHero-background {
 	opacity: 1;
 }
 
-#reservas .FranchiseHero-background::after {
+.FranchiseMain--internal .FranchiseHero-background::after {
 	display: none;
 }
 

@@ -11,7 +11,7 @@
 }
 
 #franquias .logo-pub,
-#reservas .logo-pub {
+.FranchiseMain--internal .logo-pub {
 	/*fill: #323232;*/
 	fill: #ebc373;
 	/*-webkit-transition: all .3s ease;*/

@@ -7,6 +7,10 @@
 	position: relative;
 }
 
+.FranchiseMain--internal .FranchiseHeader {
+	max-height: 140px;
+}
+
 .FranchiseHeader-background {
 	background-color: #301c09;
 	/*background: -moz-linear-gradient(top, rgb(68,42,13) 0%, rgb(68,42,13) 20%, rgb(48,28,9) 50%, rgb(48,28,9) 100%);*/
@@ -38,8 +42,11 @@
 	position: relative;
 }
 
-#reservas .FranchiseHeader-inner {
-	padding: 1.5em 0;
+.FranchiseMain--internal .FranchiseHeader-inner {
+	/*padding: 1.5em 0;*/
+	padding: 0;
+	min-height: 140px;
+	/*max-height: 140px;*/
 }
 
 @media (min-width: 48em) {
@@ -49,8 +56,9 @@
 		justify-content: space-between;
 	}
 
-	#reservas .FranchiseHeader-inner {
-		padding: 2em 0;
+	.FranchiseMain--internal .FranchiseHeader-inner {
+		/*padding: 2em 0;*/
+		padding: 0;
 	}
 
 }

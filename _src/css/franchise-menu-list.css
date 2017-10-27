@@ -75,17 +75,6 @@
 	text-decoration: none;
 }
 
-#reservas .FranchiseMenuList--header {
-	background: none;
-	padding-left: 0;
-	padding-right: 0;
-}
-
-#reservas .FranchiseMenuList--header .FranchiseMenuList-item {
-	font-size: 1em;
-	padding: 0 .5em;
-}
-
 @media (min-width: 48em) {
 
 	.FranchiseMenuList-toggle,
@@ -116,6 +105,17 @@
 		position: relative;
 		text-transform: uppercase;
 		margin: 0 0 3px 0;
+	}
+
+	.FranchiseMain--internal .FranchiseMenuList--header {
+		background: none;
+		padding: 0;
+		margin-bottom: 1em;
+	}
+
+	.FranchiseMain--internal .FranchiseMenuList--header .FranchiseMenuList-item {
+		font-size: 1em;
+		padding: 0 .5em;
 	}
 
 	.FranchiseMenuList-item:last-of-type {

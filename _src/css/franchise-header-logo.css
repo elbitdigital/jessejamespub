@@ -1,10 +1,10 @@
 
 /* Franchise Header Logo */
 
-/*.FranchiseHeaderLogo {*/
-	/*-ms-flex-item-align: center;*/
-	/*align-self: center;*/
-/*}*/
+.FranchiseMain--internal .FranchiseHeaderLogo {
+	-ms-flex-item-align: center;
+	align-self: center;
+}
 
 .FranchiseHeaderLogo svg {
 	height: 90px;

@@ -7,7 +7,7 @@
 
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<!--<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">-->
 <link rel="manifest" href="/manifest.json">
 <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#4c2f0f">
 <meta name="apple-mobile-web-app-title" content="Jesse James Pub">
@@ -41,6 +41,17 @@
 <script src="dist/js/html5shiv-printshiv.js"></script>
 <script src="dist/js/classList.min.js"></script>
 <![endif]-->
+
+<style>
+
+    .Content {
+        left: 0;
+        position: absolute;
+        top: 100%;
+        width: 100%;
+    }
+
+</style>
 
 <body class="roboto-slab">
 
@@ -139,17 +150,6 @@
 
 </a>
 
-<style>
-
-    .Content {
-        left: 0;
-        position: absolute;
-        top: 100%;
-        width: 100%;
-    }
-
-</style>
-
 <div class="Content">
 
     <div id="franquias" class="Franchises roboto-slab shadow">
@@ -175,7 +175,7 @@
 
                     <p class="Pub-address">Av. Rui Barbosa, 1400</p>
                     <p class="Pub-contact">(18) 9 9783 2412</p>
-                    <p class="Btn Btn--white Btn--rounded Btn--narrow">Entrar</p>
+                    <p class="Pub-button Btn Btn--white Btn--rounded Btn--narrow">Entrar</p>
 
                 </div>
 
@@ -204,7 +204,7 @@
 
                     <p class="Pub-address">Av. Luiz Saldanha Rodrigues, 1200</p>
                     <p class="Pub-contact">(14) 9 9769 2412</p>
-                    <p class="Btn Btn--white Btn--rounded Btn--narrow">Entrar</p>
+                    <p class="Pub-button Btn Btn--white Btn--rounded Btn--narrow">Entrar</p>
 
                 </div>
 
@@ -237,7 +237,7 @@
 
                     <p class="Pub-address">Av. Siqueira Campos, 2351</p>
                     <p class="Pub-contact">(18) 9 9702 7968</p>
-                    <p class="Btn Btn--white Btn--rounded Btn--narrow">Entrar</p>
+                    <p class="Pub-button Btn Btn--white Btn--rounded Btn--narrow">Entrar</p>
 
                 </div>
 
@@ -267,15 +267,13 @@
 
             <p class="FranchisePartnership-text f-marrom-couro">Conheça um pouco mais sobre a estrutura do Jesse James Pub</p>
 
-            <a href="/franqueado" class="FranchisePartnership-button Button filter--shadow">Saiba mais!</a>
+            <a href="/parceiros" class="FranchisePartnership-button Button filter--shadow">Saiba mais</a>
 
         </div>
 
     </div>
 
 </div>
-
-
 
 <script src="dist/js/jessejamespub.min.js"></script>
 

@@ -175,5 +175,8 @@
 		font-size: .925em;
 	}
 
-}
+	.Pub-button {
+		letter-spacing: 1px;
+	}
 
+}

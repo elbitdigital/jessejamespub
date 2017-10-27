@@ -39,7 +39,7 @@
 
 @media (min-width: 48em) {
 
-	#reservas .FranchiseHeaderNav {
+	.FranchiseMain--internal .FranchiseHeaderNav {
 		-webkit-align-items: flex-end;
 		align-items: flex-end;
 	}

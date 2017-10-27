@@ -35,7 +35,7 @@
   display: inline-block;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: 'Roboto', 'Arial', 'Helvetica Neue', 'Helvetica', sans-serif;
   font-size: 1.125em;
   font-weight: bold;
   line-height: 40px;
@@ -1309,13 +1309,10 @@
 }
 /* Franchise Header Logo */
 
-/*.FranchiseHeaderLogo {*/
-
-/*-ms-flex-item-align: center;*/
-
-/*align-self: center;*/
-
-/*}*/
+.FranchiseMain--internal .FranchiseHeaderLogo {
+  -ms-flex-item-align: center;
+  align-self: center;
+}
 
 .FranchiseHeaderLogo svg {
   height: 90px;
@@ -1360,7 +1357,7 @@
 }
 
 @media (min-width: 48em) {
-  #reservas .FranchiseHeaderNav {
+  .FranchiseMain--internal .FranchiseHeaderNav {
     -webkit-align-items: flex-end;
     align-items: flex-end;
   }
@@ -1371,6 +1368,10 @@
   width: 100%;
   height: auto;
   position: relative;
+}
+
+.FranchiseMain--internal .FranchiseHeader {
+  max-height: 140px;
 }
 
 .FranchiseHeader-background {
@@ -1403,8 +1404,11 @@
   position: relative;
 }
 
-#reservas .FranchiseHeader-inner {
-  padding: 1.5em 0;
+.FranchiseMain--internal .FranchiseHeader-inner {
+  /*padding: 1.5em 0;*/
+  padding: 0;
+  min-height: 140px;
+  /*max-height: 140px;*/
 }
 
 @media (min-width: 48em) {
@@ -1413,8 +1417,9 @@
     justify-content: space-between;
   }
 
-  #reservas .FranchiseHeader-inner {
-    padding: 2em 0;
+  .FranchiseMain--internal .FranchiseHeader-inner {
+    /*padding: 2em 0;*/
+    padding: 0;
   }
 }
 /* Franchise hero */
@@ -1458,11 +1463,11 @@
   z-index: 1;
 }
 
-#reservas .FranchiseHero-background {
+.FranchiseMain--internal .FranchiseHero-background {
   opacity: 1;
 }
 
-#reservas .FranchiseHero-background::after {
+.FranchiseMain--internal .FranchiseHero-background::after {
   display: none;
 }
 
@@ -1563,17 +1568,6 @@
   text-decoration: none;
 }
 
-#reservas .FranchiseMenuList--header {
-  background: none;
-  padding-left: 0;
-  padding-right: 0;
-}
-
-#reservas .FranchiseMenuList--header .FranchiseMenuList-item {
-  font-size: 1em;
-  padding: 0 .5em;
-}
-
 @media (min-width: 48em) {
   .FranchiseMenuList-toggle,
   .FranchiseMenuList.FranchiseMenuList--top {
@@ -1601,6 +1595,17 @@
     position: relative;
     text-transform: uppercase;
     margin: 0 0 3px 0;
+  }
+
+  .FranchiseMain--internal .FranchiseMenuList--header {
+    background: none;
+    padding: 0;
+    margin-bottom: 1em;
+  }
+
+  .FranchiseMain--internal .FranchiseMenuList--header .FranchiseMenuList-item {
+    font-size: 1em;
+    padding: 0 .5em;
   }
 
   .FranchiseMenuList-item:last-of-type {
@@ -5886,7 +5891,7 @@ html {
 }
 
 #franquias .logo-pub,
-#reservas .logo-pub {
+.FranchiseMain--internal .logo-pub {
   /*fill: #323232;*/
   fill: #ebc373;
   /*-webkit-transition: all .3s ease;*/
@@ -6321,6 +6326,10 @@ html {
   .Pub-contact {
     font-size: .925em;
   }
+
+  .Pub-button {
+    letter-spacing: 1px;
+  }
 }
 /* Schedule section */
 
@@ -6469,7 +6478,7 @@ html {
 
   #reservas .Tile-inner {
     height: 450px;
-    min-height: calc(100vh - 170px);
+    min-height: calc(100vh - 150px);
   }
 
   .Tile-right {
