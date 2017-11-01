@@ -4,16 +4,16 @@
 <title>Editor de álbums - Jesse James Assis</title>
 <meta name="viewport"
       content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
-<script src="../dist/js/villa.min.js"></script>
-<link rel="stylesheet" href="../dist/css/villa.min.css"/>
-<link rel="stylesheet" href="../dist/css/jessejamespub.css"/>
+<script src="../../dist/js/villa.min.js"></script>
+<link rel="stylesheet" href="../../dist/css/villa.min.css"/>
+<link rel="stylesheet" href="../../dist/css/jessejamespub.css"/>
 
 <!--[if lt IE 9]>
-<link rel="stylesheet" type="text/css" href="../dist/css/material-colors.css"/>
-<link rel="stylesheet" type="text/css" href="../dist/css/villa-cross.min.css"/>
-<script src="../dist/js/html5shiv.js"></script>
-<script src="../dist/js/html5shiv-printshiv.js"></script>
-<script src="../dist/js/classList.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../../dist/css/material-colors.css"/>
+<link rel="stylesheet" type="text/css" href="../../dist/css/villa-cross.min.css"/>
+<script src="../../dist/js/html5shiv.js"></script>
+<script src="../../dist/js/html5shiv-printshiv.js"></script>
+<script src="../../dist/js/classList.min.js"></script>
 <![endif]-->
 
 <style>
@@ -85,10 +85,24 @@
 		-webkit-touch-callout: none;
 	}
 
-	.AlbumCover.is-disabled {
+	.Album.is-disabled .AlbumCover {
 		background-color: #E0E0E0;
 		border-color: #bdbdbd;
 		color: #9E9E9E;
+	}
+
+	.Album.is-enabled .AlbumCover {
+		background-color: #C8E6C9;
+		border-color: #388E3C;
+		color: #1B5E20;
+	}
+
+	.Album.is-disabled .Album-link {
+		border-color: #bdbdbd;
+	}
+
+	.Album.is-enabled .Album-link {
+		border-color: #388E3C;
 	}
 
 	.AlbumCover:hover {
@@ -119,15 +133,16 @@
 	.Album-link {
 		background-color: #0277bd;
 		border-radius: .25em;
+		border: 2px solid #0277bd;
 		color: #fff;
-		font-size: .875em;
-		height: 1.5em;
-		line-height: 1.5em;
+		font-size: 1em;
+		height: 2.5em;
+		line-height: 2.5em;
 		position: absolute;
-		right: 0;
-		top: 0;
+		right: .25em;
+		top: .25em;
 		text-align: center;
-		width: 1.5em;
+		width: 2.5em;
 		z-index: 5;
 	}
 
@@ -172,18 +187,52 @@
 
 	<!--<div class="Album">-->
 
-	<!--<a href="https://google.com" target="_blank" class="Album-link">-->
-	<!--<span class="icon-link-ext"></span>-->
-	<!--</a>-->
+		<!--<a href="https://google.com" target="_blank" class="Album-link">-->
+			<!--<span class="icon-link-ext"></span>-->
+		<!--</a>-->
 
-	<!--<div class="AlbumCover">-->
+		<!--<div class="AlbumCover">-->
 
-	<!--<div class="AlbumBody">-->
-	<!--<img class="Album-image" src="https://scontent.xx.fbcdn.net/v/t1.0-0/s130x130/19665675_1917823568477460_7416851733986222613_n.jpg?oh=3042d0adfa4c613923bf3b97c3c8348e&oe=5A05294E" />-->
-	<!--<p class="Album-caption">SEXTA-FEIRA 02.04.17</p>-->
+			<!--<div class="AlbumBody">-->
+				<!--<img class="Album-image" src="https://scontent.xx.fbcdn.net/v/t1.0-0/s130x130/19665675_1917823568477460_7416851733986222613_n.jpg?oh=3042d0adfa4c613923bf3b97c3c8348e&oe=5A05294E" />-->
+				<!--<p class="Album-caption">SEXTA-FEIRA 02.04.17</p>-->
+			<!--</div>-->
+
+		<!--</div>-->
+
 	<!--</div>-->
 
+	<!--<div class="Album is-disabled">-->
+
+		<!--<a href="https://google.com" target="_blank" class="Album-link">-->
+			<!--<span class="icon-link-ext"></span>-->
+		<!--</a>-->
+
+		<!--<div class="AlbumCover">-->
+
+			<!--<div class="AlbumBody">-->
+				<!--<img class="Album-image" src="https://scontent.xx.fbcdn.net/v/t1.0-0/s130x130/19665675_1917823568477460_7416851733986222613_n.jpg?oh=3042d0adfa4c613923bf3b97c3c8348e&oe=5A05294E" />-->
+				<!--<p class="Album-caption">SEXTA-FEIRA 02.04.17</p>-->
+			<!--</div>-->
+
+		<!--</div>-->
+
 	<!--</div>-->
+
+	<!--<div class="Album is-enabled">-->
+
+		<!--<a href="https://google.com" target="_blank" class="Album-link">-->
+			<!--<span class="icon-link-ext"></span>-->
+		<!--</a>-->
+
+		<!--<div class="AlbumCover">-->
+
+			<!--<div class="AlbumBody">-->
+				<!--<img class="Album-image" src="https://scontent.xx.fbcdn.net/v/t1.0-0/s130x130/19665675_1917823568477460_7416851733986222613_n.jpg?oh=3042d0adfa4c613923bf3b97c3c8348e&oe=5A05294E" />-->
+				<!--<p class="Album-caption">SEXTA-FEIRA 02.04.17</p>-->
+			<!--</div>-->
+
+		<!--</div>-->
 
 	<!--</div>-->
 
@@ -198,7 +247,6 @@
 		authDomain: "jessejamespub-com-br.firebaseapp.com",
 		databaseURL: "https://jessejamespub-com-br.firebaseio.com",
 		projectId: "jessejamespub-com-br",
-		storageBucket: "jessejamespub-com-br.appspot.com",
 		messagingSenderId: "118227352953"
 	};
 	firebase.initializeApp(config);
@@ -225,18 +273,32 @@
 
 </script>
 
-<script src="../dist/js/axios.min.js"></script>
+<script src="../../dist/js/axios.min.js"></script>
 
 <script>
 
+	var save_new_as_disabled = true;
 	var tracked_albums = [];
 	var enabled_albums = [];
 	var disabled_albums = [];
 
 	function galleryInit() {
 
-		getAllPageAlbums();
-		addFirebaseListeners();
+		galleryRef.once('value', function(snapshot) {
+
+			snapshot.forEach(function (childSnapshot) {
+
+				childSnapshot.forEach(function (grandChildSnapshot) {
+
+					tracked_albums.push(grandChildSnapshot.key);
+
+				});
+
+			});
+
+			getAllPageAlbums();
+
+		});
 
 	}
 
@@ -266,6 +328,7 @@
 				/* #2 - display albums to user with disabled style */
 				var normal_albums = removeUndesiredTypes(response.data.albums.data);
 				transformDataArrayIntoAlbumsElements(normal_albums);
+				addFirebaseListeners();
 
 			} else {
 
@@ -281,35 +344,7 @@
 
 	}
 
-	/**
-	 * Create a filtered json object from the request response (all albums) without disabled albums
-	 * WARNING: it might not act as intended at this stage, as disabled_albums array is asynchronously created by the
-	 *  firebase child listeners (precisely on child_added)
-	 * This was left for possible future use and documentation pourposes only
-	 * @param {JSON} all_albums Provided by the Graph API request (gathered from response.data.albums.data)
-	 */
-	function removeDisabledAlbums(all_albums) {
 
-//		var disabled_albums = ['1594575264135627', '1586670551592765', '1885754275017723', '1875326966060454', '1586667811593039'];
-		// ['Timeline Photos', 'Cover Photos', 'Instagram Photos', 'VIOLADA DUBS - DESFILE CHEIAS DE CHARME', 'Profile Pictures']
-
-		// filter albums that appears on disabled_albums
-		var filtered_albums = all_albums.filter(function(album) {
-
-			return disabled_albums.indexOf(album.id) == -1;
-
-		});
-
-		/* #1 - do not display disabled albums to user */
-//		transformDataArrayIntoAlbumsElements(filtered_albums);
-
-	}
-
-	/**
-	 * Returns a filtered json object without undesired page albums types (like profile, cover, app, wall, etc)
-	 * @param {JSON} all_albums Provided by the Graph API request (gathered from response.data.albums.data)
-	 * @returns {JSON} All albums without the undesired album types
-	 */
 	function removeUndesiredTypes(all_albums) {
 
 		// undesired album types => {app, cover, profile, mobile, wall}
@@ -324,10 +359,7 @@
 
 	}
 
-	/**
-	 * Create all albums elements and append them to album gallery element
-	 * @param {JSON} received_albums Provided by the Graph API request (gathered from removeUndesiredTypes() return)
-	 */
+
 	function transformDataArrayIntoAlbumsElements(received_albums) {
 
 		var albums = received_albums;
@@ -335,6 +367,15 @@
 		var galleryNode = document.getElementById('albums-gallery');
 
 		for (var i = 0; i < albums.length; i++) {
+
+			if (tracked_albums.indexOf(albums[i].id) == -1) {
+
+				if (save_new_as_disabled)
+					saveDisabledAlbum(albums[i].id);
+				else
+					saveEnabledAlbum(albums[i].id);
+
+			}
 
 			var albumNode = document.createElement('div');
 			albumNode.className = 'Album';
@@ -352,7 +393,7 @@
 			var albumBodyNode = document.createElement('div');
 			albumBodyNode.className = 'AlbumBody';
 			albumBodyNode.addEventListener('click', function(ev) {
-				toggleDisabledAlbum(this.parentElement);
+				toggleAlbumStatus(this.parentElement);
 			});
 
 			var albumImgNode = document.createElement('img');
@@ -381,29 +422,33 @@
 
 	}
 
-	/**
-	 * When user click on AlbumBody, get the AlbumCover of the clicked element and check if it's in the disabled_albums
-	 * array, if it is (and is styled accordingly) ask to turn it on again, otherwise ask to disable it
-	 * @param {Element} albumCover Provided by user click event on the AlbumBody element (gathered as albumBody.parentElement)
-	 */
-	function toggleDisabledAlbum(albumCover) {
+
+	function toggleAlbumStatus(albumCover) {
 
 		var msg = "";
 		var id = albumCover.dataset.id;
 
-		if (disabled_albums.indexOf(id) > -1 && albumCover.classList.contains('is-disabled')) {
+		if (disabled_albums.indexOf(id) > -1) {
 
 			msg = "Deseja habilitar o álbum?";
 
-			if(confirm(msg))
-				removeDisabledAlbum(id);
+			if(confirm(msg)) {
 
-		} else if (disabled_albums.indexOf(id) == -1 && !albumCover.classList.contains('is-disabled')) {
+				removeDisabledAlbum(id);
+				saveEnabledAlbum(id);
+
+			}
+
+		} else if (enabled_albums.indexOf(id) > -1) {
 
 			msg = "Deseja desabilitar o álbum?";
 
-			if(confirm(msg))
+			if(confirm(msg)) {
+
+				removeEnabledAlbum(id);
 				saveDisabledAlbum(id);
+
+			}
 
 		} else {
 
@@ -413,10 +458,21 @@
 
 	}
 
-	/**
-	 * Save the newly disabled album to the firebase reference
-	 * @param {Number} albumId Album identifier, provided by the Graph API request and gathered from AlbumCover dataset
-	 */
+	function saveEnabledAlbum(albumId) {
+
+		enabledRef.child(albumId).set({
+			enabled_on: firebase.database.ServerValue.TIMESTAMP
+		});
+
+	}
+
+	function removeEnabledAlbum(albumId) {
+
+//		enabledRef.child(albumId).set(null);
+		enabledRef.child(albumId).remove();
+
+	}
+
 	function saveDisabledAlbum(albumId) {
 
 		disabledRef.child(albumId).set({
@@ -425,10 +481,6 @@
 
 	}
 
-	/**
-	 * Remove the disabled album from the firebase reference, making it enabled again
-	 * @param {Number} albumId Album identifier, provided by the Graph API request and gathered from AlbumCover dataset
-	 */
 	function removeDisabledAlbum(albumId) {
 
 //		disabledRef.child(albumId).set(null);
@@ -436,32 +488,38 @@
 
 	}
 
-	/**
-	 * Style an album element (to disabled state) by adding 'is-disabled' class to AlbumCover element
-	 * @param {Number} albumId Album identifier, provided by the Graph API request and gathered from firebase disabledRef
-	 */
+
 	function turnOnDisabledAlbum(albumId) {
 
 		var albumCover = document.querySelector("[data-id='" + albumId + "']");
-		albumCover.classList.add('is-disabled');
+		albumCover.parentNode.classList.add('is-disabled');
 
 	}
 
-	/**
-	 * Style an album element (to enabled state) by removing 'is-disabled' class from AlbumCover element
-	 * @param {Number} albumId Album identifier, provided by the Graph API request and gathered from firebase disabledRef
-	 */
+
 	function turnOffDisabledAlbum(albumId) {
 
 		var albumCover = document.querySelector("[data-id='" + albumId + "']");
-		albumCover.classList.remove('is-disabled');
+		albumCover.parentNode.classList.remove('is-disabled');
 
 	}
 
-	/**
-	 * Enable firebase child listeners on the disabled albums reference
-	 *  the on child_added is trigged for every already persisted child, not only future added childs
-	 */
+	function turnOnEnabledAlbum(albumId) {
+
+		var albumCover = document.querySelector("[data-id='" + albumId + "']");
+		albumCover.parentNode.classList.add('is-enabled');
+
+	}
+
+
+	function turnOffEnabledAlbum(albumId) {
+
+		var albumCover = document.querySelector("[data-id='" + albumId + "']");
+		albumCover.parentNode.classList.remove('is-enabled');
+
+	}
+
+
 	function addFirebaseListeners() {
 
 		disabledRef.on('child_added', function(snapshot) {
@@ -481,10 +539,23 @@
 
 		});
 
-	}
+		enabledRef.on('child_added', function(snapshot) {
 
-	function showDisabled() {
-		console.log(disabled_albums);
+			enabled_albums.push(snapshot.key);
+			turnOnEnabledAlbum(snapshot.key);
+
+		});
+
+		enabledRef.on('child_removed', function(snapshot) {
+
+			var index = enabled_albums.indexOf(snapshot.key);
+			if (index > -1)
+				enabled_albums.splice(index, 1);
+
+			turnOffEnabledAlbum(snapshot.key);
+
+		});
+
 	}
 
 </script>

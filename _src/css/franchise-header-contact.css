@@ -3,8 +3,8 @@
 
 .FranchiseHeaderContact {
 	/*margin: 1.5em 0;*/
-	padding: .5em 0;
 	/*text-align: right;*/
+	width: 100%;
 }
 
 .FranchiseHeaderContact-inner {
@@ -22,6 +22,12 @@
 
 .FranchiseHeaderContact-item {
 	display: block;
+	padding: .75em .5em .75em .25em;
+}
+
+.FranchiseHeaderContact-item:hover {
+	background-color: #cfa148;
+	text-shadow: 0 0 5px rgba(0, 0, 0, .4);
 }
 
 @media (min-width: 35em) {
@@ -35,16 +41,17 @@
 		display: inline-block;
 	}
 
-	.FranchiseHeaderContact-item:after {
+	.FranchiseHeaderContact-item::after {
 		content: '\2022';
 		margin: 0 .5em;
 	}
 
-	.FranchiseHeaderContact-item:last-of-type:after,
-	.FranchiseHeaderContact-item.no-trailing-lg:after {
+	.FranchiseHeaderContact-item:last-of-type::after,
+	.FranchiseHeaderContact-item.no-trailing-lg::after {
 		content: '';
 		display: none;
 		padding-left: 0;
+		margin: 0;
 	}
 
 }
