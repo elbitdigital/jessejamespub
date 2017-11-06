@@ -336,7 +336,9 @@ img::-moz-selection {
 .Button {
   background-clip: padding-box;
   background-color: transparent;
-  background-image: url("../img/svg/btn-escuro.svg");
+  /*background-image: url('../img/svg/btn-escuro.svg');*/
+  background-image: url("../img/svg/botao-setadir.svg");
+  padding: .5em 4.25em .5em 2em;
   background-size: 100% 100%;
   box-sizing: border-box;
   border: none;
@@ -347,7 +349,7 @@ img::-moz-selection {
   -moz-osx-font-smoothing: grayscale;
   margin: .25em;
   overflow: hidden;
-  padding: .5em 1.75em;
+  /*padding: .5em 1.75em;*/
   min-width: 15em;
   max-width: 20em;
   min-height: 1.75em;
@@ -355,6 +357,7 @@ img::-moz-selection {
   letter-spacing: 1px;
   font-size: .875em;
   font-weight: 600;
+  font-family: 'Roboto Slab', 'Cambria', 'Georgia', serif;
   text-align: center;
   text-decoration: none;
   text-transform: uppercase;
@@ -411,6 +414,8 @@ img::-moz-selection {
   /*color: #424242;*/
   cursor: not-allowed;
   opacity: 0.8;
+  background-image: url("../img/svg/botao-dstv.svg");
+  padding: .5em 1em;
 }
 
 .Button--narrow {
@@ -1568,6 +1573,18 @@ img::-moz-selection {
   right: 0;
   top: 0;
   width: 100%;
+}
+
+.FranchiseMain--internal .FranchiseHeader-background {
+  /*background-color: red;*/
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-image: url("../../dist/img/svg/fundo-madeira-escovada-escura-opt.svg");
+  /* fundo-madeira-escovada-opt */
 }
 
 .FranchiseHeader-inner {
@@ -6061,11 +6078,6 @@ html {
 }
 /* Logo */
 
-.logo-pub {
-  fill: white;
-  /*fill: #ebc373;*/
-}
-
 .logo-pub-index {
   fill: #ebc373;
 }
@@ -6079,6 +6091,12 @@ html {
   /*-ms-transition: all .3s ease;*/
   /*-o-transition: all .3s ease;*/
   /*transition: all .3s ease;*/
+}
+
+#footer .logo-pub,
+.logo-pub {
+  fill: white;
+  /*fill: #ebc373;*/
 }
 
 /*.Pub-inner:hover .logo-pub,*/
@@ -6567,8 +6585,15 @@ html {
   width: 100%;
 }
 
-#reservas .Tile {
+#reservas .Tile,
+#especiais .Tile {
   background: none;
+}
+
+#reservas .Tile {
+  -webkit-box-shadow: 0 -1px 15px 1px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0 -1px 15px 1px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 -1px 15px 1px rgba(0, 0, 0, 0.25);
 }
 
 .TileHalf {
@@ -6584,8 +6609,19 @@ html {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  /*box-shadow: -25px 0 35px -20px black inset, 25px 0 35px -20px black inset;*/
-  box-shadow: 0 0 35px 0 black inset;
+  box-shadow: inset 2px 1px 15px -2px rgba(0, 0, 0, 0.50), inset -2px -1px 15px -2px rgba(0, 0, 0, 0.50);
+}
+
+.TileHalf--especiais {
+  height: 100%;
+  overflow: hidden;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top right;
+  background-image: url("../../dist/img/bg-paper.jpg");
 }
 
 .TileHalf--background-combday {
@@ -6672,6 +6708,14 @@ html {
     flex: 0 0 50%;
     position: relative;
     /*height: 100%;*/
+  }
+
+  #especiais .TileHalf {
+    flex: 0 0 60%;
+  }
+
+  #especiais .TileHalf.TileHalf--especiais {
+    flex: 0 0 40%;
   }
 
   .TileHalf--center {

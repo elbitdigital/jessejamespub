@@ -28,6 +28,18 @@
 	width: 100%;
 }
 
+.FranchiseMain--internal .FranchiseHeader-background {
+	/*background-color: red;*/
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-image: url("../../dist/img/svg/fundo-madeira-escovada-escura-opt.svg");
+	/* fundo-madeira-escovada-opt */
+}
+
 .FranchiseHeader-inner {
 	display: -webkit-box;
 	display: -moz-box;

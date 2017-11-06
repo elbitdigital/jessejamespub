@@ -21,8 +21,15 @@
 	width: 100%;
 }
 
-#reservas .Tile {
+#reservas .Tile,
+#especiais .Tile {
 	background: none;
+}
+
+#reservas .Tile {
+	-webkit-box-shadow: 0 -1px 15px 1px rgba(0, 0, 0, 0.25);
+	-moz-box-shadow: 0 -1px 15px 1px rgba(0, 0, 0, 0.25);
+	box-shadow: 0 -1px 15px 1px rgba(0, 0, 0, 0.25);
 }
 
 .TileHalf {
@@ -38,8 +45,20 @@
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center center;
-	/*box-shadow: -25px 0 35px -20px black inset, 25px 0 35px -20px black inset;*/
-	box-shadow: 0 0 35px 0 black inset;
+	box-shadow: inset 2px 1px 15px -2px rgba(0, 0, 0, 0.50), inset -2px -1px 15px -2px rgba(0, 0, 0, 0.50);
+
+}
+
+.TileHalf--especiais {
+	height: 100%;
+	overflow: hidden;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: top right;
+	background-image: url("../../dist/img/bg-paper.jpg");
 }
 
 .TileHalf--background-combday {
@@ -125,6 +144,15 @@
 		flex: 0 0 50%;
 		position: relative;
 		/*height: 100%;*/
+	}
+
+
+	#especiais .TileHalf {
+		flex: 0 0 60%;
+	}
+
+	#especiais .TileHalf.TileHalf--especiais {
+		flex: 0 0 40%;
 	}
 
 	.TileHalf--center {

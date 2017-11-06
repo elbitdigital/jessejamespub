@@ -4,7 +4,11 @@
 .Button {
 	background-clip: padding-box;
 	background-color: transparent;
-	background-image: url('../img/svg/btn-escuro.svg');
+	/*background-image: url('../img/svg/btn-escuro.svg');*/
+
+	background-image: url('../img/svg/botao-setadir.svg');
+	padding: .5em 4.25em .5em 2em;
+
 	background-size: 100% 100%;
 	box-sizing: border-box;
 	border: none;
@@ -15,7 +19,7 @@
 	-moz-osx-font-smoothing: grayscale;
 	margin: .25em;
 	overflow: hidden;
-	padding: .5em 1.75em;
+	/*padding: .5em 1.75em;*/
 	min-width: 15em;
 	max-width: 20em;
 	min-height: 1.75em;
@@ -23,6 +27,7 @@
 	letter-spacing: 1px;
 	font-size: .875em;
 	font-weight: 600;
+	font-family: 'Roboto Slab', 'Cambria', 'Georgia', serif;
 
 	text-align: center;
 	text-decoration: none;
@@ -80,6 +85,9 @@
 	/*color: #424242;*/
 	cursor: not-allowed;
 	opacity: 0.8;
+
+	background-image: url('../img/svg/botao-dstv.svg');
+	padding: .5em 1em;
 }
 
 .Button--narrow {
