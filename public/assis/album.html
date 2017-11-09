@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<meta charset="UTF-8">
+<title>Álbum | Assis | Jesse James Pub</title>
+<meta name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<!--<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">-->
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#4c2f0f">
+<meta name="apple-mobile-web-app-title" content="Jesse James Pub">
+<meta name="application-name" content="Jesse James Pub">
+<meta name="theme-color" content="#ebc373">
+
+<meta name="description" content="O melhor pub sertanejo do interior paulista">
+<meta name="image" content="https://jessejamespub.com.br/../dist/img/meta.png">
+
+<meta itemprop="name" content="Jesse James Pub">
+<meta itemprop="description" content="O melhor pub sertanejo do interior paulista">
+<meta itemprop="image" content="https://jessejamespub.com.br/../dist/img/meta.png">
+
+<meta name="og:title" content="Jesse James Pub">
+<meta name="og:description" content="O melhor pub sertanejo do interior paulista">
+<meta name="og:image" content="https://jessejamespub.com.br/../dist/img/meta.png">
+<meta name="og:url" content="https://jessejamespub.com.br">
+<meta name="og:site_name" content="Jesse James Pub">
+<meta name="og:locale" content="pt_BR">
+<meta name="fb:app_id" content="1586666258259861">
+<meta name="og:type" content="website">
+
+<script src="../dist/js/villa.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700" rel="stylesheet">
+<link rel="stylesheet" href="../dist/css/villa.min.css"/>
+<link rel="stylesheet" href="../dist/css/jessejamespub.css"/>
+<!--[if lt IE 9]>
+<link rel="stylesheet" type="text/css" href="../dist/css/material-colors.css"/>
+<link rel="stylesheet" type="text/css" href="../dist/css/villa-cross.min.css"/>
+<script src="../dist/js/html5shiv.js"></script>
+<script src="../dist/js/html5shiv-printshiv.js"></script>
+<script src="../dist/js/classList.min.js"></script>
+<![endif]-->
+
+<style>
+
+	pre {
+		max-width: 1000px;
+		margin: 0 auto;
+		word-wrap: break-word;
+	}
+
+</style>
+
+<style>
+
+	.PlaceholderExternal {
+		border-radius: 2px;
+		background-color: rgba(0, 0, 0, .2);
+		width: 600px;
+		margin: 1em 0;
+		padding: 1em 1em;
+	}
+
+</style>
+
+<style>
+
+	.loader {
+		height: 5px;
+		width: 100%;
+		position: relative;
+		overflow: hidden;
+		background-color: #ddd;
+	}
+
+	.loader:before {
+		display: block;
+		position: absolute;
+		content: "";
+		left: -200px;
+		width: 1px;
+		height: 5px;
+		background-color: #6e3118;
+		animation: loading 2s linear infinite;
+	}
+
+	@keyframes loading {
+		from {left: -200px;width: 10%;}
+		30% {width: 20%;}
+		50% {width: 30%;}
+		70% {width: 70%;}
+		80% {left: 50%;width: 100%;}
+		95% {left: 120%;}
+		to {left: 100%;}
+	}
+
+</style>
+
+<body class="roboto-slab marrom-poeira--lighter">
+
+<section class="Gallery container">
+
+	<h1 class="title rye f-vermelho-terra--darkest">Álbum de fotos</h1>
+	<div id="album-list" class="Album-list">
+
+		<div class="PlaceholderExternal">
+			<p>Carregando imagens...</p>
+			<div class="loader"></div>
+		</div>
+
+	</div>
+
+</section>
+
+<script>
+
+	/* based from: https://www.sitepoint.com/get-url-parameters-with-javascript */
+	function urlQuery(s) {
+
+		var query = window.location.search.substring(1);
+		var cleanQuery = query.split('#')[0];
+		var vars = cleanQuery.split("&");
+
+		for (var i = 0; i < vars.length; i++) {
+			var pair = vars[i].split("=");
+			if(pair[0] == s){return pair[1];}
+		}
+
+		return(false);
+
+	}
+
+	/* Fade In and Fade Out from: https://gist.github.com/chrisbuttery/cf34533cbb30c95ff155 */
+	function fadeOut(el) {
+		el.style.opacity = 1;
+
+		(function fade() {
+			if ((el.style.opacity -= .1) < 0) {
+				el.style.display = "none";
+			} else {
+				requestAnimationFrame(fade);
+			}
+		})();
+	}
+
+	function fadeIn(el, display) {
+		el.style.opacity = 0;
+		el.style.display = display || "";
+
+		(function fade() {
+			var val = parseFloat(el.style.opacity);
+			if (!((val += .1) > 1)) {
+				el.style.opacity = val;
+				requestAnimationFrame(fade);
+			}
+		})();
+	}
+
+	window.addEventListener('load', function () {
+
+		if (urlQuery('id')) {
+
+			validateAlbum(urlQuery('id'));
+
+		} else {
+
+			console.log('Este endereço não é um álbum válido.');
+//			setInterval(function () {
+				window.location = '../404.html';
+//			}, 3000);
+
+		}
+
+	});
+
+</script>
+
+<script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
+
+<script>
+
+	var config = {
+		apiKey: "AIzaSyAMTCtuJ2DyPiBx5qBHeDg_OU1KW4UzURY",
+		authDomain: "jessejamespub-com-br.firebaseapp.com",
+		databaseURL: "https://jessejamespub-com-br.firebaseio.com",
+		projectId: "jessejamespub-com-br",
+		storageBucket: "jessejamespub-com-br.appspot.com",
+		messagingSenderId: "118227352953"
+	};
+
+	firebase.initializeApp(config);
+
+	var databaseRef = firebase.database().ref('/');
+	var houseRef = databaseRef.child('assis');
+	var galleryRef = houseRef.child('gallery');
+	var enabledRef = galleryRef.child('enabledAlbums');
+
+	var franchise_config = {
+		CITY: 'assis',
+		PAGE_ID: 1586666258259861,
+		APP_TOKEN: '146544439255115|3_8Ip3wrGqx-BfnrEVVRhJeUpLA'
+	};
+
+</script>
+
+<script>
+
+	var albumInfo = {};
+	var albumPhotos = {};
+
+</script>
+
+<script src="../dist/js/axios.min.js"></script>
+
+<script>
+
+	function validateAlbum (id) {
+
+		enabledRef.orderByKey().equalTo(id).once("value", function(snapshot) {
+
+			if (snapshot.val() !== null) {
+
+				console.log('Sucesso, o álbum existe no banco.');
+				albumInfo = snapshot.val()[id];
+				initialAlbumRequest(albumInfo.fb_id, franchise_config.APP_TOKEN);
+
+			} else {
+
+				console.log('Ops, esse álbum não é nosso não...');
+//				setInterval(function () {
+					window.location = '../404.html';
+//				}, 1000);
+
+			}
+		});
+
+	}
+
+	function initialAlbumRequest(albumId, token) {
+
+		var showRequestData = false;
+
+		axios.get('https://graph.facebook.com/v2.10/' + albumId, {
+			params: {
+				fields: 'photos.fields(id, images, link).limit(100)',
+				access_token: token //token do aplicativo
+			}
+		}).then(function (response) {
+
+			if (!showRequestData) {
+
+				albumPhotos = response.data.photos.data;
+
+				var next = response.data.photos.paging.next;
+
+				if (next) {
+
+					nextAlbumRequest(next);
+
+				} else {
+
+					displayAlbumPhotos(albumPhotos);
+
+				}
+
+			} else {
+
+				document.getElementById('album-list').innerHTML = '<pre><code>' + JSON.stringify(response.data, undefined, 2) +'</code></pre>';
+
+			}
+
+		}).catch(function (err) {
+
+			document.getElementById('album-list').innerHTML = '<span style="color: red;">' + err.message + '</span>';
+			console.log(err);
+
+		});
+
+	}
+
+	/* needs testing, can't test without album overflowing request limit */
+	function nextAlbumRequest (nextUrl) {
+
+		var showRequestData = false;
+
+		axios.get(nextUrl).then(function (response) {
+
+			if (!showRequestData) {
+
+				albumPhotos = albumPhotos.concat(response.data.data);
+
+				var next = response.data.paging.next;
+
+				if (next) {
+
+					nextAlbumRequest(response.data.photos.paging.next);
+
+				} else {
+
+					displayAlbumPhotos(albumPhotos);
+
+				}
+
+			} else {
+
+				document.getElementById('album-list').innerHTML += '<pre><code>' + JSON.stringify(response.data, undefined, 2) +'</code></pre>';
+
+			}
+
+		}).catch(function (err) {
+
+			document.getElementById('album-list').innerHTML = '<span style="color: red;">' + err.message + '</span>';
+			console.log(err);
+
+		});
+
+	}
+
+	function displayAlbumPhotos(photosCollection) {
+
+		var fullImage = document.createElement('div');
+		fullImage.id = 'fullimage';
+		fullImage.style.display = 'none';
+		fullImage.addEventListener('click', function (e) {
+
+			if (e.target.href !== undefined) {
+				return false;
+			}
+
+//			this.style.display = 'none';
+
+			fadeOut(this);
+			while (fullImage.firstChild) {
+				fullImage.removeChild(fullImage.firstChild);
+			}
+
+		});
+		document.body.insertBefore(fullImage, document.body.firstChild);
+
+		var el = document.getElementById('album-list');
+		el.innerHTML = '';
+
+		var info = document.createElement('h3');
+		info.textContent = albumInfo.fb_name;
+		document.title = albumInfo.fb_name + " | Assis | Jesse James Pub ";
+		el.appendChild(info);
+
+		var back = document.createElement('a');
+		back.href = './galeria';
+		back.className = 'Button Button--back';
+		back.textContent = 'Voltar para galeria';
+		el.appendChild(back);
+
+		var container = document.createElement('div');
+		container.id = 'container';
+		container.className = 'flex-gallery';
+		el.appendChild(container);
+
+		for (var i = 0; i < photosCollection.length; i++) {
+
+			var fig = document.createElement('figure');
+			fig.className = 'image-rate';
+			fig.dataset.url = photosCollection[i].link;
+
+			var img = document.createElement('img');
+			img.src = photosCollection[i].images[4].source;
+
+			fig.appendChild(img);
+			fig.addEventListener('click', function () {
+
+				var fbLink = document.createElement('a');
+				fbLink.href = this.dataset.url;
+				fbLink.target = '_blank';
+				fbLink.className = 'fullimage-link';
+				fbLink.innerText = 'Ver no Facebook';
+				fullImage.appendChild(fbLink);
+
+				var clone = this.firstChild.cloneNode(true);
+				fullImage.appendChild(clone);
+				fadeIn(fullImage);
+
+			});
+
+			container.appendChild(fig);
+
+		}
+
+	}
+
+</script>
+
+</body>
+
+</html>

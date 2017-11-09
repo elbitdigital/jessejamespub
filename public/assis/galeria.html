@@ -1,10 +1,18 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <meta charset="UTF-8">
-<title>Assis | Jesse James Pub</title>
+<title>Galeria | Assis | Jesse James Pub</title>
 <meta name="viewport"
       content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
-<link rel="icon" type="image/png" href="icon.png"/>
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<!--<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">-->
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#4c2f0f">
+<meta name="apple-mobile-web-app-title" content="Jesse James Pub">
+<meta name="application-name" content="Jesse James Pub">
+<meta name="theme-color" content="#ebc373">
 
 <meta name="description" content="O melhor pub sertanejo do interior paulista">
 <meta name="image" content="https://jessejamespub.com.br/../dist/img/meta.png">
@@ -23,7 +31,7 @@
 <meta name="og:type" content="website">
 
 <script src="../dist/js/villa.min.js"></script>
-<link href="https://fonts.googleapis.com/css?family=Rye|Noto+Serif|Roboto+Condensed:400,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700" rel="stylesheet">
 <link rel="stylesheet" href="../dist/css/villa.min.css"/>
 <link rel="stylesheet" href="../dist/css/jessejamespub.css"/>
 <!--[if lt IE 9]>
@@ -55,6 +63,7 @@
 		-webkit-flex-flow: row wrap;
 		flex-flow: row wrap;
 		margin: 0 auto;
+		padding: 1em;
 	}
 
 	@media (min-width: 48em) {
@@ -70,6 +79,7 @@
 <style>
 
 	.Gallery {
+		background-color: rgba(0,0,0,.1);
 		padding: 3em 0 2.5em;
 		text-align: center;
 	}
@@ -110,39 +120,25 @@
 	}
 
 	@keyframes loading {
-		from {
-			left: -200px;
-			width: 10%;
-		}
-		30% {
-			width: 20%;
-		}
-		50% {
-			width: 30%;
-		}
-		70% {
-			width: 70%;
-		}
-		80% {
-			left: 50%;
-			width: 100%;
-		}
-		95% {
-			left: 120%;
-		}
-		to {
-			left: 100%;
-		}
+		from {left: -200px;width: 10%;}
+		30% {width: 20%;}
+		50% {width: 30%;}
+		70% {width: 70%;}
+		80% {left: 50%;width: 100%;}
+		95% {left: 120%;}
+		to {left: 100%;}
 	}
 
 </style>
 
 <style>
 
-	.HighlightedAlbum {
-		width: 15em;
-		height: 15em;
+	.Album {
+		/*width: 15em;*/
+		max-height: 15em;
+		height: calc(100vw - 2em);
 		margin: .5em;
+		flex: 0 0 90%;
 		border: 2px solid #442a0d; /* marrom couro darker */
 		position: relative;
 
@@ -157,11 +153,38 @@
 		justify-content: center;
 	}
 
-	.HighlightedAlbum--more .HighlightedAlbumContent-date {
+	@media only screen and (min-width: 480px) {
+
+		.Album {
+			height: calc(50vw - 2em);
+			flex: 0 0 45%;
+		}
+
+	}
+
+	@media only screen and (min-width: 700px) {
+
+		.Album {
+			height: calc(30vw - 2em);
+			flex: 0 0 30%;
+		}
+
+	}
+
+	@media only screen and (min-width: 1280px) {
+
+		.Album {
+			height: calc(23vw - 2em);
+			flex: 0 0 23%;
+		}
+
+	}
+
+	.Album--more .AlbumContent-date {
 		background-color: rgba(0,0,0,.9);
 	}
 
-	.HighlightedAlbumContent-date {
+	.AlbumContent-date {
 		display: inline-block;
 		font-size: 1.5em;
 		padding: .25em;
@@ -175,22 +198,22 @@
 		transition: all .3s ease;
 	}
 
-	.HighlightedAlbum:hover .HighlightedAlbumContent-date {
+	.Album:hover .AlbumContent-date {
 		background-color: rgba(0,0,0,.7);
 		border-color: #301c09; /* marrom couro darkest */
 	}
 
-	.HighlightedAlbumContent-title {
+	.AlbumContent-title {
 		font-size: 1.25em;
 		text-transform: uppercase;
 		margin: .5em;
 	}
 
-	.HighlightedAlbum {
+	.Album {
 		overflow: hidden;
 	}
 
-	.HighlightedAlbum-background {
+	.Album-background {
 		width: 100%;
 		height: 100%;
 		background-color: black; /* fallback color */
@@ -212,11 +235,11 @@
 		transition: transform .5s ease;
 	}
 
-	.HighlightedAlbum:hover .HighlightedAlbum-background {
+	.Album:hover .Album-background {
 		transform: scale(1.05);
 	}
 
-	.HighlightedAlbum-overlay {
+	.Album-overlay {
 		width: 100%;
 		height: 100%;
 		position: absolute;
@@ -231,325 +254,126 @@
 		transition: all .3s ease;
 	}
 
-	.HighlightedAlbum:hover .HighlightedAlbum-overlay {
+	.Album:hover .Album-overlay {
 		opacity: .3;
 	}
 
-	.HighlightedAlbum--more .HighlightedAlbum-overlay {
+	.Album--more .Album-overlay {
 		opacity: .7;
 	}
 
-	.HighlightedAlbum--more:hover .HighlightedAlbum-overlay {
+	.Album--more:hover .Album-overlay {
 		opacity: .8;
 	}
 
-	.HighlightedAlbumContent {
+	.AlbumContent {
 		color: #fafafa;
-		font-family: 'Roboto Condensed', 'Roboto', sans-serif;
+		font-family: 'Roboto Slab', 'Georgia', 'Cambria', serif;
 		z-index: 2;
 	}
 
 </style>
 
-<style>
-
-	.EditorAlbum {
-		width: 15em;
-		height: 15em;
-		margin: .25em;
-		border: 1px solid #442a0d; /* marrom couro darker */
-		position: relative;
-		overflow: hidden;
-
-		-webkit-align-items: center;
-		align-items: center;
-		display: -webkit-box;
-		display: -moz-box;
-		display: -ms-flexbox;
-		display: -webkit-flex;
-		display: flex;
-		-webkit-justify-content: center;
-		justify-content: center;
-	}
-
-	.EditorAlbum-background {
-		width: 100%;
-		height: 100%;
-		background-color: black; /* fallback color */
-		background-repeat: no-repeat;
-		background-position: center center;
-		-webkit-background-size: cover;
-		-moz-background-size: cover;
-		-o-background-size: cover;
-		background-size: cover;
-		position: absolute;
-		top: 0;
-		right: 0;
-		/*opacity: .4;*/
-		z-index: 1;
-		-webkit-transition: transform .5s ease;
-		-moz-transition: transform .5s ease;
-		-ms-transition: transform .5s ease;
-		-o-transition: transform .5s ease;
-		transition: transform .5s ease;
-	}
-
-	.EditorAlbum:hover .EditorAlbum-background {
-		transform: scale(1.05);
-	}
-
-	.EditorAlbum-overlay {
-		width: 100%;
-		height: 100%;
-		position: absolute;
-		top: 0;
-		right: 0;
-		opacity: .4;
-		z-index: 1;
-		-webkit-transition: all .3s ease;
-		-moz-transition: all .3s ease;
-		-ms-transition: all .3s ease;
-		-o-transition: all .3s ease;
-		transition: all .3s ease;
-	}
-
-	.EditorAlbum:hover .EditorAlbum-overlay {
-		opacity: .3;
-	}
-
-	.EditorAlbumContent {
-		color: #fafafa;
-		font-family: 'Roboto Condensed', 'Roboto', sans-serif;
-		z-index: 2;
-		width: 100%;
-		height: 100%;
-
-		-webkit-align-items: center;
-		align-items: center;
-		display: -webkit-box;
-		display: -moz-box;
-		display: -ms-flexbox;
-		display: -webkit-flex;
-		display: flex;
-		-webkit-justify-content: space-around;
-		justify-content: space-around;
-		-webkit-flex-flow: column;
-		flex-flow: column;
-	}
-
-	.EditorAlbumContent-date {
-		display: inline-block;
-		font-size: 1.5em;
-		padding: .25em;
-		min-width: 5em;
-		background-color: rgba(0,0,0,.5);
-		border: 2px solid #442a0d; /* marrom couro darker */
-		-webkit-transition: all .3s ease;
-		-moz-transition: all .3s ease;
-		-ms-transition: all .3s ease;
-		-o-transition: all .3s ease;
-		transition: all .3s ease;
-	}
-
-	.EditorAlbum:hover .EditorAlbumContent-date {
-		background-color: rgba(0,0,0,.7);
-		border-color: #301c09; /* marrom couro darkest */
-	}
-
-	.EditorAlbumContent-title {
-		font-size: 1.25em;
-		text-transform: uppercase;
-		margin: .5em;
-	}
-
-	.EditorAlbumInfo input {
-		display: inline-block;
-		font-size: 1.25em;
-		width: 80%;
-		margin: .125em;
-		padding: .25em .5em;
-		color: white;
-		font-family: 'Roboto Condensed', 'Roboto', sans-serif;
-		font-weight: 800;
-		background-color: rgba(255,255,255,.3);
-		text-transform: uppercase;
-		border: 2px solid #442a0d; /* marrom couro darker */
-		text-align: center;
-	}
-
-	.EditorAlbumInfo input.EditorAlbumInfo-date {
-		background-color: rgba(0,0,0,.3);
-	}
-
-	.EditorAlbumInfo input::-webkit-input-placeholder {
-		color: rgba(255,255,255,.8) !important;
-	}
-	.EditorAlbumInfo input:-moz-placeholder {
-		color: rgba(255,255,255,.8) !important;
-	}
-	.EditorAlbumInfo input::-moz-placeholder {
-		color: rgba(255,255,255,.8) !important;
-	}
-	.EditorAlbumInfo input:-ms-input-placeholder {
-		color: rgba(255,255,255,.8) !important;
-	}
-
-</style>
-
-<body class="roboto marrom-poeira--lighter">
+<body class="roboto-slab marrom-poeira--lighter">
 
 <section class="Gallery container">
 
 	<h1 class="title rye f-vermelho-terra--darkest">Galeria de fotos</h1>
+	<a href="./" class="Button Button--back">Voltar para Inicial</a>
 	<div id="gallery-list" class="Gallery-list">
 
-		<!--<div class="PlaceholderExternal">-->
-			<!--<p>Carregando álbums...</p>-->
-			<!--<div class="loader"></div>-->
-		<!--</div>-->
-
-		<a href="#assis" class="HighlightedAlbum" style="background-image: url('https://scontent.xx.fbcdn.net/v/t31.0-0/p600x600/20368996_1929509733975510_6919608120889740573_o.jpg?oh=015be32f605fd90145511454d4fd9c52&oe=5A024C8A');">
-
-			<div class="HighlightedAlbum-overlay marrom-couro--darkest"></div>
-
-			<div class="HighlightedAlbumContent">
-				<h1 class="HighlightedAlbumContent-date">05/05/2017</h1>
-				<h2 class="HighlightedAlbumContent-title">DESFILE CHEIA DE CHARME DUB'S PALMITAL</h2>
-			</div>
-
-		</a>
-
-		<a href="#ourinhos" class="HighlightedAlbum" style="background-image: url('https://scontent.xx.fbcdn.net/v/t31.0-0/p600x600/20368996_1929509733975510_6919608120889740573_o.jpg?oh=015be32f605fd90145511454d4fd9c52&oe=5A024C8A');">
-
-			<div class="HighlightedAlbum-overlay marrom-couro--darkest"></div>
-
-			<div class="HighlightedAlbumContent">
-				<h1 class="HighlightedAlbumContent-date">01.02.2017</h1>
-				<h2 class="HighlightedAlbumContent-title">SEXTA-FEIRA</h2>
-			</div>
-
-		</a>
-
-		<a href="#paraguacu" class="HighlightedAlbum" style="background-image: url('https://scontent.xx.fbcdn.net/v/t31.0-0/p600x600/20368996_1929509733975510_6919608120889740573_o.jpg?oh=015be32f605fd90145511454d4fd9c52&oe=5A024C8A');">
-
-			<div class="HighlightedAlbum-overlay marrom-couro--darkest"></div>
-
-			<div class="HighlightedAlbumContent">
-				<h1 class="HighlightedAlbumContent-date">05-05-2017</h1>
-				<h2 class="HighlightedAlbumContent-title">SÁBADO</h2>
-			</div>
-
-		</a>
-
-		<a href="#see-more" title="Ver todos os álbuns" class="HighlightedAlbum HighlightedAlbum--more" style="background-image: url('https://scontent.xx.fbcdn.net/v/t31.0-0/p600x600/20368996_1929509733975510_6919608120889740573_o.jpg?oh=015be32f605fd90145511454d4fd9c52&oe=5A024C8A');">
-
-			<div class="HighlightedAlbum-overlay marrom-couro--darkest"></div>
-
-			<div class="HighlightedAlbumContent">
-				<!--<h1 class="HighlightedAlbumContent-date"><span class="icon-angle-double-right"></span></h1>-->
-				<h2 class="HighlightedAlbumContent-title">Ver todos os álbuns</h2>
-			</div>
-
-		</a>
-
-		<div class="EditorAlbum">
-
-			<div class="EditorAlbum-background" style="background-image: url('https://scontent.xx.fbcdn.net/v/t31.0-0/p600x600/20368996_1929509733975510_6919608120889740573_o.jpg?oh=015be32f605fd90145511454d4fd9c52&oe=5A024C8A');">
-
-				<div class="EditorAlbum-overlay marrom-couro--darkest"></div>
-
-			</div>
-
-			<div class="EditorAlbumContent">
-
-				<div class="EditorAlbumInfo">
-
-					<input class="EditorAlbumInfo-date" type="text" placeholder="DD/MM/AAAA" onclick="this.select();">
-					<input class="EditorAlbumInfo-title" type="text" placeholder="Título" onclick="this.select();">
-
-				</div>
-
-				<div class="EditorAlbumAction">
-
-					<a href="#" class="Btn Btn--narrow Btn--filled">Visualizar</a>
-					<button class="Btn Btn--narrow Btn--filled">Desabilitar</button>
-
-				</div>
-
-			</div>
-
+		<div class="PlaceholderExternal">
+			<p>Carregando álbums...</p>
+			<div class="loader"></div>
 		</div>
 
-		<div class="EditorAlbum">
+		<!--<a href="#assis" class="Album" style="background-image: url('https://scontent.xx.fbcdn.net/v/t31.0-0/p600x600/20368996_1929509733975510_6919608120889740573_o.jpg?oh=015be32f605fd90145511454d4fd9c52&oe=5A024C8A');">-->
 
-			<div class="EditorAlbum-background" style="background-image: url('https://scontent.xx.fbcdn.net/v/t31.0-0/p600x600/20368996_1929509733975510_6919608120889740573_o.jpg?oh=015be32f605fd90145511454d4fd9c52&oe=5A024C8A');">
+			<!--<div class="Album-overlay marrom-couro&#45;&#45;darkest"></div>-->
 
-				<div class="EditorAlbum-overlay marrom-couro--darkest"></div>
+			<!--<div class="AlbumContent">-->
+				<!--<h1 class="AlbumContent-date">05/05/2017</h1>-->
+				<!--<h2 class="AlbumContent-title">DESFILE CHEIA DE CHARME DUB'S PALMITAL</h2>-->
+			<!--</div>-->
 
-			</div>
+		<!--</a>-->
 
-			<div class="EditorAlbumContent">
+		<!--<a href="#ourinhos" class="Album" style="background-image: url('https://scontent.xx.fbcdn.net/v/t31.0-0/p600x600/20368996_1929509733975510_6919608120889740573_o.jpg?oh=015be32f605fd90145511454d4fd9c52&oe=5A024C8A');">-->
 
-				<div class="EditorAlbumInfo">
+			<!--<div class="Album-overlay marrom-couro&#45;&#45;darkest"></div>-->
 
-					<input class="EditorAlbumInfo-date" type="text" placeholder="Data" onclick="this.select();">
-					<input class="EditorAlbumInfo-title" type="text" placeholder="Título" onclick="this.select();">
+			<!--<div class="AlbumContent">-->
+				<!--<h1 class="AlbumContent-date">01.02.2017</h1>-->
+				<!--<h2 class="AlbumContent-title">SEXTA-FEIRA</h2>-->
+			<!--</div>-->
 
-				</div>
+		<!--</a>-->
 
-				<div class="EditorAlbumAction">
+		<!--<a href="#paraguacu" class="Album" style="background-image: url('https://scontent.xx.fbcdn.net/v/t31.0-0/p600x600/20368996_1929509733975510_6919608120889740573_o.jpg?oh=015be32f605fd90145511454d4fd9c52&oe=5A024C8A');">-->
 
-					<a href="#" class="Btn Btn--narrow Btn--filled">Visualizar</a>
-					<button class="Btn Btn--narrow Btn--filled">Desabilitar</button>
+			<!--<div class="Album-overlay marrom-couro&#45;&#45;darkest"></div>-->
 
-				</div>
+			<!--<div class="AlbumContent">-->
+				<!--<h1 class="AlbumContent-date">05-05-2017</h1>-->
+				<!--<h2 class="AlbumContent-title">SÁBADO</h2>-->
+			<!--</div>-->
 
-			</div>
+		<!--</a>-->
 
-		</div>
+		<!--<a href="#assis" class="Album" style="background-image: url('https://scontent.xx.fbcdn.net/v/t31.0-0/p600x600/20368996_1929509733975510_6919608120889740573_o.jpg?oh=015be32f605fd90145511454d4fd9c52&oe=5A024C8A');">-->
 
-		<div class="EditorAlbum">
+			<!--<div class="Album-overlay marrom-couro&#45;&#45;darkest"></div>-->
 
-			<div class="EditorAlbum-background" style="background-image: url('https://scontent.xx.fbcdn.net/v/t31.0-0/p600x600/20368996_1929509733975510_6919608120889740573_o.jpg?oh=015be32f605fd90145511454d4fd9c52&oe=5A024C8A');">
+			<!--<div class="AlbumContent">-->
+				<!--<h1 class="AlbumContent-date">05/05/2017</h1>-->
+				<!--<h2 class="AlbumContent-title">DESFILE CHEIA DE CHARME DUB'S PALMITAL</h2>-->
+			<!--</div>-->
 
-				<div class="EditorAlbum-overlay marrom-couro--darkest"></div>
+		<!--</a>-->
 
-			</div>
+		<!--<a href="#ourinhos" class="Album" style="background-image: url('https://scontent.xx.fbcdn.net/v/t31.0-0/p600x600/20368996_1929509733975510_6919608120889740573_o.jpg?oh=015be32f605fd90145511454d4fd9c52&oe=5A024C8A');">-->
 
-			<div class="EditorAlbumContent">
+			<!--<div class="Album-overlay marrom-couro&#45;&#45;darkest"></div>-->
 
-				<div class="EditorAlbumInfo">
+			<!--<div class="AlbumContent">-->
+				<!--<h1 class="AlbumContent-date">01.02.2017</h1>-->
+				<!--<h2 class="AlbumContent-title">SEXTA-FEIRA</h2>-->
+			<!--</div>-->
 
-					<input class="EditorAlbumInfo-date" type="text" placeholder="Data" onclick="this.select();">
-					<input class="EditorAlbumInfo-title" type="text" placeholder="Título" onclick="this.select();">
+		<!--</a>-->
 
-				</div>
+		<!--<a href="#paraguacu" class="Album" style="background-image: url('https://scontent.xx.fbcdn.net/v/t31.0-0/p600x600/20368996_1929509733975510_6919608120889740573_o.jpg?oh=015be32f605fd90145511454d4fd9c52&oe=5A024C8A');">-->
 
-				<div class="EditorAlbumAction">
+			<!--<div class="Album-overlay marrom-couro&#45;&#45;darkest"></div>-->
 
-					<a href="#" class="Btn Btn--narrow Btn--filled">Visualizar</a>
-					<button class="Btn Btn--narrow Btn--filled">Desabilitar</button>
+			<!--<div class="AlbumContent">-->
+				<!--<h1 class="AlbumContent-date">05-05-2017</h1>-->
+				<!--<h2 class="AlbumContent-title">SÁBADO</h2>-->
+			<!--</div>-->
 
-				</div>
+		<!--</a>-->
 
-			</div>
+		<!--<a href="#ourinhos" class="Album" style="background-image: url('https://scontent.xx.fbcdn.net/v/t31.0-0/p600x600/20368996_1929509733975510_6919608120889740573_o.jpg?oh=015be32f605fd90145511454d4fd9c52&oe=5A024C8A');">-->
 
-		</div>
+			<!--<div class="Album-overlay marrom-couro&#45;&#45;darkest"></div>-->
 
-		<a href="#paraguacu" class="HighlightedAlbum">
+			<!--<div class="AlbumContent">-->
+				<!--<h1 class="AlbumContent-date">01.02.2017</h1>-->
+				<!--<h2 class="AlbumContent-title">SEXTA-FEIRA</h2>-->
+			<!--</div>-->
 
-			<div class="HighlightedAlbum-background" style="background-image: url('https://scontent.xx.fbcdn.net/v/t31.0-0/p600x600/20368996_1929509733975510_6919608120889740573_o.jpg?oh=015be32f605fd90145511454d4fd9c52&oe=5A024C8A');">
+		<!--</a>-->
 
-				<div class="HighlightedAlbum-overlay marrom-couro--darkest"></div>
+		<!--<a href="#paraguacu" class="Album" style="background-image: url('https://scontent.xx.fbcdn.net/v/t31.0-0/p600x600/20368996_1929509733975510_6919608120889740573_o.jpg?oh=015be32f605fd90145511454d4fd9c52&oe=5A024C8A');">-->
 
-			</div>
+			<!--<div class="Album-overlay marrom-couro&#45;&#45;darkest"></div>-->
 
-			<div class="HighlightedAlbumContent">
-				<h1 class="HighlightedAlbumContent-date">05-05-2017</h1>
-				<h2 class="HighlightedAlbumContent-title">SÁBADO</h2>
-			</div>
+			<!--<div class="AlbumContent">-->
+				<!--<h1 class="AlbumContent-date">05-05-2017</h1>-->
+				<!--<h2 class="AlbumContent-title">SÁBADO</h2>-->
+			<!--</div>-->
 
-		</a>
+		<!--</a>-->
 
 	</div>
 
@@ -559,7 +383,7 @@
 
 	window.addEventListener('load', function () {
 
-//		galleryInit();
+		galleryInit();
 
 	});
 
@@ -600,13 +424,13 @@
 
 	function galleryInit() {
 
-		enabledRef.orderByKey().limitToLast(4).once('value', function (snapshot) {
+		enabledRef.orderByKey().limitToLast(12).once('value', function (snapshot) {
 
 			snapshot.forEach(function (child) {
 
 				batch_list.push({
 					"method": "GET",
-					"relative_url": child.key + "?fields=name, link, type, cover_photo.fields(id, height, width, picture, images, link)"
+					"relative_url": child.key + "?fields=id, name, link, type, cover_photo.fields(id, height, width, picture, images, link)"
 				});
 
 			});
@@ -648,54 +472,55 @@
 
 			var album = JSON.parse(received_albums[i].body);
 
-			var highlightedAlbumNode = document.createElement('a');
-			highlightedAlbumNode.href = album.link;
-			highlightedAlbumNode.className = 'HighlightedAlbum';
-			highlightedAlbumNode.title = album.name;
-			highlightedAlbumNode.style.backgroundImage = 'url(' + album.cover_photo.images[4].source +')';
+			var AlbumNode = document.createElement('a');
+			AlbumNode.href = './album?id=' + album.id;
+			AlbumNode.className = 'Album';
+			AlbumNode.title = album.name;
+			AlbumNode.style.backgroundImage = 'url(' + album.cover_photo.images[5].source +')';
+//			console.log(album.cover_photo.images);
 
 			var albumOverlayNode = document.createElement('div');
-			albumOverlayNode.className = 'HighlightedAlbum-overlay marrom-couro--darkest';
+			albumOverlayNode.className = 'Album-overlay marrom-couro--darkest';
 
 			var albumContentNode = document.createElement('div');
-			albumContentNode.className = 'HighlightedAlbumContent';
+			albumContentNode.className = 'AlbumContent';
 
 			var formattedDate = converterData(separarDataTitulo(album.name).date[0]);
 			var title = separarDataTitulo(album.name).title;
 
 			var albumContentDate = document.createElement('h1');
-			albumContentDate.className = 'HighlightedAlbumContent-date';
+			albumContentDate.className = 'AlbumContent-date';
 			albumContentDate.textContent = formattedDate;
 
 			var albumContentTitle = document.createElement('h2');
-			albumContentTitle.className = 'HighlightedAlbumContent-title';
+			albumContentTitle.className = 'AlbumContent-title';
 			albumContentTitle.textContent = title;
 
-			if (i == 0) {
-
-				highlightedAlbumNode.className = 'HighlightedAlbum HighlightedAlbum--more';
-				highlightedAlbumNode.title = 'Ver todos os álbuns';
-				highlightedAlbumNode.href = '/galeria';
-				albumContentTitle.textContent = 'Ver todos os álbuns';
-
-				albumContentNode.appendChild(albumContentTitle);
-
-				highlightedAlbumNode.appendChild(albumOverlayNode);
-				highlightedAlbumNode.appendChild(albumContentNode);
-
-				galleryNode.appendChild(highlightedAlbumNode);
-
-			} else {
+//			if (i == 0) {
+//
+//				AlbumNode.className = 'Album Album--more';
+//				AlbumNode.title = 'Ver todos os álbuns';
+//				AlbumNode.href = '/galeria';
+//				albumContentTitle.textContent = 'Ver todos os álbuns';
+//
+//				albumContentNode.appendChild(albumContentTitle);
+//
+//				AlbumNode.appendChild(albumOverlayNode);
+//				AlbumNode.appendChild(albumContentNode);
+//
+//				galleryNode.appendChild(AlbumNode);
+//
+//			} else {
 
 				albumContentNode.appendChild(albumContentDate);
 				albumContentNode.appendChild(albumContentTitle);
 
-				highlightedAlbumNode.appendChild(albumOverlayNode);
-				highlightedAlbumNode.appendChild(albumContentNode);
+				AlbumNode.appendChild(albumOverlayNode);
+				AlbumNode.appendChild(albumContentNode);
 
-				galleryNode.appendChild(highlightedAlbumNode);
+				galleryNode.appendChild(AlbumNode);
 
-			}
+//			}
 
 		}
 
