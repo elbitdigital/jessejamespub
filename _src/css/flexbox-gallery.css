@@ -97,8 +97,8 @@
 @media (max-width: 480px) {
 
 	.image-rate{
-		width: calc(50% - 5px);
-		height: calc(50vw - 5px);
+		width: calc(50% - 10px);
+		height: calc(50vw - 10px);
 	}
 
 }

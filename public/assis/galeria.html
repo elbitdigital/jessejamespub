@@ -406,12 +406,9 @@
 
 	var databaseRef = firebase.database().ref('/');
 	var houseRef = databaseRef.child('assis');
-	var scheduleRef = houseRef.child('schedule');
-	var eventsRef = scheduleRef.child('items');
 
 	var galleryRef = houseRef.child('gallery');
 	var enabledRef = galleryRef.child('enabledAlbums');
-	var disabledRef = galleryRef.child('disabledAlbums');
 
 </script>
 
@@ -421,12 +418,16 @@
 
 	var batched_albums = [];
 	var batch_list = [];
+	var albumCollection = {};
 
 	function galleryInit() {
 
 		enabledRef.orderByKey().limitToLast(12).once('value', function (snapshot) {
 
 			snapshot.forEach(function (child) {
+
+//				albumCollection.push(child.val());
+				albumCollection[child.key] = child.val();
 
 				batch_list.push({
 					"method": "GET",
