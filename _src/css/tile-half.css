@@ -78,6 +78,10 @@
 	margin-bottom: .5em;
 }
 
+.TileHalf-subtext {
+	font-size: 1em;
+}
+
 .TileHalf--center {
 	text-shadow: 0 0 2px rgba(0,0,0,.2);
 }
@@ -171,7 +175,7 @@
 
 	.TileHalf-text {
 		margin: 0 auto .5em;
-		font-size: 1.25em;
+		font-size: 1.125em;
 		/*max-width: 28rem;*/
 		max-width: 30rem;
 	}

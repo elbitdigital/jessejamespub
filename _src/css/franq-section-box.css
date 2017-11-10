@@ -3,8 +3,9 @@
 
 .FranqSectionBox {
 	text-align: center;
+	padding: 2em 1em;
 
-	/*border-image-outset: 0.5em 0.5em 0.5em 0.5em;*/
+	/*border-image-outset: 2em 1.5em;*/
 	border-image-source: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMC4yMjI0ODhtbSIgaGVpZ2h0PSIzMC4yMjI0ODhtbSIgdmlld0JveD0iMCAwIDEwNy4wODc1NiAxMDcuMDg3NTUiPjxwYXRoIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iLjI5MzcyOTM2IiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iOS45MTQ5OTk5NiIgZD0iTTM0LjY4NDQgOC41MDA3OUE2OS42ODUyNzIgNjkuNjg1MjcyIDAgMCAxIDguNTAwODEgMzQuNjQxNDJ2MzcuNzYxNzJhNjkuNjg1MjcyIDY5LjY4NTI3MiAwIDAgMSAyNi4xMzg2NyAyNi4xODM1OWgzNy43NjM2N2E2OS42ODUyNzIgNjkuNjg1MjcyIDAgMCAxIDI2LjE4MzYtMjYuMTQwNjJWMzQuNjg0MzlhNjkuNjg1MjcyIDY5LjY4NTI3MiAwIDAgMS0yNi4xNDA2My0yNi4xODM2SDM0LjY4NDR6Ii8+PC9zdmc+");
 	border-image-repeat: round;
 	border-image-slice: 50 fill;

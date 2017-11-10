@@ -10,3 +10,7 @@
 	height: 90px;
 	width: auto;
 }
+
+.FranchiseMain--internal .FranchiseHeaderLogo svg {
+	height: 80px;
+}

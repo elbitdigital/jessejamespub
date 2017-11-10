@@ -355,8 +355,8 @@ img::-moz-selection {
   min-height: 1.75em;
   line-height: 1.75em;
   letter-spacing: 1px;
-  font-size: .875em;
-  font-weight: 600;
+  font-size: .75em;
+  font-weight: 800;
   font-family: 'Roboto Slab', 'Cambria', 'Georgia', serif;
   text-align: center;
   text-decoration: none;
@@ -1617,6 +1617,10 @@ img::-moz-selection {
   height: 90px;
   width: auto;
 }
+
+.FranchiseMain--internal .FranchiseHeaderLogo svg {
+  height: 80px;
+}
 /* Franchise Header Nav */
 
 .FranchiseHeaderNav {
@@ -2102,7 +2106,8 @@ img::-moz-selection {
 
 .FranqSectionBox {
   text-align: center;
-  /*border-image-outset: 0.5em 0.5em 0.5em 0.5em;*/
+  padding: 2em 1em;
+  /*border-image-outset: 2em 1.5em;*/
   border-image-source: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMC4yMjI0ODhtbSIgaGVpZ2h0PSIzMC4yMjI0ODhtbSIgdmlld0JveD0iMCAwIDEwNy4wODc1NiAxMDcuMDg3NTUiPjxwYXRoIGZpbGw9IiNmZmYiIGZpbGwtb3BhY2l0eT0iLjI5MzcyOTM2IiBzdHJva2U9IiNmZmYiIHN0cm9rZS13aWR0aD0iOS45MTQ5OTk5NiIgZD0iTTM0LjY4NDQgOC41MDA3OUE2OS42ODUyNzIgNjkuNjg1MjcyIDAgMCAxIDguNTAwODEgMzQuNjQxNDJ2MzcuNzYxNzJhNjkuNjg1MjcyIDY5LjY4NTI3MiAwIDAgMSAyNi4xMzg2NyAyNi4xODM1OWgzNy43NjM2N2E2OS42ODUyNzIgNjkuNjg1MjcyIDAgMCAxIDI2LjE4MzYtMjYuMTQwNjJWMzQuNjg0MzlhNjkuNjg1MjcyIDY5LjY4NTI3MiAwIDAgMS0yNi4xNDA2My0yNi4xODM2SDM0LjY4NDR6Ii8+PC9zdmc+");
   border-image-repeat: round;
   border-image-slice: 50 fill;
@@ -2298,7 +2303,7 @@ img::-moz-selection {
 
 h1.Guider-heading {
   display: inline-block;
-  font-size: 1.25em;
+  font-size: 1.125em;
 }
 
 .Guider-arrow {
@@ -6111,7 +6116,7 @@ html {
 
   .LeadingTitle-text {
     letter-spacing: 5px;
-    font-size: 6em;
+    font-size: 5em;
   }
 
   .LeadingTitle--main .LeadingTitle-text {
@@ -6755,6 +6760,10 @@ html {
   margin-bottom: .5em;
 }
 
+.TileHalf-subtext {
+  font-size: 1em;
+}
+
 .TileHalf--center {
   text-shadow: 0 0 2px rgba(0,0,0,.2);
 }
@@ -6848,7 +6857,7 @@ html {
 
   .TileHalf-text {
     margin: 0 auto .5em;
-    font-size: 1.25em;
+    font-size: 1.125em;
     /*max-width: 28rem;*/
     max-width: 30rem;
   }
