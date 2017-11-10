@@ -83,12 +83,12 @@
 
 			<div class="FranchiseHeaderContact-item--right">
 
-				<a href="https://api.whatsapp.com/send?phone=55018997832412" class="FranchiseHeaderContact-item no-trailing-lg">
-					<span class="icon-whatsapp"></span> 18 9 9783 2412
+				<a href="https://api.whatsapp.com/send?phone=55018997832412" class="FranchiseHeaderContact-item FranchiseHeaderContact-item--phone no-trailing-lg">
+					<span class="icon-whatsapp"></span> <strong>18 9 9783 2412</strong>
 				</a>
 
-				<a href="mailto:assis@jessejamespub.com.br" class="FranchiseHeaderContact-item no-trailing-lg">
-					<span class="icon-mail-alt"></span> assis@jessejamespub.com.br
+				<a href="mailto:assis@jessejamespub.com.br" class="FranchiseHeaderContact-item FranchiseHeaderContact-item--email no-trailing-lg">
+					<span class="icon-mail-alt"></span> <strong>assis@jessejamespub.com.br</strong>
 				</a>
 
 			</div>
@@ -127,12 +127,13 @@
 						<div id="nav-toggle" class="FranchiseMenuList-toggle">
 							<span class="icon-menu"></span>
 							<span class="icon-cancel"></span>
+							<!--<span>MENU</span>-->
 						</div>
 
 						<ul id="nav-menu" class="FranchiseMenuList FranchiseMenuList--header">
 
 							<!--<li class="FranchiseMenuList-item">-->
-								<!--<a href="#agenda">Agenda</a>-->
+							<!--<a href="#agenda">Agenda</a>-->
 							<!--</li>-->
 
 							<li class="FranchiseMenuList-item">
@@ -148,7 +149,7 @@
 							</li>
 
 							<!--<li class="FranchiseMenuList-item">-->
-								<!--<a href="/eventos">Ufs</a>-->
+							<!--<a href="/eventos">Ufs</a>-->
 							<!--</li>-->
 
 							<li class="FranchiseMenuList-item">
@@ -583,16 +584,19 @@
 			navOverlay.classList.toggle('is-active');
 			navToggle.classList.toggle('is-active');
 			navMenu.classList.toggle('is-active');
+//			document.body.style.overflowY = 'hidden';
 		});
 
 		navOverlay.addEventListener('click', function(e){
 			e.preventDefault();
+//			document.body.style.overflowY = 'scroll';
 			navOverlay.classList.toggle('is-active');
 			navToggle.classList.toggle('is-active');
 			navMenu.classList.toggle('is-active');
 		});
 
 		navMenu.addEventListener('click', function(){
+//			document.body.style.overflowY = 'scroll';
 			navOverlay.classList.toggle('is-active');
 			navToggle.classList.toggle('is-active');
 			navMenu.classList.toggle('is-active');

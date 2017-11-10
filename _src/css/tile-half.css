@@ -74,6 +74,19 @@
 	background-image: url("../../dist/img/bg-ufs.jpg");
 }
 
+.TileHalf-subtitle {
+	font-size: 1.25em;
+	margin: .5em 0;
+	font-weight: 800;
+}
+
+.TileHalf-text {
+	margin: 0 auto .5em;
+	font-size: 1.125em;
+	/*max-width: 28rem;*/
+	max-width: 30rem;
+}
+
 .TileHalf-text {
 	margin-bottom: .5em;
 }
@@ -151,6 +164,14 @@
 		/*height: 100%;*/
 	}
 
+	.TileHalf-subtitle {
+		font-size: 1.5em;
+	}
+
+	.TileHalf-text {
+		font-size: 1.25em;
+	}
+
 
 	#especiais .TileHalf {
 		flex: 0 0 60%;
@@ -166,18 +187,6 @@
 
 	.TileHalf--start {
 		align-self: flex-start;
-	}
-
-	.TileHalf-subtitle {
-		font-size: 1.5em;
-		margin: .5em 0;
-	}
-
-	.TileHalf-text {
-		margin: 0 auto .5em;
-		font-size: 1.125em;
-		/*max-width: 28rem;*/
-		max-width: 30rem;
 	}
 
 	.TileHalf-button {

@@ -187,12 +187,18 @@ img::-moz-selection {
 }
 
 .Booking-subtitle {
-  font-size: 1.25em;
-  margin: 0 .5em 2em;
+  font-size: 1.125em;
+  margin: 0 1em 2em;
 }
 
 .Booking-button {
   margin: 2em;
+}
+
+@media (min-width: 48em) {
+  .Booking-subtitle {
+    font-size: 1.25em;
+  }
 }
 /* Button - administrative/internal pages style */
 
@@ -1529,13 +1535,17 @@ img::-moz-selection {
 }
 
 .FranchiseGallery-subtitle {
-  font-size: 1.25em;
+  font-size: 1.125em;
   /*margin: 0 .5em 2em;*/
 }
 
 @media (min-width: 48em) {
   .FranchiseGallery-list {
     width: 90%;
+  }
+
+  .FranchiseGallery-subtitle {
+    font-size: 1.25em;
   }
 }
 /* Franchise Header Contact */
@@ -1546,11 +1556,6 @@ img::-moz-selection {
   width: 100%;
 }
 
-.FranchiseHeaderContact-inner {
-  /*margin: 0 auto;*/
-  padding-right: 1em;
-}
-
 .FranchiseHeaderContact-item--left {
   text-align: left;
 }
@@ -1559,14 +1564,35 @@ img::-moz-selection {
   text-align: right;
 }
 
+.FranchiseHeaderContact-item--left,
+.FranchiseHeaderContact-item--right {
+  display: inline-block;
+}
+
 .FranchiseHeaderContact-item {
   display: block;
-  padding: .75em .5em .75em .25em;
+  padding: 1em .5em 1em .25em;
 }
 
 .FranchiseHeaderContact-item:hover {
   background-color: #cfa148;
   text-shadow: 0 0 5px rgba(0, 0, 0, .4);
+}
+
+.FranchiseHeaderContact-item--email {
+  display: none;
+}
+
+.FranchiseHeaderContact-inner {
+  -webkit-align-items: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-around;
+  justify-content: space-around;
 }
 
 @media (min-width: 35em) {
@@ -1583,7 +1609,9 @@ img::-moz-selection {
     content: '\2022';
     margin: 0 .5em;
   }
+}
 
+@media (min-width: 48em) {
   .FranchiseHeaderContact-item:last-of-type::after,
   .FranchiseHeaderContact-item.no-trailing-lg::after {
     content: '';
@@ -1591,17 +1619,8 @@ img::-moz-selection {
     padding-left: 0;
     margin: 0;
   }
-}
 
-@media (min-width: 48em) {
   .FranchiseHeaderContact-inner {
-    -webkit-align-items: center;
-    align-items: center;
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
     -webkit-justify-content: space-between;
     justify-content: space-between;
   }
@@ -1706,13 +1725,17 @@ img::-moz-selection {
 }
 
 .FranchiseHeader-inner {
+  -webkit-align-items: center;
+  align-items: center;
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
-  -webkit-justify-content: space-around;
-  justify-content: space-around;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-flex-direction: column;
+  flex-direction: column;
   min-height: 150px;
   margin: 0 auto;
   padding-top: 2em;
@@ -1818,13 +1841,29 @@ img::-moz-selection {
 
 .FranchiseMenuList.FranchiseMenuList--top {
   /*display: none;*/
-  position: absolute;
-  top: 150px;
-  width: 100%;
-  /*height: 0;*/
+  background-color: #442a0d;
+  -webkit-align-items: stretch;
+  align-items: stretch;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  position: fixed;
+  /*top: 150px;*/
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  /*width: 100%;*/
+  height: 100vh;
   padding: 0;
   overflow: hidden;
-  z-index: 3;
+  z-index: 9999;
   font-size: 0;
   opacity: 0;
   transition: opacity .1s, font-size .25s .125s;
@@ -1838,12 +1877,19 @@ img::-moz-selection {
 }
 
 .FranchiseMenuList-toggle {
+  position: fixed;
+  top: 50px;
+  right: 10px;
   font-size: 1.5em;
-  background-color: #4c2f0f;
-  padding: 0 10px;
-  border-radius: 3px;
-  min-height: 50px;
-  z-index: 3;
+  /*background-color: #4c2f0f;*/
+  background-color: rgba(255, 255, 255, .3);
+  border: 1px solid white;
+  padding: 0 .275em;
+  margin: 10px 0;
+  border-radius: 5px;
+  font-weight: 800;
+  /*min-height: 50px;*/
+  z-index: 10000;
   cursor: pointer;
 }
 
@@ -1864,7 +1910,8 @@ img::-moz-selection {
 }
 
 .FranchiseMenuList--top .FranchiseMenuList-item {
-  background-color: #442a0d;
+  /*background-color: #442a0d;*/
+  /*background-color: rgba(68,42,13,.8);*/
   border-bottom: 2px solid #4c2f0f;
 }
 
@@ -1878,9 +1925,11 @@ img::-moz-selection {
   width: 100%;
   height: 100%;
   padding: .75em 1em;
-  font-weight: 900;
+  font-size: 1.25em;
+  font-weight: 800;
   text-transform: uppercase;
   text-decoration: none;
+  text-align: center;
 }
 
 @media (min-width: 48em) {
@@ -1894,6 +1943,7 @@ img::-moz-selection {
     display: block;
     width: 100%;
     padding: .75em 3em;
+    margin-top: 1em;
     background-color: transparent;
     background-image: url("../../dist/img/svg/btn-escuro.svg");
     background-size: 100% 100%;
@@ -1904,7 +1954,7 @@ img::-moz-selection {
     display: inline-block;
     /*margin: 0 .25em;*/
     /*display: block;*/
-    font-size: .875em;
+    font-size: 1em;
     font-weight: 900;
     padding: 0 .5em;
     position: relative;
@@ -6756,6 +6806,19 @@ html {
   background-image: url("../../dist/img/bg-ufs.jpg");
 }
 
+.TileHalf-subtitle {
+  font-size: 1.25em;
+  margin: .5em 0;
+  font-weight: 800;
+}
+
+.TileHalf-text {
+  margin: 0 auto .5em;
+  font-size: 1.125em;
+  /*max-width: 28rem;*/
+  max-width: 30rem;
+}
+
 .TileHalf-text {
   margin-bottom: .5em;
 }
@@ -6834,6 +6897,14 @@ html {
     /*height: 100%;*/
   }
 
+  .TileHalf-subtitle {
+    font-size: 1.5em;
+  }
+
+  .TileHalf-text {
+    font-size: 1.25em;
+  }
+
   #especiais .TileHalf {
     flex: 0 0 60%;
   }
@@ -6848,18 +6919,6 @@ html {
 
   .TileHalf--start {
     align-self: flex-start;
-  }
-
-  .TileHalf-subtitle {
-    font-size: 1.5em;
-    margin: .5em 0;
-  }
-
-  .TileHalf-text {
-    margin: 0 auto .5em;
-    font-size: 1.125em;
-    /*max-width: 28rem;*/
-    max-width: 30rem;
   }
 
   .TileHalf-button {

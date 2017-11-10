@@ -7,11 +7,6 @@
 	width: 100%;
 }
 
-.FranchiseHeaderContact-inner {
-	/*margin: 0 auto;*/
-	padding-right: 1em;
-}
-
 .FranchiseHeaderContact-item--left {
 	text-align: left;
 }
@@ -20,14 +15,35 @@
 	text-align: right;
 }
 
+.FranchiseHeaderContact-item--left,
+.FranchiseHeaderContact-item--right {
+	display: inline-block;
+}
+
 .FranchiseHeaderContact-item {
 	display: block;
-	padding: .75em .5em .75em .25em;
+	padding: 1em .5em 1em .25em;
 }
 
 .FranchiseHeaderContact-item:hover {
 	background-color: #cfa148;
 	text-shadow: 0 0 5px rgba(0, 0, 0, .4);
+}
+
+.FranchiseHeaderContact-item--email {
+	display: none;
+}
+
+.FranchiseHeaderContact-inner {
+	-webkit-align-items: center;
+	align-items: center;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-justify-content: space-around;
+	justify-content: space-around;
 }
 
 @media (min-width: 35em) {
@@ -46,6 +62,10 @@
 		margin: 0 .5em;
 	}
 
+}
+
+@media (min-width: 48em) {
+
 	.FranchiseHeaderContact-item:last-of-type::after,
 	.FranchiseHeaderContact-item.no-trailing-lg::after {
 		content: '';
@@ -54,18 +74,7 @@
 		margin: 0;
 	}
 
-}
-
-@media (min-width: 48em) {
-
 	.FranchiseHeaderContact-inner {
-		-webkit-align-items: center;
-		align-items: center;
-		display: -webkit-box;
-		display: -moz-box;
-		display: -ms-flexbox;
-		display: -webkit-flex;
-		display: flex;
 		-webkit-justify-content: space-between;
 		justify-content: space-between;
 	}

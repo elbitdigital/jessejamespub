@@ -41,13 +41,17 @@
 }
 
 .FranchiseHeader-inner {
+	-webkit-align-items: center;
+	align-items: center;
 	display: -webkit-box;
 	display: -moz-box;
 	display: -ms-flexbox;
 	display: -webkit-flex;
 	display: flex;
-	-webkit-justify-content: space-around;
-	justify-content: space-around;
+	-webkit-justify-content: center;
+	justify-content: center;
+	-webkit-flex-direction: column;
+	flex-direction: column;
 	min-height: 150px;
 	margin: 0 auto;
 	padding-top: 2em;

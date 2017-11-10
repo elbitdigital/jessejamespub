@@ -15,10 +15,18 @@
 }
 
 .Booking-subtitle {
-	font-size: 1.25em;
-	margin: 0 .5em 2em;
+	font-size: 1.125em;
+	margin: 0 1em 2em;
 }
 
 .Booking-button {
 	margin: 2em;
+}
+
+@media (min-width: 48em) {
+
+	.Booking-subtitle {
+		font-size: 1.25em;
+	}
+
 }
