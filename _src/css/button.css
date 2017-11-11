@@ -32,7 +32,7 @@
 	text-align: center;
 	text-decoration: none;
 	text-transform: uppercase;
-	position: relative;
+	/*position: relative;*/
 	text-overflow: ellipsis;
 	-moz-user-select: none;
 	-ms-user-select: none;
@@ -54,6 +54,7 @@
 .Button--light {
 	color: #301c09;
 	background-image: url('../img/svg/botao-setadir-claro.svg');
+	font-weight: 800;
 }
 
 .Button--back.Button--light {

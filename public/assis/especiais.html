@@ -70,8 +70,6 @@
 
 <main id="especiais" class="FranchiseMain FranchiseMain--internal">
 
-	<div id="nav-overlay" class="FranchiseHeaderNav-overlay"></div>
-
 	<div class="FranchiseHeader">
 
 		<div class="FranchiseHeader-background"></div>
@@ -141,16 +139,6 @@
 		</li>
 
 	</ul>
-
-	<!--<style>-->
-		<!--#botaovoltar {-->
-			<!--position: absolute;-->
-			<!--top: 15px;-->
-			<!--right: 15px;-->
-		<!--}-->
-	<!--</style>-->
-
-	<!--<a href="/assis" id="botaovoltar" class="Button Button&#45;&#45;back Button&#45;&#45;light">Início - Assis</a>-->
 
 	<div class="FranchiseHeaderContact marrom-couro--darker">
 
@@ -362,6 +350,24 @@
 		trigger: "a[href^='#']",
 		duration: 800,
 		quickMode: true
+	});
+
+	window.addEventListener('load', function () {
+
+		var navToggle = document.getElementById("nav-toggle");
+		var navMenu = document.getElementById("nav-menu-top");
+
+		navToggle.addEventListener('click', function(e) {
+			e.preventDefault();
+			navToggle.classList.toggle('is-active');
+			navMenu.classList.toggle('is-active');
+		});
+
+		navMenu.addEventListener('click', function() {
+			navToggle.classList.toggle('is-active');
+			navMenu.classList.toggle('is-active');
+		});
+
 	});
 
 </script>

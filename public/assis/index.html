@@ -667,10 +667,14 @@
 			contentElement.className = 'EventContent';
 			eventElement.appendChild(contentElement);
 
+			var contentElementMeta = document.createElement('div');
+			contentElementMeta.className = 'EventContentMeta';
+			contentElement.appendChild(contentElementMeta);
+
 			// DATA DO EVENTO
 			var dateElement = document.createElement('div');
-			dateElement.className = 'EventContent-date EventContent-space';
-			contentElement.appendChild(dateElement);
+			dateElement.className = 'EventContent-date';
+			contentElementMeta.appendChild(dateElement);
 
 			// DIA DA SEMANA
 			var weekDayElement = document.createElement('span');
@@ -692,34 +696,47 @@
 			});
 			dateElement.appendChild(monthDayElement);
 
+			var divider = document.createElement('span');
+			divider.className = 'divider';
+			contentElementMeta.appendChild(divider);
+
+			var contentLink = document.createElement('div');
+			contentLink.className = 'EventContent-link';
+
+			var contentButton = document.createElement('a');
+			contentButton.className = 'EventContent-button';
+			contentButton.innerHTML = '<span class="icon-facebook-official"></span>';
+
+			var eventLink = document.createElement('a');
+			eventLink.className = 'EventLink';
+
+			var eventLinkButton = document.createElement('a');
+			eventLinkButton.className = 'EventLink-button Button Button--idle filter--shadow';
+			eventLinkButton.innerHTML = '<span class="icon-facebook-official"></span> CONFIRME SUA PRESENÇA!';
+
+			eventRef.child('facebookEventURL').on('value', function (snap) {
+
+				contentButton.href = snap.val();
+				eventLinkButton.href = snap.val();
+				eventLink.href = snap.val();
+
+			});
+
+			contentLink.appendChild(contentButton);
+			contentElementMeta.appendChild(contentLink);
+
+			eventLink.appendChild(eventLinkButton);
+			eventElement.appendChild(eventLink);
+
 			// TITULO DO EVENTO
 			var titleElement = document.createElement('div');
-			titleElement.className = 'EventContent-title EventContent-space';
+			titleElement.className = 'EventContent-title';
 			eventRef.child('title').on('value', function (snap) {
 
 				titleElement.innerHTML = '<span>' + snap.val() + '</span>';
 
 			});
 			contentElement.appendChild(titleElement);
-
-//			var linkList = document.createElement('div');
-//			linkList.className = 'EventContent-linkList EventContent-space';
-//			contentElement.appendChild(linkList);
-
-//			var facebookLink = document.createElement('a');
-//			facebookLink.className = 'facebookLink';
-//			facebookLink.innerHTML = '<span class="icon-facebook"></span>';
-//			eventRef.child('facebookEventURL').on('value', function (snap) {
-//
-//				facebookLink.href = snap.val();
-//
-//			});
-//			linkList.appendChild(facebookLink);
-//
-//			var eventShowMoreButton = document.createElement('a');
-//			eventShowMoreButton.className = 'eventShowMoreButton';
-//			eventShowMoreButton.innerHTML = '<span class="icon-down-dir"></span>';
-//			linkList.appendChild(eventShowMoreButton);
 
 		}
 

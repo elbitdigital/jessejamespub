@@ -45,6 +45,8 @@ body {
 .roboto-slab {
 	font-family: 'Roboto Slab', 'Cambria', 'Georgia', serif;
 	font-weight: normal;
+	-webkit-text-stroke: 1px transparent;
+	text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.01);
 }
 
 .high-noon {
@@ -137,6 +139,17 @@ img::-moz-selection {
 	filter:
 			drop-shadow( 0 19px 38px rgba(0,0,0,0.30))
 			drop-shadow( 0 15px 12px rgba(0,0,0,0.22));
+}
+
+
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
 }
 
 

@@ -19,6 +19,7 @@
 	background-image: url("../../dist/img/bg-paper.jpg");
 	text-align: center;
 	width: 100%;
+	position: relative;
 }
 
 #reservas .Tile,
