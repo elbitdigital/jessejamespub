@@ -1600,18 +1600,13 @@ img::-moz-selection {
     margin: 0 auto;
     padding-right: 2em;
   }
+}
 
+@media (min-width: 48em) {
   .FranchiseHeaderContact-item {
     display: inline-block;
   }
 
-  .FranchiseHeaderContact-item::after {
-    content: '\2022';
-    margin: 0 .5em;
-  }
-}
-
-@media (min-width: 48em) {
   .FranchiseHeaderContact-item:last-of-type::after,
   .FranchiseHeaderContact-item.no-trailing-lg::after {
     content: '';
@@ -1693,7 +1688,7 @@ img::-moz-selection {
 }
 
 .FranchiseMain--internal .FranchiseHeader {
-  max-height: 140px;
+  max-height: 160px;
 }
 
 .FranchiseHeader-background {
@@ -1756,8 +1751,8 @@ img::-moz-selection {
   }
 
   .FranchiseMain--internal .FranchiseHeader-inner {
-    /*padding: 2em 0;*/
-    padding: 0;
+    padding: 1em 0;
+    /*padding: 0;*/
   }
 }
 /* Franchise hero */
@@ -1840,8 +1835,23 @@ img::-moz-selection {
 }
 
 .FranchiseMenuList.FranchiseMenuList--top {
+  /*!*display: none;*!*/
+  /*background-color: #442a0d;*/
+  /*position: fixed;*/
+  /*!*top: 150px;*!*/
+  /*top: 0;*/
+  /*bottom: 0;*/
+  /*right: 0;*/
+  /*left: 0;*/
+  /*!*width: 100%;*!*/
+  /*height: 100vh;*/
+  /*padding: 0;*/
+  /*overflow: hidden;*/
+  /*z-index: 9999;*/
   /*display: none;*/
-  background-color: #442a0d;
+  /*font-size: 0;*/
+  /*opacity: 0;*/
+  /*transition: opacity .1s, font-size .25s .125s;*/
   -webkit-align-items: stretch;
   align-items: stretch;
   display: -webkit-box;
@@ -1854,26 +1864,64 @@ img::-moz-selection {
   -webkit-flex-direction: column;
   flex-direction: column;
   position: fixed;
-  /*top: 150px;*/
+  background-color: #442a0d;
   top: 0;
-  bottom: 0;
-  right: 0;
   left: 0;
-  /*width: 100%;*/
-  height: 100vh;
-  padding: 0;
-  overflow: hidden;
-  z-index: 9999;
-  font-size: 0;
+  width: 100%;
+  height: 100%;
   opacity: 0;
-  transition: opacity .1s, font-size .25s .125s;
+  visibility: hidden;
+  transition: opacity .35s, visibility .35s, height .35s;
+  overflow: hidden;
+  will-change: transform;
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
-.FranchiseMenuList.is-active {
-  height: auto;
-  font-size: 1em;
+.FranchiseMenuList.FranchiseMenuList--top.is-active {
+  /*height: auto;*/
+  /*font-size: 1em;*/
+  /*opacity: 1;*/
+  /*transition: font-size .25s, opacity .4s .25s;*/
   opacity: 1;
-  transition: font-size .25s, opacity .4s .25s;
+  visibility: visible;
+  height: 100%;
+}
+
+.FranchiseMenuList.FranchiseMenuList--top li a {
+  opacity: 0;
+}
+
+.FranchiseMenuList.FranchiseMenuList--top.is-active li a {
+  animation: fadeInRight .4s ease forwards;
+  animation-delay: .2s;
+}
+
+.FranchiseMenuList.FranchiseMenuList--top.is-active li:nth-of-type(2) a {
+  animation-delay: .25s;
+}
+
+.FranchiseMenuList.FranchiseMenuList--top.is-active li:nth-of-type(3) a {
+  animation-delay: .3s;
+}
+
+.FranchiseMenuList.FranchiseMenuList--top.is-active li:nth-of-type(4) a {
+  animation-delay: .35s;
+}
+
+.FranchiseMenuList.FranchiseMenuList--top.is-active li:nth-of-type(5) a {
+  animation-delay: .4s;
+}
+
+@keyframes fadeInRight {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
 
 .FranchiseMenuList-toggle {
@@ -6881,7 +6929,7 @@ html {
 
   #reservas .Tile-inner {
     height: 450px;
-    min-height: calc(100vh - 150px);
+    min-height: calc(100vh - 170px);
   }
 
   .Tile-right {

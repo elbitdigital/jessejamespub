@@ -8,7 +8,7 @@
 }
 
 .FranchiseMain--internal .FranchiseHeader {
-	max-height: 140px;
+	max-height: 160px;
 }
 
 .FranchiseHeader-background {
@@ -73,8 +73,8 @@
 	}
 
 	.FranchiseMain--internal .FranchiseHeader-inner {
-		/*padding: 2em 0;*/
-		padding: 0;
+		padding: 1em 0;
+		/*padding: 0;*/
 	}
 
 }

@@ -148,7 +148,7 @@
 
 	#reservas .Tile-inner {
 		height: 450px;
-		min-height: calc(100vh - 150px);
+		min-height: calc(100vh - 170px);
 	}
 
 	.Tile-right {

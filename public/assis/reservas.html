@@ -68,7 +68,7 @@
 
 		<div class="FranchiseHero-inner">
 
-			<div id="nav-overlay" class="FranchiseHeaderNav-overlay"></div>
+			<!--<div id="nav-overlay" class="FranchiseHeaderNav-overlay"></div>-->
 
 			<div class="FranchiseHeader">
 
@@ -188,25 +188,25 @@
 	window.addEventListener('load', function () {
 
 		var navToggle = document.getElementById("nav-toggle");
-		var navOverlay = document.getElementById("nav-overlay");
+//		var navOverlay = document.getElementById("nav-overlay");
 		var navMenu = document.getElementById("nav-menu-top");
 
 		navToggle.addEventListener('click', function(e) {
 			e.preventDefault();
-			navOverlay.classList.toggle('is-active');
+//			navOverlay.classList.toggle('is-active');
 			navToggle.classList.toggle('is-active');
 			navMenu.classList.toggle('is-active');
 		});
 
-		navOverlay.addEventListener('click', function(e){
-			e.preventDefault();
-			navOverlay.classList.toggle('is-active');
-			navToggle.classList.toggle('is-active');
-			navMenu.classList.toggle('is-active');
-		});
+//		navOverlay.addEventListener('click', function(e){
+//			e.preventDefault();
+//			navOverlay.classList.toggle('is-active');
+//			navToggle.classList.toggle('is-active');
+//			navMenu.classList.toggle('is-active');
+//		});
 
 		navMenu.addEventListener('click', function(){
-			navOverlay.classList.toggle('is-active');
+//			navOverlay.classList.toggle('is-active');
 			navToggle.classList.toggle('is-active');
 			navMenu.classList.toggle('is-active');
 		});

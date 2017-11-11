@@ -103,7 +103,7 @@
 
 		<div class="FranchiseHero-inner">
 
-			<div id="nav-overlay" class="FranchiseHeaderNav-overlay"></div>
+			<!--<div id="nav-overlay" class="FranchiseHeaderNav-overlay"></div>-->
 
 			<div class="FranchiseHeader">
 
@@ -127,14 +127,9 @@
 						<div id="nav-toggle" class="FranchiseMenuList-toggle">
 							<span class="icon-menu"></span>
 							<span class="icon-cancel"></span>
-							<!--<span>MENU</span>-->
 						</div>
 
 						<ul id="nav-menu" class="FranchiseMenuList FranchiseMenuList--header">
-
-							<!--<li class="FranchiseMenuList-item">-->
-							<!--<a href="#agenda">Agenda</a>-->
-							<!--</li>-->
 
 							<li class="FranchiseMenuList-item">
 								<a href="./reservas">Reservas</a>
@@ -147,10 +142,6 @@
 							<li class="FranchiseMenuList-item">
 								<a href="./especiais">Combday & Despedida</a>
 							</li>
-
-							<!--<li class="FranchiseMenuList-item">-->
-							<!--<a href="/eventos">Ufs</a>-->
-							<!--</li>-->
 
 							<li class="FranchiseMenuList-item">
 								<a href="#promoter">Seja promoter</a>
@@ -576,28 +567,28 @@
 		});
 
 		var navToggle = document.getElementById("nav-toggle");
-		var navOverlay = document.getElementById("nav-overlay");
+//		var navOverlay = document.getElementById("nav-overlay");
 		var navMenu = document.getElementById("nav-menu-top");
 
 		navToggle.addEventListener('click', function(e) {
 			e.preventDefault();
-			navOverlay.classList.toggle('is-active');
+//			navOverlay.classList.toggle('is-active');
 			navToggle.classList.toggle('is-active');
 			navMenu.classList.toggle('is-active');
 //			document.body.style.overflowY = 'hidden';
 		});
 
-		navOverlay.addEventListener('click', function(e){
-			e.preventDefault();
-//			document.body.style.overflowY = 'scroll';
-			navOverlay.classList.toggle('is-active');
-			navToggle.classList.toggle('is-active');
-			navMenu.classList.toggle('is-active');
-		});
+//		navOverlay.addEventListener('click', function(e) {
+//			e.preventDefault();
+////			document.body.style.overflowY = 'scroll';
+////			navOverlay.classList.toggle('is-active');
+//			navToggle.classList.toggle('is-active');
+//			navMenu.classList.toggle('is-active');
+//		});
 
-		navMenu.addEventListener('click', function(){
+		navMenu.addEventListener('click', function() {
 //			document.body.style.overflowY = 'scroll';
-			navOverlay.classList.toggle('is-active');
+//			navOverlay.classList.toggle('is-active');
 			navToggle.classList.toggle('is-active');
 			navMenu.classList.toggle('is-active');
 		});

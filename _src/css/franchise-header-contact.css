@@ -53,18 +53,13 @@
 		padding-right: 2em;
 	}
 
-	.FranchiseHeaderContact-item {
-		display: inline-block;
-	}
-
-	.FranchiseHeaderContact-item::after {
-		content: '\2022';
-		margin: 0 .5em;
-	}
-
 }
 
 @media (min-width: 48em) {
+
+	.FranchiseHeaderContact-item {
+		display: inline-block;
+	}
 
 	.FranchiseHeaderContact-item:last-of-type::after,
 	.FranchiseHeaderContact-item.no-trailing-lg::after {

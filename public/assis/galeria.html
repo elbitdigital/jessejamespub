@@ -57,10 +57,12 @@
 		/*background-repeat: no-repeat;*/
 		/*background-position: center center;*/
 		/*background-attachment: fixed;*/
+		/*position: relative;*/
 	/*}*/
 
 	.FranchiseHero-reserva--assis .FranchiseHero-background {
-		background-image: url("../dist/img/bg-paper.jpg");
+		background-image: none;
+		/*background-image: url("../dist/img/bg-paper.jpg");*/
 		/*position: absolute;*/
 		/*z-index: -10;*/
 	}
@@ -303,7 +305,45 @@
 
 </style>
 
+<style>
+
+	.TesteBg {
+		min-width: 100vw;
+		min-height: 100vh;
+		position: fixed;
+		top: 0;
+		left: 0;
+		background-image: url("../dist/img/bg-paper.jpg");
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: center center;
+		/*background-attachment: scroll;*/
+		will-change: transform;
+		-webkit-transform: translate3d(0, 0, 0);
+		-webkit-backface-visibility: hidden;
+		backface-visibility: hidden;
+		/*-webkit-perspective: 1000;*/
+	}
+
+	img.TesteBg2 {
+		min-height: 100%;
+		/*min-width: 1980px;*/
+		width: 100%;
+		height: auto;
+		position: fixed;
+		top: 0;
+		left: 0;
+	}
+
+</style>
+
 <body class="Franchise roboto-slab marrom-couro-darker">
+
+<div class="TesteBg"></div>
+<!--<img src="../dist/img/bg-paper.jpg" alt="bg" class="TesteBg2">-->
 
 <main id="galeria" class="FranchiseMain FranchiseMain--internal">
 
