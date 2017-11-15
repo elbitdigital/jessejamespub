@@ -48,37 +48,18 @@
 	/*outline: 1px solid red;*/
 	/*}*/
 
-	/*body {*/
-		/*background-image: url("../dist/img/bg-paper.jpg");*/
-		/*-webkit-background-size: cover;*/
-		/*-moz-background-size: cover;*/
-		/*-o-background-size: cover;*/
-		/*background-size: cover;*/
-		/*background-repeat: no-repeat;*/
-		/*background-position: center center;*/
-		/*background-attachment: fixed;*/
-		/*position: relative;*/
-	/*}*/
-
-	.FranchiseHero-reserva--assis .FranchiseHero-background {
-		background-image: none;
-		/*background-image: url("../dist/img/bg-paper.jpg");*/
-		/*position: absolute;*/
-		/*z-index: -10;*/
-	}
-
-	/*.FranchiseHero-reserva--assis .FranchiseHero-background::after {*/
-		/*display: none;*/
-	/*}*/
-
-</style>
-
-<style>
-
 	pre {
 		max-width: 1000px;
 		margin: 0 auto;
 		word-wrap: break-word;
+	}
+
+	.Gallery {
+		/*background-color: rgba(0,0,0,.1);*/
+		padding: 3em 1em;
+		text-align: center;
+		margin: 0 auto;
+		width: 100%;
 	}
 
 	.Gallery-list {
@@ -97,22 +78,24 @@
 		padding: 1em;
 	}
 
-	@media (min-width: 48em) {
-
-		.Gallery-list {
-			/*width: 90%;*/
-		}
-
+	.Gallery-subtitle {
+		font-size: 1.125em;
+		text-shadow: 0 0 2px rgba(0,0,0,.2);
 	}
 
-</style>
+	.Gallery-button {
+		max-width: none;
+		font-size: .75em;
+		padding: .75em 1.5em;
+		margin: 1.5em 0;
+	}
 
-<style>
+	@media (min-width: 48em) {
 
-	.Gallery {
-		/*background-color: rgba(0,0,0,.1);*/
-		padding: 3em 0 2.5em;
-		text-align: center;
+		.Gallery-button {
+			font-size: 1em;
+		}
+
 	}
 
 </style>
@@ -122,14 +105,15 @@
 	.PlaceholderExternal {
 		border-radius: 2px;
 		background-color: rgba(0, 0, 0, .2);
-		width: 600px;
-		margin: 1em 0;
+		width: 100%;
+		max-width: 600px;
+		margin: 2em auto;
 		padding: 1em 1em;
 	}
 
-</style>
-
-<style>
+	.PlaceholderExternal p {
+		margin-bottom: 1em;
+	}
 
 	.loader {
 		height: 5px;
@@ -164,185 +148,15 @@
 
 <style>
 
-	.Album {
-		/*width: 15em;*/
-		max-height: 15em;
-		height: calc(100vw - 2em);
-		margin: .5em;
-		flex: 0 0 90%;
-		border: 2px solid #442a0d; /* marrom couro darker */
-		position: relative;
 
-		-webkit-align-items: center;
-		align-items: center;
-		display: -webkit-box;
-		display: -moz-box;
-		display: -ms-flexbox;
-		display: -webkit-flex;
-		display: flex;
-		-webkit-justify-content: center;
-		justify-content: center;
-	}
-
-	@media only screen and (min-width: 480px) {
-
-		.Album {
-			height: calc(50vw - 2em);
-			flex: 0 0 45%;
-		}
-
-	}
-
-	@media only screen and (min-width: 700px) {
-
-		.Album {
-			height: calc(30vw - 2em);
-			flex: 0 0 30%;
-		}
-
-	}
-
-	@media only screen and (min-width: 1280px) {
-
-		.Album {
-			height: calc(23vw - 2em);
-			flex: 0 0 23%;
-		}
-
-	}
-
-	.Album--more .AlbumContent-date {
-		background-color: rgba(0,0,0,.9);
-	}
-
-	.AlbumContent-date {
-		display: inline-block;
-		font-size: 1.5em;
-		padding: .25em;
-		min-width: 5em;
-		background-color: rgba(0,0,0,.5);
-		border: 2px solid #442a0d; /* marrom couro darker */
-		-webkit-transition: all .3s ease;
-		-moz-transition: all .3s ease;
-		-ms-transition: all .3s ease;
-		-o-transition: all .3s ease;
-		transition: all .3s ease;
-	}
-
-	.Album:hover .AlbumContent-date {
-		background-color: rgba(0,0,0,.7);
-		border-color: #301c09; /* marrom couro darkest */
-	}
-
-	.AlbumContent-title {
-		font-size: 1.25em;
-		text-transform: uppercase;
-		margin: .5em;
-	}
-
-	.Album {
-		overflow: hidden;
-	}
-
-	.Album-background {
-		width: 100%;
-		height: 100%;
-		background-color: black; /* fallback color */
-		background-repeat: no-repeat;
-		background-position: center center;
-		-webkit-background-size: cover;
-		-moz-background-size: cover;
-		-o-background-size: cover;
-		background-size: cover;
-		position: absolute;
-		top: 0;
-		right: 0;
-		/*opacity: .4;*/
-		z-index: 1;
-		-webkit-transition: transform .5s ease;
-		-moz-transition: transform .5s ease;
-		-ms-transition: transform .5s ease;
-		-o-transition: transform .5s ease;
-		transition: transform .5s ease;
-	}
-
-	.Album:hover .Album-background {
-		transform: scale(1.05);
-	}
-
-	.Album-overlay {
-		width: 100%;
-		height: 100%;
-		position: absolute;
-		top: 0;
-		right: 0;
-		opacity: .4;
-		z-index: 1;
-		-webkit-transition: all .3s ease;
-		-moz-transition: all .3s ease;
-		-ms-transition: all .3s ease;
-		-o-transition: all .3s ease;
-		transition: all .3s ease;
-	}
-
-	.Album:hover .Album-overlay {
-		opacity: .3;
-	}
-
-	.Album--more .Album-overlay {
-		opacity: .7;
-	}
-
-	.Album--more:hover .Album-overlay {
-		opacity: .8;
-	}
-
-	.AlbumContent {
-		color: #fafafa;
-		font-family: 'Roboto Slab', 'Georgia', 'Cambria', serif;
-		z-index: 2;
-	}
-
-</style>
-
-<style>
-
-	.TesteBg {
-		min-width: 100vw;
-		min-height: 100vh;
-		position: fixed;
-		top: 0;
-		left: 0;
-		background-image: url("../dist/img/bg-paper.jpg");
-		-webkit-background-size: cover;
-		-moz-background-size: cover;
-		-o-background-size: cover;
-		background-size: cover;
-		background-repeat: no-repeat;
-		background-position: center center;
-		/*background-attachment: scroll;*/
-		will-change: transform;
-		-webkit-transform: translate3d(0, 0, 0);
-		-webkit-backface-visibility: hidden;
-		backface-visibility: hidden;
-		/*-webkit-perspective: 1000;*/
-	}
-
-	img.TesteBg2 {
-		min-height: 100%;
-		/*min-width: 1980px;*/
-		width: 100%;
-		height: auto;
-		position: fixed;
-		top: 0;
-		left: 0;
-	}
 
 </style>
 
 <body class="Franchise roboto-slab marrom-couro-darker">
 
-<div class="TesteBg"></div>
+<div id="topo"></div>
+
+<div class="bg-paper-full"></div>
 <!--<img src="../dist/img/bg-paper.jpg" alt="bg" class="TesteBg2">-->
 
 <main id="galeria" class="FranchiseMain FranchiseMain--internal">
@@ -365,6 +179,10 @@
 			</a>
 
 			<div class="FranchiseHeaderNav">
+
+				<a href="#topo" title="Ir para o topo" class="FranchiseMenuList-goTop">
+					<span class="icon-angle-double-up"></span>
+				</a>
 
 				<div id="nav-toggle" class="FranchiseMenuList-toggle">
 					<span class="icon-menu"></span>
@@ -400,6 +218,10 @@
 	<ul id="nav-menu-top" class="FranchiseMenuList FranchiseMenuList--top">
 
 		<li class="FranchiseMenuList-item">
+			<a href="./">Início</a>
+		</li>
+
+		<li class="FranchiseMenuList-item">
 			<a href="./reservas">Reservas</a>
 		</li>
 
@@ -421,7 +243,7 @@
 
 		<div class="FranchiseHero-background"></div>
 
-		<div class="Gallery FranchiseHero-inner container">
+		<div id="gallery" class="Gallery FranchiseHero-inner container">
 
 			<div class="LeadingTitle f-marrom-couro--darkest">
 				<i class="LeadingTitle-orn icon-orn-left"></i>
@@ -430,102 +252,17 @@
 				<i class="LeadingTitle-orn LeadingTitle-orn--bot icon-orn-bot"></i>
 			</div>
 
-			<div id="gallery-list" class="Gallery-list">
+			<p class="Gallery-subtitle f-marrom-couro--darkest">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+			<p class="Gallery-subtitle f-marrom-couro--darkest">Autem commodi consectetur, consequuntur, consectetur, consequuntur.</p>
 
-				<div class="PlaceholderExternal">
+			<!--<div id="gallery-list" class="Gallery-list">-->
+
+				<div id="gallery-loading" class="PlaceholderExternal">
 					<p>Carregando álbums...</p>
 					<div class="loader"></div>
 				</div>
 
-				<!--<a href="#assis" class="Album" style="background-image: url('https://scontent.xx.fbcdn.net/v/t31.0-0/p600x600/20368996_1929509733975510_6919608120889740573_o.jpg?oh=015be32f605fd90145511454d4fd9c52&oe=5A024C8A');">-->
-
-					<!--<div class="Album-overlay marrom-couro&#45;&#45;darkest"></div>-->
-
-					<!--<div class="AlbumContent">-->
-						<!--<h1 class="AlbumContent-date">05/05/2017</h1>-->
-						<!--<h2 class="AlbumContent-title">DESFILE CHEIA DE CHARME DUB'S PALMITAL</h2>-->
-					<!--</div>-->
-
-				<!--</a>-->
-
-				<!--<a href="#ourinhos" class="Album" style="background-image: url('https://scontent.xx.fbcdn.net/v/t31.0-0/p600x600/20368996_1929509733975510_6919608120889740573_o.jpg?oh=015be32f605fd90145511454d4fd9c52&oe=5A024C8A');">-->
-
-					<!--<div class="Album-overlay marrom-couro&#45;&#45;darkest"></div>-->
-
-					<!--<div class="AlbumContent">-->
-						<!--<h1 class="AlbumContent-date">01.02.2017</h1>-->
-						<!--<h2 class="AlbumContent-title">SEXTA-FEIRA</h2>-->
-					<!--</div>-->
-
-				<!--</a>-->
-
-				<!--<a href="#paraguacu" class="Album" style="background-image: url('https://scontent.xx.fbcdn.net/v/t31.0-0/p600x600/20368996_1929509733975510_6919608120889740573_o.jpg?oh=015be32f605fd90145511454d4fd9c52&oe=5A024C8A');">-->
-
-					<!--<div class="Album-overlay marrom-couro&#45;&#45;darkest"></div>-->
-
-					<!--<div class="AlbumContent">-->
-						<!--<h1 class="AlbumContent-date">05-05-2017</h1>-->
-						<!--<h2 class="AlbumContent-title">SÁBADO</h2>-->
-					<!--</div>-->
-
-				<!--</a>-->
-
-				<!--<a href="#assis" class="Album" style="background-image: url('https://scontent.xx.fbcdn.net/v/t31.0-0/p600x600/20368996_1929509733975510_6919608120889740573_o.jpg?oh=015be32f605fd90145511454d4fd9c52&oe=5A024C8A');">-->
-
-					<!--<div class="Album-overlay marrom-couro&#45;&#45;darkest"></div>-->
-
-					<!--<div class="AlbumContent">-->
-						<!--<h1 class="AlbumContent-date">05/05/2017</h1>-->
-						<!--<h2 class="AlbumContent-title">DESFILE CHEIA DE CHARME DUB'S PALMITAL</h2>-->
-					<!--</div>-->
-
-				<!--</a>-->
-
-				<!--<a href="#ourinhos" class="Album" style="background-image: url('https://scontent.xx.fbcdn.net/v/t31.0-0/p600x600/20368996_1929509733975510_6919608120889740573_o.jpg?oh=015be32f605fd90145511454d4fd9c52&oe=5A024C8A');">-->
-
-					<!--<div class="Album-overlay marrom-couro&#45;&#45;darkest"></div>-->
-
-					<!--<div class="AlbumContent">-->
-						<!--<h1 class="AlbumContent-date">01.02.2017</h1>-->
-						<!--<h2 class="AlbumContent-title">SEXTA-FEIRA</h2>-->
-					<!--</div>-->
-
-				<!--</a>-->
-
-				<!--<a href="#paraguacu" class="Album" style="background-image: url('https://scontent.xx.fbcdn.net/v/t31.0-0/p600x600/20368996_1929509733975510_6919608120889740573_o.jpg?oh=015be32f605fd90145511454d4fd9c52&oe=5A024C8A');">-->
-
-					<!--<div class="Album-overlay marrom-couro&#45;&#45;darkest"></div>-->
-
-					<!--<div class="AlbumContent">-->
-						<!--<h1 class="AlbumContent-date">05-05-2017</h1>-->
-						<!--<h2 class="AlbumContent-title">SÁBADO</h2>-->
-					<!--</div>-->
-
-				<!--</a>-->
-
-				<!--<a href="#ourinhos" class="Album" style="background-image: url('https://scontent.xx.fbcdn.net/v/t31.0-0/p600x600/20368996_1929509733975510_6919608120889740573_o.jpg?oh=015be32f605fd90145511454d4fd9c52&oe=5A024C8A');">-->
-
-					<!--<div class="Album-overlay marrom-couro&#45;&#45;darkest"></div>-->
-
-					<!--<div class="AlbumContent">-->
-						<!--<h1 class="AlbumContent-date">01.02.2017</h1>-->
-						<!--<h2 class="AlbumContent-title">SEXTA-FEIRA</h2>-->
-					<!--</div>-->
-
-				<!--</a>-->
-
-				<!--<a href="#paraguacu" class="Album" style="background-image: url('https://scontent.xx.fbcdn.net/v/t31.0-0/p600x600/20368996_1929509733975510_6919608120889740573_o.jpg?oh=015be32f605fd90145511454d4fd9c52&oe=5A024C8A');">-->
-
-					<!--<div class="Album-overlay marrom-couro&#45;&#45;darkest"></div>-->
-
-					<!--<div class="AlbumContent">-->
-						<!--<h1 class="AlbumContent-date">05-05-2017</h1>-->
-						<!--<h2 class="AlbumContent-title">SÁBADO</h2>-->
-					<!--</div>-->
-
-				<!--</a>-->
-
-			</div>
+			<!--</div>-->
 
 		</div>
 
@@ -625,6 +362,12 @@
 
 <script>
 
+	var sweetScroll = new SweetScroll({
+		trigger: "a[href^='#']",
+		duration: 800,
+		quickMode: true
+	});
+
 	window.addEventListener('load', function () {
 
 		var navToggle = document.getElementById("nav-toggle");
@@ -668,6 +411,12 @@
 	var galleryRef = houseRef.child('gallery');
 	var enabledRef = galleryRef.child('enabledAlbums');
 
+	var franchise_config = {
+		CITY: 'assis',
+		PAGE_ID: 1586666258259861,
+		APP_TOKEN: '146544439255115|3_8Ip3wrGqx-BfnrEVVRhJeUpLA'
+	};
+
 </script>
 
 <script src="../dist/js/axios.min.js"></script>
@@ -676,67 +425,92 @@
 
 	var batched_albums = [];
 	var batch_list = [];
-	var albumCollection = {};
+	var albumCollection = [];
+	var needleAlbum = false;
+	var galleryNode = document.getElementById('gallery');
+	var galleryLoadingElement = document.getElementById('gallery-loading');
 
 	function galleryInit() {
 
-		enabledRef.orderByKey().limitToLast(12).once('value', function (snapshot) {
+		/* Testar para retornar 13 albums, pois assim é possível carregar mais albums ou saber se não possui album sufiente */
+
+		enabledRef.orderByKey().limitToLast(24).once('value', function (snapshot) {
+
+			var i = 0;
 
 			snapshot.forEach(function (child) {
 
-//				albumCollection.push(child.val());
-				albumCollection[child.key] = child.val();
+				/* primeria vez da coleta do needleAlbum, espera que colete a primeira chave (na ordem da consulta) */
+				/* espera i == 0 */
+				if (i == 0) {
+					needleAlbum = child.key;
+				}
+
+				i++;
+
+				albumCollection.push(child.val());
 
 				batch_list.push({
 					"method": "GET",
-					"relative_url": child.key + "?fields=id, name, link, type, cover_photo.fields(id, height, width, picture, images, link)"
+					"relative_url": child.key + "?fields=id, cover_photo.fields(id, height, width, picture, images)"
 				});
 
 			});
 
-			batchRequestAlbums(batch_list);
+			batchRequestFirstBite(batch_list);
 
 		});
 
 	}
 
-	function batchRequestAlbums(batch_list) {
+	function batchRequestFirstBite(batch_list_first) {
 
 		axios.post('https://graph.facebook.com/v2.10/', {
-			access_token: '146544439255115|3_8Ip3wrGqx-BfnrEVVRhJeUpLA',
-			batch: batch_list,
+			access_token: franchise_config.APP_TOKEN,
+			batch: batch_list_first,
 			include_headers: "false"
 		}).then(function (response) {
 
 			batched_albums = response.data;
 
-			transformDataArrayIntoAlbumsElements(batched_albums);
+			var firstBiteGallery = createGalleryList(batched_albums);
+			var buttonMore = createLoadMoreButton();
+
+			galleryLoadingElement.parentNode.removeChild(galleryLoadingElement);
+			galleryNode.appendChild(firstBiteGallery);
+			galleryNode.appendChild(buttonMore);
 
 //            document.getElementById('gallery-list').innerHTML = '<pre><code>' + JSON.stringify(response.data, undefined, 2) +'</code></pre>';
 
 		}).catch(function (err) {
 
-			document.getElementById('gallery-list').innerHTML = '<span style="color: red;">' + err.message + '</span>';
+			document.getElementById('gallery').innerHTML = '<span style="color: red;">' + err.message + '</span>';
 
 		});
 
 	}
 
-	function transformDataArrayIntoAlbumsElements(received_albums) {
+	function createGalleryList(received_albums) {
 
-		var galleryNode = document.getElementById('gallery-list');
-		galleryNode.innerHTML = '';
+//		var galleryNode = document.getElementById('gallery-list');
+//		galleryNode.innerHTML = '';
+
+		var galleryNode = document.createElement('div');
+		galleryNode.className = 'Gallery-list';
 
 		for (var i = received_albums.length; i--;) {
 
 			var album = JSON.parse(received_albums[i].body);
+			var albumData = retriveAlbumData(album.id);
 
-			var AlbumNode = document.createElement('a');
-			AlbumNode.href = './album?id=' + album.id;
-			AlbumNode.className = 'Album';
-			AlbumNode.title = album.name;
-			AlbumNode.style.backgroundImage = 'url(' + album.cover_photo.images[5].source +')';
-//			console.log(album.cover_photo.images);
+			var albumNode = document.createElement('a');
+			albumNode.href = './album?id=' + album.id;
+			albumNode.className = 'Album';
+			albumNode.title = albumData.fb_name;
+
+			var albumBackgroundNode = document.createElement('div');
+			albumBackgroundNode.className = 'Album-background';
+			albumBackgroundNode.style.backgroundImage = 'url(' + album.cover_photo.images[5].source +')';
 
 			var albumOverlayNode = document.createElement('div');
 			albumOverlayNode.className = 'Album-overlay marrom-couro--darkest';
@@ -744,74 +518,65 @@
 			var albumContentNode = document.createElement('div');
 			albumContentNode.className = 'AlbumContent';
 
-			var formattedDate = converterData(separarDataTitulo(album.name).date[0]);
-			var title = separarDataTitulo(album.name).title;
-
 			var albumContentDate = document.createElement('h1');
 			albumContentDate.className = 'AlbumContent-date';
-			albumContentDate.textContent = formattedDate;
+			albumContentDate.textContent = albumData.date;
 
 			var albumContentTitle = document.createElement('h2');
 			albumContentTitle.className = 'AlbumContent-title';
-			albumContentTitle.textContent = title;
+			albumContentTitle.textContent = albumData.title;
 
-//			if (i == 0) {
-//
-//				AlbumNode.className = 'Album Album--more';
-//				AlbumNode.title = 'Ver todos os álbuns';
-//				AlbumNode.href = '/galeria';
-//				albumContentTitle.textContent = 'Ver todos os álbuns';
-//
-//				albumContentNode.appendChild(albumContentTitle);
-//
-//				AlbumNode.appendChild(albumOverlayNode);
-//				AlbumNode.appendChild(albumContentNode);
-//
-//				galleryNode.appendChild(AlbumNode);
-//
-//			} else {
+			albumContentNode.appendChild(albumContentDate);
+			albumContentNode.appendChild(albumContentTitle);
 
-				albumContentNode.appendChild(albumContentDate);
-				albumContentNode.appendChild(albumContentTitle);
+			albumNode.appendChild(albumBackgroundNode);
+			albumNode.appendChild(albumOverlayNode);
+			albumNode.appendChild(albumContentNode);
 
-				AlbumNode.appendChild(albumOverlayNode);
-				AlbumNode.appendChild(albumContentNode);
-
-				galleryNode.appendChild(AlbumNode);
-
-//			}
+			galleryNode.appendChild(albumNode);
 
 		}
 
-//		addFirebaseListeners();
+		return galleryNode;
 
 	}
 
-	function procurarDataSubtitulo(string) {
+	function createLoadMoreButton () {
 
-		var regex_date = /(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](((19|20)\d\d)|(\d\d))/gm;
+		var buttonLoadMore = document.createElement('a');
+		buttonLoadMore.id = 'gallery-button-loadMore';
+		buttonLoadMore.href = 'https://www.facebook.com/pg/' + franchise_config.PAGE_ID + '/photos/?tab=albums';
+		buttonLoadMore.className = 'Gallery-button Button Button--idle';
+		buttonLoadMore.innerHTML = '<span class="icon-facebook-official"></span> Veja mais na nossa página';
 
-		return regex_date.test(string);
+//		buttonLoadMore.textContent = 'Carregar mais álbums';
+//		buttonLoadMore.addEventListener('click', function() {
+//
+//			this.innerHTML = '<span class="icon-cw animate-spin"></span>';
+//			batched_albums = [];
+//			batch_list = [];
+//			loadNextBatchAlbums();
+//
+//		});
+
+		return buttonLoadMore;
 
 	}
 
-	function converterData(date) {
 
-		var regex_separator = /[- .]/gm;
+	function retriveAlbumData(albumId) {
 
-		return date.replace(regex_separator, '/');
+		for (var s = 0; s < albumCollection.length; s++) {
 
-	}
+			if (albumCollection[s].fb_id == albumId) {
 
-	function separarDataTitulo(string) {
+				return albumCollection[s];
 
-		var content = [];
+			}
 
-		var regex_date = /(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](((19|20)\d\d)|(\d\d))/gm;
-		content.date = regex_date.exec(string);
-		content.title = string.replace(regex_date, '');
+		}
 
-		return content;
+		return [];
 
 	}
 

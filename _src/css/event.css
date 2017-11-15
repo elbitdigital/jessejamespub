@@ -239,7 +239,7 @@
 	}
 
 	.EventLink-button {
-		padding: .5em 2em;
+		/*padding: .5em 2em;*/
 		max-width: 600px;
 	}
 
@@ -267,6 +267,11 @@
 
 	.EventContent-title {
 		flex: 4;
+	}
+
+	.Event-headerImage,
+	.EventContent {
+		flex: 0 auto;
 	}
 
 }

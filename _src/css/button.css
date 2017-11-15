@@ -94,7 +94,7 @@
 
 .Button--idle {
 	background-image: url('../img/svg/botao-dstv.svg');
-	padding: .5em 1em;
+	padding: .5em 2em;
 }
 
 .Button--back {

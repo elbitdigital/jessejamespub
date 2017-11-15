@@ -35,6 +35,7 @@
 
 .TileHalf {
 	padding: 2em 1.5em;
+	text-shadow: 0 0 2px rgba(0,0,0,.2);
 }
 
 .TileHalf.TileHalf--background {
@@ -47,12 +48,9 @@
 	background-repeat: no-repeat;
 	background-position: center center;
 	box-shadow: inset 2px 1px 15px -2px rgba(0, 0, 0, 0.50), inset -2px -1px 15px -2px rgba(0, 0, 0, 0.50);
-
 }
 
 .TileHalf--especiais {
-	height: 100%;
-	overflow: hidden;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -61,18 +59,9 @@
 	background-position: top right;
 	background-image: url("../../dist/img/bg-paper.jpg");
 	box-shadow: 2px 1px 15px -2px rgba(0, 0, 0, 0.50), -2px -1px 15px -2px rgba(0, 0, 0, 0.50);
-}
-
-.TileHalf--background-combday {
-	background-image: url("../../dist/img/bg-combday.jpg");
-}
-
-.TileHalf--background-despedida {
-	background-image: url("../../dist/img/bg-despedida.jpg");
-}
-
-.TileHalf--background-ufs {
-	background-image: url("../../dist/img/bg-ufs.jpg");
+	height: 100%;
+	overflow: hidden;
+	position: relative;
 }
 
 .TileHalf-subtitle {
@@ -88,17 +77,19 @@
 	max-width: 30rem;
 }
 
-.TileHalf-text {
-	margin-bottom: .5em;
-}
-
 .TileHalf-subtext {
 	font-size: 1em;
 }
 
-.TileHalf--center {
-	text-shadow: 0 0 2px rgba(0,0,0,.2);
+.TileHalf-text.TileHalf-textSub {
+	font-size: .75em;
+	text-align: right;
+	font-weight: bold;
 }
+
+/*.TileHalf--center {*/
+	/*text-shadow: 0 0 2px rgba(0,0,0,.2);*/
+/*}*/
 
 .TileHalf--center .LeadingTitle {
 	font-size: 1.25em;
@@ -113,7 +104,39 @@
 	margin-top: 0;
 }
 
+.TileHalf-mapa svg {
+	max-width: 250px;
+	height: auto;
+	min-height: 0;
+}
+
 @media (min-width: 48em) {
+
+	.TileHalf.TileHalf-info {
+		padding-top: 4em;
+		padding-bottom: 3em;
+	}
+
+	.TileHalf.TileHalf--background {
+		height: 20em;
+	}
+
+	.TileHalf-mapa svg {
+		max-width: 350px;
+	}
+
+	#especiais .Tile-inner {
+		width: 100%;
+	}
+
+	#especiais .TileHalf.TileHalf--especiais {
+		box-shadow: none;
+		box-shadow: -10px 0 8px -8px rgba(0, 0, 0, 0.5), 10px 0 8px -8px rgba(0, 0, 0, 0.5);
+	}
+
+}
+
+@media (min-width: 60em) {
 
 	.Tile {
 		/*-webkit-flex-wrap: wrap;*/
@@ -127,29 +150,22 @@
 		z-index: 1;
 	}
 
-	/*#reservas .Tile {*/
-		/*min-height: calc(100% - 160px);*/
-	/*}*/
-
 	.TileHalf.TileHalf--background {
 		height: auto;
 	}
 
 	.Tile-inner {
+		-webkit-align-items: stretch;
+		align-items: stretch;
 		display: -webkit-box;
 		display: -moz-box;
 		display: -ms-flexbox;
 		display: -webkit-flex;
 		display: flex;
+		-webkit-justify-content: space-around;
+		justify-content: space-around;
 		height: 650px;
-		min-height: 100vh;
-		-webkit-align-items: stretch;
-		align-items: stretch;
-	}
-
-	#reservas .Tile-inner {
-		height: 450px;
-		min-height: calc(100vh - 170px);
+		min-height: 105vh;
 	}
 
 	.Tile-right {
@@ -159,27 +175,21 @@
 
 	.TileHalf {
 		padding: 2em;
-		/*flex: 1;*/
-		flex: 0 0 50%;
 		position: relative;
-		/*height: 100%;*/
+	}
+
+	.TileHalf.TileHalf--background,
+	.TileHalf.TileHalf-info {
+		flex: 0 0 50%;
+	}
+
+	.TileHalf-text {
+		max-width: 33rem;
+		font-size: 1.25em;
 	}
 
 	.TileHalf-subtitle {
 		font-size: 1.5em;
-	}
-
-	.TileHalf-text {
-		font-size: 1.25em;
-	}
-
-
-	#especiais .TileHalf {
-		flex: 0 0 60%;
-	}
-
-	#especiais .TileHalf.TileHalf--especiais {
-		flex: 0 0 40%;
 	}
 
 	.TileHalf--center {
@@ -208,12 +218,56 @@
 		font-size: 1.5em;
 	}
 
+	.TileHalf-mapa svg {
+		max-width: 400px;
+	}
+
+
+
+
+	.FranchiseMain--internal .TileHalf--background {
+		background: none;
+		box-shadow: none;
+		border: none;
+	}
+
+	#reservas .Tile-inner {
+		height: 450px;
+		min-height: calc(100vh - 180px);
+	}
+
+	#reservas .Tile-right {
+		-webkit-flex-direction: row;
+		flex-direction: row;
+	}
+
+	#reservas .TileHalf {
+		padding: 0;
+		flex: 0 0 45%;
+	}
+
+    #especiais .TileHalf.TileHalf--especiais {
+	    -webkit-align-items: center;
+	    align-items: center;
+	    display: -webkit-box;
+	    display: -moz-box;
+	    display: -ms-flexbox;
+	    display: -webkit-flex;
+	    display: flex;
+	    -webkit-justify-content: center;
+	    justify-content: center;
+    }
+
 }
 
-@media (min-width: 60em) {
+@media (min-width: 80em) {
 
-	.TileHalf-text {
-		max-width: 33rem;
+	#especiais .TileHalf {
+		flex: 0 0 60%;
+	}
+
+	#especiais .TileHalf.TileHalf--especiais {
+		flex: 0 0 40%;
 	}
 
 }

@@ -324,12 +324,6 @@
 		fullImage.style.display = 'none';
 		fullImage.addEventListener('click', function (e) {
 
-			if (e.target.href !== undefined) {
-				return false;
-			}
-
-//			this.style.display = 'none';
-
 			fadeOut(this);
 			while (fullImage.firstChild) {
 				fullImage.removeChild(fullImage.firstChild);
@@ -368,13 +362,6 @@
 
 			fig.appendChild(img);
 			fig.addEventListener('click', function () {
-
-				var fbLink = document.createElement('a');
-				fbLink.href = this.dataset.url;
-				fbLink.target = '_blank';
-				fbLink.className = 'fullimage-link';
-				fbLink.innerText = 'Ver no Facebook';
-				fullImage.appendChild(fbLink);
 
 				var clone = this.firstChild.cloneNode(true);
 				fullImage.appendChild(clone);

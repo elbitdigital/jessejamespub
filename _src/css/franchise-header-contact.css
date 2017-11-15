@@ -8,7 +8,7 @@
 }
 
 .FranchiseHeaderContact-item--left {
-	text-align: left;
+	text-align: center;
 }
 
 .FranchiseHeaderContact-item--right {
@@ -21,7 +21,7 @@
 }
 
 .FranchiseHeaderContact-item {
-	display: block;
+	display: inline-block;
 	padding: 1em .5em 1em .25em;
 }
 
@@ -58,7 +58,7 @@
 @media (min-width: 48em) {
 
 	.FranchiseHeaderContact-item {
-		display: inline-block;
+		padding: .75em .5em;
 	}
 
 	.FranchiseHeaderContact-item:last-of-type::after,
@@ -72,6 +72,10 @@
 	.FranchiseHeaderContact-inner {
 		-webkit-justify-content: space-between;
 		justify-content: space-between;
+	}
+
+	.FranchiseHeaderContact-item--email {
+		display: inline-block;
 	}
 
 }

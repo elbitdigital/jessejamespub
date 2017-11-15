@@ -57,14 +57,26 @@
 	}
 
 	.FranchiseHeaderContact {
+		font-size: .875em;
+	}
 
-		font-size: .8675em;
+	.TileHalf--background-combday {
+		background-image: url("../dist/img/bg-combday.jpg");
+	}
 
+	.TileHalf--background-despedida {
+		background-image: url("../dist/img/bg-despedida.jpg");
+	}
+
+	.TileHalf--background-ufs {
+		background-image: url("../dist/img/bg-ufs.jpg");
 	}
 
 </style>
 
 <body class="Franchise roboto-slab marrom-couro-darker">
+
+<div id="topo"></div>
 
 <main class="FranchiseMain">
 
@@ -76,7 +88,7 @@
 			<div class="FranchiseHeaderContact-item--left">
 
 				<a href="/" class="FranchiseHeaderContact-item no-trailing-lg">
-					<span class="icon-left-open"></span> <strong class="">JESSE JAMES PUB</strong>
+					<span class="icon-left-open"></span> <strong>JESSE JAMES PUB</strong>
 				</a>
 
 			</div>
@@ -124,6 +136,10 @@
 
 					<div class="FranchiseHeaderNav">
 
+						<a href="#topo" title="Ir para o topo" class="FranchiseMenuList-goTop">
+							<span class="icon-angle-double-up"></span>
+						</a>
+
 						<div id="nav-toggle" class="FranchiseMenuList-toggle">
 							<span class="icon-menu"></span>
 							<span class="icon-cancel"></span>
@@ -158,6 +174,10 @@
 			<ul id="nav-menu-top" class="FranchiseMenuList FranchiseMenuList--top">
 
 				<li class="FranchiseMenuList-item">
+					<a href="./">Início</a>
+				</li>
+
+				<li class="FranchiseMenuList-item">
 					<a href="./reservas">Reservas</a>
 				</li>
 
@@ -170,7 +190,7 @@
 				</li>
 
 				<li class="FranchiseMenuList-item">
-					<a href="#promoter">Seja promoter</a>
+					<a href="./#promoter">Seja promoter</a>
 				</li>
 
 			</ul>
@@ -300,7 +320,7 @@
 					<div class="TileHalf-mask marrom-couro--darkest"></div>
 				</div>
 
-				<div class="TileHalf TileHalf--center">
+				<div class="TileHalf TileHalf-info TileHalf--center">
 
 					<div class="LeadingTitle LeadingTitle--simple">
 
@@ -314,7 +334,7 @@
 
 					<p class="TileHalf-text">Não é justo que no dia do seu aniversário você fique enchendo bexiga a tarde toda. Pensando nisso, o Jesse James oferece o Combday: São três opçoes de festa para você só se preocupar em convidar seus amigos e festar.</p>
 
-					<a href="./eventos" class="TileHalf-button Button filter--shadow">Saiba mais</a>
+					<a href="./especiais#combday" class="TileHalf-button Button filter--shadow">Saiba mais</a>
 
 				</div>
 
@@ -330,7 +350,7 @@
 					<div class="TileHalf-mask marrom-couro--darkest"></div>
 				</div>
 
-				<div class="TileHalf TileHalf--center">
+				<div class="TileHalf TileHalf-info TileHalf--center">
 
 					<div class="LeadingTitle LeadingTitle--simple">
 
@@ -345,7 +365,7 @@
 					<p class="TileHalf-text">O matrimônio está fazendo mais um a vítima, deixando a vida noturna um pouco mais vazia. A gente entende que você lutou, enrolou o quanto deu, mas não suportou a pressão e vai mesmo se amarrar eternamente a outra pessoa.</p>
 					<p class="TileHalf-text">Depois de ler tudo isso, se você ainda não desistiu de casar, pelo menos saia da vida boêmia de forma digna com a gente.</p>
 
-					<a href="./eventos" class="TileHalf-button Button filter--shadow">Saiba mais</a>
+					<a href="./especiais#despedida" class="TileHalf-button Button filter--shadow">Saiba mais</a>
 
 				</div>
 
@@ -361,7 +381,7 @@
 					<div class="TileHalf-mask marrom-couro--darkest"></div>
 				</div>
 
-				<div class="TileHalf TileHalf--center">
+				<div class="TileHalf TileHalf-info TileHalf--center">
 
 					<div class="LeadingTitle LeadingTitle--simple">
 
@@ -508,7 +528,7 @@
 
 					<h2 class="FranchiseFooterTime-title">Horário de funcionamento</h2>
 					<p class="FranchiseFooterTime-text">
-						Quinta, Sexta e Sábado: das 21h às 04h
+						Quinta, Sexta e Sábado: <br>das 21h às 04h
 					</p>
 
 				</div>

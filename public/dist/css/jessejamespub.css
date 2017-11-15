@@ -77,6 +77,31 @@ body {
   cursor: pointer;
 }
 
+#topo {
+  display: none;
+}
+
+.bg-paper-full {
+  min-width: 100vw;
+  min-height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-image: url("../../dist/img/bg-paper.jpg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  /*background-attachment: scroll;*/
+  will-change: transform;
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  /*-webkit-perspective: 1000;*/
+}
+
 img::selection {
   background: transparent;
 }
@@ -166,21 +191,274 @@ img::-moz-selection {
   }
 }
 
+.hide-md {
+  display: block !important;
+}
+
+.show-md {
+  display: none !important;
+}
+
 @media (min-width: 48em) {
   .container {
-    width: 750px;
+    width: 750px !important;
   }
 }
 
 @media (min-width: 62em) {
   .container {
-    width: 970px;
+    width: 970px !important;
+  }
+
+  .hide-md {
+    display: none !important;
+  }
+
+  .show-md {
+    display: block !important;
   }
 }
 
 @media (min-width: 75em) {
   .container {
-    width: 1170px;
+    width: 1170px !important;
+  }
+}
+/* Franchise Album style */
+
+.Album {
+  /*width: 15em;*/
+  min-height: 150px;
+  max-height: 250px;
+  height: 100vw;
+  flex: 0 0 90%;
+  /*width: 100%;*/
+  margin: 4px 8px;
+  border: 2px solid #442a0d;
+  /* marrom couro darker */
+  position: relative;
+  overflow: hidden;
+  -webkit-align-items: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+
+.Album-background {
+  width: 100%;
+  height: 100%;
+  background-color: #301c09;
+  /* fallback color */
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  right: 0;
+  /*opacity: .4;*/
+  z-index: 1;
+  -webkit-transition: transform .5s ease;
+  -moz-transition: transform .5s ease;
+  -ms-transition: transform .5s ease;
+  -o-transition: transform .5s ease;
+  transition: transform .5s ease;
+  -webkit-transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden;
+}
+
+.Album:hover .Album-background {
+  -webkit-transform: scale(1.075);
+  -moz-transform: scale(1.075);
+  -ms-transform: scale(1.075);
+  -o-transform: scale(1.075);
+  transform: scale(1.075);
+}
+
+.Album-overlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  opacity: .4;
+  z-index: 1;
+  -webkit-transition: all .3s ease;
+  -moz-transition: all .3s ease;
+  -ms-transition: all .3s ease;
+  -o-transition: all .3s ease;
+  transition: all .3s ease;
+}
+
+.Album:hover .Album-overlay {
+  opacity: .3;
+}
+
+.AlbumContent {
+  color: #fafafa;
+  font-family: 'Roboto Slab', 'Georgia', 'Cambria', serif;
+  z-index: 2;
+}
+
+.AlbumContent-date {
+  display: inline-block;
+  font-size: 1.5em;
+  padding: .25em;
+  min-width: 5em;
+  background-color: rgba(0,0,0,.5);
+  border: 2px solid #442a0d;
+  /* marrom couro darker */
+  -webkit-transition: all .3s ease;
+  -moz-transition: all .3s ease;
+  -ms-transition: all .3s ease;
+  -o-transition: all .3s ease;
+  transition: all .3s ease;
+}
+
+.Album:hover .AlbumContent-date {
+  background-color: rgba(0,0,0,.6);
+  border-color: #301c09;
+  /* marrom couro darkest */
+}
+
+.AlbumContent-title {
+  font-size: 1.25em;
+  text-transform: uppercase;
+  margin: .5em;
+}
+
+@media only screen and (min-width: 30em) {
+  /* 480 */
+
+  .Album {
+    height: calc(50vw - 2em);
+    max-height: 275px;
+    flex: 0 0 45%;
+    margin-bottom: 10px;
+  }
+}
+
+@media only screen and (min-width: 45em) {
+  /* 720 */
+
+  .Album {
+    height: calc(30vw - 2em);
+    flex: 0 0 30%;
+  }
+}
+
+@media only screen and (min-width: 64em) {
+  /* 1024 */
+
+  .Album {
+    flex: 0 0 30%;
+  }
+}
+
+@media only screen and (min-width: 80em) {
+  /* 1280 */
+
+  .Album {
+    height: calc(23vw - 2em);
+    flex: 0 0 23%;
+  }
+}
+/*
+   Animation example, for spinners
+*/
+
+.animate-spin {
+  -moz-animation: spin 2s infinite linear;
+  -o-animation: spin 2s infinite linear;
+  -webkit-animation: spin 2s infinite linear;
+  animation: spin 2s infinite linear;
+  display: inline-block;
+}
+
+@-moz-keyframes spin {
+  0% {
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -moz-transform: rotate(359deg);
+    -o-transform: rotate(359deg);
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -moz-transform: rotate(359deg);
+    -o-transform: rotate(359deg);
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+
+@-o-keyframes spin {
+  0% {
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -moz-transform: rotate(359deg);
+    -o-transform: rotate(359deg);
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+
+@-ms-keyframes spin {
+  0% {
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -moz-transform: rotate(359deg);
+    -o-transform: rotate(359deg);
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  100% {
+    -moz-transform: rotate(359deg);
+    -o-transform: rotate(359deg);
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
   }
 }
 /* Booking section */
@@ -441,7 +719,7 @@ img::-moz-selection {
 
 .Button--idle {
   background-image: url("../img/svg/botao-dstv.svg");
-  padding: .5em 1em;
+  padding: .5em 2em;
 }
 
 .Button--back {
@@ -1280,7 +1558,7 @@ img::-moz-selection {
   }
 
   .EventLink-button {
-    padding: .5em 2em;
+    /*padding: .5em 2em;*/
     max-width: 600px;
   }
 
@@ -1308,6 +1586,11 @@ img::-moz-selection {
 
   .EventContent-title {
     flex: 4;
+  }
+
+  .Event-headerImage,
+  .EventContent {
+    flex: 0 auto;
   }
 }
 
@@ -1403,8 +1686,6 @@ img::-moz-selection {
   -webkit-align-items: center;
   align-items: center;
   /* para mostra o link */
-  -webkit-flex-flow: column-reverse;
-  flex-flow: column-reverse;
 }
 
 #fullimage img {
@@ -1413,22 +1694,8 @@ img::-moz-selection {
   max-width: 100%;
   max-height: 100%;
   position: relative;
-  border: 1px solid white;
-  box-shadow: 0 0 15px 0 rgba(255,255,255,.4);
-}
-
-#fullimage .fullimage-link {
-  /*position: absolute;*/
-  /*bottom: 15px;*/
-  /*right: 15px;*/
-  padding: 5px 10px;
-  border-radius: 3px;
-  z-index: 1000;
-  margin-top: 1em;
-  text-transform: uppercase;
-  font-weight: bold;
-  border: 1px solid white;
-  background-color: rgba(17, 36, 255, 0.4);
+  /*border: 1px solid white;*/
+  box-shadow: 0 0 15px 0 rgba(0, 0, 0, .4);
 }
 
 @media (max-width: 480px) {
@@ -1583,8 +1850,8 @@ img::-moz-selection {
     display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;
-    -webkit-justify-content: space-between;
-    justify-content: space-between;
+    -webkit-justify-content: space-around;
+    justify-content: space-around;
     padding: 3.5em 0 2em;
   }
 
@@ -1661,7 +1928,7 @@ img::-moz-selection {
 }
 
 .FranchiseHeaderContact-item--left {
-  text-align: left;
+  text-align: center;
 }
 
 .FranchiseHeaderContact-item--right {
@@ -1674,7 +1941,7 @@ img::-moz-selection {
 }
 
 .FranchiseHeaderContact-item {
-  display: block;
+  display: inline-block;
   padding: 1em .5em 1em .25em;
 }
 
@@ -1708,7 +1975,7 @@ img::-moz-selection {
 
 @media (min-width: 48em) {
   .FranchiseHeaderContact-item {
-    display: inline-block;
+    padding: .75em .5em;
   }
 
   .FranchiseHeaderContact-item:last-of-type::after,
@@ -1722,6 +1989,10 @@ img::-moz-selection {
   .FranchiseHeaderContact-inner {
     -webkit-justify-content: space-between;
     justify-content: space-between;
+  }
+
+  .FranchiseHeaderContact-item--email {
+    display: inline-block;
   }
 }
 /* Franchise Header Logo */
@@ -2033,6 +2304,28 @@ img::-moz-selection {
   cursor: pointer;
 }
 
+.FranchiseMenuList-toggle:hover,
+.FranchiseMenuList-toggle:focus {
+  background-color: rgba(255, 255, 255, .5);
+}
+
+.FranchiseMenuList-goTop {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  font-size: 1.5em;
+  background-color: rgba(255, 255, 255, .3);
+  border: 1px solid white;
+  padding: 0 .275em;
+  /*margin: 10px 0;*/
+  border-radius: 5px;
+  font-weight: 800;
+  min-height: 45px;
+  line-height: 45px;
+  z-index: 10000;
+  cursor: pointer;
+}
+
 .FranchiseMain--internal .FranchiseMenuList-toggle {
   top: 0;
 }
@@ -2113,12 +2406,24 @@ img::-moz-selection {
   }
 
   .FranchiseMain--internal .FranchiseMenuList--header .FranchiseMenuList-item {
-    font-size: 1em;
+    font-size: .875em;
     padding: 0 .5em;
   }
 
   .FranchiseMenuList-item:last-of-type {
     padding-right: 0;
+  }
+
+  .FranchiseMenuList-goTop {
+    bottom: 25px;
+    left: 25px;
+    border-width: 2px;
+    background-color: rgba(255,255,255,.2);
+  }
+
+  .FranchiseMenuList-goTop:hover,
+  .FranchiseMenuList-goTop:focus {
+    background-color: rgba(255, 255, 255, .4);
   }
 }
 /* Franchise nav list */
@@ -6257,7 +6562,7 @@ html {
 .LeadingTitle--simple .LeadingTitle-orn.LeadingTitle-orn--bot.icon-orn-bot::before {
   width: 20em;
   font-size: .725em;
-  margin-right: 14px;
+  /*margin-right: 14px;*/
 }
 
 .LeadingTitle-text {
@@ -6912,6 +7217,7 @@ html {
 
 .TileHalf {
   padding: 2em 1.5em;
+  text-shadow: 0 0 2px rgba(0,0,0,.2);
 }
 
 .TileHalf.TileHalf--background {
@@ -6927,8 +7233,6 @@ html {
 }
 
 .TileHalf--especiais {
-  height: 100%;
-  overflow: hidden;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -6937,18 +7241,9 @@ html {
   background-position: top right;
   background-image: url("../../dist/img/bg-paper.jpg");
   box-shadow: 2px 1px 15px -2px rgba(0, 0, 0, 0.50), -2px -1px 15px -2px rgba(0, 0, 0, 0.50);
-}
-
-.TileHalf--background-combday {
-  background-image: url("../../dist/img/bg-combday.jpg");
-}
-
-.TileHalf--background-despedida {
-  background-image: url("../../dist/img/bg-despedida.jpg");
-}
-
-.TileHalf--background-ufs {
-  background-image: url("../../dist/img/bg-ufs.jpg");
+  height: 100%;
+  overflow: hidden;
+  position: relative;
 }
 
 .TileHalf-subtitle {
@@ -6964,17 +7259,21 @@ html {
   max-width: 30rem;
 }
 
-.TileHalf-text {
-  margin-bottom: .5em;
-}
-
 .TileHalf-subtext {
   font-size: 1em;
 }
 
-.TileHalf--center {
-  text-shadow: 0 0 2px rgba(0,0,0,.2);
+.TileHalf-text.TileHalf-textSub {
+  font-size: .75em;
+  text-align: right;
+  font-weight: bold;
 }
+
+/*.TileHalf--center {*/
+
+/*text-shadow: 0 0 2px rgba(0,0,0,.2);*/
+
+/*}*/
 
 .TileHalf--center .LeadingTitle {
   font-size: 1.25em;
@@ -6989,7 +7288,37 @@ html {
   margin-top: 0;
 }
 
+.TileHalf-mapa svg {
+  max-width: 250px;
+  height: auto;
+  min-height: 0;
+}
+
 @media (min-width: 48em) {
+  .TileHalf.TileHalf-info {
+    padding-top: 4em;
+    padding-bottom: 3em;
+  }
+
+  .TileHalf.TileHalf--background {
+    height: 20em;
+  }
+
+  .TileHalf-mapa svg {
+    max-width: 350px;
+  }
+
+  #especiais .Tile-inner {
+    width: 100%;
+  }
+
+  #especiais .TileHalf.TileHalf--especiais {
+    box-shadow: none;
+    box-shadow: -10px 0 8px -8px rgba(0, 0, 0, 0.5), 10px 0 8px -8px rgba(0, 0, 0, 0.5);
+  }
+}
+
+@media (min-width: 60em) {
   .Tile {
     /*-webkit-flex-wrap: wrap;*/
     /*flex-wrap: wrap;*/
@@ -7002,31 +7331,22 @@ html {
     z-index: 1;
   }
 
-  /*#reservas .Tile {*/
-
-  /*min-height: calc(100% - 160px);*/
-
-  /*}*/
-
   .TileHalf.TileHalf--background {
     height: auto;
   }
 
   .Tile-inner {
+    -webkit-align-items: stretch;
+    align-items: stretch;
     display: -webkit-box;
     display: -moz-box;
     display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;
+    -webkit-justify-content: space-around;
+    justify-content: space-around;
     height: 650px;
-    min-height: 100vh;
-    -webkit-align-items: stretch;
-    align-items: stretch;
-  }
-
-  #reservas .Tile-inner {
-    height: 450px;
-    min-height: calc(100vh - 170px);
+    min-height: 105vh;
   }
 
   .Tile-right {
@@ -7036,26 +7356,21 @@ html {
 
   .TileHalf {
     padding: 2em;
-    /*flex: 1;*/
-    flex: 0 0 50%;
     position: relative;
-    /*height: 100%;*/
+  }
+
+  .TileHalf.TileHalf--background,
+  .TileHalf.TileHalf-info {
+    flex: 0 0 50%;
+  }
+
+  .TileHalf-text {
+    max-width: 33rem;
+    font-size: 1.25em;
   }
 
   .TileHalf-subtitle {
     font-size: 1.5em;
-  }
-
-  .TileHalf-text {
-    font-size: 1.25em;
-  }
-
-  #especiais .TileHalf {
-    flex: 0 0 60%;
-  }
-
-  #especiais .TileHalf.TileHalf--especiais {
-    flex: 0 0 40%;
   }
 
   .TileHalf--center {
@@ -7091,10 +7406,51 @@ html {
   .TileHalf--center .LeadingTitle {
     font-size: 1.5em;
   }
+
+  .TileHalf-mapa svg {
+    max-width: 400px;
+  }
+
+  .FranchiseMain--internal .TileHalf--background {
+    background: none;
+    box-shadow: none;
+    border: none;
+  }
+
+  #reservas .Tile-inner {
+    height: 450px;
+    min-height: calc(100vh - 180px);
+  }
+
+  #reservas .Tile-right {
+    -webkit-flex-direction: row;
+    flex-direction: row;
+  }
+
+  #reservas .TileHalf {
+    padding: 0;
+    flex: 0 0 45%;
+  }
+
+  #especiais .TileHalf.TileHalf--especiais {
+    -webkit-align-items: center;
+    align-items: center;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center;
+    justify-content: center;
+  }
 }
 
-@media (min-width: 60em) {
-  .TileHalf-text {
-    max-width: 33rem;
+@media (min-width: 80em) {
+  #especiais .TileHalf {
+    flex: 0 0 60%;
+  }
+
+  #especiais .TileHalf.TileHalf--especiais {
+    flex: 0 0 40%;
   }
 }

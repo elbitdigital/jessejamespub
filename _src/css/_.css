@@ -59,9 +59,33 @@ body {
 	font-weight: 700;
 }
 
-
 .anchor {
 	cursor: pointer;
+}
+
+#topo {
+	display: none;
+}
+
+.bg-paper-full {
+	min-width: 100vw;
+	min-height: 100vh;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background-image: url("../../dist/img/bg-paper.jpg");
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+	/*background-attachment: scroll;*/
+	will-change: transform;
+	-webkit-transform: translate3d(0, 0, 0);
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+	/*-webkit-perspective: 1000;*/
 }
 
 img::selection {
@@ -141,8 +165,6 @@ img::-moz-selection {
 			drop-shadow( 0 15px 12px rgba(0,0,0,0.22));
 }
 
-
-
 @keyframes fadeIn {
 	0% {
 		opacity: 0;
@@ -152,11 +174,18 @@ img::-moz-selection {
 	}
 }
 
+.hide-md {
+	display: block !important;
+}
+
+.show-md {
+	display: none !important;
+}
 
 @media (min-width: 48em) {
 
 	.container {
-		width: 750px;
+		width: 750px !important;
 	}
 
 }
@@ -164,7 +193,15 @@ img::-moz-selection {
 @media (min-width: 62em) {
 
 	.container {
-		width: 970px;
+		width: 970px !important;
+	}
+
+	.hide-md {
+		display: none !important;
+	}
+
+	.show-md {
+		display: block !important;
 	}
 
 }
@@ -172,7 +209,7 @@ img::-moz-selection {
 @media (min-width: 75em) {
 
 	.container {
-		width: 1170px;
+		width: 1170px !important;
 	}
 
 }
