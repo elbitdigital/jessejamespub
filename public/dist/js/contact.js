@@ -9,7 +9,7 @@ var formSentCountLimit, formSentTryLimit;
 formSentCount = formSentTry = 0;
 formSentCountLimit = formSentTryLimit = 2;
 
-var requestURL = 'https://service-elbit-com-br.umbler.net/mailman/check/valid';
+var requestURL = 'https://service-elbit-com-br.umbler.net/mailman/check/valid/';
 var formLocked = false;
 
 var form = {
@@ -20,12 +20,9 @@ form.fields = {};
 form.sendButton = {};
 
 form.fields.cName = document.getElementById('cName');
-form.fields.cCity = document.getElementById('cCity');
 form.fields.cPhone = document.getElementById('cPhone');
-form.fields.cEmail = document.getElementById('cEmail');
-form.fields.cMessage = document.getElementById('cMessage');
+form.fields.cLink = document.getElementById('cLink');
 form.sendButton.viewport = document.getElementById('cSubmit');
-// form.fields.cAddress = document.getElementById('cAddress');
 
 form.states = [
 	'is-error',
@@ -155,21 +152,14 @@ form.sendButton.viewport.addEventListener('click', function (ev) {
 
 			/* Form input validation */
 
-			if (form.fields.cName.value && form.fields.cCity.value && form.fields.cMessage.value) {
+			if (form.fields.cName.value && form.fields.cPhone.value && form.fields.cLink.value) {
 
-				if (form.fields.cPhone.value || form.fields.cEmail.value) {
+				if (!form.fields.cPhone.parentNode.classList.contains("is-error")) {
 
-					if (!form.fields.cPhone.parentNode.classList.contains("is-error") && !form.fields.cEmail.parentNode.classList.contains("is-error")) {
-
-						allow = true;
-
-					} else {
-						msg = "Não foi possível enviar, informe os dados corretamente.";
-						allow = false;
-					}
+					allow = true;
 
 				} else {
-					msg = "Não foi possível enviar, informe pelos menos um email ou um telefone.";
+					msg = "Não foi possível enviar, preencha os campos corretamente.";
 					allow = false;
 				}
 
@@ -188,10 +178,7 @@ form.sendButton.viewport.addEventListener('click', function (ev) {
 				var requestData = {
 					cName: form.fields.cName.value,
 					cPhone: form.fields.cPhone.value,
-					cEmail: form.fields.cEmail.value,
-					cAddress: "",
-					cCity: form.fields.cCity.value,
-					cMessage: form.fields.cMessage.value
+					cLink: form.fields.cLink.value
 				};
 
 				form.send(requestData, false);

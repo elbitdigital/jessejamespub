@@ -44,10 +44,6 @@
 
 <style>
 
-	/** {*/
-		/*outline: 1px solid red;*/
-	/*}*/
-
 	.FranchiseHero-agenda--assis .FranchiseHero-background {
 		background-image: url("../dist/img/assis/hero.jpg");
 	}
@@ -173,9 +169,9 @@
 
 			<ul id="nav-menu-top" class="FranchiseMenuList FranchiseMenuList--top">
 
-				<li class="FranchiseMenuList-item">
-					<a href="./">Início</a>
-				</li>
+				<!--<li class="FranchiseMenuList-item">-->
+					<!--<a href="./">Início</a>-->
+				<!--</li>-->
 
 				<li class="FranchiseMenuList-item">
 					<a href="./reservas">Reservas</a>
@@ -253,7 +249,6 @@
 									<!--&lt;!&ndash;class="icon-down-dir"></span></a></div>&ndash;&gt;-->
 						<!--</div>-->
 					<!--</div>-->
-
 
 				</div>
 
@@ -423,7 +418,7 @@
 
 		</div>
 
-		<div class="PromoterHalf">
+		<div class="PromoterHalf PromoterHalf--form">
 
 			<form id="cForm" class="ContactForm" novalidate>
 
@@ -443,28 +438,17 @@
 
 				<div class="ContactFormField" data-empty="Informe um endereço válido" data-invalid="Informe dados válidos">
 
-					<label for="cCity">LINK DO PERFIL FACEBOOK</label>
-					<input id="cCity" type="text" autocomplete="off" spellcheck="false" class="ContactFormField-input" placeholder="Link do perfil Facebook"/>
+					<label for="cLink">LINK DO PERFIL FACEBOOK</label>
+					<input id="cLink" type="text" autocomplete="off" spellcheck="false" class="ContactFormField-input" placeholder="Link do perfil Facebook"/>
 
 				</div>
 
 				<div class="ContactFormStatus">
 
-					<span class="ContactFormStatus-text ContactFormStatus-text--sending font-light-blue-a700">
-						Enviando...
-					</span>
-
-					<span class="ContactFormStatus-text ContactFormStatus-text--success font-light-green-a700">
-						Enviado com sucesso!
-					</span>
-
-					<span class="ContactFormStatus-text ContactFormStatus-text--error font-red-a700">
-						Não foi possível enviar, verifique os campos e tente novamente.
-					</span>
-
-					<span class="ContactFormStatus-text ContactFormStatus-text--fail font-red-a700">
-						Houve algum problema, tentando novamente...
-					</span>
+					<span class="ContactFormStatus-text ContactFormStatus-text--sending font-light-blue-900">Enviando...</span>
+					<span class="ContactFormStatus-text ContactFormStatus-text--success font-light-green-900">Enviado com sucesso!</span>
+					<span class="ContactFormStatus-text ContactFormStatus-text--error font-red-900">Não foi possível enviar, verifique os campos e tente novamente.</span>
+					<span class="ContactFormStatus-text ContactFormStatus-text--fail font-red-900">Houve algum problema, tentando novamente...</span>
 
 				</div>
 
@@ -547,7 +531,7 @@
 
 			<div class="FranchiseFooter-item FranchiseFooter-item--brand">
 
-				<div class="FranchiseFooterLogo">
+				<a href="./" class="FranchiseFooterLogo">
 
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 728.53027 361.05353" class="filter--shadow">
 						<g id="logo-assis" class="logo-pub">
@@ -556,7 +540,7 @@
 						</g>
 					</svg>
 
-				</div>
+				</a>
 
 				<div class="FranchiseFooterSocial">
 
@@ -587,28 +571,15 @@
 		});
 
 		var navToggle = document.getElementById("nav-toggle");
-//		var navOverlay = document.getElementById("nav-overlay");
 		var navMenu = document.getElementById("nav-menu-top");
 
 		navToggle.addEventListener('click', function(e) {
 			e.preventDefault();
-//			navOverlay.classList.toggle('is-active');
 			navToggle.classList.toggle('is-active');
 			navMenu.classList.toggle('is-active');
-//			document.body.style.overflowY = 'hidden';
 		});
 
-//		navOverlay.addEventListener('click', function(e) {
-//			e.preventDefault();
-////			document.body.style.overflowY = 'scroll';
-////			navOverlay.classList.toggle('is-active');
-//			navToggle.classList.toggle('is-active');
-//			navMenu.classList.toggle('is-active');
-//		});
-
 		navMenu.addEventListener('click', function() {
-//			document.body.style.overflowY = 'scroll';
-//			navOverlay.classList.toggle('is-active');
 			navToggle.classList.toggle('is-active');
 			navMenu.classList.toggle('is-active');
 		});
@@ -797,7 +768,7 @@
 				var album = child.val();
 
 				var highlightedAlbumNode = document.createElement('a');
-				highlightedAlbumNode.href = album.fb_link;
+				highlightedAlbumNode.href = './album?id=' + album.fb_id;
 				highlightedAlbumNode.className = 'HighlightedAlbum';
 				highlightedAlbumNode.title = album.title;
 				highlightedAlbumNode.id = album.fb_id;

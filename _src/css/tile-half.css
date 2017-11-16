@@ -110,11 +110,19 @@
 	min-height: 0;
 }
 
+.TileHalf.TileHalf-info {
+	padding-bottom: 3em;
+	padding-top: 3em;
+}
+
+.TileHalf-button {
+	margin-top: 1.5em;
+}
+
 @media (min-width: 48em) {
 
 	.TileHalf.TileHalf-info {
 		padding-top: 4em;
-		padding-bottom: 3em;
 	}
 
 	.TileHalf.TileHalf--background {
@@ -198,10 +206,6 @@
 
 	.TileHalf--start {
 		align-self: flex-start;
-	}
-
-	.TileHalf-button {
-		margin: 1.5em 0;
 	}
 
 	/*.TileHalf-mask {*/

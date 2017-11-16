@@ -3,7 +3,7 @@
 
 .Promoter {
 	background-color: #cfa148;
-	padding: 4em 0 2.5em;
+	padding: 2.5em 0;
 	position: relative;
 	text-align: center;
 	background-image: url("../../dist/img/background-texture.jpg");
@@ -26,6 +26,11 @@
 .PromoterHalf {
 	padding: 2em 1.5em;
 	text-shadow: 0 0 2px rgba(0,0,0,.2);
+}
+
+.PromoterHalf.PromoterHalf--form {
+	padding-top: 0;
+	padding-bottom: 0;
 }
 
 .PromoterHalf .LeadingTitle {
@@ -56,6 +61,7 @@
 		display: -ms-flexbox;
 		display: -webkit-flex;
 		display: flex;
+		padding: 2.5em 0 0;
 	}
 
 	.PromoterHalf--info {
@@ -68,6 +74,10 @@
 		flex: 0 0 50%;
 		position: relative;
 		height: 100%;
+	}
+
+	.PromoterHalf.PromoterHalf--form {
+		padding: 2em;
 	}
 
 	.PromoterHalf-text {

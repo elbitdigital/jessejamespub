@@ -16,7 +16,10 @@
 	width: 100%;
 	height: 0;
 	content: "";
-	box-shadow: 0 0 15px 4px rgba(0, 0, 0, .5);
+
+	-webkit-box-shadow: 0 -1px 15px 1px rgba(0, 0, 0, 0.7);
+	-moz-box-shadow: 0 -1px 15px 1px rgba(0, 0, 0, 0.7);
+	box-shadow: 0 -1px 15px 1px rgba(0, 0, 0, 0.7);
 }
 
 /* FranchiseFooter background */
@@ -41,7 +44,8 @@
 
 .FranchiseFooter-item {
 	padding: 0 1.5em;
-	margin-bottom: 2em;
+	margin-bottom: 2.5em;
+	margin-top: 1.5em;
 }
 
 /* FranchiseFooter address */
@@ -58,9 +62,14 @@
 
 .FranchiseFooterLogo,
 .FranchiseFooterSocial {
+	display: block;
 	margin-bottom: 1em;
 	text-align: center;
 	width: 100%;
+}
+
+.FranchiseFooterLogo svg {
+	max-width: 10em;
 }
 
 .FranchiseFooterAddress {
@@ -127,15 +136,7 @@
 	margin-bottom: .25em;
 }
 
-.FranchiseFooterLogo {
-	text-align: center;
-}
-
-.FranchiseFooterLogo svg {
-	max-width: 10em;
-}
-
-@media(min-width: 48em) {
+@media (min-width: 48em) {
 
 	.FranchiseFooter-inner {
 		-webkit-align-items: flex-start;
@@ -152,6 +153,7 @@
 
 	.FranchiseFooter-item {
 		padding: 0 .5em;
+		margin-top: 0;
 	}
 
 	.FranchiseFooter-item--contact {
@@ -163,9 +165,14 @@
 		padding: 0;
 	}
 
+	.FranchiseFooterLogo,
+	.FranchiseFooterSocial {
+		margin-bottom: 1.5em;
+	}
+
 }
 
-@media(min-width: 60em) {
+@media (min-width: 60em) {
 
 	.FranchiseFooter-item {
 		padding: 0 1.5em;

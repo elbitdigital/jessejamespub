@@ -130,6 +130,10 @@
 	color: rgba(213,0,0,0.5);
 }
 
+.ContactFormField-button {
+	margin-top: 1.5em;
+}
+
 @media (min-width: 48em) {
 
 	/* Contact Form Field */

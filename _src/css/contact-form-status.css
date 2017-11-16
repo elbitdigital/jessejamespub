@@ -16,7 +16,7 @@
 	display: none;
 	font-size: .875em;
 	font-weight: 600;
-	margin-bottom: .5em;
+	/*margin-bottom: .5em;*/
 }
 
 .ContactForm.is-success .ContactFormStatus-text--success,

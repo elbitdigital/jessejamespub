@@ -1,0 +1,64 @@
+
+/* Franchise gallery style */
+
+.Gallery {
+	padding: 3em 1em;
+	text-align: center;
+	margin: 0 auto;
+	width: 100%;
+}
+
+.Gallery-list {
+	-webkit-align-items: center;
+	align-items: center;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-justify-content: center;
+	justify-content: center;
+	-webkit-flex-flow: row wrap;
+	flex-flow: row wrap;
+	margin: 0 auto;
+	padding: 1em;
+}
+
+.Gallery-subtitle {
+	font-size: 1.125em;
+	margin: .25em 0 .5em;
+	text-shadow: 0 0 2px rgba(0,0,0,.2);
+}
+
+.Gallery-button {
+	max-width: none;
+	font-size: .75em;
+	padding: .75em 1.5em;
+	margin: 1.5em 0;
+}
+
+#album .Gallery {
+	padding: 3em 0;
+}
+
+#album .Gallery-subtitle {
+	font-size: 1.25em;
+	font-weight: bold;
+}
+
+@media (min-width: 48em) {
+
+	.Gallery-button {
+		font-size: 1em;
+		padding: .5em 1.5em;
+	}
+
+}
+
+@media (min-width: 60em) {
+
+	#album .Gallery-subtitle {
+		font-size: 1.5em;
+	}
+
+}

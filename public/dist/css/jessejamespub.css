@@ -963,6 +963,10 @@ img::-moz-selection {
   color: rgba(213,0,0,0.5);
 }
 
+.ContactFormField-button {
+  margin-top: 1.5em;
+}
+
 @media (min-width: 48em) {
   /* Contact Form Field */
 
@@ -995,7 +999,7 @@ img::-moz-selection {
   display: none;
   font-size: .875em;
   font-weight: 600;
-  margin-bottom: .5em;
+  /*margin-bottom: .5em;*/
 }
 
 .ContactForm.is-success .ContactFormStatus-text--success,
@@ -1677,7 +1681,7 @@ img::-moz-selection {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0,0,0,0.8);
+  background: rgba(0,0,0,0.9);
   cursor: -webkit-zoom-out;
   display: -webkit-flex;
   display: flex;
@@ -1721,7 +1725,9 @@ img::-moz-selection {
   width: 100%;
   height: 0;
   content: "";
-  box-shadow: 0 0 15px 4px rgba(0, 0, 0, .5);
+  -webkit-box-shadow: 0 -1px 15px 1px rgba(0, 0, 0, 0.7);
+  -moz-box-shadow: 0 -1px 15px 1px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 -1px 15px 1px rgba(0, 0, 0, 0.7);
 }
 
 /* FranchiseFooter background */
@@ -1746,7 +1752,8 @@ img::-moz-selection {
 
 .FranchiseFooter-item {
   padding: 0 1.5em;
-  margin-bottom: 2em;
+  margin-bottom: 2.5em;
+  margin-top: 1.5em;
 }
 
 /* FranchiseFooter address */
@@ -1764,9 +1771,14 @@ img::-moz-selection {
 
 .FranchiseFooterLogo,
 .FranchiseFooterSocial {
+  display: block;
   margin-bottom: 1em;
   text-align: center;
   width: 100%;
+}
+
+.FranchiseFooterLogo svg {
+  max-width: 10em;
 }
 
 .FranchiseFooterAddress {
@@ -1833,14 +1845,6 @@ img::-moz-selection {
   margin-bottom: .25em;
 }
 
-.FranchiseFooterLogo {
-  text-align: center;
-}
-
-.FranchiseFooterLogo svg {
-  max-width: 10em;
-}
-
 @media (min-width: 48em) {
   .FranchiseFooter-inner {
     -webkit-align-items: flex-start;
@@ -1857,6 +1861,7 @@ img::-moz-selection {
 
   .FranchiseFooter-item {
     padding: 0 .5em;
+    margin-top: 0;
   }
 
   .FranchiseFooter-item--contact {
@@ -1866,6 +1871,11 @@ img::-moz-selection {
   .FranchiseFooterSocial-icon {
     /*margin: .25em;*/
     padding: 0;
+  }
+
+  .FranchiseFooterLogo,
+  .FranchiseFooterSocial {
+    margin-bottom: 1.5em;
   }
 }
 
@@ -2773,6 +2783,65 @@ img::-moz-selection {
 
   .FranqSection--intro .FranqSectionBox {
     /*margin-bottom: 0;*/
+  }
+}
+/* Franchise gallery style */
+
+.Gallery {
+  padding: 3em 1em;
+  text-align: center;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.Gallery-list {
+  -webkit-align-items: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-flex-flow: row wrap;
+  flex-flow: row wrap;
+  margin: 0 auto;
+  padding: 1em;
+}
+
+.Gallery-subtitle {
+  font-size: 1.125em;
+  margin: .25em 0 .5em;
+  text-shadow: 0 0 2px rgba(0,0,0,.2);
+}
+
+.Gallery-button {
+  max-width: none;
+  font-size: .75em;
+  padding: .75em 1.5em;
+  margin: 1.5em 0;
+}
+
+#album .Gallery {
+  padding: 3em 0;
+}
+
+#album .Gallery-subtitle {
+  font-size: 1.25em;
+  font-weight: bold;
+}
+
+@media (min-width: 48em) {
+  .Gallery-button {
+    font-size: 1em;
+    padding: .5em 1.5em;
+  }
+}
+
+@media (min-width: 60em) {
+  #album .Gallery-subtitle {
+    font-size: 1.5em;
   }
 }
 /* Guider */
@@ -6879,11 +6948,76 @@ html {
     padding-top: 0;
   }
 }
+/* Placeholder external */
+
+.PlaceholderExternal {
+  border-radius: 2px;
+  background-color: rgba(0, 0, 0, .2);
+  width: 100%;
+  max-width: 600px;
+  margin: 2em auto;
+  padding: 1em 1em;
+}
+
+.PlaceholderExternal p {
+  margin-bottom: 1em;
+}
+
+.loader {
+  height: 5px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  background-color: #ddd;
+}
+
+.loader:before {
+  display: block;
+  position: absolute;
+  content: "";
+  left: -200px;
+  width: 1px;
+  height: 5px;
+  background-color: #6e3118;
+  animation: loading 2s linear infinite;
+}
+
+@keyframes loading {
+  from {
+    left: -200px;
+    width: 10%;
+  }
+
+  30% {
+    width: 20%;
+  }
+
+  50% {
+    width: 30%;
+  }
+
+  70% {
+    width: 70%;
+  }
+
+  80% {
+    left: 50%;
+    width: 100%;
+  }
+
+  95% {
+    left: 120%;
+  }
+
+  to {
+    left: 100%;
+  }
+}
 /* Promoter */
 
 .Promoter {
   background-color: #cfa148;
-  padding: 4em 0 2.5em;
+  padding: 2.5em 0;
   position: relative;
   text-align: center;
   background-image: url("../../dist/img/background-texture.jpg");
@@ -6906,6 +7040,11 @@ html {
 .PromoterHalf {
   padding: 2em 1.5em;
   text-shadow: 0 0 2px rgba(0,0,0,.2);
+}
+
+.PromoterHalf.PromoterHalf--form {
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 .PromoterHalf .LeadingTitle {
@@ -6938,6 +7077,7 @@ html {
     display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;
+    padding: 2.5em 0 0;
   }
 
   .PromoterHalf--info {
@@ -6950,6 +7090,10 @@ html {
     flex: 0 0 50%;
     position: relative;
     height: 100%;
+  }
+
+  .PromoterHalf.PromoterHalf--form {
+    padding: 2em;
   }
 
   .PromoterHalf-text {
@@ -7294,10 +7438,18 @@ html {
   min-height: 0;
 }
 
+.TileHalf.TileHalf-info {
+  padding-bottom: 3em;
+  padding-top: 3em;
+}
+
+.TileHalf-button {
+  margin-top: 1.5em;
+}
+
 @media (min-width: 48em) {
   .TileHalf.TileHalf-info {
     padding-top: 4em;
-    padding-bottom: 3em;
   }
 
   .TileHalf.TileHalf--background {
@@ -7379,10 +7531,6 @@ html {
 
   .TileHalf--start {
     align-self: flex-start;
-  }
-
-  .TileHalf-button {
-    margin: 1.5em 0;
   }
 
   /*.TileHalf-mask {*/

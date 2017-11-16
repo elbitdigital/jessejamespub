@@ -42,122 +42,11 @@
 <script src="../dist/js/classList.min.js"></script>
 <![endif]-->
 
-<style>
-
-	/** {*/
-	/*outline: 1px solid red;*/
-	/*}*/
-
-	pre {
-		max-width: 1000px;
-		margin: 0 auto;
-		word-wrap: break-word;
-	}
-
-	.Gallery {
-		/*background-color: rgba(0,0,0,.1);*/
-		padding: 3em 1em;
-		text-align: center;
-		margin: 0 auto;
-		width: 100%;
-	}
-
-	.Gallery-list {
-		-webkit-align-items: center;
-		align-items: center;
-		display: -webkit-box;
-		display: -moz-box;
-		display: -ms-flexbox;
-		display: -webkit-flex;
-		display: flex;
-		-webkit-justify-content: center;
-		justify-content: center;
-		-webkit-flex-flow: row wrap;
-		flex-flow: row wrap;
-		margin: 0 auto;
-		padding: 1em;
-	}
-
-	.Gallery-subtitle {
-		font-size: 1.125em;
-		text-shadow: 0 0 2px rgba(0,0,0,.2);
-	}
-
-	.Gallery-button {
-		max-width: none;
-		font-size: .75em;
-		padding: .75em 1.5em;
-		margin: 1.5em 0;
-	}
-
-	@media (min-width: 48em) {
-
-		.Gallery-button {
-			font-size: 1em;
-		}
-
-	}
-
-</style>
-
-<style>
-
-	.PlaceholderExternal {
-		border-radius: 2px;
-		background-color: rgba(0, 0, 0, .2);
-		width: 100%;
-		max-width: 600px;
-		margin: 2em auto;
-		padding: 1em 1em;
-	}
-
-	.PlaceholderExternal p {
-		margin-bottom: 1em;
-	}
-
-	.loader {
-		height: 5px;
-		width: 100%;
-		position: relative;
-		overflow: hidden;
-		background-color: #ddd;
-	}
-
-	.loader:before {
-		display: block;
-		position: absolute;
-		content: "";
-		left: -200px;
-		width: 1px;
-		height: 5px;
-		background-color: #6e3118;
-		animation: loading 2s linear infinite;
-	}
-
-	@keyframes loading {
-		from {left: -200px;width: 10%;}
-		30% {width: 20%;}
-		50% {width: 30%;}
-		70% {width: 70%;}
-		80% {left: 50%;width: 100%;}
-		95% {left: 120%;}
-		to {left: 100%;}
-	}
-
-</style>
-
-<style>
-
-
-
-</style>
-
 <body class="Franchise roboto-slab marrom-couro-darker">
 
 <div id="topo"></div>
 
 <div class="bg-paper-full"></div>
-<!--<img src="../dist/img/bg-paper.jpg" alt="bg" class="TesteBg2">-->
 
 <main id="galeria" class="FranchiseMain FranchiseMain--internal">
 
@@ -218,7 +107,7 @@
 	<ul id="nav-menu-top" class="FranchiseMenuList FranchiseMenuList--top">
 
 		<li class="FranchiseMenuList-item">
-			<a href="./">Início</a>
+			<a href="./">Assis</a>
 		</li>
 
 		<li class="FranchiseMenuList-item">
@@ -226,7 +115,7 @@
 		</li>
 
 		<li class="FranchiseMenuList-item">
-			<a href="./galeria">Galeria</a>
+			<a href="#">Galeria</a>
 		</li>
 
 		<li class="FranchiseMenuList-item">
@@ -239,9 +128,9 @@
 
 	</ul>
 
-	<section class="FranchiseHero FranchiseHero-reserva--assis">
+	<section class="FranchiseHero">
 
-		<div class="FranchiseHero-background"></div>
+		<!--<div class="FranchiseHero-background"></div>-->
 
 		<div id="gallery" class="Gallery FranchiseHero-inner container">
 
@@ -312,7 +201,7 @@
 
 					<h2 class="FranchiseFooterTime-title">Horário de funcionamento</h2>
 					<p class="FranchiseFooterTime-text">
-						Quinta, Sexta e Sábado: das 21h às 04h
+						Quinta, Sexta e Sábado: <br>das 21h às 04h
 					</p>
 
 				</div>
@@ -331,7 +220,7 @@
 
 			<div class="FranchiseFooter-item FranchiseFooter-item--brand">
 
-				<div class="FranchiseFooterLogo">
+				<a href="./" class="FranchiseFooterLogo">
 
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 728.53027 361.05353" class="filter--shadow">
 						<g id="logo-assis" class="logo-pub">
@@ -340,7 +229,7 @@
 						</g>
 					</svg>
 
-				</div>
+				</a>
 
 				<div class="FranchiseFooterSocial">
 
@@ -547,7 +436,7 @@
 		buttonLoadMore.id = 'gallery-button-loadMore';
 		buttonLoadMore.href = 'https://www.facebook.com/pg/' + franchise_config.PAGE_ID + '/photos/?tab=albums';
 		buttonLoadMore.className = 'Gallery-button Button Button--idle';
-		buttonLoadMore.innerHTML = '<span class="icon-facebook-official"></span> Veja mais na nossa página';
+		buttonLoadMore.innerHTML = 'Veja mais na nossa página <span class="icon-facebook-official"></span>';
 
 //		buttonLoadMore.textContent = 'Carregar mais álbums';
 //		buttonLoadMore.addEventListener('click', function() {
