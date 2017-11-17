@@ -191,6 +191,10 @@ img::-moz-selection {
   }
 }
 
+.show-sm {
+  display: block !important;
+}
+
 .hide-md {
   display: block !important;
 }
@@ -202,6 +206,10 @@ img::-moz-selection {
 @media (min-width: 48em) {
   .container {
     width: 750px !important;
+  }
+
+  .show-sm {
+    display: none !important;
   }
 }
 
