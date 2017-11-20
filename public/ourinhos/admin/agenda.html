@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<meta charset="UTF-8">
+<title>Agenda - Jesse James Assis</title>
+<meta name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+<link rel="icon" type="image/png" href="icon.png" />
+
+<meta name="description" content="O melhor pub sertanejo do interior paulista">
+<meta name="image" content="https://jessejamespub.com.br/dist/img/meta.png">
+
+<meta itemprop="name" content="Jesse James Pub">
+<meta itemprop="description" content="O melhor pub sertanejo do interior paulista">
+<meta itemprop="image" content="https://jessejamespub.com.br/dist/img/meta.png">
+
+<meta name="og:title" content="Jesse James Pub">
+<meta name="og:description" content="O melhor pub sertanejo do interior paulista">
+<meta name="og:image" content="https://jessejamespub.com.br/dist/img/meta.png">
+<meta name="og:url" content="https://jessejamespub.com.br">
+<meta name="og:site_name" content="Jesse James Pub">
+<meta name="og:locale" content="pt_BR">
+<meta name="fb:app_id" content="1586666258259861">
+<meta name="og:type" content="website">
+
+<script src="../../dist/js/villa.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700" rel="stylesheet">
+<link rel="stylesheet" href="../../dist/css/villa.min.css"/>
+<link rel="stylesheet" href="../../dist/css/jessejamespub.min.css"/>
+<!--[if lt IE 9]>
+<link rel="stylesheet" type="text/css" href="../../dist/css/material-colors.css"/>
+<link rel="stylesheet" type="text/css" href="../../dist/css/villa-cross.min.css"/>
+<script src="../../dist/js/html5shiv.js"></script>
+<script src="../../dist/js/html5shiv-printshiv.js"></script>
+<script src="../../dist/js/classList.min.js"></script>
+<![endif]-->
+
+<style>
+
+	.HeaderAdmin {
+		-webkit-align-items: center;
+		align-items: center;
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-justify-content: space-between;
+		justify-content: space-between;
+		-webkit-flex-direction: column;
+		flex-direction: column;
+		/*-webkit-flex-direction: column-reverse;*/
+		/*flex-direction: column-reverse;*/
+		width: 100%;
+	}
+
+	.HeaderAdminLeft {
+		order: 2;
+	}
+
+	.HeaderAdmin-logo {
+		margin-bottom: 1em;
+		order: 1;
+	}
+
+	.HeaderAdminRight {
+		order: 3;
+	}
+
+	.HeaderAdmin-button {
+		margin-bottom: .25em;
+	}
+
+	.HeaderAdmin-toggle {
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+		cursor: pointer;
+		padding: .5em;
+		border-radius: 2px;
+	}
+
+	.HeaderAdmin-toggle .toggle-text {
+		display: none;
+	}
+
+	.HeaderAdmin-toggle:hover {
+		background-color: #301c09;
+	}
+
+	.HeaderAdmin-toggle .will-close {
+		display: none;
+	}
+
+	.HeaderAdmin-toggle.is-open .will-close {
+		display: inline-block;
+	}
+
+	.HeaderAdmin-toggle.is-open .will-open {
+		display: none;
+	}
+
+	@media (min-width: 48em) {
+
+		.HeaderAdmin-toggle .toggle-text {
+			display: inline-block;
+		}
+
+	}
+
+</style>
+
+<style>
+
+	.Header--admin .HeaderUpper-inner {
+		padding: 1em .5em;
+	}
+
+	.Header--admin {
+		-webkit-box-shadow: 0 0 10px 0 #000000;
+		box-shadow: 0 0 10px 0 #000000;
+	}
+
+	.Body {
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		min-height: 100%;
+		margin: 0;
+	}
+
+	.Content {
+		padding: .75em 1em 2em;
+	}
+
+	@media (min-width: 48em) {
+
+		.Content {
+			padding: 1em 1.5em 3em;
+		}
+
+	}
+
+	.Sidebar {
+		flex: 0 0 250px;
+		-webkit-box-shadow: 3px 0 7px -3px #000000;
+		box-shadow: 3px 0 7px -3px #000000;
+		-webkit-transition: all .3s ease;
+		-moz-transition: all .3s ease;
+		-ms-transition: all .3s ease;
+		-o-transition: all .3s ease;
+		transition: all .3s ease;
+	}
+
+	.Sidebar.is-hide {
+		margin-left: -250px;
+		box-shadow: none;
+	}
+
+	.Sidebar-title {
+		font-size: 1.5em;
+		margin: .5em;
+	}
+
+	.Content {
+		flex: 1 1;
+	}
+
+</style>
+
+
+<style>
+
+	.SidebarList {
+
+	}
+
+	.SidebarList-item {
+		-webkit-transition: background .2s ease;
+		-moz-transition: background .2s ease;
+		-ms-transition: background .2s ease;
+		-o-transition: background .2s ease;
+		transition: background .2s ease;
+	}
+
+	.SidebarList-item.is-current,
+	.SidebarList-item:hover {
+		background-color: #f2d9a7;
+		color: #301c09;
+	}
+
+	.SidebarList-item-link {
+		border-bottom: 3px solid #301c09;
+		display: inline-block;
+		width: 100%;
+		padding: .5em;
+	}
+
+	.SidebarList-item p {
+		display: inline-block;
+		font-weight: 600;
+	}
+
+	.SidebarList-item span {
+		padding: .25em .5em;
+		font-size: 1.125em;
+	}
+
+</style>
+
+<style>
+
+	.Content-title {
+		font-size: 1.5em;
+		display: inline-block;
+		width: 100%;
+		margin-bottom: .25em;
+		border-bottom: 2px solid black;
+		text-transform: uppercase;
+		font-weight: 800;
+	}
+
+	.Content-subtitle {
+		font-size: 1.25em;
+		font-weight: 600;
+		margin-bottom: .5em;
+	}
+
+	.Content-button {
+		margin: .5em 0;
+	}
+
+	.ContentSection-title {
+		font-size: 1.25em;
+		text-transform: uppercase;
+		font-weight: 600;
+		display: inline-block;
+		width: 100%;
+		margin: .5em 0;
+		border-bottom: 1px solid black;
+	}
+
+	@media (min-width: 48em) {
+
+		.Content-title {
+			font-size: 2em;
+			padding-bottom: .25em;
+		}
+
+	}
+
+</style>
+
+<style>
+
+	.Schedule-list {
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-flex-flow: row wrap;
+		flex-flow: row wrap;
+	}
+
+	.Schedule-addNewEventButton {
+		cursor: pointer;
+	}
+
+</style>
+
+<style>
+
+	.Event {
+		background-color: #7d381b;
+		font-family: 'Roboto', sans-serif;
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		/*min-width: 25em;*/
+		width: 100%;
+
+		/* max-height: 500px; */
+		-webkit-flex-flow: column;
+		flex-flow: column;
+		margin-bottom: 1em;
+		/*margin-right: 1em;*/
+	}
+
+	.EventFooter {
+		-webkit-align-items: center;
+		align-items: center;
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-justify-content: space-between;
+		justify-content: space-between;
+		-webkit-flex-flow: row wrap;
+		flex-flow: row wrap;
+		padding: .5em 0;
+		margin: 0 10px;
+	}
+
+	.Event input {
+		border: solid 1px #bdbdbd;
+		color: #000;
+		background: #fff;
+		text-transform: uppercase;
+		text-align: center;
+		font-family: 'Roboto', sans-serif;
+		margin: 0 auto;
+		width: calc(100% - 20px);
+	}
+
+	.Event-select {
+		font-size: 1.125em;
+		font-weight: 800;
+		padding: .125em .5em;
+		border-radius: .175em;
+		font-family: 'Roboto', sans-serif;
+		/*min-width: 5em;*/
+		text-align: center;
+		border: none;
+		display: inline-block;
+	}
+
+	.Event-select.Event-dateInput {
+		/* font-size: 1em; */
+		max-width: 6em;
+		margin: 0;
+	}
+
+	.Event-checkbox {
+		display: none;
+	}
+
+	.Event-activeStatus {
+		position: relative;
+		font-family: sans-serif;
+		display: inline-block;
+		height: 1.5em;
+		line-height: 1.5em;
+		width: 5em;
+		margin: .5em 1em;
+		color: #555;
+		background-color: #898989;
+		border-radius: 100px;
+		text-align: center;
+		cursor: pointer;
+		transition: all 0.3s ease;
+
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+	}
+
+	.Event-activeStatus:after {
+		position: absolute;
+		left: -.975em;
+		top: -4px;
+		display: block;
+		width: 2em;
+		height: 2em;
+		border-radius: 100px;
+		background-color: #bdbdbd;
+		content: '';
+		transition: all 0.3s ease;
+	}
+
+	.Event-activeStatus:active:after { transform: scale(1.15, 0.85); }
+
+	.Event-checkbox:checked ~ label,
+	.Event-checkbox:checked ~ label:after {
+		box-shadow: 0px 0px 3px -1px #000000;
+	}
+
+	.Event-checkbox:checked ~ label {
+		background-color: #66BB6A;
+		color: #fff;
+	}
+
+	.Event-checkbox:checked ~ label:after {
+		left: 3.975em;
+		background-color: #43A047;
+	}
+
+	.Event input[type=file] {
+		height: 0;
+	}
+
+
+	.Event input.Event-title {
+		font-size: 1.5em;
+		font-weight: 900;
+		border-radius: 3px 3px 0 0;
+		padding: .125em 0;
+	}
+
+	.Event input.Event-facebookEventURL {
+		font-size: 1em;
+		text-transform: none;
+		padding: .25em 0;
+		border-radius: 0 0 3px 3px;
+	}
+
+	.Event input.Event-date {
+		font-size: 1em;
+		font-weight: 400;
+		margin-bottom: 1em;
+	}
+
+	/*.Event input.Event-weekDay {*/
+	/*font-size: 2.25em;*/
+	/*font-weight: 900;*/
+	/*margin-bottom: .5rem;*/
+	/*}*/
+
+
+	.Event-headerImage {
+		-webkit-align-items: center;
+		align-items: center;
+		background-color: #212121;
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
+
+		background-position: center center;
+
+		cursor: pointer;
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		/*min-height: 350px;*/
+		height: 15em;
+		height: calc(100vw - 2em);
+		-webkit-justify-content: center;
+		justify-content: center;
+		margin-bottom: 1rem;
+		width: 100%;
+	}
+
+	.Event-headerImage:before {
+		background-color: rgba(0,0,0,.36);
+		border-radius: 3px;
+		padding: 1em;
+		color: #eeeeee;
+		content: 'toque para adicionar uma imagem';
+		font-size: .875em;
+		font-weight: 900;
+		text-align: center;
+		text-transform: uppercase;
+		-webkit-transition: all .6s;
+		-moz-transition: all .6s;
+		-ms-transition: all .6s;
+		-o-transition: all .6s;
+		transition: all .6s;
+		-webkit-transform: scale(.8);
+		-moz-transform: scale(.8);
+		-ms-transform: scale(.8);
+		-o-transform: scale(.8);
+		transform: scale(.8);
+	}
+
+	.Event-headerImage:hover:before {
+		background-color: rgba(0,0,0,.96);
+		-webkit-transform: scale(1);
+		-moz-transform: scale(1);
+		-ms-transform: scale(1);
+		-o-transform: scale(1);
+		transform: scale(1);
+	}
+
+	@media (min-width: 48em) {
+
+		.Event {
+			width: 25em;
+			margin-right: 1em;
+		}
+
+		.Event-headerImage {
+			height: 350px;
+			width: 100%;
+		}
+
+	}
+
+</style>
+
+<body class="roboto marrom-poeira--lighter">
+
+<div class="Header Header--admin">
+
+	<div class="HeaderUpper">
+
+		<div class="HeaderUpper-background marrom-couro--darker"></div>
+
+		<header class="HeaderUpper-inner container">
+
+			<div class="HeaderAdmin">
+
+				<div class="HeaderAdminLeft">
+
+					<!--<h4 id="sidebar-toggle" class="HeaderAdmin-toggle">-->
+						<!--<span class="icon-menu will-open"></span>-->
+						<!--<span class="icon-cancel will-close"></span>-->
+						<!--<span class="toggle-text">MENU</span>-->
+					<!--</h4>-->
+
+					<a href="../" class="HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-calendar"></span> Eventos</a>
+					<a href="#" class="HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-camera"></span> Álbuns</a>
+
+				</div>
+
+				<img class="HeaderAdmin-logo" src="../../dist/img/logo-assis-branco-sm.png" alt="" style="max-height: 4em;">
+
+				<div class="HeaderAdminRight">
+
+					<a href="../" class="HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-beer-1"></span> Assis</a>
+					<a href="#" class="HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow Btn--cancel"><span class="icon-logout"></span>Sair</a>
+
+				</div>
+
+			</div>
+
+		</header>
+
+	</div>
+
+</div>
+
+<section class="Body Body--admin">
+
+	<aside id="sidebar" class="Sidebar Sidebar--admin marrom-couro is-hide">
+
+		<h2 class="Sidebar-title">
+			<span class="icon-down-dir"></span> ASSIS
+		</h2>
+
+		<ul class="SidebarList marrom-couro--lighter">
+
+			<li class="SidebarList-item is-current">
+
+				<a href="agenda.html" class="SidebarList-item-link">
+					<span class="icon-pin"></span>
+					<p>Eventos</p>
+				</a>
+
+			</li>
+
+			<li class="SidebarList-item">
+
+				<a href="galeria.html" class="SidebarList-item-link">
+					<span class="icon-picture"></span>
+					<p>Álbuns</p>
+				</a>
+
+			</li>
+
+			<li class="SidebarList-item">
+
+				<a href="#" class="SidebarList-item-link">
+					<span class="icon-lock"></span>
+					<p>Administradores</p>
+				</a>
+
+			</li>
+
+		</ul>
+
+	</aside>
+
+	<div class="Content Content--admin f-marrom-couro--darkest">
+
+		<h1 class="Content-title">Agenda</h1>
+		<h2 class="Content-subtitle">Gerenciamento de eventos - Jesse James Assis</h2>
+
+		<p>Os eventos cadastrados aqui aparecerão no topo da página inicial do site.</p>
+
+		<!--<a class="Schedule-addNewEventButton" onclick="addNewEvent()">Adicionar novo evento</a>-->
+		<button id="agenda-insert" class="Content-button Btn Btn--primary Btn--filled">Adicionar novo evento</button>
+		<a href="../agenda" class="Content-button Btn Btn--primary">Ir para agenda</a>
+
+		<div id="gallery-messages" class="Content-section"></div>
+
+		<h1 class="ContentSection-title">Eventos cadastrados</h1>
+		<div id="event-list" class="Schedule-list">
+
+			<!--<div class="Event" data-event-reference-key="-KnagjO5ZbKn-71i6-re">-->
+
+				<!--<input type="file" style="visibility: hidden;">-->
+				<!--<div class="Event-headerImage" style="background-image: url('https://firebasestorage.googleapis.com/v0/b/jessejamespub-com-br.appspot.com/o/eventImage%2FSA%CC%81BADO01.jpg?alt=media&amp;token=642b9220-729c-487f-9c95-1014643921f3');"></div>-->
+
+				<!--<input type="text" class="Event-title" placeholder="Título do evento">-->
+				<!--<input type="text" class="Event-facebookEventURL" placeholder="Link do evento (Facebook)">-->
+
+				<!--<div class="EventFooter">-->
+
+					<!--<button class="Btn Btn&#45;&#45;narrow Btn&#45;&#45;filled Btn&#45;&#45;turnoff" style="padding: 0 .5em;"><span class="icon-cancel"></span></button>-->
+
+					<!--<select name="select" class="Event-select">-->
+						<!--<option value="DOM">DOM</option>-->
+						<!--<option value="SEG">SEG</option>-->
+						<!--<option value="TER">TER</option>-->
+						<!--<option value="QUA">QUA</option>-->
+						<!--<option value="QUI">QUI</option>-->
+						<!--<option value="SEX">SEX</option>-->
+						<!--<option value="SÁB">SÁB</option>-->
+					<!--</select>-->
+
+					<!--<input type="text" class="Event-select Event-dateInput" placeholder="Dia/mês">-->
+
+					<!--<input type="checkbox" id="active" class="Event-checkbox"/>-->
+					<!--<label for="active" class="Event-activeStatus">Ativo</label>-->
+
+				<!--</div>-->
+
+			<!--</div>-->
+
+
+		</div>
+
+
+		</div>
+
+	</div>
+
+</section>
+
+<script>
+
+    window.addEventListener('load', function () {
+
+//        var btnMenu = document.getElementById('sidebar-toggle');
+//        btnMenu.addEventListener('click', function() {
+//            var sidebar = document.getElementById('sidebar');
+//            sidebar.classList.toggle('is-hide');
+//            this.classList.toggle('is-open');
+//        });
+
+		var btnInsert = document.getElementById('agenda-insert');
+		btnInsert.addEventListener('click', function() {
+			addNewEvent()
+		});
+
+//        if (window.innerWidth > 768) {
+//            document.getElementById('sidebar').classList.toggle('is-hide');
+//            document.getElementById('sidebar-toggle').classList.toggle('is-open');
+//        }
+
+         agendaInit();
+
+    });
+
+</script>
+
+<script src="../../dist/js/axios.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
+
+<script>
+
+	var config = {
+		apiKey: "AIzaSyAMTCtuJ2DyPiBx5qBHeDg_OU1KW4UzURY",
+		authDomain: "jessejamespub-com-br.firebaseapp.com",
+		databaseURL: "https://jessejamespub-com-br.firebaseio.com",
+		projectId: "jessejamespub-com-br",
+		storageBucket: "jessejamespub-com-br.appspot.com",
+		messagingSenderId: "118227352953"
+	};
+	firebase.initializeApp(config);
+
+    var databaseRef = firebase.database().ref('/');
+    var houseRef = databaseRef.child('assis');
+    var scheduleRef = houseRef.child('schedule');
+    var eventsRef = scheduleRef.child('items');
+
+    // storage ref
+    var storageRef = firebase.storage().ref();
+    var eventImageStorageRef = storageRef.child('eventImage');
+
+	var eventListElement = document.getElementById('event-list');
+	var weekDays = ['DOM', 'SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SÁB'];
+
+	function addNewEvent() {
+
+		eventsRef.push({
+			title: '',
+			date: '',
+			headerImageURL: '',
+			facebookEventURL: '',
+			weekDay: 'DOM'
+		});
+
+	}
+
+	function removeEvent(key) {
+
+		eventsRef.child(key).remove();
+
+	}
+
+</script>
+
+<script>
+
+	function agendaInit() {
+
+		eventsRef.on('child_added', function (snap) {
+
+			var eventData = snap.val();
+			var eventReferenceKey = snap.key;
+			var eventRef = eventsRef.child(eventReferenceKey);
+
+			// O EVENTO
+			var eventElement = document.createElement('div');
+			eventElement.className = 'Event';
+			eventElement.dataset.eventReferenceKey = eventReferenceKey;
+			eventListElement.insertBefore(eventElement, eventListElement.firstChild);
+
+			// ARQUIVO DA IMAGEM
+			var imageFileInputElement = document.createElement('input');
+			imageFileInputElement.type = 'text';
+			imageFileInputElement.type = 'file';
+			imageFileInputElement.style.visibility = 'hidden';
+			imageFileInputElement.addEventListener('change', function () {
+
+				var file = this.files[0];
+
+				var metadata = {
+					contentType: file.type
+				};
+
+				if (file) {
+
+					// Upload file and metadata to the object 'images/mountains.jpg'
+					var uploadTask = eventImageStorageRef.child(file.name).put(file, metadata);
+
+					// Listen for state changes, errors, and completion of the upload.
+					uploadTask.on('state_changed', // or 'state_changed'
+
+						function (snapshot) {
+
+							// Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+							var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+
+							console.log('Upload is ' + progress + '% done');
+
+							switch (snapshot.state) {
+
+								case firebase.storage.TaskState.PAUSED: // or 'paused'
+									console.log('Upload is paused');
+									break;
+								case firebase.storage.TaskState.RUNNING: // or 'running'
+									console.log('Upload is running');
+									break;
+
+							}
+
+						}, function (error) {
+
+							console.log('UPLOAD ERROR!');
+							console.log(error.message);
+
+						}, function () {
+
+							console.log('deu certo!');
+							console.log(uploadTask.snapshot);
+							eventRef.child('headerImageURL').set(uploadTask.snapshot.downloadURL);
+
+						});
+
+				}
+
+			});
+			eventElement.appendChild(imageFileInputElement);
+
+			// IMAGEM
+			var imageElement = document.createElement('div');
+			imageElement.className = 'Event-headerImage';
+			imageElement.addEventListener('click', function () {
+
+				imageFileInputElement.click();
+
+			});
+			eventRef.child('headerImageURL').on('value', function (snap) {
+
+				imageElement.style.backgroundImage = 'url("' + snap.val() + '")';
+
+			});
+			eventElement.appendChild(imageElement);
+
+			// TITULO DO EVENTO
+			var titleElement = document.createElement('input');
+			titleElement.type = 'text';
+			titleElement.className = 'Event-title';
+			titleElement.placeholder = 'Titulo do evento';
+			titleElement.addEventListener('input', function () {
+
+				eventRef.child('title').set(this.value);
+
+			});
+			eventRef.child('title').on('value', function (snap) {
+
+				if (titleElement.value !== snap.val())
+					titleElement.value = snap.val();
+
+			});
+			eventElement.appendChild(titleElement);
+
+			// LINK DO EVENTO NO FACEBOOK
+			var facebookEventURL = document.createElement('input');
+			facebookEventURL.type = 'text';
+			facebookEventURL.className = 'Event-facebookEventURL';
+			facebookEventURL.placeholder = 'URL do evento (facebook)';
+			facebookEventURL.addEventListener('input', function () {
+
+				eventRef.child('facebookEventURL').set(this.value);
+
+			});
+			eventRef.child('facebookEventURL').on('value', function (snap) {
+
+				if (facebookEventURL.value !== snap.val())
+					facebookEventURL.value = snap.val();
+
+			});
+			eventElement.appendChild(facebookEventURL);
+
+			// EVENT FOOTER (remove, date, active)
+			var eventFooterElement = document.createElement('div');
+			eventFooterElement.className = "EventFooter";
+
+			// DELETE EVENT BUTTON
+			var removeButton = document.createElement('button');
+			removeButton.className = 'Btn Btn--narrow Btn--filled Btn--turnoff';
+			removeButton.dataset.eventKey = snap.key;
+			removeButton.style.padding = '0 .5em';
+			removeButton.innerHTML = '<span class="icon-cancel"></span>';
+			removeButton.addEventListener('click', function () {
+
+				if (confirm('Deseja mesmo excluir o evento?')) {
+
+					removeEvent(this.dataset.eventKey);
+
+				}
+
+			});
+			eventFooterElement.appendChild(removeButton);
+
+			// SELECT DO DIA DA SEMANA
+			var weekdaySelect = document.createElement('select');
+			weekdaySelect.name = 'select-' + snap.key;
+			weekdaySelect.className = 'Event-select';
+
+			var weekDayCurrent = eventData.weekDay;
+			var day = weekDayCurrent.toUpperCase();
+
+			for (var i = 0; i < weekDays.length; i++) {
+
+				var opt = document.createElement('option');
+				opt.value = weekDays[i];
+				opt.textContent = weekDays[i];
+
+				if (day === weekDays[i]) {
+					opt.selected = "selected";
+				}
+
+				weekdaySelect.appendChild(opt);
+
+			}
+			weekdaySelect.addEventListener('change', function () {
+
+				eventRef.child('weekDay').set(weekDays[this.selectedIndex]);
+
+			});
+			eventRef.child('weekDay').on('value', function (snap) {
+
+				var dia = snap.val();
+
+				if (dia) {
+
+					if (weekDays.indexOf(dia.toUpperCase()) !== weekdaySelect.selectedIndex) {
+
+						var opts = weekdaySelect.getElementsByTagName('option');
+						opts[weekDays.indexOf(dia)].selected = 'selected';
+
+					}
+
+				}
+
+			});
+			eventFooterElement.appendChild(weekdaySelect);
+
+			// DATA DO EVENTO (dia do mês)
+			var dateElement = document.createElement('input');
+			dateElement.type = 'text';
+			dateElement.className = 'Event-select Event-dateInput';
+			dateElement.placeholder = 'Dia/mês';
+			dateElement.addEventListener('input', function () {
+
+				eventRef.child('date').set(this.value);
+
+			});
+			eventRef.child('date').on('value', function (snap) {
+
+				if (dateElement.value !== snap.val())
+					dateElement.value = snap.val();
+
+			});
+			eventFooterElement.appendChild(dateElement);
+
+			// EVENT STATUS CHECKBOX
+			var activeStateSwitcherElement = document.createElement('input');
+			activeStateSwitcherElement.id = 'activate-' + snap.key;
+			activeStateSwitcherElement.type = 'checkbox';
+			activeStateSwitcherElement.className = 'Event-checkbox';
+			activeStateSwitcherElement.addEventListener('change', function () {
+
+				eventRef.child('active').set(this.checked);
+
+			});
+			eventRef.child('active').on('value', function (snap) {
+
+				activeStateSwitcherElement.checked = snap.val();
+
+			});
+			eventFooterElement.appendChild(activeStateSwitcherElement);
+
+			// EVENT STATUS LABEL (TOGGLE)
+			var activeLabel = document.createElement('label');
+			activeLabel.htmlFor = 'activate-' + snap.key;
+			activeLabel.className = 'Event-activeStatus';
+			activeLabel.textContent = 'Ativo';
+			eventFooterElement.appendChild(activeLabel);
+
+			eventElement.appendChild(eventFooterElement);
+
+		});
+
+		eventsRef.on('child_removed', function (snap) {
+
+			var el = document.querySelector("[data-event-reference-key='" + snap.key + "']");
+			var old = el.parentNode.removeChild(el);
+
+		});
+
+	}
+
+</script>
+
+</body>
+
+</html>

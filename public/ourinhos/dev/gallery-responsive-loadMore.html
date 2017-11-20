@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <meta charset="UTF-8">
-<title>Eventos especiais | Assis | Jesse James Pub</title>
+<title>Galeria | Assis | Jesse James Pub</title>
 <meta name="viewport"
       content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
 
@@ -30,36 +30,238 @@
 <meta name="fb:app_id" content="1586666258259861">
 <meta name="og:type" content="website">
 
-<script src="../dist/js/villa.min.js"></script>
+<script src="../../dist/js/villa.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700" rel="stylesheet">
-<link rel="stylesheet" href="../dist/css/villa.min.css"/>
-<link rel="stylesheet" href="../dist/css/jessejamespub.min.css"/>
+<link rel="stylesheet" href="../../dist/css/villa.min.css"/>
+<link rel="stylesheet" href="../../dist/css/jessejamespub.css"/>
 <!--[if lt IE 9]>
-<link rel="stylesheet" type="text/css" href="../dist/css/material-colors.css"/>
-<link rel="stylesheet" type="text/css" href="../dist/css/villa-cross.min.css"/>
-<script src="../dist/js/html5shiv.js"></script>
-<script src="../dist/js/html5shiv-printshiv.js"></script>
-<script src="../dist/js/classList.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../../dist/css/material-colors.css"/>
+<link rel="stylesheet" type="text/css" href="../../dist/css/villa-cross.min.css"/>
+<script src="../../dist/js/html5shiv.js"></script>
+<script src="../../dist/js/html5shiv-printshiv.js"></script>
+<script src="../../dist/js/classList.min.js"></script>
 <![endif]-->
 
 <style>
 
-	.FranchiseHero-espec-combday--assis .FranchiseHero-background,
-	.TileHalf--background-combday {
-		background-image: url("../dist/img/assis/esp-combday.jpg");
+	/** {*/
+	/*outline: 1px solid red;*/
+	/*}*/
+
+	pre {
+		max-width: 1000px;
+		margin: 0 auto;
+		word-wrap: break-word;
 	}
 
-	.FranchiseHero-espec-combday--assis .FranchiseHero-background::after {
-		display: none;
+	.Gallery {
+		/*background-color: rgba(0,0,0,.1);*/
+		padding: 3em 0 2.5em;
+		text-align: center;
+		margin: 0 auto;
+		width: 100%;
 	}
 
-	.FranchiseHero-espec-despedida--assis .FranchiseHero-background,
-	.TileHalf--background-despedida {
-		background-image: url("../dist/img/assis/esp-despedida.jpg");
+	.Gallery-list {
+		-webkit-align-items: center;
+		align-items: center;
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-justify-content: center;
+		justify-content: center;
+		-webkit-flex-flow: row wrap;
+		flex-flow: row wrap;
+		margin: 0 auto;
+		padding: 1em;
 	}
 
-	.FranchiseHero-espec-despedida--assis .FranchiseHero-background::after {
-		display: none;
+	.Gallery-button {
+		max-width: none;
+		font-size: 1em;
+		margin: 2em 0;
+	}
+
+	@media (min-width: 48em) {
+
+		.Gallery-list {
+			/*width: 90%;*/
+		}
+
+	}
+
+</style>
+
+<style>
+
+	.PlaceholderExternal {
+		border-radius: 2px;
+		background-color: rgba(0, 0, 0, .2);
+		width: 600px;
+		margin: 2em auto;
+		padding: 1em 1em;
+	}
+
+	.loader {
+		height: 5px;
+		width: 100%;
+		position: relative;
+		overflow: hidden;
+		background-color: #ddd;
+	}
+
+	.loader:before {
+		display: block;
+		position: absolute;
+		content: "";
+		left: -200px;
+		width: 1px;
+		height: 5px;
+		background-color: #6e3118;
+		animation: loading 2s linear infinite;
+	}
+
+	@keyframes loading {
+		from {left: -200px;width: 10%;}
+		30% {width: 20%;}
+		50% {width: 30%;}
+		70% {width: 70%;}
+		80% {left: 50%;width: 100%;}
+		95% {left: 120%;}
+		to {left: 100%;}
+	}
+
+</style>
+
+<style>
+
+	.Album {
+		/*width: 15em;*/
+		max-height: 15em;
+		height: calc(100vw - 2em);
+		margin: .5em;
+		flex: 0 0 90%;
+		border: 2px solid #442a0d; /* marrom couro darker */
+		position: relative;
+
+		-webkit-align-items: center;
+		align-items: center;
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-justify-content: center;
+		justify-content: center;
+	}
+
+	@media only screen and (min-width: 480px) {
+
+		.Album {
+			height: calc(50vw - 2em);
+			flex: 0 0 45%;
+		}
+
+	}
+
+	@media only screen and (min-width: 700px) {
+
+		.Album {
+			height: calc(30vw - 2em);
+			flex: 0 0 30%;
+		}
+
+	}
+
+	@media only screen and (min-width: 1280px) {
+
+		.Album {
+			height: calc(23vw - 2em);
+			flex: 0 0 23%;
+		}
+
+	}
+
+	.AlbumContent-date {
+		display: inline-block;
+		font-size: 1.5em;
+		padding: .25em;
+		min-width: 5em;
+		background-color: rgba(0,0,0,.5);
+		border: 2px solid #442a0d; /* marrom couro darker */
+		-webkit-transition: all .3s ease;
+		-moz-transition: all .3s ease;
+		-ms-transition: all .3s ease;
+		-o-transition: all .3s ease;
+		transition: all .3s ease;
+	}
+
+	.Album:hover .AlbumContent-date {
+		background-color: rgba(0,0,0,.7);
+		border-color: #301c09; /* marrom couro darkest */
+	}
+
+	.AlbumContent-title {
+		font-size: 1.25em;
+		text-transform: uppercase;
+		margin: .5em;
+	}
+
+	.Album {
+		overflow: hidden;
+	}
+
+	.Album-background {
+		width: 100%;
+		height: 100%;
+		background-color: black; /* fallback color */
+		background-repeat: no-repeat;
+		background-position: center center;
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
+		position: absolute;
+		top: 0;
+		right: 0;
+		/*opacity: .4;*/
+		z-index: 1;
+		-webkit-transition: transform .5s ease;
+		-moz-transition: transform .5s ease;
+		-ms-transition: transform .5s ease;
+		-o-transition: transform .5s ease;
+		transition: transform .5s ease;
+	}
+
+	.Album:hover .Album-background {
+		transform: scale(1.05);
+	}
+
+	.Album-overlay {
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		right: 0;
+		opacity: .4;
+		z-index: 1;
+		-webkit-transition: all .3s ease;
+		-moz-transition: all .3s ease;
+		-ms-transition: all .3s ease;
+		-o-transition: all .3s ease;
+		transition: all .3s ease;
+	}
+
+	.Album:hover .Album-overlay {
+		opacity: .3;
+	}
+
+	.AlbumContent {
+		color: #fafafa;
+		font-family: 'Roboto Slab', 'Georgia', 'Cambria', serif;
+		z-index: 2;
 	}
 
 </style>
@@ -68,7 +270,10 @@
 
 <div id="topo"></div>
 
-<main id="especiais" class="FranchiseMain FranchiseMain--internal">
+<div class="bg-paper-full"></div>
+<!--<img src="../dist/img/bg-paper.jpg" alt="bg" class="TesteBg2">-->
+
+<main id="galeria" class="FranchiseMain FranchiseMain--internal">
 
 	<div class="FranchiseHeader">
 
@@ -127,7 +332,7 @@
 	<ul id="nav-menu-top" class="FranchiseMenuList FranchiseMenuList--top">
 
 		<li class="FranchiseMenuList-item">
-			<a href="./">Assis</a>
+			<a href="./">Início</a>
 		</li>
 
 		<li class="FranchiseMenuList-item">
@@ -139,7 +344,7 @@
 		</li>
 
 		<li class="FranchiseMenuList-item">
-			<a href="#">Combday & Despedida</a>
+			<a href="./especiais">Combday & Despedida</a>
 		</li>
 
 		<li class="FranchiseMenuList-item">
@@ -148,121 +353,27 @@
 
 	</ul>
 
-	<div class="FranchiseHeaderContact marrom-couro--darker">
+	<section class="FranchiseHero FranchiseHero-reserva--assis">
 
-		<div class="FranchiseHeaderContact-inner container">
+		<div class="FranchiseHero-background"></div>
 
-			<div class="FranchiseHeaderContact-item--left">
+		<div id="gallery" class="Gallery FranchiseHero-inner container">
 
-				<a href="#combday" class="FranchiseHeaderContact-item no-trailing-lg" style="font-size: .75em;">
-					<span class="icon-star"></span> <strong>COMBDAY</strong>
-				</a>
-
-				<a href="#despedida" class="FranchiseHeaderContact-item no-trailing-lg" style="font-size: .75em;">
-					<span class="icon-star"></span> <strong>DESPEDIDA DE SOLTEIRO</strong>
-				</a>
-
+			<div class="LeadingTitle f-marrom-couro--darkest">
+				<i class="LeadingTitle-orn icon-orn-left"></i>
+				<h1 class="LeadingTitle-text">Galeria</h1>
+				<i class="LeadingTitle-orn icon-orn-right"></i>
+				<i class="LeadingTitle-orn LeadingTitle-orn--bot icon-orn-bot"></i>
 			</div>
 
-		</div>
+			<!--<div id="gallery-list" class="Gallery-list">-->
 
-	</div>
+			<div id="gallery-loading" class="PlaceholderExternal f-marrom-couro--darkest">
+				<p>Carregando álbums...</p>
+				<div class="loader"></div>
+			</div>
 
-	<section id="combday" class="FranchiseHero FranchiseHero-espec-combday--assis">
-
-		<div class="FranchiseHero-background"></div>
-
-		<div class="FranchiseHero-inner">
-
-			<section class="Tile f-marrom-couro--darkest">
-
-				<div class="Tile-inner Tile-left container">
-
-					<div class="TileHalf TileHalf--background TileHalf--background-combday">
-					<!--<div class="TileHalf">-->
-					</div>
-
-					<div class="TileHalf TileHalf--especiais">
-
-						<div class="TileHalf-inner">
-
-							<div class="LeadingTitle LeadingTitle--simple f-marrom-couro">
-
-								<h1 class="LeadingTitle-text">COMBDAY</h1>
-
-								<i class="LeadingTitle-orn LeadingTitle-orn--bot icon-orn-bot"></i>
-
-							</div>
-
-							<p class="TileHalf-text" style="font-size: 1em;">Para comemorar seu aniversário o Jesse James Pub oferece 3 opções de Combday:</p>
-
-							<p class="TileHalf-text" style="font-size: 1.125em; font-weight: 700; text-align: left; margin-top: 1em; margin-bottom: .1em;">JESSE BRONZE - R$ 80,00</p>
-							<p class="TileHalf-text" style="font-size: 1em; text-align: left;">Sofá/Bistrô decorado com balões*; 01 entrada vip; 01 bolo de aniversário; 01 vela; 10 brigadaniels**; 01 drink da casa; 10 chapéuzinhos Jesse James.</p>
-
-							<p class="TileHalf-text" style="font-size: 1.125em; font-weight: 700; text-align: left; margin-top: 1em; margin-bottom: .1em;">JESSE PRATA - R$ 150,00</p>
-							<p class="TileHalf-text" style="font-size: 1em; text-align: left;">Camarote combday decorado com balões*; 02 entradas vip (aniversariante + acompanhante); 01 bolo de aniversário; 01 vela; 10 brigadaniels**; 10 brigasoluts***; 02 drinks da casa; 10 chapéuzinhos Jesse James.</p>
-
-							<p class="TileHalf-text" style="font-size: 1.125em; font-weight: 700; text-align: left; margin-top: 1em; margin-bottom: .1em;">JESSE OURO - R$ 300,00</p>
-							<p class="TileHalf-text" style="font-size: 1em; text-align: left;">Camarote combday decorado com balões*; 01 entrada vip (aniversariante); 10 meia entradas; 01 bolo de aniversário; 01 vela; 15 brigadaniels**; 15 brigasoluts***; 01 balde de Chandon ou Smirnoff; 15 chapéuzinhos Jesse James.</p>
-
-							<p class="TileHalf-text TileHalf-textSub">* Verificar Disponibilidade</p>
-							<p class="TileHalf-text TileHalf-textSub">** Brigadeiro de Jack Daniels</p>
-							<p class="TileHalf-text TileHalf-textSub">*** Brigadeiro de Absolut</p>
-
-						</div>
-
-					</div>
-
-				</div>
-
-			</section>
-
-		</div>
-
-	</section>
-
-	<section id="despedida" class="FranchiseHero FranchiseHero-espec-despedida--assis">
-
-		<div class="FranchiseHero-background"></div>
-
-		<div class="FranchiseHero-inner">
-
-			<section class="Tile f-marrom-couro--darkest">
-
-				<div class="Tile-inner Tile-right container">
-
-					<div class="TileHalf TileHalf--background TileHalf--background-despedida">
-					<!--<div class="TileHalf">-->
-					</div>
-
-					<div class="TileHalf TileHalf--especiais">
-
-						<div class="TileHalf-inner">
-
-							<div class="LeadingTitle LeadingTitle--simple f-marrom-couro">
-
-								<h1 class="LeadingTitle-text">DESPEDIDA</h1>
-
-								<i class="LeadingTitle-orn LeadingTitle-orn--bot icon-orn-bot"></i>
-
-							</div>
-
-							<p class="TileHalf-text" style="font-size: 1em;">A despedida de solteiro do Jesse James Pub é a maneira mais fácil de você se despedir da vida de solteiro sem arranjar encrenca com o amor da sua vida.</p>
-
-
-							<p class="TileHalf-text" style="font-size: 1.125em; font-weight: 700; text-align: left; margin-top: 1em; margin-bottom: .1em;">DESPEDIDA JESSE JAMES - R$ 150,00</p>
-							<p class="TileHalf-text" style="font-size: 1em; text-align: left;">Sofá/Bistrô decorado com balões*; 01 entrada vip; 01 balde de Chandon ou Smirnoff; 10 pulseiras de neon; 10 plaquinhs fotográficas; 05 arranjos decorados; 01 rojão de coração.</p>
-
-
-							<p class="TileHalf-text TileHalf-textSub">* Verificar Disponibilidade</p>
-
-						</div>
-
-					</div>
-
-				</div>
-
-			</section>
+			<!--</div>-->
 
 		</div>
 
@@ -312,7 +423,7 @@
 
 					<h2 class="FranchiseFooterTime-title">Horário de funcionamento</h2>
 					<p class="FranchiseFooterTime-text">
-						Quinta, Sexta e Sábado: <br>das 21h às 04h
+						Quinta, Sexta e Sábado: das 21h às 04h
 					</p>
 
 				</div>
@@ -331,7 +442,7 @@
 
 			<div class="FranchiseFooter-item FranchiseFooter-item--brand">
 
-				<a href="./" class="FranchiseFooterLogo">
+				<div class="FranchiseFooterLogo">
 
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 728.53027 361.05353" class="filter--shadow">
 						<g id="logo-assis" class="logo-pub">
@@ -340,7 +451,7 @@
 						</g>
 					</svg>
 
-				</a>
+				</div>
 
 				<div class="FranchiseFooterSocial">
 
@@ -358,15 +469,9 @@
 
 </main>
 
-<script src="../dist/js/jessejamespub.min.js"></script>
+<script src="../../dist/js/jessejamespub.min.js"></script>
 
 <script>
-
-	var sweetScroll = new SweetScroll({
-		trigger: "a[href^='#']",
-		duration: 800,
-		quickMode: true
-	});
 
 	window.addEventListener('load', function () {
 
@@ -384,7 +489,274 @@
 			navMenu.classList.toggle('is-active');
 		});
 
+		galleryInit();
+
 	});
+
+</script>
+
+<script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
+
+<script>
+
+	var config = {
+		apiKey: "AIzaSyAMTCtuJ2DyPiBx5qBHeDg_OU1KW4UzURY",
+		authDomain: "jessejamespub-com-br.firebaseapp.com",
+		databaseURL: "https://jessejamespub-com-br.firebaseio.com",
+		projectId: "jessejamespub-com-br",
+		storageBucket: "jessejamespub-com-br.appspot.com",
+		messagingSenderId: "118227352953"
+	};
+
+	firebase.initializeApp(config);
+
+	var databaseRef = firebase.database().ref('/');
+	var houseRef = databaseRef.child('assis');
+
+	var galleryRef = houseRef.child('gallery');
+	var enabledRef = galleryRef.child('enabledAlbums');
+
+	var franchise_config = {
+		CITY: 'assis',
+		PAGE_ID: 1586666258259861,
+		APP_TOKEN: '146544439255115|3_8Ip3wrGqx-BfnrEVVRhJeUpLA'
+	};
+
+</script>
+
+<script src="../../dist/js/axios.min.js"></script>
+
+<script>
+
+	var batched_albums = [];
+	var batch_list = [];
+	var albumCollection = [];
+	var needleAlbum = false;
+	var galleryNode = document.getElementById('gallery');
+	var galleryLoadingElement = document.getElementById('gallery-loading');
+
+	function galleryInit() {
+
+		/* Testar para retornar 13 albums, pois assim é possível carregar mais albums ou saber se não possui album sufiente */
+
+		enabledRef.orderByKey().limitToLast(12).once('value', function (snapshot) {
+
+			var i = 0;
+
+			snapshot.forEach(function (child) {
+
+				/* primeria vez da coleta do needleAlbum, espera que colete a primeira chave (na ordem da consulta) */
+				/* espera i == 0 */
+				if (i == 0) {
+					needleAlbum = child.key;
+				}
+
+				i++;
+
+				albumCollection.push(child.val());
+
+				batch_list.push({
+					"method": "GET",
+					"relative_url": child.key + "?fields=id, cover_photo.fields(id, height, width, picture, images)"
+				});
+
+			});
+
+			batchRequestFirstBite(batch_list);
+
+		});
+
+	}
+
+	function batchRequestFirstBite(batch_list_first) {
+
+		axios.post('https://graph.facebook.com/v2.10/', {
+			access_token: franchise_config.APP_TOKEN,
+			batch: batch_list_first,
+			include_headers: "false"
+		}).then(function (response) {
+
+			batched_albums = response.data;
+
+			var firstBiteGallery = createGalleryList(batched_albums);
+			var buttonMore = createLoadMoreButton();
+
+			galleryLoadingElement.parentNode.removeChild(galleryLoadingElement);
+			galleryNode.appendChild(firstBiteGallery);
+			galleryNode.appendChild(buttonMore);
+
+//            document.getElementById('gallery-list').innerHTML = '<pre><code>' + JSON.stringify(response.data, undefined, 2) +'</code></pre>';
+
+		}).catch(function (err) {
+
+			document.getElementById('gallery').innerHTML = '<span style="color: red;">' + err.message + '</span>';
+
+		});
+
+	}
+
+	function createGalleryList(received_albums) {
+
+//		var galleryNode = document.getElementById('gallery-list');
+//		galleryNode.innerHTML = '';
+
+		var galleryNode = document.createElement('div');
+		galleryNode.className = 'Gallery-list';
+
+		for (var i = received_albums.length; i--;) {
+
+			var album = JSON.parse(received_albums[i].body);
+			var albumData = retriveAlbumData(album.id);
+
+			var AlbumNode = document.createElement('a');
+			AlbumNode.href = './album?id=' + album.id;
+			AlbumNode.className = 'Album';
+			AlbumNode.title = albumData.fb_name;
+			AlbumNode.style.backgroundImage = 'url(' + album.cover_photo.images[5].source +')';
+
+			var albumOverlayNode = document.createElement('div');
+			albumOverlayNode.className = 'Album-overlay marrom-couro--darkest';
+
+			var albumContentNode = document.createElement('div');
+			albumContentNode.className = 'AlbumContent';
+
+			var albumContentDate = document.createElement('h1');
+			albumContentDate.className = 'AlbumContent-date';
+			albumContentDate.textContent = albumData.date;
+
+			var albumContentTitle = document.createElement('h2');
+			albumContentTitle.className = 'AlbumContent-title';
+			albumContentTitle.textContent = albumData.title;
+
+			albumContentNode.appendChild(albumContentDate);
+			albumContentNode.appendChild(albumContentTitle);
+
+			AlbumNode.appendChild(albumOverlayNode);
+			AlbumNode.appendChild(albumContentNode);
+
+			galleryNode.appendChild(AlbumNode);
+
+		}
+
+		return galleryNode;
+
+	}
+
+	function createLoadMoreButton () {
+
+		var buttonLoadMore = document.createElement('button');
+		buttonLoadMore.id = 'gallery-button-loadMore';
+		buttonLoadMore.className = 'Gallery-button Button Button--idle';
+		buttonLoadMore.textContent = 'Carregar mais álbums';
+		buttonLoadMore.addEventListener('click', function() {
+
+			this.innerHTML = '<span class="icon-cw animate-spin"></span>';
+			batched_albums = [];
+			batch_list = [];
+			loadNextBatchAlbums();
+
+		});
+
+		return buttonLoadMore;
+
+	}
+
+	function createSeparator () {
+
+		var ornBotSeparator = document.createElement('div');
+		ornBotSeparator.className = 'LeadingTitle LeadingTitle--simple f-marrom-couro--darkest';
+		ornBotSeparator.style.fontSize = '2em';
+		ornBotSeparator.innerHTML = '<span class="LeadingTitle-orn LeadingTitle-orn--bot icon-orn-bot"></span>';
+
+		return ornBotSeparator;
+
+	}
+
+	function loadNextBatchAlbums() {
+
+		/* busca 25 pois 1 album é o needleAlbum de referência que se repete, restando 24 */
+		/* 24 é divisível por 2, 3 e 4, formando colunas e linhas uniformes */
+		/* máximo de batch por lote no Graph API é de 50 methods */
+		enabledRef.orderByKey().endAt(needleAlbum).limitToLast(25).once('value', function (snapshot) {
+
+			var c = 0;
+
+			snapshot.forEach(function (child) {
+
+				/* espera que o próximo needleAlbum seja o segundo nó (o primeiro é o próprio needleAlbum anterior) */
+				/* espera i == 1 */
+				if (c == 0) {
+					needleAlbum = child.key;
+				}
+
+				if (c < 24) {
+
+					albumCollection.push(child.val());
+
+					batch_list.push({
+						"method": "GET",
+						"relative_url": child.key + "?fields=id, cover_photo.fields(id, height, width, picture, images)"
+					});
+
+				}
+
+				console.log("ch:" + child.key + " + " + "nd:" + needleAlbum);
+				console.log(c);
+
+				c++;
+
+			});
+
+			processNextBatchAlbums(batch_list);
+
+		});
+
+	}
+
+	function processNextBatchAlbums(batch_list_comp) {
+
+		axios.post('https://graph.facebook.com/v2.10/', {
+			access_token: franchise_config.APP_TOKEN,
+			batch: batch_list_comp,
+			include_headers: "false"
+		}).then(function (response) {
+
+			batched_albums = response.data;
+
+			var galleryList = createGalleryList(batched_albums);
+			var ornSeparator = createSeparator();
+			var galleryButtonMore = document.getElementById('gallery-button-loadMore');
+
+			galleryNode.insertBefore(ornSeparator, galleryButtonMore);
+			galleryNode.insertBefore(galleryList, galleryButtonMore);
+			galleryButtonMore.textContent = 'Carregar mais álbums';
+
+//            document.getElementById('gallery-list').innerHTML = '<pre><code>' + JSON.stringify(response.data, undefined, 2) +'</code></pre>';
+
+		}).catch(function (err) {
+
+			document.getElementById('gallery').innerHTML = '<span style="color: red;">' + err.message + '</span>';
+
+		});
+
+	}
+
+
+	function retriveAlbumData(albumId) {
+
+		for (var s = 0; s < albumCollection.length; s++) {
+
+			if (albumCollection[s].fb_id == albumId) {
+
+				return albumCollection[s];
+
+			}
+
+		}
+
+		return [];
+
+	}
 
 </script>
 

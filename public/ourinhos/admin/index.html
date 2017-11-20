@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="roboto">
+<meta charset="UTF-8">
+<title>Administração - Jesse James Pub</title>
+<meta name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+<script src="../dist/js/villa.min.js"></script>
+<link rel="stylesheet" href="../dist/css/villa.min.css"/>
+
+<!--[if lt IE 9]>
+<link rel="stylesheet" type="text/css" href="../dist/css/material-colors.css"/>
+<link rel="stylesheet" type="text/css" href="../dist/css/villa-cross.min.css"/>
+<script src="../dist/js/html5shiv.js"></script>
+<script src="../dist/js/html5shiv-printshiv.js"></script>
+<script src="../dist/js/classList.min.js"></script>
+<![endif]-->
+
+<script>
+
+	initApp = function () {
+
+		self.isSuperUser = false;
+		self.facebookToken = false;
+
+		firebase.auth().onAuthStateChanged(function (user) {
+
+			var databaseRef = firebase.database().ref('/');
+			var houseRef = databaseRef.child('assis');
+			var usersRef = houseRef.child('users');
+			var adminsRef = houseRef.child('admins');
+
+			if (user) {
+
+				usersRef.child('u' + user.uid).once('value', function (snap) {
+
+					if (snap.val().su) {
+						self.isSuperUser = true;
+						console.log('Welcome Super User!');
+					} else {
+						console.log('Seems like you are just an average admin! :)');
+					}
+				}).catch(function (err) {
+					console.log(err);
+				});
+
+				usersRef.child('u' + user.uid).once('value').then(function (snapshot) {
+
+					if (snapshot.exists() && snapshot.child('role').val() == "admin") {
+
+						self.facebookToken = snapshot.val().token;
+
+						var uid = snapshot.child('uid').val();
+
+						adminsRef.child('a' + uid).once('value').then(function (snapshot) {
+							if (snapshot.exists()) {
+
+								document.getElementById('userInfo-name').textContent = user.displayName;
+								document.getElementById('userInfo-email').textContent = user.email;
+								document.getElementById('userInfo-uid').textContent = user.uid;
+								document.querySelectorAll('div.AdminHeader-control')[0].classList.add('is-online');
+
+							}
+						}).catch(function (err) {
+							console.log('Você não tem permissão de administrador: ' + err);
+						});
+
+					} else {
+						window.location.href = '/admin/logout';
+					}
+
+				}).catch(function (err) {
+					console.log('Algo de errado não está certo: ' + err);
+				});
+
+			} else {
+
+//				document.getElementById('account-details').textContent = 'null';
+
+			}
+
+		}, function (error) {
+
+			console.log(error);
+
+		});
+	};
+
+	window.addEventListener('load', function () {
+		initApp()
+	});
+
+	if (typeof localStorage["firebaseui::rememberedAccounts"] == "undefined") {
+		window.location.href = "/admin/login";
+	}
+
+</script>
+
+<style>
+
+	body {
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-flex-flow: column;
+		flex-flow: column;
+	}
+
+	.logo {
+		height: 100px;
+		width: auto;
+		margin: 1em;
+	}
+
+	.AdminHeader-info {
+		-webkit-align-items: center;
+		align-items: center;
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-justify-content: center;
+		justify-content: center;
+		-webkit-flex-flow: column;
+		flex-flow: column;
+	}
+
+	.AdminHeader-logo {
+		text-align: center;
+	}
+
+	.AdminHeader-control {
+		margin: 1em;
+	}
+
+	.Button--narrow {
+		background-color: #03a9f4;
+		border: none;
+		border-radius: 2px;
+		color: #ffffff;
+		font-weight: 700;
+		padding: .25em .5em;
+		-webkit-transition: background .3s ease-in-out;
+		-moz-transition: background .3s ease-in-out;
+		-ms-transition: background .3s ease-in-out;
+		-o-transition: background .3s ease-in-out;
+		transition: background .3s ease-in-out;
+		text-transform: uppercase;
+	}
+
+	.Button--narrow:focus,
+	.Button--narrow:hover {
+		background-color: #81d4fa;
+		cursor: pointer;
+		-webkit-transition: background .3s ease-in-out;
+		-moz-transition: background .3s ease-in-out;
+		-ms-transition: background .3s ease-in-out;
+		-o-transition: background .3s ease-in-out;
+		transition: background .3s ease-in-out;
+	}
+
+	.Button--narrow:active {
+		background-color: #039be5;
+	}
+
+	.Button--alert {
+		background-color: #F44336;
+	}
+
+	.Button--alert:focus,
+	.Button--alert:hover {
+		background-color: #EF9A9A;
+	}
+
+	.Button--alert:active {
+		background-color: #E53935;
+	}
+
+	.Button--simple {
+		background-color: #585858;
+	}
+
+	.Button--simple:focus,
+	.Button--simple:hover {
+		background-color: #bdbdbd;
+	}
+
+	.Button--simple:active {
+		background-color: #585858;
+	}
+
+	#albums-info {
+		-webkit-align-items: center;
+		align-items: center;
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-justify-content: center;
+		justify-content: center;
+		-webkit-flex-flow: row wrap;
+		flex-flow: row wrap;
+		width: 80%;
+		margin: 0 auto;
+	}
+
+	.album {
+		/*display: inline-block;*/
+		-webkit-align-items: center;
+		align-items: center;
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-justify-content: center;
+		justify-content: center;
+		-webkit-flex-flow: column;
+		flex-flow: column;
+		margin: .5em;
+		width: 150px;
+		max-width: 150px;
+		text-align: center;
+	}
+
+</style>
+
+<body class="grey-100">
+
+<header class="AdminHeader">
+
+	<div class="AdminHeader-background"></div>
+
+	<div class="AdminHeader-inner font-brown-900">
+
+		<div class="AdminHeader-logo">
+
+			<img class="logo" src="../dist/img/logo-assis.png" alt="JJPA_LOGO">
+
+		</div>
+
+		<div class="AdminHeader-info">
+
+			<span style="margin-bottom: .25em;"><b>DADOS DE ACESSO</b></span>
+			<span id="userInfo-name">Nome de exibição</span>
+			<span id="userInfo-email">Email</span>
+			<span id="userInfo-uid">Código de autenticação</span>
+
+			<button class="Button--narrow" onclick="getAlbums();">Receber álbums da página</button>
+			<div id="albums-info"></div>
+
+			<div class="AdminHeader-control">
+
+				<a id="userLogout" href="/admin/logout" class="Button--narrow Button--alert">Sair</a>
+				<span id="userOffline" class="Button--narrow Button--simple">Offline</span>
+
+			</div>
+		</div>
+
+	</div>
+
+</header>
+
+<script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
+<script>
+	// Initialize Firebase
+	var config = {
+		apiKey: "AIzaSyAMTCtuJ2DyPiBx5qBHeDg_OU1KW4UzURY",
+		authDomain: "jessejamespub-com-br.firebaseapp.com",
+		databaseURL: "https://jessejamespub-com-br.firebaseio.com",
+		projectId: "jessejamespub-com-br",
+		storageBucket: "jessejamespub-com-br.appspot.com",
+		messagingSenderId: "118227352953"
+	};
+	firebase.initializeApp(config);
+</script>
+
+<script src="../dist/js/axios.min.js"></script>
+
+<script>
+
+	function getAlbums() {
+
+		var PAGE_ID = 1586666258259861;
+
+		axios.get('https://graph.facebook.com/v2.9/' + PAGE_ID, {
+			params: {
+//				fields: 'albums.fields(name, link, cover_photo.fields(id,height,width,images))',
+				fields: 'albums.fields(name, link, cover_photo.fields(id,height,width,picture)).limit(9999)',
+				access_token: '146544439255115|3_8Ip3wrGqx-BfnrEVVRhJeUpLA' //token do aplicativo
+			}
+		}).then(function (response) {
+
+			var albums = response.data.albums.data;
+			var albumsNode = document.getElementById('albums-info');
+
+			for (var i = 0; i < albums.length; i++) {
+
+				var albumNode = document.createElement('div');
+				albumNode.classList.add('album');
+				albumNode.innerHTML += '<a href="' + albums[i].link + '" target="_blank"><img src="' + albums[i].cover_photo.picture + '"/><p>' + albums[i].name + '</p></a>';
+
+				albumsNode.appendChild(albumNode);
+
+			}
+
+//			document.getElementById('albums-info').innerHTML = '<pre><code>' + JSON.stringify(response.data, undefined, 4) +'</code></pre>';
+
+		}).catch(function (err) {
+			document.getElementById('albums-info').innerHTML = '<span style="color: red;">' + err.message + '</span>';
+		});
+
+	}
+
+
+</script>
+
+</body>
+
+</html>
