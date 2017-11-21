@@ -15,38 +15,263 @@
 <meta name="theme-color" content="#ebc373">
 
 <meta name="description" content="O melhor pub sertanejo do interior paulista">
-<meta name="image" content="https://jessejamespub.com.br/../dist/img/meta.png">
+<meta name="image" content="https://jessejamespub.com.br/dist/img/meta.png">
 
 <meta itemprop="name" content="Jesse James Pub">
 <meta itemprop="description" content="O melhor pub sertanejo do interior paulista">
-<meta itemprop="image" content="https://jessejamespub.com.br/../dist/img/meta.png">
+<meta itemprop="image" content="https://jessejamespub.com.br/dist/img/meta.png">
 
 <meta name="og:title" content="Jesse James Pub">
 <meta name="og:description" content="O melhor pub sertanejo do interior paulista">
-<meta name="og:image" content="https://jessejamespub.com.br/../dist/img/meta.png">
+<meta name="og:image" content="https://jessejamespub.com.br/dist/img/meta.png">
 <meta name="og:url" content="https://jessejamespub.com.br">
 <meta name="og:site_name" content="Jesse James Pub">
 <meta name="og:locale" content="pt_BR">
 <meta name="fb:app_id" content="1586666258259861">
 <meta name="og:type" content="website">
 
-<script src="../dist/js/villa.min.js"></script>
+<script src="../../dist/js/villa.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700" rel="stylesheet">
-<link rel="stylesheet" href="../dist/css/villa.min.css"/>
-<link rel="stylesheet" href="../dist/css/jessejamespub.css"/>
+<link rel="stylesheet" href="../../dist/css/villa.min.css"/>
+<link rel="stylesheet" href="../../dist/css/jessejamespub.css"/>
 <!--[if lt IE 9]>
-<link rel="stylesheet" type="text/css" href="../dist/css/material-colors.css"/>
-<link rel="stylesheet" type="text/css" href="../dist/css/villa-cross.min.css"/>
-<script src="../dist/js/html5shiv.js"></script>
-<script src="../dist/js/html5shiv-printshiv.js"></script>
-<script src="../dist/js/classList.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../../dist/css/material-colors.css"/>
+<link rel="stylesheet" type="text/css" href="../../dist/css/villa-cross.min.css"/>
+<script src="../../dist/js/html5shiv.js"></script>
+<script src="../../dist/js/html5shiv-printshiv.js"></script>
+<script src="../../dist/js/classList.min.js"></script>
 <![endif]-->
+
+<style>
+
+	/** {*/
+	/*outline: 1px solid red;*/
+	/*}*/
+
+	pre {
+		max-width: 1000px;
+		margin: 0 auto;
+		word-wrap: break-word;
+	}
+
+	.Gallery {
+		/*background-color: rgba(0,0,0,.1);*/
+		padding: 3em 0 2.5em;
+		text-align: center;
+		margin: 0 auto;
+		width: 100%;
+	}
+
+	.Gallery-list {
+		-webkit-align-items: center;
+		align-items: center;
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-justify-content: center;
+		justify-content: center;
+		-webkit-flex-flow: row wrap;
+		flex-flow: row wrap;
+		margin: 0 auto;
+		padding: 1em;
+	}
+
+	.Gallery-button {
+		max-width: none;
+		font-size: 1em;
+		margin: 2em 0;
+	}
+
+	@media (min-width: 48em) {
+
+		.Gallery-list {
+			/*width: 90%;*/
+		}
+
+	}
+
+</style>
+
+<style>
+
+	.PlaceholderExternal {
+		border-radius: 2px;
+		background-color: rgba(0, 0, 0, .2);
+		width: 600px;
+		margin: 2em auto;
+		padding: 1em 1em;
+	}
+
+	.loader {
+		height: 5px;
+		width: 100%;
+		position: relative;
+		overflow: hidden;
+		background-color: #ddd;
+	}
+
+	.loader:before {
+		display: block;
+		position: absolute;
+		content: "";
+		left: -200px;
+		width: 1px;
+		height: 5px;
+		background-color: #6e3118;
+		animation: loading 2s linear infinite;
+	}
+
+	@keyframes loading {
+		from {left: -200px;width: 10%;}
+		30% {width: 20%;}
+		50% {width: 30%;}
+		70% {width: 70%;}
+		80% {left: 50%;width: 100%;}
+		95% {left: 120%;}
+		to {left: 100%;}
+	}
+
+</style>
+
+<style>
+
+	.Album {
+		/*width: 15em;*/
+		max-height: 15em;
+		height: calc(100vw - 2em);
+		margin: .5em;
+		flex: 0 0 90%;
+		border: 2px solid #442a0d; /* marrom couro darker */
+		position: relative;
+
+		-webkit-align-items: center;
+		align-items: center;
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-justify-content: center;
+		justify-content: center;
+	}
+
+	@media only screen and (min-width: 480px) {
+
+		.Album {
+			height: calc(50vw - 2em);
+			flex: 0 0 45%;
+		}
+
+	}
+
+	@media only screen and (min-width: 700px) {
+
+		.Album {
+			height: calc(30vw - 2em);
+			flex: 0 0 30%;
+		}
+
+	}
+
+	@media only screen and (min-width: 1280px) {
+
+		.Album {
+			height: calc(23vw - 2em);
+			flex: 0 0 23%;
+		}
+
+	}
+
+	.AlbumContent-date {
+		display: inline-block;
+		font-size: 1.5em;
+		padding: .25em;
+		min-width: 5em;
+		background-color: rgba(0,0,0,.5);
+		border: 2px solid #442a0d; /* marrom couro darker */
+		-webkit-transition: all .3s ease;
+		-moz-transition: all .3s ease;
+		-ms-transition: all .3s ease;
+		-o-transition: all .3s ease;
+		transition: all .3s ease;
+	}
+
+	.Album:hover .AlbumContent-date {
+		background-color: rgba(0,0,0,.7);
+		border-color: #301c09; /* marrom couro darkest */
+	}
+
+	.AlbumContent-title {
+		font-size: 1.25em;
+		text-transform: uppercase;
+		margin: .5em;
+	}
+
+	.Album {
+		overflow: hidden;
+	}
+
+	.Album-background {
+		width: 100%;
+		height: 100%;
+		background-color: black; /* fallback color */
+		background-repeat: no-repeat;
+		background-position: center center;
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
+		position: absolute;
+		top: 0;
+		right: 0;
+		/*opacity: .4;*/
+		z-index: 1;
+		-webkit-transition: transform .5s ease;
+		-moz-transition: transform .5s ease;
+		-ms-transition: transform .5s ease;
+		-o-transition: transform .5s ease;
+		transition: transform .5s ease;
+	}
+
+	.Album:hover .Album-background {
+		transform: scale(1.05);
+	}
+
+	.Album-overlay {
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		right: 0;
+		opacity: .4;
+		z-index: 1;
+		-webkit-transition: all .3s ease;
+		-moz-transition: all .3s ease;
+		-ms-transition: all .3s ease;
+		-o-transition: all .3s ease;
+		transition: all .3s ease;
+	}
+
+	.Album:hover .Album-overlay {
+		opacity: .3;
+	}
+
+	.AlbumContent {
+		color: #fafafa;
+		font-family: 'Roboto Slab', 'Georgia', 'Cambria', serif;
+		z-index: 2;
+	}
+
+</style>
 
 <body class="Franchise roboto-slab marrom-couro-darker">
 
 <div id="topo"></div>
 
 <div class="bg-paper-full"></div>
+<!--<img src="../dist/img/bg-paper.jpg" alt="bg" class="TesteBg2">-->
 
 <main id="galeria" class="FranchiseMain FranchiseMain--internal">
 
@@ -107,7 +332,7 @@
 	<ul id="nav-menu-top" class="FranchiseMenuList FranchiseMenuList--top">
 
 		<li class="FranchiseMenuList-item">
-			<a href="./">Assis</a>
+			<a href="./">Início</a>
 		</li>
 
 		<li class="FranchiseMenuList-item">
@@ -115,7 +340,7 @@
 		</li>
 
 		<li class="FranchiseMenuList-item">
-			<a href="#">Galeria</a>
+			<a href="./galeria">Galeria</a>
 		</li>
 
 		<li class="FranchiseMenuList-item">
@@ -128,9 +353,9 @@
 
 	</ul>
 
-	<section class="FranchiseHero">
+	<section class="FranchiseHero FranchiseHero-reserva--assis">
 
-		<!--<div class="FranchiseHero-background"></div>-->
+		<div class="FranchiseHero-background"></div>
 
 		<div id="gallery" class="Gallery FranchiseHero-inner container">
 
@@ -141,15 +366,12 @@
 				<i class="LeadingTitle-orn LeadingTitle-orn--bot icon-orn-bot"></i>
 			</div>
 
-			<p class="Gallery-subtitle f-marrom-couro--darkest">Confira os clicks que rolaram no Jesse James Assis</p>
-			<!--<p class="Gallery-subtitle f-marrom-couro&#45;&#45;darkest">Autem commodi consectetur, consequuntur, consectetur, consequuntur.</p>-->
-
 			<!--<div id="gallery-list" class="Gallery-list">-->
 
-				<div id="gallery-loading" class="PlaceholderExternal">
-					<p>Carregando álbums...</p>
-					<div class="loader"></div>
-				</div>
+			<div id="gallery-loading" class="PlaceholderExternal f-marrom-couro--darkest">
+				<p>Carregando álbums...</p>
+				<div class="loader"></div>
+			</div>
 
 			<!--</div>-->
 
@@ -201,7 +423,7 @@
 
 					<h2 class="FranchiseFooterTime-title">Horário de funcionamento</h2>
 					<p class="FranchiseFooterTime-text">
-						Sexta e Sábado: <br>das 21h às 04h
+						Quinta, Sexta e Sábado: das 21h às 04h
 					</p>
 
 				</div>
@@ -220,7 +442,7 @@
 
 			<div class="FranchiseFooter-item FranchiseFooter-item--brand">
 
-				<a href="./" class="FranchiseFooterLogo">
+				<div class="FranchiseFooterLogo">
 
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 728.53027 361.05353" class="filter--shadow">
 						<g id="logo-assis" class="logo-pub">
@@ -229,7 +451,7 @@
 						</g>
 					</svg>
 
-				</a>
+				</div>
 
 				<div class="FranchiseFooterSocial">
 
@@ -247,15 +469,9 @@
 
 </main>
 
-<script src="../dist/js/jessejamespub.min.js"></script>
+<script src="../../dist/js/jessejamespub.min.js"></script>
 
 <script>
-
-	var sweetScroll = new SweetScroll({
-		trigger: "a[href^='#']",
-		duration: 800,
-		quickMode: true
-	});
 
 	window.addEventListener('load', function () {
 
@@ -308,7 +524,7 @@
 
 </script>
 
-<script src="../dist/js/axios.min.js"></script>
+<script src="../../dist/js/axios.min.js"></script>
 
 <script>
 
@@ -323,7 +539,7 @@
 
 		/* Testar para retornar 13 albums, pois assim é possível carregar mais albums ou saber se não possui album sufiente */
 
-		enabledRef.orderByKey().limitToLast(24).once('value', function (snapshot) {
+		enabledRef.orderByKey().limitToLast(12).once('value', function (snapshot) {
 
 			var i = 0;
 
@@ -392,14 +608,11 @@
 			var album = JSON.parse(received_albums[i].body);
 			var albumData = retriveAlbumData(album.id);
 
-			var albumNode = document.createElement('a');
-			albumNode.href = './album?id=' + album.id;
-			albumNode.className = 'Album';
-			albumNode.title = albumData.fb_name;
-
-			var albumBackgroundNode = document.createElement('div');
-			albumBackgroundNode.className = 'Album-background';
-			albumBackgroundNode.style.backgroundImage = 'url(' + album.cover_photo.images[5].source +')';
+			var AlbumNode = document.createElement('a');
+			AlbumNode.href = './album?id=' + album.id;
+			AlbumNode.className = 'Album';
+			AlbumNode.title = albumData.fb_name;
+			AlbumNode.style.backgroundImage = 'url(' + album.cover_photo.images[5].source +')';
 
 			var albumOverlayNode = document.createElement('div');
 			albumOverlayNode.className = 'Album-overlay marrom-couro--darkest';
@@ -418,11 +631,10 @@
 			albumContentNode.appendChild(albumContentDate);
 			albumContentNode.appendChild(albumContentTitle);
 
-			albumNode.appendChild(albumBackgroundNode);
-			albumNode.appendChild(albumOverlayNode);
-			albumNode.appendChild(albumContentNode);
+			AlbumNode.appendChild(albumOverlayNode);
+			AlbumNode.appendChild(albumContentNode);
 
-			galleryNode.appendChild(albumNode);
+			galleryNode.appendChild(AlbumNode);
 
 		}
 
@@ -432,23 +644,100 @@
 
 	function createLoadMoreButton () {
 
-		var buttonLoadMore = document.createElement('a');
+		var buttonLoadMore = document.createElement('button');
 		buttonLoadMore.id = 'gallery-button-loadMore';
-		buttonLoadMore.href = 'https://www.facebook.com/pg/' + franchise_config.PAGE_ID + '/photos/?tab=albums';
 		buttonLoadMore.className = 'Gallery-button Button Button--idle';
-		buttonLoadMore.innerHTML = 'Veja mais na nossa página <span class="icon-facebook-official"></span>';
+		buttonLoadMore.textContent = 'Carregar mais álbums';
+		buttonLoadMore.addEventListener('click', function() {
 
-//		buttonLoadMore.textContent = 'Carregar mais álbums';
-//		buttonLoadMore.addEventListener('click', function() {
-//
-//			this.innerHTML = '<span class="icon-cw animate-spin"></span>';
-//			batched_albums = [];
-//			batch_list = [];
-//			loadNextBatchAlbums();
-//
-//		});
+			this.innerHTML = '<span class="icon-cw animate-spin"></span>';
+			batched_albums = [];
+			batch_list = [];
+			loadNextBatchAlbums();
+
+		});
 
 		return buttonLoadMore;
+
+	}
+
+	function createSeparator () {
+
+		var ornBotSeparator = document.createElement('div');
+		ornBotSeparator.className = 'LeadingTitle LeadingTitle--simple f-marrom-couro--darkest';
+		ornBotSeparator.style.fontSize = '2em';
+		ornBotSeparator.innerHTML = '<span class="LeadingTitle-orn LeadingTitle-orn--bot icon-orn-bot"></span>';
+
+		return ornBotSeparator;
+
+	}
+
+	function loadNextBatchAlbums() {
+
+		/* busca 25 pois 1 album é o needleAlbum de referência que se repete, restando 24 */
+		/* 24 é divisível por 2, 3 e 4, formando colunas e linhas uniformes */
+		/* máximo de batch por lote no Graph API é de 50 methods */
+		enabledRef.orderByKey().endAt(needleAlbum).limitToLast(25).once('value', function (snapshot) {
+
+			var c = 0;
+
+			snapshot.forEach(function (child) {
+
+				/* espera que o próximo needleAlbum seja o segundo nó (o primeiro é o próprio needleAlbum anterior) */
+				/* espera i == 1 */
+				if (c == 0) {
+					needleAlbum = child.key;
+				}
+
+				if (c < 24) {
+
+					albumCollection.push(child.val());
+
+					batch_list.push({
+						"method": "GET",
+						"relative_url": child.key + "?fields=id, cover_photo.fields(id, height, width, picture, images)"
+					});
+
+				}
+
+				console.log("ch:" + child.key + " + " + "nd:" + needleAlbum);
+				console.log(c);
+
+				c++;
+
+			});
+
+			processNextBatchAlbums(batch_list);
+
+		});
+
+	}
+
+	function processNextBatchAlbums(batch_list_comp) {
+
+		axios.post('https://graph.facebook.com/v2.10/', {
+			access_token: franchise_config.APP_TOKEN,
+			batch: batch_list_comp,
+			include_headers: "false"
+		}).then(function (response) {
+
+			batched_albums = response.data;
+
+			var galleryList = createGalleryList(batched_albums);
+			var ornSeparator = createSeparator();
+			var galleryButtonMore = document.getElementById('gallery-button-loadMore');
+
+			galleryNode.insertBefore(ornSeparator, galleryButtonMore);
+			galleryNode.insertBefore(galleryList, galleryButtonMore);
+			galleryButtonMore.textContent = 'Carregar mais álbums';
+
+//            document.getElementById('gallery-list').innerHTML = '<pre><code>' + JSON.stringify(response.data, undefined, 2) +'</code></pre>';
+
+		}).catch(function (err) {
+
+			document.getElementById('gallery').innerHTML = '<span style="color: red;">' + err.message + '</span>';
+
+		});
 
 	}
 

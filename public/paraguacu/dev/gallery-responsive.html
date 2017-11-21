@@ -30,23 +30,115 @@
 <meta name="fb:app_id" content="1586666258259861">
 <meta name="og:type" content="website">
 
-<script src="../dist/js/villa.min.js"></script>
+<script src="../../dist/js/villa.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,700" rel="stylesheet">
-<link rel="stylesheet" href="../dist/css/villa.min.css"/>
-<link rel="stylesheet" href="../dist/css/jessejamespub.css"/>
+<link rel="stylesheet" href="../../dist/css/villa.min.css"/>
+<link rel="stylesheet" href="../../dist/css/jessejamespub.css"/>
 <!--[if lt IE 9]>
-<link rel="stylesheet" type="text/css" href="../dist/css/material-colors.css"/>
-<link rel="stylesheet" type="text/css" href="../dist/css/villa-cross.min.css"/>
-<script src="../dist/js/html5shiv.js"></script>
-<script src="../dist/js/html5shiv-printshiv.js"></script>
-<script src="../dist/js/classList.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../../dist/css/material-colors.css"/>
+<link rel="stylesheet" type="text/css" href="../../dist/css/villa-cross.min.css"/>
+<script src="../../dist/js/html5shiv.js"></script>
+<script src="../../dist/js/html5shiv-printshiv.js"></script>
+<script src="../../dist/js/classList.min.js"></script>
 <![endif]-->
+
+<style>
+
+	/** {*/
+	/*outline: 1px solid red;*/
+	/*}*/
+
+	pre {
+		max-width: 1000px;
+		margin: 0 auto;
+		word-wrap: break-word;
+	}
+
+	.Gallery {
+		/*background-color: rgba(0,0,0,.1);*/
+		padding: 3em 0 2.5em;
+		text-align: center;
+	}
+
+	.Gallery-list {
+		-webkit-align-items: center;
+		align-items: center;
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-justify-content: center;
+		justify-content: center;
+		-webkit-flex-flow: row wrap;
+		flex-flow: row wrap;
+		margin: 0 auto;
+		padding: 1em 0;
+	}
+
+	.Gallery-button {
+		max-width: none;
+		font-size: 1em;
+		margin: 2em 0;
+	}
+
+	@media (min-width: 48em) {
+
+		.Gallery-list {
+			/*width: 90%;*/
+		}
+
+	}
+
+</style>
+
+<style>
+
+	.PlaceholderExternal {
+		border-radius: 2px;
+		background-color: rgba(0, 0, 0, .2);
+		width: 600px;
+		margin: 1em 0;
+		padding: 1em 1em;
+	}
+
+	.loader {
+		height: 5px;
+		width: 100%;
+		position: relative;
+		overflow: hidden;
+		background-color: #ddd;
+	}
+
+	.loader:before {
+		display: block;
+		position: absolute;
+		content: "";
+		left: -200px;
+		width: 1px;
+		height: 5px;
+		background-color: #6e3118;
+		animation: loading 2s linear infinite;
+	}
+
+	@keyframes loading {
+		from {left: -200px;width: 10%;}
+		30% {width: 20%;}
+		50% {width: 30%;}
+		70% {width: 70%;}
+		80% {left: 50%;width: 100%;}
+		95% {left: 120%;}
+		to {left: 100%;}
+	}
+
+</style>
 
 <body class="Franchise roboto-slab marrom-couro-darker">
 
 <div id="topo"></div>
 
 <div class="bg-paper-full"></div>
+<!--<img src="../dist/img/bg-paper.jpg" alt="bg" class="TesteBg2">-->
 
 <main id="galeria" class="FranchiseMain FranchiseMain--internal">
 
@@ -107,7 +199,7 @@
 	<ul id="nav-menu-top" class="FranchiseMenuList FranchiseMenuList--top">
 
 		<li class="FranchiseMenuList-item">
-			<a href="./">Assis</a>
+			<a href="./">Início</a>
 		</li>
 
 		<li class="FranchiseMenuList-item">
@@ -115,7 +207,7 @@
 		</li>
 
 		<li class="FranchiseMenuList-item">
-			<a href="#">Galeria</a>
+			<a href="./galeria">Galeria</a>
 		</li>
 
 		<li class="FranchiseMenuList-item">
@@ -128,9 +220,9 @@
 
 	</ul>
 
-	<section class="FranchiseHero">
+	<section class="FranchiseHero FranchiseHero-reserva--assis">
 
-		<!--<div class="FranchiseHero-background"></div>-->
+		<div class="FranchiseHero-background"></div>
 
 		<div id="gallery" class="Gallery FranchiseHero-inner container">
 
@@ -141,17 +233,213 @@
 				<i class="LeadingTitle-orn LeadingTitle-orn--bot icon-orn-bot"></i>
 			</div>
 
-			<p class="Gallery-subtitle f-marrom-couro--darkest">Confira os clicks que rolaram no Jesse James Assis</p>
-			<!--<p class="Gallery-subtitle f-marrom-couro&#45;&#45;darkest">Autem commodi consectetur, consequuntur, consectetur, consequuntur.</p>-->
+			<div id="gallery-list" class="Gallery-list">
 
-			<!--<div id="gallery-list" class="Gallery-list">-->
+				<!--<div class="PlaceholderExternal">-->
+					<!--<p>Carregando álbums...</p>-->
+					<!--<div class="loader"></div>-->
+				<!--</div>-->
 
-				<div id="gallery-loading" class="PlaceholderExternal">
-					<p>Carregando álbums...</p>
-					<div class="loader"></div>
-				</div>
+				<a href="./album?id=1965515570374926" class="Album" title="CACIO E MARCOS - 12.10.2017"
+				   style="background-image: url(&quot;https://scontent.xx.fbcdn.net/v/t1.0-0/p320x320/22528248_1965516653708151_7561295821491449134_n.jpg?oh=cd0730f751a7ff08f3173416213c8f9d&amp;oe=5A99BDD6&quot;);">
+					<div class="Album-overlay marrom-couro--darkest"></div>
+					<div class="AlbumContent"><h1 class="AlbumContent-date">12/10/2017</h1>
+						<h2 class="AlbumContent-title">CACIO E MARCOS -</h2></div>
+				</a>
 
-			<!--</div>-->
+				<a href="./album?id=1963193930607090" class="Album" title="SÁBADO 07.10.2017"
+				   style="background-image: url(&quot;https://scontent.xx.fbcdn.net/v/t1.0-0/p320x320/22448403_1963391283920688_4069526635154110232_n.jpg?oh=0edd5f640b288f38db1110eb16137e28&amp;oe=5A9B5FF3&quot;);">
+					<div class="Album-overlay marrom-couro--darkest"></div>
+					<div class="AlbumContent"><h1 class="AlbumContent-date">07/10/2017</h1>
+						<h2 class="AlbumContent-title">SÁBADO</h2></div>
+				</a>
+
+				<a href="./album?id=1962949513964865" class="Album" title="SEXTA-FEIRA 06.10.2017"
+				   style="background-image: url(&quot;https://scontent.xx.fbcdn.net/v/t1.0-0/p320x320/22448497_1962951660631317_4327190641521451294_n.jpg?oh=7043b7d0f08fafd2fc4ae22dfb33a140&amp;oe=5AAE66C4&quot;);">
+					<div class="Album-overlay marrom-couro--darkest"></div>
+					<div class="AlbumContent"><h1 class="AlbumContent-date">06/10/2017</h1>
+						<h2 class="AlbumContent-title">SEXTA-FEIRA</h2></div>
+				</a>
+
+				<a href="./album?id=1961604184099398" class="Album" title="SÁBADO - 30.09.2017"
+				   style="background-image: url(&quot;https://scontent.xx.fbcdn.net/v/t1.0-0/p320x320/22228324_1961611390765344_6152757910756142213_n.jpg?oh=dbfc8bb6191d99891310025e677fd719&amp;oe=5AAC3954&quot;);">
+					<div class="Album-overlay marrom-couro--darkest"></div>
+					<div class="AlbumContent"><h1 class="AlbumContent-date">30/09/2017</h1>
+						<h2 class="AlbumContent-title">SÁBADO -</h2></div>
+				</a>
+
+				<a href="./album?id=1960710997522050" class="Album" title="SEXTA-FEIRA 29.09.2017"
+				   style="background-image: url(&quot;https://scontent.xx.fbcdn.net/v/t1.0-0/p320x320/22221998_1960713817521768_5895796394504499214_n.jpg?oh=4d5ee9dd1fa2ace566759fbae0b32433&amp;oe=5A9D58CE&quot;);">
+					<div class="Album-overlay marrom-couro--darkest"></div>
+					<div class="AlbumContent"><h1 class="AlbumContent-date">29/09/2017</h1>
+						<h2 class="AlbumContent-title">SEXTA-FEIRA</h2></div>
+				</a>
+				<a href="./album?id=1957663711160112" class="Album" title="NOVA CONVIDA - 24.09.2017"
+				   style="background-image: url(&quot;https://scontent.xx.fbcdn.net/v/t1.0-0/p320x320/22008481_1957669467826203_2667752083616080491_n.jpg?oh=b457c311096e9f0f90209cad54d9fca7&amp;oe=5A92884A&quot;);">
+					<div class="Album-overlay marrom-couro--darkest"></div>
+					<div class="AlbumContent"><h1 class="AlbumContent-date">24/09/2017</h1>
+						<h2 class="AlbumContent-title">NOVA CONVIDA -</h2></div>
+				</a>
+
+				<a href="./album?id=1957034657889684" class="Album" title="SÁBADO 23.09.2017"
+				   style="background-image: url(&quot;https://scontent.xx.fbcdn.net/v/t1.0-0/p320x320/22045667_1957034794556337_5910212642061589479_n.jpg?oh=0ba2a29ca89c48b24a7c1c88a8c50f1c&amp;oe=5AA4AC0C&quot;);">
+					<div class="Album-overlay marrom-couro--darkest"></div>
+					<div class="AlbumContent"><h1 class="AlbumContent-date">23/09/2017</h1>
+						<h2 class="AlbumContent-title">SÁBADO</h2></div>
+				</a>
+
+				<a href="./album?id=1956828634576953" class="Album" title="SEXTA-FEIRA 22.09.2017"
+				   style="background-image: url(&quot;https://scontent.xx.fbcdn.net/v/t1.0-0/p320x320/21687627_1956831154576701_8517154006684495954_n.jpg?oh=cd0a2ff4dcb80163634fc1e7a8e4f889&amp;oe=5AA65587&quot;);">
+					<div class="Album-overlay marrom-couro--darkest"></div>
+					<div class="AlbumContent"><h1 class="AlbumContent-date">22/09/2017</h1>
+						<h2 class="AlbumContent-title">SEXTA-FEIRA</h2></div>
+				</a>
+
+				<a href="./album?id=1954193334840483" class="Album" title="SABADO 16.09.2017"
+				   style="background-image: url(&quot;https://scontent.xx.fbcdn.net/v/t1.0-0/p320x320/21558997_1954193371507146_7454005059493167926_n.jpg?oh=9ddb8585a6ac3becce8ffd5635258642&amp;oe=5A9FC2C4&quot;);">
+					<div class="Album-overlay marrom-couro--darkest"></div>
+					<div class="AlbumContent"><h1 class="AlbumContent-date">16/09/2017</h1>
+						<h2 class="AlbumContent-title">SABADO</h2></div>
+				</a>
+
+				<a href="./album?id=1954183868174763" class="Album" title="SEXTA-FEIRA 15.09.2017"
+				   style="background-image: url(&quot;https://scontent.xx.fbcdn.net/v/t1.0-0/p320x320/21559079_1954184824841334_8599680156726008975_n.jpg?oh=25040fd4d121f7ef37558eb8416f20d4&amp;oe=5A9775BD&quot;);">
+					<div class="Album-overlay marrom-couro--darkest"></div>
+					<div class="AlbumContent"><h1 class="AlbumContent-date">15/09/2017</h1>
+						<h2 class="AlbumContent-title">SEXTA-FEIRA</h2></div>
+				</a>
+
+				<a href="./album?id=1947210248872125" class="Album" title="SÁBADO 02.09.2017"
+				   style="background-image: url(&quot;https://scontent.xx.fbcdn.net/v/t1.0-0/p320x320/21430232_1947210812205402_8660406967287590466_n.jpg?oh=5a7ea9aa0b7e5f76ef110c9df1992a89&amp;oe=5A9533AB&quot;);">
+					<div class="Album-overlay marrom-couro--darkest"></div>
+					<div class="AlbumContent"><h1 class="AlbumContent-date">02/09/2017</h1>
+						<h2 class="AlbumContent-title">SÁBADO</h2></div>
+				</a>
+
+				<a href="./album?id=1946803965579420" class="Album" title="SEXTA-FEIRA 01.09.2017"
+				   style="background-image: url(&quot;https://scontent.xx.fbcdn.net/v/t1.0-0/p320x320/21231946_1946805668912583_8791346336181305397_n.jpg?oh=cafacc3fafa6399b73b885b9c980e68a&amp;oe=5AAE392C&quot;);">
+					<div class="Album-overlay marrom-couro--darkest"></div>
+					<div class="AlbumContent"><h1 class="AlbumContent-date">01/09/2017</h1>
+						<h2 class="AlbumContent-title">SEXTA-FEIRA</h2></div>
+				</a>
+			</div>
+
+			<div class="LeadingTitle LeadingTitle--simple f-marrom-couro--darkest" style="font-size: 2em;">
+				<span class="LeadingTitle-orn LeadingTitle-orn--bot icon-orn-bot"></span>
+			</div>
+
+			<button class="Gallery-button Button Button--idle">Carregar todos os álbums</button>
+
+			<button class="Gallery-button Button Button--idle"><span class="icon-cw animate-spin"></span></button>
+
+			<div class="Gallery-list">
+
+				<a href="./album?id=1965515570374926" class="Album Album--continuous" title="CACIO E MARCOS - 12.10.2017"
+				   style="background-image: url(&quot;https://scontent.xx.fbcdn.net/v/t1.0-0/p320x320/22528248_1965516653708151_7561295821491449134_n.jpg?oh=cd0730f751a7ff08f3173416213c8f9d&amp;oe=5A99BDD6&quot;);">
+					<div class="Album-overlay marrom-couro--darkest"></div>
+					<div class="AlbumContent"><h1 class="AlbumContent-date">12/10/2017</h1>
+						<h2 class="AlbumContent-title">CACIO E MARCOS -</h2></div>
+				</a>
+
+				<a href="./album?id=1965515570374926" class="Album Album--continuous" title="CACIO E MARCOS - 12.10.2017"
+				   style="background-image: url(&quot;https://scontent.xx.fbcdn.net/v/t1.0-0/p320x320/22528248_1965516653708151_7561295821491449134_n.jpg?oh=cd0730f751a7ff08f3173416213c8f9d&amp;oe=5A99BDD6&quot;);">
+					<div class="Album-overlay marrom-couro--darkest"></div>
+					<div class="AlbumContent"><h1 class="AlbumContent-date">12/10/2017</h1>
+						<h2 class="AlbumContent-title">CACIO E MARCOS -</h2></div>
+				</a>
+
+				<a href="./album?id=1965515570374926" class="Album Album--continuous" title="CACIO E MARCOS - 12.10.2017"
+				   style="background-image: url(&quot;https://scontent.xx.fbcdn.net/v/t1.0-0/p320x320/22528248_1965516653708151_7561295821491449134_n.jpg?oh=cd0730f751a7ff08f3173416213c8f9d&amp;oe=5A99BDD6&quot;);">
+					<div class="Album-overlay marrom-couro--darkest"></div>
+					<div class="AlbumContent"><h1 class="AlbumContent-date">12/10/2017</h1>
+						<h2 class="AlbumContent-title">CACIO E MARCOS -</h2></div>
+				</a>
+
+				<a href="./album?id=1965515570374926" class="Album Album--continuous" title="CACIO E MARCOS - 12.10.2017"
+				   style="background-image: url(&quot;https://scontent.xx.fbcdn.net/v/t1.0-0/p320x320/22528248_1965516653708151_7561295821491449134_n.jpg?oh=cd0730f751a7ff08f3173416213c8f9d&amp;oe=5A99BDD6&quot;);">
+					<div class="Album-overlay marrom-couro--darkest"></div>
+					<div class="AlbumContent"><h1 class="AlbumContent-date">12/10/2017</h1>
+						<h2 class="AlbumContent-title">CACIO E MARCOS -</h2></div>
+				</a>
+
+				<a href="./album?id=1965515570374926" class="Album Album--continuous" title="CACIO E MARCOS - 12.10.2017"
+				   style="background-image: url(&quot;https://scontent.xx.fbcdn.net/v/t1.0-0/p320x320/22528248_1965516653708151_7561295821491449134_n.jpg?oh=cd0730f751a7ff08f3173416213c8f9d&amp;oe=5A99BDD6&quot;);">
+					<div class="Album-overlay marrom-couro--darkest"></div>
+					<div class="AlbumContent"><h1 class="AlbumContent-date">12/10/2017</h1>
+						<h2 class="AlbumContent-title">CACIO E MARCOS -</h2></div>
+				</a>
+
+				<a href="./album?id=1965515570374926" class="Album Album--continuous" title="CACIO E MARCOS - 12.10.2017"
+				   style="background-image: url(&quot;https://scontent.xx.fbcdn.net/v/t1.0-0/p320x320/22528248_1965516653708151_7561295821491449134_n.jpg?oh=cd0730f751a7ff08f3173416213c8f9d&amp;oe=5A99BDD6&quot;);">
+					<div class="Album-overlay marrom-couro--darkest"></div>
+					<div class="AlbumContent"><h1 class="AlbumContent-date">12/10/2017</h1>
+						<h2 class="AlbumContent-title">CACIO E MARCOS -</h2></div>
+				</a>
+
+				<a href="./album?id=1965515570374926" class="Album Album--continuous" title="CACIO E MARCOS - 12.10.2017"
+				   style="background-image: url(&quot;https://scontent.xx.fbcdn.net/v/t1.0-0/p320x320/22528248_1965516653708151_7561295821491449134_n.jpg?oh=cd0730f751a7ff08f3173416213c8f9d&amp;oe=5A99BDD6&quot;);">
+					<div class="Album-overlay marrom-couro--darkest"></div>
+					<div class="AlbumContent"><h1 class="AlbumContent-date">12/10/2017</h1>
+						<h2 class="AlbumContent-title">CACIO E MARCOS -</h2></div>
+				</a>
+
+				<a href="./album?id=1965515570374926" class="Album Album--continuous" title="CACIO E MARCOS - 12.10.2017"
+				   style="background-image: url(&quot;https://scontent.xx.fbcdn.net/v/t1.0-0/p320x320/22528248_1965516653708151_7561295821491449134_n.jpg?oh=cd0730f751a7ff08f3173416213c8f9d&amp;oe=5A99BDD6&quot;);">
+					<div class="Album-overlay marrom-couro--darkest"></div>
+					<div class="AlbumContent"><h1 class="AlbumContent-date">12/10/2017</h1>
+						<h2 class="AlbumContent-title">CACIO E MARCOS -</h2></div>
+				</a>
+
+				<a href="./album?id=1965515570374926" class="Album Album--continuous" title="CACIO E MARCOS - 12.10.2017"
+				   style="background-image: url(&quot;https://scontent.xx.fbcdn.net/v/t1.0-0/p320x320/22528248_1965516653708151_7561295821491449134_n.jpg?oh=cd0730f751a7ff08f3173416213c8f9d&amp;oe=5A99BDD6&quot;);">
+					<div class="Album-overlay marrom-couro--darkest"></div>
+					<div class="AlbumContent"><h1 class="AlbumContent-date">12/10/2017</h1>
+						<h2 class="AlbumContent-title">CACIO E MARCOS -</h2></div>
+				</a>
+
+				<a href="./album?id=1965515570374926" class="Album Album--continuous" title="CACIO E MARCOS - 12.10.2017"
+				   style="background-image: url(&quot;https://scontent.xx.fbcdn.net/v/t1.0-0/p320x320/22528248_1965516653708151_7561295821491449134_n.jpg?oh=cd0730f751a7ff08f3173416213c8f9d&amp;oe=5A99BDD6&quot;);">
+					<div class="Album-overlay marrom-couro--darkest"></div>
+					<div class="AlbumContent"><h1 class="AlbumContent-date">12/10/2017</h1>
+						<h2 class="AlbumContent-title">CACIO E MARCOS -</h2></div>
+				</a>
+
+				<a href="./album?id=1965515570374926" class="Album Album--continuous" title="CACIO E MARCOS - 12.10.2017"
+				   style="background-image: url(&quot;https://scontent.xx.fbcdn.net/v/t1.0-0/p320x320/22528248_1965516653708151_7561295821491449134_n.jpg?oh=cd0730f751a7ff08f3173416213c8f9d&amp;oe=5A99BDD6&quot;);">
+					<div class="Album-overlay marrom-couro--darkest"></div>
+					<div class="AlbumContent"><h1 class="AlbumContent-date">12/10/2017</h1>
+						<h2 class="AlbumContent-title">CACIO E MARCOS -</h2></div>
+				</a>
+
+				<a href="./album?id=1965515570374926" class="Album Album--continuous" title="CACIO E MARCOS - 12.10.2017"
+				   style="background-image: url(&quot;https://scontent.xx.fbcdn.net/v/t1.0-0/p320x320/22528248_1965516653708151_7561295821491449134_n.jpg?oh=cd0730f751a7ff08f3173416213c8f9d&amp;oe=5A99BDD6&quot;);">
+					<div class="Album-overlay marrom-couro--darkest"></div>
+					<div class="AlbumContent"><h1 class="AlbumContent-date">12/10/2017</h1>
+						<h2 class="AlbumContent-title">CACIO E MARCOS -</h2></div>
+				</a>
+
+				<a href="./album?id=1965515570374926" class="Album Album--continuous" title="CACIO E MARCOS - 12.10.2017"
+				   style="background-image: url(&quot;https://scontent.xx.fbcdn.net/v/t1.0-0/p320x320/22528248_1965516653708151_7561295821491449134_n.jpg?oh=cd0730f751a7ff08f3173416213c8f9d&amp;oe=5A99BDD6&quot;);">
+					<div class="Album-overlay marrom-couro--darkest"></div>
+					<div class="AlbumContent"><h1 class="AlbumContent-date">12/10/2017</h1>
+						<h2 class="AlbumContent-title">CACIO E MARCOS -</h2></div>
+				</a>
+
+				<a href="./album?id=1965515570374926" class="Album Album--continuous" title="CACIO E MARCOS - 12.10.2017"
+				   style="background-image: url(&quot;https://scontent.xx.fbcdn.net/v/t1.0-0/p320x320/22528248_1965516653708151_7561295821491449134_n.jpg?oh=cd0730f751a7ff08f3173416213c8f9d&amp;oe=5A99BDD6&quot;);">
+					<div class="Album-overlay marrom-couro--darkest"></div>
+					<div class="AlbumContent"><h1 class="AlbumContent-date">12/10/2017</h1>
+						<h2 class="AlbumContent-title">CACIO E MARCOS -</h2></div>
+				</a>
+
+				<a href="./album?id=1965515570374926" class="Album Album--continuous" title="CACIO E MARCOS - 12.10.2017"
+				   style="background-image: url(&quot;https://scontent.xx.fbcdn.net/v/t1.0-0/p320x320/22528248_1965516653708151_7561295821491449134_n.jpg?oh=cd0730f751a7ff08f3173416213c8f9d&amp;oe=5A99BDD6&quot;);">
+					<div class="Album-overlay marrom-couro--darkest"></div>
+					<div class="AlbumContent"><h1 class="AlbumContent-date">12/10/2017</h1>
+						<h2 class="AlbumContent-title">CACIO E MARCOS -</h2></div>
+				</a>
+
+			</div>
 
 		</div>
 
@@ -201,7 +489,7 @@
 
 					<h2 class="FranchiseFooterTime-title">Horário de funcionamento</h2>
 					<p class="FranchiseFooterTime-text">
-						Sexta e Sábado: <br>das 21h às 04h
+						Quinta, Sexta e Sábado: das 21h às 04h
 					</p>
 
 				</div>
@@ -220,7 +508,7 @@
 
 			<div class="FranchiseFooter-item FranchiseFooter-item--brand">
 
-				<a href="./" class="FranchiseFooterLogo">
+				<div class="FranchiseFooterLogo">
 
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 728.53027 361.05353" class="filter--shadow">
 						<g id="logo-assis" class="logo-pub">
@@ -229,7 +517,7 @@
 						</g>
 					</svg>
 
-				</a>
+				</div>
 
 				<div class="FranchiseFooterSocial">
 
@@ -247,15 +535,9 @@
 
 </main>
 
-<script src="../dist/js/jessejamespub.min.js"></script>
+<script src="../../dist/js/jessejamespub.min.js"></script>
 
 <script>
-
-	var sweetScroll = new SweetScroll({
-		trigger: "a[href^='#']",
-		duration: 800,
-		quickMode: true
-	});
 
 	window.addEventListener('load', function () {
 
@@ -273,201 +555,9 @@
 			navMenu.classList.toggle('is-active');
 		});
 
-		galleryInit();
+//		galleryInit();
 
 	});
-
-</script>
-
-<script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
-
-<script>
-
-	var config = {
-		apiKey: "AIzaSyAMTCtuJ2DyPiBx5qBHeDg_OU1KW4UzURY",
-		authDomain: "jessejamespub-com-br.firebaseapp.com",
-		databaseURL: "https://jessejamespub-com-br.firebaseio.com",
-		projectId: "jessejamespub-com-br",
-		storageBucket: "jessejamespub-com-br.appspot.com",
-		messagingSenderId: "118227352953"
-	};
-
-	firebase.initializeApp(config);
-
-	var databaseRef = firebase.database().ref('/');
-	var houseRef = databaseRef.child('assis');
-
-	var galleryRef = houseRef.child('gallery');
-	var enabledRef = galleryRef.child('enabledAlbums');
-
-	var franchise_config = {
-		CITY: 'assis',
-		PAGE_ID: 1586666258259861,
-		APP_TOKEN: '146544439255115|3_8Ip3wrGqx-BfnrEVVRhJeUpLA'
-	};
-
-</script>
-
-<script src="../dist/js/axios.min.js"></script>
-
-<script>
-
-	var batched_albums = [];
-	var batch_list = [];
-	var albumCollection = [];
-	var needleAlbum = false;
-	var galleryNode = document.getElementById('gallery');
-	var galleryLoadingElement = document.getElementById('gallery-loading');
-
-	function galleryInit() {
-
-		/* Testar para retornar 13 albums, pois assim é possível carregar mais albums ou saber se não possui album sufiente */
-
-		enabledRef.orderByKey().limitToLast(24).once('value', function (snapshot) {
-
-			var i = 0;
-
-			snapshot.forEach(function (child) {
-
-				/* primeria vez da coleta do needleAlbum, espera que colete a primeira chave (na ordem da consulta) */
-				/* espera i == 0 */
-				if (i == 0) {
-					needleAlbum = child.key;
-				}
-
-				i++;
-
-				albumCollection.push(child.val());
-
-				batch_list.push({
-					"method": "GET",
-					"relative_url": child.key + "?fields=id, cover_photo.fields(id, height, width, picture, images)"
-				});
-
-			});
-
-			batchRequestFirstBite(batch_list);
-
-		});
-
-	}
-
-	function batchRequestFirstBite(batch_list_first) {
-
-		axios.post('https://graph.facebook.com/v2.10/', {
-			access_token: franchise_config.APP_TOKEN,
-			batch: batch_list_first,
-			include_headers: "false"
-		}).then(function (response) {
-
-			batched_albums = response.data;
-
-			var firstBiteGallery = createGalleryList(batched_albums);
-			var buttonMore = createLoadMoreButton();
-
-			galleryLoadingElement.parentNode.removeChild(galleryLoadingElement);
-			galleryNode.appendChild(firstBiteGallery);
-			galleryNode.appendChild(buttonMore);
-
-//            document.getElementById('gallery-list').innerHTML = '<pre><code>' + JSON.stringify(response.data, undefined, 2) +'</code></pre>';
-
-		}).catch(function (err) {
-
-			document.getElementById('gallery').innerHTML = '<span style="color: red;">' + err.message + '</span>';
-
-		});
-
-	}
-
-	function createGalleryList(received_albums) {
-
-//		var galleryNode = document.getElementById('gallery-list');
-//		galleryNode.innerHTML = '';
-
-		var galleryNode = document.createElement('div');
-		galleryNode.className = 'Gallery-list';
-
-		for (var i = received_albums.length; i--;) {
-
-			var album = JSON.parse(received_albums[i].body);
-			var albumData = retriveAlbumData(album.id);
-
-			var albumNode = document.createElement('a');
-			albumNode.href = './album?id=' + album.id;
-			albumNode.className = 'Album';
-			albumNode.title = albumData.fb_name;
-
-			var albumBackgroundNode = document.createElement('div');
-			albumBackgroundNode.className = 'Album-background';
-			albumBackgroundNode.style.backgroundImage = 'url(' + album.cover_photo.images[5].source +')';
-
-			var albumOverlayNode = document.createElement('div');
-			albumOverlayNode.className = 'Album-overlay marrom-couro--darkest';
-
-			var albumContentNode = document.createElement('div');
-			albumContentNode.className = 'AlbumContent';
-
-			var albumContentDate = document.createElement('h1');
-			albumContentDate.className = 'AlbumContent-date';
-			albumContentDate.textContent = albumData.date;
-
-			var albumContentTitle = document.createElement('h2');
-			albumContentTitle.className = 'AlbumContent-title';
-			albumContentTitle.textContent = albumData.title;
-
-			albumContentNode.appendChild(albumContentDate);
-			albumContentNode.appendChild(albumContentTitle);
-
-			albumNode.appendChild(albumBackgroundNode);
-			albumNode.appendChild(albumOverlayNode);
-			albumNode.appendChild(albumContentNode);
-
-			galleryNode.appendChild(albumNode);
-
-		}
-
-		return galleryNode;
-
-	}
-
-	function createLoadMoreButton () {
-
-		var buttonLoadMore = document.createElement('a');
-		buttonLoadMore.id = 'gallery-button-loadMore';
-		buttonLoadMore.href = 'https://www.facebook.com/pg/' + franchise_config.PAGE_ID + '/photos/?tab=albums';
-		buttonLoadMore.className = 'Gallery-button Button Button--idle';
-		buttonLoadMore.innerHTML = 'Veja mais na nossa página <span class="icon-facebook-official"></span>';
-
-//		buttonLoadMore.textContent = 'Carregar mais álbums';
-//		buttonLoadMore.addEventListener('click', function() {
-//
-//			this.innerHTML = '<span class="icon-cw animate-spin"></span>';
-//			batched_albums = [];
-//			batch_list = [];
-//			loadNextBatchAlbums();
-//
-//		});
-
-		return buttonLoadMore;
-
-	}
-
-
-	function retriveAlbumData(albumId) {
-
-		for (var s = 0; s < albumCollection.length; s++) {
-
-			if (albumCollection[s].fb_id == albumId) {
-
-				return albumCollection[s];
-
-			}
-
-		}
-
-		return [];
-
-	}
 
 </script>
 
