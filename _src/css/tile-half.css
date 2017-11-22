@@ -274,6 +274,11 @@
 	    justify-content: center;
     }
 
+	#especiais .Tile.Tile--expand,
+	#especiais .Tile.Tile--expand .Tile-inner {
+		min-height: 900px;
+	}
+
 }
 
 @media (min-width: 80em) {

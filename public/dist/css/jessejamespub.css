@@ -1808,7 +1808,7 @@ img::-moz-selection {
 }
 
 .FranchiseFooterLogo svg {
-  max-width: 10em;
+  width: 10em;
 }
 
 .FranchiseFooterAddress {
@@ -7627,6 +7627,11 @@ html {
     display: flex;
     -webkit-justify-content: center;
     justify-content: center;
+  }
+
+  #especiais .Tile.Tile--expand,
+  #especiais .Tile.Tile--expand .Tile-inner {
+    min-height: 900px;
   }
 }
 
