@@ -1956,6 +1956,7 @@ img::-moz-selection {
 .FranchiseHeaderContact {
   /*margin: 1.5em 0;*/
   /*text-align: right;*/
+  font-size: .875em;
   width: 100%;
 }
 
@@ -3281,27 +3282,30 @@ html {
   justify-content: center;
 }
 
+.IntroContent {
+  left: 0;
+  position: absolute;
+  top: 100%;
+  width: 100%;
+}
+
 .Intro-background {
   /*background: url(../img/bg-intro.jpg) no-repeat center center scroll;*/
-  /*-webkit-background-size: cover;*/
-  /*-moz-background-size: cover;*/
-  /*-o-background-size: cover;*/
-  /*background-size: cover;*/
-  min-height: 100%;
+  background-attachment: scroll;
+  background-position: center center;
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   bottom: 0;
+  min-height: 100%;
   left: 0;
-  /*filter: alpha(Opacity=40);*/
-  /*opacity: 0.4;*/
   position: fixed;
-  width: 100%;
   right: 0;
   top: 0;
+  width: 100%;
   z-index: -5;
-  background-image: url("../img/bg-intro.jpg");
-  background-attachment: scroll;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
 }
 
 .Intro-background:after {
@@ -7185,21 +7189,12 @@ html {
   opacity: 0.8;
 }
 
-.Pub--assis .Pub-background {
-  background: url("../img/assis.png") no-repeat center center;
-}
-
-.Pub--ourinhos .Pub-background {
-  background: url("../img/ourinhos.png") no-repeat center center;
-}
-
-.Pub--paraguacu .Pub-background {
-  background: url("../img/paraguacu.png") no-repeat center center;
-}
-
 .Pub--assis .Pub-background,
 .Pub--ourinhos .Pub-background,
 .Pub--paraguacu .Pub-background {
+  background-attachment: scroll;
+  background-position: center center;
+  background-repeat: no-repeat;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;

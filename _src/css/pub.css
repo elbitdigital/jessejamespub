@@ -50,21 +50,12 @@
 	opacity: 0.8;
 }
 
-.Pub--assis .Pub-background {
-	background: url(../img/assis.png) no-repeat center center;
-}
-
-.Pub--ourinhos .Pub-background {
-	background: url(../img/ourinhos.png) no-repeat center center;
-}
-
-.Pub--paraguacu .Pub-background {
-	background: url(../img/paraguacu.png) no-repeat center center;
-}
-
 .Pub--assis .Pub-background,
 .Pub--ourinhos .Pub-background,
 .Pub--paraguacu .Pub-background {
+	background-attachment: scroll;
+	background-position: center center;
+	background-repeat: no-repeat;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
