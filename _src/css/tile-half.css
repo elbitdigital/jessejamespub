@@ -81,10 +81,22 @@
 	font-size: 1em;
 }
 
-.TileHalf-text.TileHalf-textSub {
+.TileHalf--especiais .TileHalf-text {
+	text-align: left;
+	font-size: 1em;
+}
+
+.TileHalf--especiais .TileHalf-text.TileHalf-textSub {
 	font-size: .75em;
 	text-align: right;
 	font-weight: bold;
+}
+
+.TileHalf--especiais .TileHalf-textTitle {
+	font-size: 1.125em;
+	font-weight: 700;
+	margin-top: 1em;
+	margin-bottom: .1em;
 }
 
 /*.TileHalf--center {*/
