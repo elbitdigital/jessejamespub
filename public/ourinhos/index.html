@@ -539,7 +539,7 @@
 	firebase.initializeApp(firebase_config);
 
 	var databaseRef = firebase.database().ref('/');
-	var houseRef = databaseRef.child('assis');
+	var houseRef = databaseRef.child('ourinhos');
 	var scheduleRef = houseRef.child('schedule');
 	var eventsRef = scheduleRef.child('items');
 
@@ -568,6 +568,13 @@
 			var eventElement = document.createElement('div');
 			eventElement.className = 'Event';
 			eventElement.dataset.eventReferenceKey = eventReferenceKey;
+			eventRef.child('active').on('value', function (snap) {
+
+				(!snap.val())
+					? eventElement.classList.add('is-hidden')
+					: eventElement.classList.remove('is-hidden');
+
+			});
 			eventListElement.appendChild(eventElement);
 
 			// HEADER (IMAGEM)

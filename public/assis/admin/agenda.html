@@ -264,6 +264,10 @@
 		display: flex;
 		-webkit-flex-flow: row wrap;
 		flex-flow: row wrap;
+		-webkit-align-items: center;
+		align-items: center;
+		-webkit-justify-content: space-between;
+		justify-content: space-between;
 	}
 
 	.Schedule-addNewEventButton {
@@ -275,21 +279,22 @@
 <style>
 
 	.Event {
-		background-color: #7d381b;
-		font-family: 'Roboto', sans-serif;
-		display: -webkit-box;
-		display: -moz-box;
-		display: -ms-flexbox;
-		display: -webkit-flex;
-		display: flex;
-		/*min-width: 25em;*/
-		width: 100%;
-
+		/*font-family: 'Roboto', sans-serif;*/
+		/*display: -webkit-box;*/
+		/*display: -moz-box;*/
+		/*display: -ms-flexbox;*/
+		/*display: -webkit-flex;*/
+		/*display: flex;*/
+		/*width: 100%;*/
 		/* max-height: 500px; */
-		-webkit-flex-flow: column;
-		flex-flow: column;
-		margin-bottom: 1em;
+		/*-webkit-flex-flow: column;*/
+		/*flex-flow: column;*/
 		/*margin-right: 1em;*/
+
+		background-color: #7d381b;
+		min-width: 300px;
+		/*margin-bottom: 1em;*/
+		margin: 5px 0;
 	}
 
 	.EventFooter {
@@ -306,6 +311,7 @@
 		flex-flow: row wrap;
 		padding: .5em 0;
 		margin: 0 10px;
+		position: relative;
 	}
 
 	.Event input {
@@ -345,10 +351,10 @@
 		position: relative;
 		font-family: sans-serif;
 		display: inline-block;
-		height: 1.5em;
-		line-height: 1.5em;
-		width: 5em;
-		margin: .5em 1em;
+		height: 1em;
+		line-height: 1em;
+		width: 2em;
+		margin: .25em 0;
 		color: #555;
 		background-color: #898989;
 		border-radius: 100px;
@@ -366,12 +372,12 @@
 
 	.Event-activeStatus:after {
 		position: absolute;
-		left: -.975em;
-		top: -4px;
+		left: -.25em;
+		top: -2px;
 		display: block;
-		width: 2em;
-		height: 2em;
-		border-radius: 100px;
+		width: 1.25em;
+		height: 1.25em;
+		border-radius: 100%;
 		background-color: #bdbdbd;
 		content: '';
 		transition: all 0.3s ease;
@@ -381,7 +387,7 @@
 
 	.Event-checkbox:checked ~ label,
 	.Event-checkbox:checked ~ label:after {
-		box-shadow: 0px 0px 3px -1px #000000;
+		box-shadow: 0 0 3px -1px #000000;
 	}
 
 	.Event-checkbox:checked ~ label {
@@ -390,7 +396,7 @@
 	}
 
 	.Event-checkbox:checked ~ label:after {
-		left: 3.975em;
+		left: .75em;
 		background-color: #43A047;
 	}
 
@@ -427,12 +433,12 @@
 
 
 	.Event-headerImage {
-		-webkit-align-items: center;
+		 -webkit-align-items: center;
 		align-items: center;
 		background-color: #212121;
-		-webkit-background-size: cover;
-		-moz-background-size: cover;
-		-o-background-size: cover;
+		 -webkit-background-size: cover;
+		 -moz-background-size: cover;
+		 -o-background-size: cover;
 		background-size: cover;
 
 		background-position: center center;
@@ -446,7 +452,7 @@
 		/*min-height: 350px;*/
 		height: 15em;
 		height: calc(100vw - 2em);
-		-webkit-justify-content: center;
+		 -webkit-justify-content: center;
 		justify-content: center;
 		margin-bottom: 1rem;
 		width: 100%;
@@ -462,38 +468,38 @@
 		font-weight: 900;
 		text-align: center;
 		text-transform: uppercase;
-		-webkit-transition: all .6s;
-		-moz-transition: all .6s;
-		-ms-transition: all .6s;
-		-o-transition: all .6s;
+		 -webkit-transition: all .6s;
+		 -moz-transition: all .6s;
+		 -ms-transition: all .6s;
+		 -o-transition: all .6s;
 		transition: all .6s;
-		-webkit-transform: scale(.8);
-		-moz-transform: scale(.8);
-		-ms-transform: scale(.8);
-		-o-transform: scale(.8);
+		 -webkit-transform: scale(.8);
+		 -moz-transform: scale(.8);
+		 -ms-transform: scale(.8);
+		 -o-transform: scale(.8);
 		transform: scale(.8);
 	}
 
 	.Event-headerImage:hover:before {
 		background-color: rgba(0,0,0,.96);
-		-webkit-transform: scale(1);
-		-moz-transform: scale(1);
-		-ms-transform: scale(1);
-		-o-transform: scale(1);
+		 -webkit-transform: scale(1);
+		 -moz-transform: scale(1);
+		 -ms-transform: scale(1);
+		 -o-transform: scale(1);
 		transform: scale(1);
 	}
 
 	@media (min-width: 48em) {
 
-		.Event {
-			width: 25em;
-			margin-right: 1em;
-		}
+		/*.Event {*/
+			/*width: 25em;*/
+			/*margin-right: 1em;*/
+		/*}*/
 
-		.Event-headerImage {
-			height: 350px;
-			width: 100%;
-		}
+		/*.Event-headerImage {*/
+			/*height: 350px;*/
+			/*width: 100%;*/
+		/*}*/
 
 	}
 
@@ -628,9 +634,6 @@
 				<!--</div>-->
 
 			<!--</div>-->
-
-
-		</div>
 
 
 		</div>
@@ -941,7 +944,7 @@
 			var activeLabel = document.createElement('label');
 			activeLabel.htmlFor = 'activate-' + snap.key;
 			activeLabel.className = 'Event-activeStatus';
-			activeLabel.textContent = 'Ativo';
+//			activeLabel.textContent = 'Ativo';
 			eventFooterElement.appendChild(activeLabel);
 
 			eventElement.appendChild(eventFooterElement);

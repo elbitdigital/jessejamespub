@@ -554,6 +554,8 @@
 		<button id="gallery-update" class="Content-button Btn Btn--primary Btn--filled">Atualizar álbums</button>
 		<a href="../galeria" class="Content-button Btn Btn--primary">Ir para galeria</a>
 
+		<div id="gallery-error"></div>
+
 		<div id="gallery-messages" class="Content-section">
 
 		</div>
@@ -735,7 +737,7 @@
 		APP_TOKEN: '146544439255115|3_8Ip3wrGqx-BfnrEVVRhJeUpLA'
 	};
 
-	var saveNewAsDisabled = true;
+	var saveNewAsDisabled = false;
 	var initialLoadComplete = false;
 	var database_albums = [];
 	var page_albums = [];
@@ -829,13 +831,13 @@
 
 			} else {
 
-				document.getElementById('albums-gallery').innerHTML = '<pre><code>' + JSON.stringify(response.data, undefined, 2) +'</code></pre>';
+				document.getElementById('gallery-error').innerHTML = '<pre><code>' + JSON.stringify(response.data, undefined, 2) +'</code></pre>';
 
 			}
 
 		}).catch(function (err) {
 
-			document.getElementById('albums-gallery').innerHTML = '<span style="color: red;">' + err.message + '</span>';
+			document.getElementById('gallery-error').innerHTML = '<span style="color: red;">' + err.message + '</span>';
 			console.log(err);
 
 		});
@@ -863,7 +865,7 @@
 
 				if (next) {
 
-					getAllAlbumsFromPageNextBite(response.data.albums.paging.next);
+					getAllAlbumsFromPageNextBite(next);
 
 				} else {
 
@@ -873,13 +875,13 @@
 
 			} else {
 
-				document.getElementById('albums-gallery').innerHTML += '<pre><code>' + JSON.stringify(response.data, undefined, 2) +'</code></pre>';
+				document.getElementById('gallery-error').innerHTML += '<pre><code>' + JSON.stringify(response.data, undefined, 2) +'</code></pre>';
 
 			}
 
 		}).catch(function (err) {
 
-			document.getElementById('albums-gallery').innerHTML = '<span style="color: red;">' + err.message + '</span>';
+			document.getElementById('gallery-error').innerHTML = '<span style="color: red;">' + err.message + '</span>';
 			console.log(err);
 
 		});

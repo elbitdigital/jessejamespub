@@ -191,6 +191,10 @@ img::-moz-selection {
   }
 }
 
+.is-hidden {
+  display: none !important;
+}
+
 .show-sm {
   display: block !important;
 }
@@ -1432,6 +1436,7 @@ img::-moz-selection {
   -webkit-flex-flow: column;
   flex-flow: column;
   padding: 1em .25em;
+  text-shadow: 0 0 2px rgba(0,0,0,.2);
   width: 100%;
 }
 
@@ -1576,6 +1581,9 @@ img::-moz-selection {
     -webkit-flex-flow: row;
     flex-flow: row;
     height: 80px;
+    -webkit-box-shadow: 0 -1px 15px 1px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 -1px 15px 1px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 -1px 15px 1px rgba(0, 0, 0, 0.3);
   }
 
   .Event:hover .EventLink {
@@ -2429,6 +2437,7 @@ img::-moz-selection {
     position: relative;
     text-transform: uppercase;
     margin: 0 0 3px 0;
+    text-shadow: 0 0 2px rgba(0,0,0,.2);
   }
 
   .FranchiseMain--internal .FranchiseMenuList--header {
