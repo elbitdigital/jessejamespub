@@ -4,7 +4,15 @@
 <title>Galeria - Jesse James Assis</title>
 <meta name="viewport"
       content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
-<link rel="icon" type="image/png" href="icon.png" />
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<!--<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">-->
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#4c2f0f">
+<meta name="apple-mobile-web-app-title" content="Jesse James Pub">
+<meta name="application-name" content="Jesse James Pub">
+<meta name="theme-color" content="#ebc373">
 
 <meta name="description" content="O melhor pub sertanejo do interior paulista">
 <meta name="image" content="https://jessejamespub.com.br/dist/img/meta.png">
@@ -46,7 +54,20 @@
 		display: flex;
 		-webkit-justify-content: space-between;
 		justify-content: space-between;
+		-webkit-flex-direction: column;
+		flex-direction: column;
+		/*-webkit-flex-direction: column-reverse;*/
+		/*flex-direction: column-reverse;*/
 		width: 100%;
+	}
+
+	.HeaderAdmin-logo {
+		margin-bottom: 1em;
+		display: block;
+	}
+
+	.HeaderAdmin-logo svg {
+		max-width: 10em;
 	}
 
 	.HeaderAdmin-toggle {
@@ -474,22 +495,15 @@
 
 			<div class="HeaderAdmin">
 
-				<div class="HeaderAdminLeft">
+				<div id="logo" class="HeaderAdmin-logo"></div>
 
-					<h4 id="sidebar-toggle" class="HeaderAdmin-toggle">
-						<span class="icon-menu will-open"></span>
-						<span class="icon-cancel will-close"></span>
-						<span class="toggle-text">MENU</span>
-					</h4>
+				<div class="HeaderAdmin-buttons">
 
-				</div>
+					<a href="./agenda.html" class="HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-calendar"></span> Eventos</a>
+					<a href="./galeria.html" class="HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-camera"></span> Álbuns</a>
 
-				<img class="HeaderAdmin-logo" src="../../dist/img/logo-assis-branco-sm.png" alt="" style="max-height: 4em;">
-
-				<div class="HeaderAdminRight">
-
-					<a href="../" class="Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-beer-1"></span> Asssis</a>
-					<a href="#" class="Btn Btn-primary Btn--filled Btn--narrow">Sair</a>
+					<a href="../" class="HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-beer-1"></span> Assis</a>
+					<a href="#" class="HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow Btn--cancel"><span class="icon-logout"></span>Sair</a>
 
 				</div>
 
@@ -675,16 +689,20 @@
 
 </section>
 
+<script src="../../dist/js/jessejamespub.min.js"></script>
+
 <script>
+
+	var logo = new SvgAppend(document.getElementById('logo'), '../../dist/img/svg/logo-assis.svg', false);
 
 	window.addEventListener('load', function () {
 
-		var btnMenu = document.getElementById('sidebar-toggle');
-		btnMenu.addEventListener('click', function() {
-			var sidebar = document.getElementById('sidebar');
-			sidebar.classList.toggle('is-hide');
-			this.classList.toggle('is-open');
-		});
+//		var btnMenu = document.getElementById('sidebar-toggle');
+//		btnMenu.addEventListener('click', function() {
+//			var sidebar = document.getElementById('sidebar');
+//			sidebar.classList.toggle('is-hide');
+//			this.classList.toggle('is-open');
+//		});
 
 		var btnRebase = document.getElementById('gallery-rebase');
 		btnRebase.addEventListener('click', function() {
@@ -696,10 +714,10 @@
 			updateDatabase();
 		});
 
-		if (window.innerWidth > 768) {
-			document.getElementById('sidebar').classList.toggle('is-hide');
-			document.getElementById('sidebar-toggle').classList.toggle('is-open');
-		}
+//		if (window.innerWidth > 768) {
+//			document.getElementById('sidebar').classList.toggle('is-hide');
+//			document.getElementById('sidebar-toggle').classList.toggle('is-open');
+//		}
 
 		 galleryInit();
 

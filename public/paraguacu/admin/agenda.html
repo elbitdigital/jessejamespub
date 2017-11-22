@@ -1,26 +1,18 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <meta charset="UTF-8">
-<title>Agenda - Jesse James Assis</title>
+<title>Agenda | Paraguaçu | Jesse James Pub</title>
 <meta name="viewport"
       content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
-<link rel="icon" type="image/png" href="icon.png" />
 
-<meta name="description" content="O melhor pub sertanejo do interior paulista">
-<meta name="image" content="https://jessejamespub.com.br/dist/img/meta.png">
-
-<meta itemprop="name" content="Jesse James Pub">
-<meta itemprop="description" content="O melhor pub sertanejo do interior paulista">
-<meta itemprop="image" content="https://jessejamespub.com.br/dist/img/meta.png">
-
-<meta name="og:title" content="Jesse James Pub">
-<meta name="og:description" content="O melhor pub sertanejo do interior paulista">
-<meta name="og:image" content="https://jessejamespub.com.br/dist/img/meta.png">
-<meta name="og:url" content="https://jessejamespub.com.br">
-<meta name="og:site_name" content="Jesse James Pub">
-<meta name="og:locale" content="pt_BR">
-<meta name="fb:app_id" content="1586666258259861">
-<meta name="og:type" content="website">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<!--<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">-->
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#4c2f0f">
+<meta name="apple-mobile-web-app-title" content="Jesse James Pub">
+<meta name="application-name" content="Jesse James Pub">
+<meta name="theme-color" content="#ebc373">
 
 <script src="../../dist/js/villa.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700" rel="stylesheet">
@@ -53,17 +45,13 @@
 		width: 100%;
 	}
 
-	.HeaderAdminLeft {
-		order: 2;
-	}
-
 	.HeaderAdmin-logo {
 		margin-bottom: 1em;
-		order: 1;
+		display: block;
 	}
 
-	.HeaderAdminRight {
-		order: 3;
+	.HeaderAdmin-logo svg {
+		max-width: 10em;
 	}
 
 	.HeaderAdmin-button {
@@ -264,6 +252,10 @@
 		display: flex;
 		-webkit-flex-flow: row wrap;
 		flex-flow: row wrap;
+		-webkit-align-items: center;
+		align-items: center;
+		-webkit-justify-content: space-between;
+		justify-content: space-between;
 	}
 
 	.Schedule-addNewEventButton {
@@ -275,21 +267,22 @@
 <style>
 
 	.Event {
-		background-color: #7d381b;
-		font-family: 'Roboto', sans-serif;
-		display: -webkit-box;
-		display: -moz-box;
-		display: -ms-flexbox;
-		display: -webkit-flex;
-		display: flex;
-		/*min-width: 25em;*/
-		width: 100%;
-
+		/*font-family: 'Roboto', sans-serif;*/
+		/*display: -webkit-box;*/
+		/*display: -moz-box;*/
+		/*display: -ms-flexbox;*/
+		/*display: -webkit-flex;*/
+		/*display: flex;*/
+		/*width: 100%;*/
 		/* max-height: 500px; */
-		-webkit-flex-flow: column;
-		flex-flow: column;
-		margin-bottom: 1em;
+		/*-webkit-flex-flow: column;*/
+		/*flex-flow: column;*/
 		/*margin-right: 1em;*/
+
+		background-color: #7d381b;
+		min-width: 300px;
+		/*margin-bottom: 1em;*/
+		margin: 5px 0;
 	}
 
 	.EventFooter {
@@ -306,6 +299,7 @@
 		flex-flow: row wrap;
 		padding: .5em 0;
 		margin: 0 10px;
+		position: relative;
 	}
 
 	.Event input {
@@ -345,10 +339,10 @@
 		position: relative;
 		font-family: sans-serif;
 		display: inline-block;
-		height: 1.5em;
-		line-height: 1.5em;
-		width: 5em;
-		margin: .5em 1em;
+		height: 1em;
+		line-height: 1em;
+		width: 2em;
+		margin: .25em 0;
 		color: #555;
 		background-color: #898989;
 		border-radius: 100px;
@@ -366,12 +360,12 @@
 
 	.Event-activeStatus:after {
 		position: absolute;
-		left: -.975em;
-		top: -4px;
+		left: -.25em;
+		top: -2px;
 		display: block;
-		width: 2em;
-		height: 2em;
-		border-radius: 100px;
+		width: 1.25em;
+		height: 1.25em;
+		border-radius: 100%;
 		background-color: #bdbdbd;
 		content: '';
 		transition: all 0.3s ease;
@@ -381,7 +375,7 @@
 
 	.Event-checkbox:checked ~ label,
 	.Event-checkbox:checked ~ label:after {
-		box-shadow: 0px 0px 3px -1px #000000;
+		box-shadow: 0 0 3px -1px #000000;
 	}
 
 	.Event-checkbox:checked ~ label {
@@ -390,7 +384,7 @@
 	}
 
 	.Event-checkbox:checked ~ label:after {
-		left: 3.975em;
+		left: .75em;
 		background-color: #43A047;
 	}
 
@@ -485,15 +479,15 @@
 
 	@media (min-width: 48em) {
 
-		.Event {
-			width: 25em;
-			margin-right: 1em;
-		}
+		/*.Event {*/
+		/*width: 25em;*/
+		/*margin-right: 1em;*/
+		/*}*/
 
-		.Event-headerImage {
-			height: 350px;
-			width: 100%;
-		}
+		/*.Event-headerImage {*/
+		/*height: 350px;*/
+		/*width: 100%;*/
+		/*}*/
 
 	}
 
@@ -511,24 +505,14 @@
 
 			<div class="HeaderAdmin">
 
-				<div class="HeaderAdminLeft">
+				<div id="logo" class="HeaderAdmin-logo"></div>
 
-					<!--<h4 id="sidebar-toggle" class="HeaderAdmin-toggle">-->
-						<!--<span class="icon-menu will-open"></span>-->
-						<!--<span class="icon-cancel will-close"></span>-->
-						<!--<span class="toggle-text">MENU</span>-->
-					<!--</h4>-->
+				<div class="HeaderAdmin-buttons">
 
-					<a href="../" class="HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-calendar"></span> Eventos</a>
-					<a href="#" class="HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-camera"></span> Álbuns</a>
+					<a href="./agenda.html" class="HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-calendar"></span> Eventos</a>
+					<a href="./galeria.html" class="HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-camera"></span> Álbuns</a>
 
-				</div>
-
-				<img class="HeaderAdmin-logo" src="../../dist/img/logo-assis-branco-sm.png" alt="" style="max-height: 4em;">
-
-				<div class="HeaderAdminRight">
-
-					<a href="../" class="HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-beer-1"></span> Assis</a>
+					<a href="../" class="HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-beer-1"></span> Paraguaçu</a>
 					<a href="#" class="HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow Btn--cancel"><span class="icon-logout"></span>Sair</a>
 
 				</div>
@@ -546,7 +530,7 @@
 	<aside id="sidebar" class="Sidebar Sidebar--admin marrom-couro is-hide">
 
 		<h2 class="Sidebar-title">
-			<span class="icon-down-dir"></span> ASSIS
+			<span class="icon-down-dir"></span> PARAGUAÇU
 		</h2>
 
 		<ul class="SidebarList marrom-couro--lighter">
@@ -585,7 +569,7 @@
 	<div class="Content Content--admin f-marrom-couro--darkest">
 
 		<h1 class="Content-title">Agenda</h1>
-		<h2 class="Content-subtitle">Gerenciamento de eventos - Jesse James Assis</h2>
+		<h2 class="Content-subtitle">Gerenciamento de eventos - Jesse James Paraguaçu</h2>
 
 		<p>Os eventos cadastrados aqui aparecerão no topo da página inicial do site.</p>
 
@@ -632,14 +616,15 @@
 
 		</div>
 
-
-		</div>
-
 	</div>
 
 </section>
 
+<script src="../../dist/js/jessejamespub.min.js"></script>
+
 <script>
+
+	var logo = new SvgAppend(document.getElementById('logo'), '../../dist/img/svg/logo-paraguacu.svg', false);
 
     window.addEventListener('load', function () {
 
@@ -682,7 +667,7 @@
 	firebase.initializeApp(config);
 
     var databaseRef = firebase.database().ref('/');
-    var houseRef = databaseRef.child('assis');
+    var houseRef = databaseRef.child('paraguacu');
     var scheduleRef = houseRef.child('schedule');
     var eventsRef = scheduleRef.child('items');
 
@@ -696,6 +681,7 @@
 	function addNewEvent() {
 
 		eventsRef.push({
+			active: false,
 			title: '',
 			date: '',
 			headerImageURL: '',
@@ -941,7 +927,7 @@
 			var activeLabel = document.createElement('label');
 			activeLabel.htmlFor = 'activate-' + snap.key;
 			activeLabel.className = 'Event-activeStatus';
-			activeLabel.textContent = 'Ativo';
+//			activeLabel.textContent = 'Ativo';
 			eventFooterElement.appendChild(activeLabel);
 
 			eventElement.appendChild(eventFooterElement);
