@@ -31,32 +31,30 @@ body, html {
 	justify-content: center;
 }
 
-.Intro-background {
-	/*background: url(../img/bg-hero.jpg) no-repeat center center scroll;*/
-	/*-webkit-background-size: cover;*/
-	/*-moz-background-size: cover;*/
-	/*-o-background-size: cover;*/
-	/*background-size: cover;*/
-
-	min-height: 100%;
-
-
-	bottom: 0;
+.IntroContent {
 	left: 0;
-	/*filter: alpha(Opacity=40);*/
-	/*opacity: 0.4;*/
-	position: fixed;
-
+	position: absolute;
+	top: 100%;
 	width: 100%;
+}
+
+.Intro-background {
+	/*background: url(../img/bg-intro.jpg) no-repeat center center scroll;*/
+	background-attachment: scroll;
+	background-position: center center;
+	background-repeat: no-repeat;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	bottom: 0;
+	min-height: 100%;
+	left: 0;
+	position: fixed;
 	right: 0;
 	top: 0;
+	width: 100%;
 	z-index: -5;
-
-	background-image: url("../img/bg-hero.jpg");
-	background-attachment: scroll;
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-position: center center;
 }
 
 .Intro-background:after {

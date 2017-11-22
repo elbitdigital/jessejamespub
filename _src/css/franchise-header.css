@@ -73,8 +73,7 @@
 	}
 
 	.FranchiseMain--internal .FranchiseHeader-inner {
-		padding: 1em 0;
-		/*padding: 0;*/
+		padding: 1em 0 0;
 	}
 
 }
