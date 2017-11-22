@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<title>Logout - Jesse James Pub - Assis</title>
+</head>
+
+<script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
+<script>
+	// Initialize Firebase
+	var config = {
+		apiKey: "AIzaSyAMTCtuJ2DyPiBx5qBHeDg_OU1KW4UzURY",
+		authDomain: "jessejamespub-com-br.firebaseapp.com",
+		databaseURL: "https://jessejamespub-com-br.firebaseio.com",
+		projectId: "jessejamespub-com-br",
+		storageBucket: "jessejamespub-com-br.appspot.com",
+		messagingSenderId: "118227352953"
+	};
+	firebase.initializeApp(config);
+
+	window.addEventListener('load', function() {
+		localStorage.removeItem("firebaseui::rememberedAccounts");
+		firebase.auth().signOut();
+		window.location.href = "/admin/login";
+	});
+
+</script>
+<body>
+</body>
+</html>

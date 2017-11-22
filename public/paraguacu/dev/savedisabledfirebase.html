@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<title>Push disabled albums</title>
+</head>
+<body>
+
+<button class="Btn Btn-primary" onclick="saveIgnoredAlbums()">Salvar ignorados</button>
+
+<script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
+<script>
+
+	// Initialize Firebase
+	var config = {
+		apiKey: "AIzaSyAMTCtuJ2DyPiBx5qBHeDg_OU1KW4UzURY",
+		authDomain: "jessejamespub-com-br.firebaseapp.com",
+		databaseURL: "https://jessejamespub-com-br.firebaseio.com",
+		projectId: "jessejamespub-com-br",
+		storageBucket: "jessejamespub-com-br.appspot.com",
+		messagingSenderId: "118227352953"
+	};
+	firebase.initializeApp(config);
+
+	var databaseRef = firebase.database().ref('/');
+	var houseRef = databaseRef.child('assis');
+	var galleryRef = houseRef.child('gallery');
+	var disabledRef = galleryRef.child('disabledAlbums');
+
+
+	window.addEventListener('load', function () {
+
+		updateDisabledAlbumsArray();
+
+	});
+
+
+	function saveIgnoredAlbums() {
+
+		var ignored_albums = ['1594575264135627', '1586670551592765', '1885754275017723', '1875326966060454', '1586667811593039'];
+
+		for (var i = 0; i < ignored_albums.length; i++) {
+
+			disabledRef.child(ignored_albums[i]).set({
+				disabled_on: firebase.database.ServerValue.TIMESTAMP
+			});
+
+		}
+
+	}
+
+//	disabledRef.on('child_added', function (snap) {
+//		console.log(snap);
+//		});
+
+	var disabled_albums = [];
+
+	function updateDisabledAlbumsArray() {
+
+		disabledRef.on('value', function(snapshot) {
+
+			var disabled = [];
+
+			snapshot.forEach(function(album) {
+				disabled.push(album.key);
+			});
+
+			disabled_albums = disabled;
+
+			showDisabled();
+
+		});
+
+	}
+
+	function showDisabled() {
+		console.log(disabled_albums);
+	}
+
+</script>
+
+</body>
+</html>
