@@ -266,6 +266,11 @@
 
 @media (min-width: 80em) {
 
+	.TileHalf-mapa svg {
+		max-width: 100%;
+		max-height: 400px;
+	}
+
 	#especiais .TileHalf {
 		flex: 0 0 60%;
 	}
