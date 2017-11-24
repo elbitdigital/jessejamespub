@@ -382,12 +382,14 @@
 
 				</div>
 
+				<input id="cPub" name="houseId" type="hidden" value="Assis"/>
+
 				<div class="ContactFormStatus">
 
 					<span class="ContactFormStatus-text ContactFormStatus-text--sending font-light-blue-900">Enviando...</span>
 					<span class="ContactFormStatus-text ContactFormStatus-text--success font-light-green-900">Enviado com sucesso!</span>
 					<span class="ContactFormStatus-text ContactFormStatus-text--error font-red-900">Não foi possível enviar, verifique os campos e tente novamente.</span>
-					<span class="ContactFormStatus-text ContactFormStatus-text--fail font-red-900">Houve algum problema, tentando novamente...</span>
+					<span class="ContactFormStatus-text ContactFormStatus-text--fail font-orange-900">Ocorreu um problema, tente novamente mais tarde.</span>
 
 				</div>
 
@@ -666,7 +668,14 @@
 			titleElement.className = 'EventContent-title';
 			eventRef.child('title').on('value', function (snap) {
 
-				titleElement.innerHTML = '<span>' + snap.val() + '</span>';
+				var title = snap.val();
+				if (title.length >= 35) {
+					titleElement.classList.add('EventContent-title--medium');
+				} else {
+					titleElement.classList.remove('EventContent-title--medium');
+				}
+
+				titleElement.innerHTML = '<span>' + title + '</span>';
 
 			});
 			contentElement.appendChild(titleElement);

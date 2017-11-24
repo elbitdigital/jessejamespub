@@ -142,6 +142,10 @@
 	font-weight: bold;
 }
 
+.EventContent-title.EventContent-title--medium span {
+	font-size: .875em;
+}
+
 .Event-headerImage {
 	background-color: #212121;
 	-webkit-background-size: cover;

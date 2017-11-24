@@ -9,7 +9,7 @@ var formSentCountLimit, formSentTryLimit;
 formSentCount = formSentTry = 0;
 formSentCountLimit = formSentTryLimit = 2;
 
-var requestURL = 'https://service-elbit-com-br.umbler.net/mailman/check/valid/';
+var requestURL = 'https://service-elbit-com-br.umbler.net/mailman/jessejamespub/';
 var formLocked = false;
 
 var form = {
@@ -22,6 +22,7 @@ form.sendButton = {};
 form.fields.cName = document.getElementById('cName');
 form.fields.cPhone = document.getElementById('cPhone');
 form.fields.cLink = document.getElementById('cLink');
+form.fields.cPub = document.getElementById('cPub');
 form.sendButton.viewport = document.getElementById('cSubmit');
 
 form.states = [
@@ -74,7 +75,7 @@ form.sendRequest = function(requestData) {
 		};
 
 		xhr.onerror = function() {
-			form.changeState('is-error');
+			form.changeState('is-fail');
 		};
 
 		xhr.onreadystatechange = function(e) {
@@ -82,7 +83,9 @@ form.sendRequest = function(requestData) {
 			if (xhr.readyState == 4) {
 
 				if (xhr.status == 200) {
-					console.log(xhr.responseText);
+					// var result = JSON.parse(xhr.responseText);
+					// console.log(xhr.responseText);
+					// console.log(result);
 					form.changeState('is-success');
 				} else {
 					form.changeState('is-error');
@@ -178,7 +181,8 @@ form.sendButton.viewport.addEventListener('click', function (ev) {
 				var requestData = {
 					cName: form.fields.cName.value,
 					cPhone: form.fields.cPhone.value,
-					cLink: form.fields.cLink.value
+					cLink: form.fields.cLink.value,
+					cPub: form.fields.cPub.value
 				};
 
 				form.send(requestData, false);
