@@ -13,14 +13,6 @@
 
 .FranchiseHeader-background {
 	background-color: #301c09;
-	/*background: -moz-linear-gradient(top, rgb(68,42,13) 0%, rgb(68,42,13) 20%, rgb(48,28,9) 50%, rgb(48,28,9) 100%);*/
-	/*background: -webkit-gradient(left top, left bottom, color-stop(0%, rgb(68,42,13)), color-stop(20%, rgb(68,42,13)), color-stop(50%, rgb(48,28,9)), color-stop(100%, rgb(48,28,9)));*/
-	/*background: -webkit-linear-gradient(top, rgb(68,42,13) 0%, rgb(68,42,13) 20%, rgb(48,28,9) 50%, rgb(48,28,9) 100%);*/
-	/*background: -o-linear-gradient(top, rgb(68,42,13) 0%, rgb(68,42,13) 20%, rgb(48,28,9) 50%, rgb(48,28,9) 100%);*/
-	/*background: -ms-linear-gradient(top, rgb(68,42,13) 0%, rgb(68,42,13) 20%, rgb(48,28,9) 50%, rgb(48,28,9) 100%);*/
-	/*background: linear-gradient(to bottom, rgb(68,42,13) 0%, rgb(68,42,13) 20%, rgb(48,28,9) 50%, rgb(48,28,9) 100%);*/
-	/*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#442a0d', endColorstr='#301c09', GradientType=0 );*/
-
 	height: 100%;
 	position: absolute;
 	right: 0;
@@ -29,14 +21,14 @@
 }
 
 .FranchiseMain--internal .FranchiseHeader-background {
-	/*background-color: red;*/
+	background-color: #301c09;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center center;
-	background-image: url("../../dist/img/svg/fundo-madeira-escovada-escura-opt.svg");
+	background-image: url("/dist/img/svg/background-madeira-escovada.svg");
 	/* fundo-madeira-escovada-opt */
 }
 

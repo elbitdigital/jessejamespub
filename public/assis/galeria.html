@@ -364,7 +364,7 @@
 			var albumData = retriveAlbumData(album.id);
 
 			var albumNode = document.createElement('a');
-			albumNode.href = '/' + pub_config.CITY + '/album?id=' + album.fb_id;
+			albumNode.href = '/' + pub_config.CITY + '/album?id=' + albumData.fb_id;
 			albumNode.className = 'Album';
 			albumNode.title = albumData.fb_name;
 

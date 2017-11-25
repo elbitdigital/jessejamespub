@@ -15,14 +15,14 @@
 	z-index: 5;
 	height: 65px;
 
-	background-image: url("../img/guider-line.png");
+	background-image: url("/dist/img/guider-line.png");
 	background-repeat: repeat-x;
 	background-position: bottom;
 }
 
 #to-franchises {
 	flex: 100%;
-	width:100%;
+	width: 100%;
 }
 
 h1.Guider-heading {

@@ -6,7 +6,7 @@
 	padding: 2.5em 0;
 	position: relative;
 	text-align: center;
-	background-image: url("../../dist/img/background-texture.jpg");
+	background-image: url("/dist/img/background-texture.jpg");
 	background-repeat: repeat;
 	box-shadow: inset 0 15px 25px -15px rgba(0, 0, 0, .3);
 }
@@ -45,11 +45,6 @@
 .PromoterHalf .LeadingTitle-orn.LeadingTitle-orn--bot.icon-orn-bot::before {
 	margin-top: 0;
 }
-
-/*.PromoterHalf.teste {*/
-	/*background-image: url("../../dist/img/background-texture.jpg");*/
-	/*background-repeat: repeat;*/
-/*}*/
 
 @media (min-width: 48em) {
 

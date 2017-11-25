@@ -386,6 +386,7 @@
 		}).catch(function (err) {
 
 //			document.getElementById('album-list').innerHTML = '<span style="color: red;">' + err.message + '</span>';
+			console.log(err);
 
 		});
 
@@ -405,7 +406,7 @@
 
 				if (next) {
 
-					nextAlbumRequest(response.data.photos.paging.next);
+					nextAlbumRequest(next);
 
 				} else {
 
@@ -422,6 +423,7 @@
 		}).catch(function (err) {
 
 //			document.getElementById('album-list').innerHTML = '<span style="color: red;">' + err.message + '</span>';
+			console.log(err);
 
 		});
 

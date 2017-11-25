@@ -11,7 +11,7 @@
 /* Franchise partnership background */
 
 .FranchisePartnership-background {
-	background-image: url("../img/background-texture.jpg");
+	background-image: url("/dist/img/background-texture.jpg");
 	background-repeat: repeat;
 	height: 100%;
 	position: absolute;

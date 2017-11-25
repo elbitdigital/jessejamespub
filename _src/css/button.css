@@ -4,9 +4,9 @@
 .Button {
 	background-clip: padding-box;
 	background-color: transparent;
-	/*background-image: url('../img/svg/btn-escuro.svg');*/
+	/*background-image: url('/dist/img/svg/btn-escuro.svg');*/
 
-	background-image: url('../img/svg/botao-setadir.svg');
+	background-image: url('/dist/img/svg/botao-setadir.svg');
 	padding: .5em 4.5em .5em 2em;
 
 	background-size: 100% 100%;
@@ -43,7 +43,7 @@
 
 .Button--branco {
 	color: black;
-	background-image: url('../img/svg/btn-branco.svg');
+	background-image: url('/dist/img/svg/btn-branco.svg');
 }
 
 .Button--branco.Button:hover,
@@ -53,12 +53,12 @@
 
 .Button--light {
 	color: #301c09;
-	background-image: url('../img/svg/botao-setadir-claro.svg');
+	background-image: url('/dist/img/svg/botao-setadir-claro.svg');
 	font-weight: 800;
 }
 
 .Button--back.Button--light {
-	background-image: url('../img/svg/botao-setaesq-claro.svg');
+	background-image: url('/dist/img/svg/botao-setaesq-claro.svg');
 }
 
 .Button--light.Button:hover,
@@ -93,12 +93,12 @@
 }
 
 .Button--idle {
-	background-image: url('../img/svg/botao-dstv.svg');
+	background-image: url('/dist/img/svg/botao-dstv.svg');
 	padding: .5em 2em;
 }
 
 .Button--back {
-	background-image: url('../img/svg/botao-setaesq.svg');
+	background-image: url('/dist/img/svg/botao-setaesq.svg');
 	padding: .5em 2em .5em 4.5em;
 }
 
