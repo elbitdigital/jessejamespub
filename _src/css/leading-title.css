@@ -4,6 +4,7 @@
 .LeadingTitle {
 	-webkit-align-items: center;
 	align-items: center;
+	color: #301c09;
 	display: -webkit-box;
 	display: -moz-box;
 	display: -ms-flexbox;
@@ -15,7 +16,14 @@
 	flex-direction: column;
 	margin: 0;
 	padding: 0;
+}
 
+.LeadingTitle--white {
+	color: white;
+}
+
+.LeadingTitle--light {
+	color: #ebc373;
 }
 
 .LeadingTitle-orn {

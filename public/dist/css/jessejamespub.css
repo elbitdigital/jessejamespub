@@ -6637,6 +6637,7 @@ html {
 .LeadingTitle {
   -webkit-align-items: center;
   align-items: center;
+  color: #301c09;
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -6648,6 +6649,14 @@ html {
   flex-direction: column;
   margin: 0;
   padding: 0;
+}
+
+.LeadingTitle--white {
+  color: white;
+}
+
+.LeadingTitle--light {
+  color: #ebc373;
 }
 
 .LeadingTitle-orn {
@@ -7371,7 +7380,7 @@ html {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  background-image: url("../../dist/img/bg-paper.jpg");
+  background-image: url("/dist/img/bg-paper.jpg");
   text-align: center;
   width: 100%;
   position: relative;
@@ -7412,7 +7421,7 @@ html {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top right;
-  background-image: url("../../dist/img/bg-paper.jpg");
+  background-image: url("/dist/img/bg-paper.jpg");
   box-shadow: 2px 1px 15px -2px rgba(0, 0, 0, 0.50), -2px -1px 15px -2px rgba(0, 0, 0, 0.50);
   height: 100%;
   overflow: hidden;
