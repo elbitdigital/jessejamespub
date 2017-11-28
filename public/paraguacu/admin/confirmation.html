@@ -32,6 +32,7 @@
 
 	var pub_config = {
 		CITY: 'paraguacu',
+		CITY_DISPlAY: 'Paraguaçu',
 		PAGE_ID: 1289172211118655,
 		APP_TOKEN: '1606649516069715|uqNZlkCTD1yDL80fRZytok6Ji8k'
 	};
@@ -50,7 +51,7 @@
 				var uid = user.uid;
 				var providerData = user.providerData;
 				document.getElementById('userInfo-name').textContent = displayName.substr(0, displayName.indexOf(' '));
-				document.getElementById('pubInfo-city').textContent = pub_config.CITY.replace(pub_config.CITY[0], pub_config.CITY[0].toUpperCase());
+				document.getElementById('pubInfo-city').textContent = pub_config.CITY_DISPlAY;
 				document.getElementById('account-details').textContent = JSON.stringify({
 					displayName: displayName,
 					email: email,
@@ -193,7 +194,7 @@
 		<img class="logo" src="/dist/img/svg/logo-paraguacu.svg" alt="JJPP_LOGO">
 
 		<div class="TitleLight">
-			<p class="TitleLight-gradient">Autorização de acesso cadastrada!</p>
+			<p class="TitleLight-gradient">Autorização de acesso requisitada!</p>
 		</div>
 
 		<div class="Confirmation-buttons">
@@ -201,7 +202,7 @@
 			<a href="/paraguacu/admin/" class="Button--narrow roboto">Ir para o painel</a>
 		</div>
 
-		<p class="account-confirmation"><span id="userInfo-name"></span>, você foi associado a um perfil administrativo em Jesse James <span id="pubInfo-city"></span> com sucesso!<br> Esses são os dados que foram compartilhados:</p>
+		<p class="account-confirmation"><span id="userInfo-name"></span>, você solicitou acesso a um perfil administrativo em Jesse James <span id="pubInfo-city"></span>, aguarde a aprovação do acesso por um administrador.<br> Esses são os dados que foram compartilhados:</p>
 
 		<pre id="account-details"></pre>
 

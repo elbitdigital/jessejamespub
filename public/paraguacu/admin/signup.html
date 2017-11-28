@@ -45,7 +45,7 @@
 					inner[0].classList.add('is-return');
 
 					var updates = {};
-					updates['/' + pub_config.CITY + '/admins/' + user.uid] = {
+					updates['/' + pub_config.CITY + '/pending_admins/' + user.uid] = {
 						'uid': user.uid,
 						'datetime': new Date().toLocaleString() //DONT JUDGE ME
 					};
