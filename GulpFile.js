@@ -183,10 +183,18 @@ gulp.task('serve', function () {
 				"/paraguacu/especiais": "./public/paraguacu/especiais.html",
 				"/paraguacu/album": "./public/paraguacu/album.html",
 				"/parceiros": "./public/parceiros.html",
-				"/admin/login": "./public/admin/login.html",
-				"/admin/logout": "./public/admin/logout.html",
-				"/admin/signup": "./public/admin/signup.html",
-				"/admin/confirmation": "./public/admin/confirmation.html"
+				"/assis/admin/login": "./public/assis/admin/login.html",
+				"/assis/admin/logout": "./public/assis/admin/logout.html",
+				"/assis/admin/signup": "./public/assis/admin/signup.html",
+				"/assis/admin/confirmation": "./public/assis/admin/confirmation.html",
+				"/ourinhos/admin/login": "./public/ourinhos/admin/login.html",
+				"/ourinhos/admin/logout": "./public/ourinhos/admin/logout.html",
+				"/ourinhos/admin/signup": "./public/ourinhos/admin/signup.html",
+				"/ourinhos/admin/confirmation": "./public/ourinhos/admin/confirmation.html",
+				"/paraguacu/admin/login": "./public/paraguacu/admin/login.html",
+				"/paraguacu/admin/logout": "./public/paraguacu/admin/logout.html",
+				"/paraguacu/admin/signup": "./public/paraguacu/admin/signup.html",
+				"/paraguacu/admin/confirmation": "./public/paraguacu/admin/confirmation.html"
 			}
 		},
 		injectChanges: true

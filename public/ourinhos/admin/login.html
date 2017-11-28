@@ -2,22 +2,32 @@
 <html lang="pt-br">
 <head>
 	<meta charset="UTF-8">
-	<title>Acesso administrativo - Jesse James Pub - Assis</title>
+	<title>Acesso administrativo - Jesse James Pub</title>
 	<meta name="viewport"
 	      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
 
-	<script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<!--<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">-->
+	<link rel="manifest" href="/manifest.json">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#4c2f0f">
+	<meta name="apple-mobile-web-app-title" content="Jesse James Pub">
+	<meta name="application-name" content="Jesse James Pub">
+	<meta name="theme-color" content="#ebc373">
+
+	<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-database.js"></script>
+	<script src="/dist/js/firebase.js"></script>
+
 	<script>
-		// Initialize Firebase
-		var config = {
-			apiKey: "AIzaSyAMTCtuJ2DyPiBx5qBHeDg_OU1KW4UzURY",
-			authDomain: "jessejamespub-com-br.firebaseapp.com",
-			databaseURL: "https://jessejamespub-com-br.firebaseio.com",
-			projectId: "jessejamespub-com-br",
-			storageBucket: "jessejamespub-com-br.appspot.com",
-			messagingSenderId: "118227352953"
+
+		var pub_config = {
+			CITY: 'ourinhos',
+			PAGE_ID: 418573041848314,
+			APP_TOKEN: '1503099946449554|15VNIZhrGxhpkXDF-6CTQF1B_AE'
 		};
-		firebase.initializeApp(config);
+
 	</script>
 
 	<script src="https://www.gstatic.com/firebasejs/ui/2.2.1/firebase-ui-auth__pt.js"></script>
@@ -28,41 +38,48 @@
 			callbacks: {
 				'signInSuccess': function(user, credential, redirectUrl) {
 
+					var info = document.querySelectorAll('div.Login-inner');
+					info[0].classList.add('is-return');
+
 					var databaseRef = firebase.database().ref('/');
-					var houseRef = databaseRef.child('assis');
-					var usersRef = houseRef.child('users');
+					var usersRef = databaseRef.child('users');
+					var houseRef = databaseRef.child(pub_config.CITY);
 					var adminsRef = houseRef.child('admins');
 
-					usersRef.child('u' + user.uid).once('value').then(function(snapshot) {
+					usersRef.child(user.uid).once('value').then(function(snapshot) {
 
-						if(snapshot.exists() && snapshot.child('role').val() == "admin") {
+						if(snapshot.exists()) {
 
 							var uid = snapshot.child('uid').val();
 
-							adminsRef.child('a' + uid).once('value').then(function(snapshot) {
+							adminsRef.child(uid).once('value').then(function(snapshot) {
+
 								if(snapshot.exists()) {
 
-									var unauth = document.querySelectorAll('div.Login-inner');
-									unauth[0].classList.add('is-authorized');
+									info[0].classList.remove('is-return');
+									info[0].classList.add('is-authorized');
 
 									setTimeout(function() {
 										window.location.href = uiConfig.signInSuccessUrl;
 									}, 3000);
 
 								}
+
 							}).catch(function(err) {
 								console.log('Você não tem permissão de administrador: ' + err);
 							});
 
 						} else {
-							var unauth = document.querySelectorAll('div.Login-inner');
-							unauth[0].classList.add('is-unauthorized');
+
+							info[0].classList.remove('is-return');
+							info[0].classList.add('is-unauthorized');
 
 							console.log('Nível de permissão insuficiente');
 
 							setTimeout(function() {
-								window.location.href = '/admin/logout';
-							}, 5000);
+								window.location.href = '/' + pub_config.CITY + '/admin/logout';
+							}, 3000);
+
 						}
 
 					}).catch(function(err) {
@@ -71,7 +88,7 @@
 
 				}
 			},
-			signInSuccessUrl: '/admin/',
+			signInSuccessUrl: '/' + pub_config.CITY + '/admin/',
 			signInOptions: [
 				firebase.auth.FacebookAuthProvider.PROVIDER_ID
 			],
@@ -88,6 +105,8 @@
 		body {
 			overflow-y: hidden;
 			overflow-x: hidden;
+			margin: 0;
+			padding: 0;
 		}
 
 		.Login {
@@ -102,6 +121,27 @@
 			justify-content: center;
 			height: 100vh;
 			width: 100vw;
+			position: relative;
+		}
+
+		.Login::after {
+			content: '';
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			right: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+
+			background-image: url("/dist/img/bg-paper.jpg");
+			-webkit-background-size: cover;
+			-moz-background-size: cover;
+			-o-background-size: cover;
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-position: center center;
+			z-index: -1;
 		}
 
 		.Login-inner {
@@ -125,62 +165,31 @@
 			height: 150px;
 		}
 
-		.Login-inner.is-unauthorized .Unauthorized {
-			display: block;
-		}
-
-		.Login-inner.is-authorized .Authorized {
-			display:block;
-		}
-
-		.Login-inner.is-unauthorized #firebaseui-auth-container,
-		.Login-inner.is-authorized #firebaseui-auth-container{
+		.Return,
+		.Login-inner.is-return #firebaseui-auth-container,
+		.Login-inner.is-unauthorized .Return,
+		.Login-inner.is-authorized .Return {
 			display: none;
-			visibility: hidden;
+		}
+
+		.Login-inner.is-return .Return,
+		.Login-inner.is-unauthorized .Unauthorized,
+		.Login-inner.is-authorized .Authorized {
+			display: block;
 		}
 
 		.Unauthorized {
 			display: none;
-			color: #E53935;
+			color: #c62828;
 		}
 
 		.Authorized {
 			display: none;
-			color: #388E3C;
-		}
-
-		.TitleLight {
-			color: #d5ac70;
-		}
-
-		@supports (mix-blend-mode: lighten) {
-			.TitleLight-gradient {
-				display: inline-block;
-				position: relative;
-				color: #000;
-				background: #fff;
-				mix-blend-mode: multiply;
-				-webkit-backface-visibility: hidden; /* Chrome, Safari, Opera */
-				backface-visibility: hidden;
-			}
-			.TitleLight-gradient::before {
-				content: '';
-				display: block;
-				position: absolute;
-				top: 0;
-				right: 0;
-				bottom: 0;
-				left: 0;
-				background: -webkit-linear-gradient(left, #947341, #D5AC70, #7B5C2D);
-				background: linear-gradient(to right, #947341, #D5AC70, #7B5C2D);
-				pointer-events: none;
-			}
-			.TitleLight-gradient::before {
-				mix-blend-mode: screen;
-			}
+			color: #2e7d32;
 		}
 
 		.TitleLight p {
+			color: black;
 			text-transform: uppercase;
 			margin: .5em 0;
 			font-weight: 600;
@@ -204,14 +213,18 @@
 
 	<div class="Login-inner">
 
-		<img class="logo" src="../dist/img/logo-assis.png" alt="JJPA_LOGO">
+		<img class="logo" src="/dist/img/svg/logo-ourinhos.svg" alt="JJPO_LOGO">
 
 		<div class="TitleLight">
 			<p class="TitleLight-gradient">Acesso administrativo</p>
 		</div>
 
+		<div class="Return">
+			<h2>Verificando credenciais...</h2>
+		</div>
+
 		<div class="Unauthorized">
-			<h2>Você não é um usuário autorizado.<br>Consulte o administrador.</h2>
+			<h2>Você não é um usuário autorizado.<br>Consulte um administrador.</h2>
 		</div>
 
 		<div class="Authorized">

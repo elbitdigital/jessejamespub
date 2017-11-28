@@ -2,26 +2,25 @@
 <html lang="pt-br">
 <head>
 	<meta charset="UTF-8">
-	<title>Logout - Jesse James Pub - Assis</title>
+	<title>Logout - Jesse James Pub</title>
 </head>
 
-<script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-auth.js"></script>
+<script src="/dist/js/firebase.js"></script>
+
 <script>
-	// Initialize Firebase
-	var config = {
-		apiKey: "AIzaSyAMTCtuJ2DyPiBx5qBHeDg_OU1KW4UzURY",
-		authDomain: "jessejamespub-com-br.firebaseapp.com",
-		databaseURL: "https://jessejamespub-com-br.firebaseio.com",
-		projectId: "jessejamespub-com-br",
-		storageBucket: "jessejamespub-com-br.appspot.com",
-		messagingSenderId: "118227352953"
+
+	var pub_config = {
+		CITY: 'assis',
+		PAGE_ID: 1586666258259861,
+		APP_TOKEN: '146544439255115|3_8Ip3wrGqx-BfnrEVVRhJeUpLA'
 	};
-	firebase.initializeApp(config);
 
 	window.addEventListener('load', function() {
 		localStorage.removeItem("firebaseui::rememberedAccounts");
 		firebase.auth().signOut();
-		window.location.href = "/admin/login";
+		window.location.href = "/" + pub_config.CITY + "/admin/login";
 	});
 
 </script>

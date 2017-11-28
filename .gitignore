@@ -77,5 +77,6 @@ node_modules
 
 # firebase config file
 public/dist/js/firebase.js
+database.rules.json
 
 # Created by .ignore support plugin (hsz.mobi)

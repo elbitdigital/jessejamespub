@@ -2,22 +2,32 @@
 <html lang="pt-br">
 <head>
 	<meta charset="UTF-8">
-	<title>Homologação de Autenticação - Jesse James Pub - Assis</title>
+	<title>Homologação de Autenticação - Jesse James Pub</title>
 	<meta name="viewport"
 	      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
 
-	<script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<!--<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">-->
+	<link rel="manifest" href="/manifest.json">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#4c2f0f">
+	<meta name="apple-mobile-web-app-title" content="Jesse James Pub">
+	<meta name="application-name" content="Jesse James Pub">
+	<meta name="theme-color" content="#ebc373">
+
+	<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-database.js"></script>
+	<script src="/dist/js/firebase.js"></script>
+
 	<script>
-		// Initialize Firebase
-		var config = {
-			apiKey: "AIzaSyAMTCtuJ2DyPiBx5qBHeDg_OU1KW4UzURY",
-			authDomain: "jessejamespub-com-br.firebaseapp.com",
-			databaseURL: "https://jessejamespub-com-br.firebaseio.com",
-			projectId: "jessejamespub-com-br",
-			storageBucket: "jessejamespub-com-br.appspot.com",
-			messagingSenderId: "118227352953"
+
+		var pub_config = {
+			CITY: 'assis',
+			PAGE_ID: 1586666258259861,
+			APP_TOKEN: '146544439255115|3_8Ip3wrGqx-BfnrEVVRhJeUpLA'
 		};
-		firebase.initializeApp(config);
+
 	</script>
 
 	<script src="https://www.gstatic.com/firebasejs/ui/2.2.1/firebase-ui-auth__pt.js"></script>
@@ -28,44 +38,43 @@
 			callbacks: {
 				'signInSuccess': function(user, credential, redirectUrl) {
 
-					var token = null;
-					(credential) ? token = credential.accessToken : token = "NO_TOKEN_SADFACE";
-
 					var inner = document.querySelectorAll('div.Login-inner');
 					inner[0].classList.add('is-return');
 
 					var updates = {};
-					updates['/admins/a' + user.uid] = 
-{						'uid': user.uid,
+					updates['/' + pub_config.CITY + '/admins/' + user.uid] = {
+						'uid': user.uid,
 						'datetime': new Date().toLocaleString() //DONT JUDGE ME
 					};
-					updates['/users/u' + user.uid] = {
-						'role': 'admin',
+					updates['/users/' + user.uid] = {
 						'displayName': user.displayName,
 						'email': user.email,
 						'emailVerified': user.emailVerified,
 						'photoURL': user.photoURL,
 						'uid': user.uid,
-						'token': token,
 						'providerData': user.providerData
 					};
 
-					firebase.database().ref('assis').update(updates).then(function() {
+					firebase.database().ref('/').update(updates).then(function() {
+
 						window.location.href = uiConfig.signInSuccessUrl;
+
 					}).catch(function(err) {
+						inner[0].classList.remove('is-return');
+						inner[0].classList.add('is-error');
 						console.log('Algo de errado não está certo: ' + err);
 					});
 
 				}
 			},
-			signInSuccessUrl: '/admin/confirmation',
+			signInSuccessUrl: '/' + pub_config.CITY + '/admin/confirmation',
 			signInOptions: [
 				{
 					provider: firebase.auth.FacebookAuthProvider.PROVIDER_ID,
 					scopes: [
 						'public_profile'
 						, 'email'
-						, 'pages_show_list'
+//						, 'pages_show_list'
 //						, 'manage_pages'
 					]
 				}
@@ -83,6 +92,8 @@
 		body {
 			overflow-y: hidden;
 			overflow-x: hidden;
+			margin: 0;
+			padding: 0;
 		}
 
 		.Login {
@@ -97,6 +108,27 @@
 			justify-content: center;
 			height: 100vh;
 			width: 100vw;
+			position: relative;
+		}
+
+		.Login::after {
+			content: '';
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			right: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+
+			background-image: url("/dist/img/bg-paper.jpg");
+			-webkit-background-size: cover;
+			-moz-background-size: cover;
+			-o-background-size: cover;
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-position: center center;
+			z-index: -1;
 		}
 
 		.Login-inner {
@@ -121,54 +153,57 @@
 			width: auto;
 		}
 
-		.Login-inner.is-return .Return {
+		.Login-inner.is-return .Return,
+		.Login-inner.is-error .Error {
 			display: block;
 		}
 
-		.Login-inner-is-return #firebaseui-auth-container {
+		.Return,
+		.Error,
+		.Login-inner.is-return #firebaseui-auth-container,
+		.Login-inner.is-error .Return,
+		.Login-inner.is-return .Error {
 			display: none;
 		}
 
-		.Return {
-			display: none;
-		}
+		/*.TitleLight {*/
+			/*color: #d5ac70;*/
+		/*}*/
 
-		.TitleLight {
-			color: #d5ac70;
-		}
-
-		@supports (mix-blend-mode: lighten) {
-			.TitleLight-gradient {
-				display: inline-block;
-				position: relative;
-				color: #000;
-				background: #fff;
-				mix-blend-mode: multiply;
-				-webkit-backface-visibility: hidden; /* Chrome, Safari, Opera */
-				backface-visibility: hidden;
-			}
-			.TitleLight-gradient::before {
-				content: '';
-				display: block;
-				position: absolute;
-				top: 0;
-				right: 0;
-				bottom: 0;
-				left: 0;
-				background: -webkit-linear-gradient(left, #947341, #D5AC70, #7B5C2D);
-				background: linear-gradient(to right, #947341, #D5AC70, #7B5C2D);
-				pointer-events: none;
-			}
-			.TitleLight-gradient::before {
-				mix-blend-mode: screen;
-			}
-		}
+		/*@supports (mix-blend-mode: lighten) {*/
+			/*.TitleLight-gradient {*/
+				/*display: inline-block;*/
+				/*position: relative;*/
+				/*color: #000;*/
+				/*background: #fff;*/
+				/*mix-blend-mode: multiply;*/
+				/*-webkit-backface-visibility: hidden; !* Chrome, Safari, Opera *!*/
+				/*backface-visibility: hidden;*/
+			/*}*/
+			/*.TitleLight-gradient::before {*/
+				/*content: '';*/
+				/*display: block;*/
+				/*position: absolute;*/
+				/*top: 0;*/
+				/*right: 0;*/
+				/*bottom: 0;*/
+				/*left: 0;*/
+				/*background: -webkit-linear-gradient(left, #947341, #D5AC70, #7B5C2D);*/
+				/*background: linear-gradient(to right, #947341, #D5AC70, #7B5C2D);*/
+				/*pointer-events: none;*/
+			/*}*/
+			/*.TitleLight-gradient::before {*/
+				/*mix-blend-mode: screen;*/
+			/*}*/
+		/*}*/
 
 		.TitleLight p {
+			color: black;
 			text-transform: uppercase;
 			margin: .5em 0;
-			font-weight: 600;
+			font-weight: bold;
 			font-size: 1.25em;
+			/*text-shadow: 0 0 2px black;*/
 		}
 
 		@media(min-width: 48em) {
@@ -188,16 +223,21 @@
 
 	<div class="Login-inner">
 
-		<img class="logo" src="../dist/img/logo-assis.png" alt="JJPA_LOGO">
+		<img class="logo" src="/dist/img/svg/logo-assis.svg" alt="JJPA_LOGO">
 
 		<div class="TitleLight">
 			<p class="TitleLight-gradient">Homologação de acesso - Autenticação</p>
 		</div>
 
 		<div class="Return">
-			<span class="icon-spin5 animate-spin" style="font-size: 1.75em; color: #d5ac70;"></span>
 			<div class="TitleLight">
 				<p class="TitleLight-gradient">Processando dados</p>
+			</div>
+		</div>
+
+		<div class="Error">
+			<div class="TitleLight">
+				<p class="TitleLight-gradient">Ocorreu um erro durante a execução.</p>
 			</div>
 		</div>
 
