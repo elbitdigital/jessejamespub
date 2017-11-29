@@ -86,6 +86,7 @@ body {
 	-webkit-backface-visibility: hidden;
 	backface-visibility: hidden;
 	/*-webkit-perspective: 1000;*/
+	z-index: -1;
 }
 
 img::selection {

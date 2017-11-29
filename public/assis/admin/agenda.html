@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <meta charset="UTF-8">
-<title>Agenda | Assis | Jesse James Pub</title>
+<title>Agenda | Jesse James Pub</title>
 <meta name="viewport"
       content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
 
@@ -26,6 +26,116 @@
 <script src="/dist/js/classList.min.js"></script>
 <![endif]-->
 
+<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-storage.js"></script>
+<script src="/dist/js/firebase.js"></script>
+
+<script>
+
+	var pub_config = {
+		CITY: 'assis',
+		PAGE_ID: 1586666258259861,
+		APP_TOKEN: '146544439255115|3_8Ip3wrGqx-BfnrEVVRhJeUpLA'
+	};
+
+	initApp = function () {
+
+		firebase.auth().onAuthStateChanged(function (user) {
+
+			var databaseRef = firebase.database().ref('/');
+			var usersRef = databaseRef.child('users');
+			var houseRef = databaseRef.child(pub_config.CITY);
+			var adminsRef = houseRef.child('admins');
+
+			if (user) {
+
+				usersRef.child(user.uid).once('value').then(function (snapshot) {
+
+					if (snapshot.exists()) {
+
+						var uid = snapshot.child('uid').val();
+
+						adminsRef.child(uid).once('value').then(function (snapshot) {
+
+							if (snapshot.exists()) {
+								document.getElementById('userInfo-name').textContent = "Usuário: " + user.displayName;
+								document.body.classList.add('is-online');
+							}
+
+						}).catch(function (err) {
+
+							console.log('Você não tem permissão de administrador: ' + err);
+
+							setTimeout(function() {
+								window.location.href = '/' + pub_config.CITY + '/admin/logout';
+							}, 3000);
+
+						});
+
+					} else {
+
+						window.location.href = '/' + pub_config.CITY + '/admin/logout';
+
+					}
+
+				}).catch(function (err) {
+
+					console.log('Algo de errado não está certo: ' + err);
+					window.location.href = '/' + pub_config.CITY + '/admin/logout';
+
+				});
+
+			} else {
+
+//				document.getElementById('account-details').textContent = 'null';
+
+			}
+
+		}, function (error) {
+
+			console.log(error);
+
+		});
+	};
+
+	window.addEventListener('load', function () {
+		initApp();
+	});
+
+	if (typeof localStorage["firebaseui::rememberedAccounts"] == "undefined") {
+		window.location.href = "/" + pub_config.CITY + "/admin/login";
+	}
+
+</script>
+
+<style>
+
+	#logout {
+		display: none;
+	}
+
+	.is-online #logout {
+		display: inline-block;
+	}
+
+</style>
+
+<style>
+
+	.Body {
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		min-height: 100%;
+		margin: 0;
+	}
+
+</style>
+
 <style>
 
 	.HeaderAdmin {
@@ -46,7 +156,7 @@
 	}
 
 	.HeaderAdmin-logo {
-		margin-bottom: 1em;
+		margin-bottom: .5em;
 		display: block;
 	}
 
@@ -55,7 +165,7 @@
 	}
 
 	.HeaderAdmin-buttons {
-		margin-bottom: .5em;
+		/*margin: .25em;*/
 	}
 
 	.HeaderAdmin-button {
@@ -66,11 +176,8 @@
 		font-size: .875em;
 		font-weight: bold;
 		text-transform: uppercase;
+		margin-bottom: .5em;
 	}
-
-</style>
-
-<style>
 
 	.Header--admin .HeaderUpper-inner {
 		padding: 1em .5em;
@@ -80,6 +187,21 @@
 		-webkit-box-shadow: 0 0 10px 0 #000000;
 		box-shadow: 0 0 10px 0 #000000;
 	}
+
+	.HeaderUpper-background {
+		background-color: #301c09;
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-image: url("/dist/img/svg/background-madeira-escovada.svg");
+	}
+
+</style>
+
+<style>
 
 	.Body {
 		display: -webkit-box;
@@ -92,7 +214,7 @@
 	}
 
 	.Content {
-		padding: .75em 0 2em;
+		padding: .75em 1em 2em;
 	}
 
 	@media (min-width: 48em) {
@@ -101,27 +223,6 @@
 			padding: 1em 1.5em 3em;
 		}
 
-	}
-
-	.Sidebar {
-		flex: 0 0 250px;
-		-webkit-box-shadow: 3px 0 7px -3px #000000;
-		box-shadow: 3px 0 7px -3px #000000;
-		-webkit-transition: all .3s ease;
-		-moz-transition: all .3s ease;
-		-ms-transition: all .3s ease;
-		-o-transition: all .3s ease;
-		transition: all .3s ease;
-	}
-
-	.Sidebar.is-hide {
-		margin-left: -250px;
-		box-shadow: none;
-	}
-
-	.Sidebar-title {
-		font-size: 1.5em;
-		margin: .5em;
 	}
 
 	.Content {
@@ -149,7 +250,7 @@
 	}
 
 	.Content-button {
-		margin: .5em .75em;
+		margin: .5em 0;
 	}
 
 	.ContentSection-title {
@@ -160,13 +261,6 @@
 		width: 100%;
 		margin: .5em 0;
 		border-bottom: 1px solid black;
-	}
-
-	.Content-title,
-	.Content-subtitle,
-	.Content-text,
-	.ContentSection-title {
-		padding: 0 .75em;
 	}
 
 	@media (min-width: 48em) {
@@ -203,7 +297,7 @@
 	@media (min-width: 48em) {
 
 		.Schedule-list {
-			padding: 0 1em;
+			/*padding: 0 1em;*/
 		}
 
 	}
@@ -228,7 +322,7 @@
 		background-color: #7d381b;
 		min-width: 300px;
 		/*margin-bottom: 1em;*/
-		margin: 5px 0;
+		margin: 5px 5px 5px 0;
 	}
 
 	.EventFooter {
@@ -429,11 +523,11 @@
 		transform: scale(1);
 	}
 
-	@media (min-width: 48em) {
+	@media (min-width: 90em) {
 
 		.Event {
 			width: 25em;
-			margin-right: 1em;
+			margin: 10px;
 		}
 
 		/*.Event-headerImage {*/
@@ -447,30 +541,35 @@
 
 <body class="roboto marrom-poeira--lighter">
 
+<div class="bg-paper-full"></div>
+
 <div class="Header Header--admin">
 
 	<div class="HeaderUpper">
 
-		<div class="HeaderUpper-background marrom-couro--darker"></div>
+		<div class="HeaderUpper-background"></div>
 
 		<header class="HeaderUpper-inner container">
 
 			<div class="HeaderAdmin">
 
-				<div id="logo" class="HeaderAdmin-logo"></div>
-
-				<div class="HeaderAdmin-buttons">
-
-					<a href="./agenda.html" class="HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-calendar"></span> Eventos</a>
-					<a href="./galeria.html" class="HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-camera"></span> Álbuns</a>
-
-					<a href="../" class="HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-beer-1"></span> Assis</a>
-					<a href="#" class="HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow Btn--cancel"><span class="icon-logout"></span>Sair</a>
-
+				<div id="logo" class="HeaderAdmin-logo">
+					<!-- SVG logo-assis -->
 				</div>
 
 				<div class="HeaderAdmin-info">
-					<p>Usuário: <span id="userInfo-name">Nome</span></p>
+					<p><span id="userInfo-name"></span></p>
+				</div>
+
+				<div class="HeaderAdmin-buttons">
+
+					<a href="/assis/admin/" class="HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-home"></span> Dashboard</a>
+					<a href="/assis/admin/agenda.html" class="HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-calendar"></span> Eventos</a>
+					<a href="/assis/admin/galeria.html" class="HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-camera"></span> Álbuns</a>
+
+					<a href="/assis" class="HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-beer-1"></span> Assis</a>
+					<a id="logout" href="/assis/admin/logout" class="HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow Btn--cancel"><span class="icon-logout"></span>Sair</a>
+
 				</div>
 
 			</div>
@@ -490,47 +589,13 @@
 
 		<p class="Content-text">Os eventos cadastrados aqui aparecerão no topo da página inicial do site.</p>
 
-		<!--<a class="Schedule-addNewEventButton" onclick="addNewEvent()">Adicionar novo evento</a>-->
 		<button id="agenda-insert" class="Content-button Btn Btn--primary Btn--filled">Adicionar novo evento</button>
-		<a href="../agenda" class="Content-button Btn Btn--primary">Ir para agenda</a>
+		<a href="/assis#agenda" target="_blank" class="Content-button Btn Btn--primary">Ir para agenda</a>
 
 		<div id="gallery-messages" class="Content-section"></div>
 
 		<h1 class="ContentSection-title">Eventos cadastrados</h1>
-		<div id="event-list" class="Schedule-list">
-
-			<!--<div class="Event" data-event-reference-key="-KnagjO5ZbKn-71i6-re">-->
-
-				<!--<input type="file" style="visibility: hidden;">-->
-				<!--<div class="Event-headerImage" style="background-image: url('https://firebasestorage.googleapis.com/v0/b/jessejamespub-com-br.appspot.com/o/eventImage%2FSA%CC%81BADO01.jpg?alt=media&amp;token=642b9220-729c-487f-9c95-1014643921f3');"></div>-->
-
-				<!--<input type="text" class="Event-title" placeholder="Título do evento">-->
-				<!--<input type="text" class="Event-facebookEventURL" placeholder="Link do evento (Facebook)">-->
-
-				<!--<div class="EventFooter">-->
-
-					<!--<button class="Btn Btn&#45;&#45;narrow Btn&#45;&#45;filled Btn&#45;&#45;turnoff" style="padding: 0 .5em;"><span class="icon-cancel"></span></button>-->
-
-					<!--<select name="select" class="Event-select">-->
-						<!--<option value="DOM">DOM</option>-->
-						<!--<option value="SEG">SEG</option>-->
-						<!--<option value="TER">TER</option>-->
-						<!--<option value="QUA">QUA</option>-->
-						<!--<option value="QUI">QUI</option>-->
-						<!--<option value="SEX">SEX</option>-->
-						<!--<option value="SÁB">SÁB</option>-->
-					<!--</select>-->
-
-					<!--<input type="text" class="Event-select Event-dateInput" placeholder="Dia/mês">-->
-
-					<!--<input type="checkbox" id="active" class="Event-checkbox"/>-->
-					<!--<label for="active" class="Event-activeStatus">Ativo</label>-->
-
-				<!--</div>-->
-
-			<!--</div>-->
-
-		</div>
+		<div id="event-list" class="Schedule-list"></div>
 
 	</div>
 
@@ -541,6 +606,7 @@
 <script>
 
 	var logo = new SvgAppend(document.getElementById('logo'), '/dist/img/svg/logo-assis.svg', false);
+
     window.addEventListener('load', function () {
 
 		var btnInsert = document.getElementById('agenda-insert');
@@ -554,17 +620,7 @@
 
 </script>
 
-<script src="/dist/js/axios.min.js"></script>
-<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
-<script src="/dist/js/firebase.js"></script>
-
 <script>
-
-	var pub_config = {
-		CITY: 'assis',
-		PAGE_ID: 1586666258259861,
-		APP_TOKEN: '146544439255115|3_8Ip3wrGqx-BfnrEVVRhJeUpLA'
-	};
 
 	var databaseRef = firebase.database().ref('/');
 	var houseRef = databaseRef.child(pub_config.CITY);

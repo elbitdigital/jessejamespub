@@ -46,6 +46,9 @@
 
 					var updates = {};
 					updates['/' + pub_config.CITY + '/pending_admins/' + user.uid] = {
+						'displayName': user.displayName,
+						'email': user.email,
+						'photoURL': user.photoURL,
 						'uid': user.uid,
 						'datetime': new Date().toLocaleString() //DONT JUDGE ME
 					};

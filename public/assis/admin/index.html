@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="pt-br" class="roboto">
+<html lang="pt-br">
 <meta charset="UTF-8">
-<title>Administração - Jesse James Pub</title>
+<title>Dashboard | Jesse James Pub</title>
 <meta name="viewport"
       content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
 
@@ -15,7 +15,9 @@
 <meta name="theme-color" content="#ebc373">
 
 <script src="/dist/js/villa.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700" rel="stylesheet">
 <link rel="stylesheet" href="/dist/css/villa.min.css"/>
+<link rel="stylesheet" href="/dist/css/jessejamespub.min.css"/>
 <!--[if lt IE 9]>
 <link rel="stylesheet" type="text/css" href="/dist/css/material-colors.css"/>
 <link rel="stylesheet" type="text/css" href="/dist/css/villa-cross.min.css"/>
@@ -57,13 +59,14 @@
 						adminsRef.child(uid).once('value').then(function (snapshot) {
 
 							if (snapshot.exists()) {
-								document.getElementById('userInfo-name').textContent = user.displayName;
-								document.getElementById('userInfo-email').textContent = user.email;
-								document.getElementById('userInfo-uid').textContent = user.uid;
-								var userStatus = document.getElementById('userOffline');
+								document.getElementById('userInfo-name').textContent = "Usuário: " + user.displayName;
+								document.getElementById('userInfo-name--body').innerHTML = "<strong>Usuário:</strong> " + user.displayName;
+								document.getElementById('userInfo-email').innerHTML = "<strong>Email: </strong>" + user.email;
+								document.getElementById('userInfo-uid').innerHTML = "<strong>UID: </strong>" + user.uid;
+								var userStatus = document.getElementById('userStatus');
 								userStatus.textContent = 'Online';
-								userStatus.classList.add('Button--success');
-								document.querySelectorAll('div.AdminHeader-control')[0].classList.add('is-online');
+								userStatus.classList.add('Btn--success');
+								document.body.classList.add('is-online');
 							}
 
 						}).catch(function (err) {
@@ -103,7 +106,7 @@
 	};
 
 	window.addEventListener('load', function () {
-		initApp()
+		initApp();
 	});
 
 	if (typeof localStorage["firebaseui::rememberedAccounts"] == "undefined") {
@@ -114,15 +117,160 @@
 
 <style>
 
-	body {
+	#logout,
+	#pending-admins {
+		display: none;
+	}
+
+	.is-online #logout {
+		display: inline-block;
+	}
+
+	.has-pending #pending-admins {
+		display: block;
+	}
+
+</style>
+
+<style>
+
+	.HeaderAdmin {
+		-webkit-align-items: center;
+		align-items: center;
 		display: -webkit-box;
 		display: -moz-box;
 		display: -ms-flexbox;
 		display: -webkit-flex;
 		display: flex;
-		-webkit-flex-flow: column;
-		flex-flow: column;
+		-webkit-justify-content: space-between;
+		justify-content: space-between;
+		-webkit-flex-direction: column;
+		flex-direction: column;
+		/*-webkit-flex-direction: column-reverse;*/
+		/*flex-direction: column-reverse;*/
+		width: 100%;
 	}
+
+	.HeaderAdmin-logo {
+		margin-bottom: .5em;
+		display: block;
+	}
+
+	.HeaderAdmin-logo svg {
+		max-width: 10em;
+	}
+
+	.HeaderAdmin-buttons {
+		/*margin: .25em;*/
+	}
+
+	.HeaderAdmin-button {
+		margin-bottom: .25em;
+	}
+
+	.HeaderAdmin-info {
+		font-size: .875em;
+		font-weight: bold;
+		text-transform: uppercase;
+		margin-bottom: .5em;
+	}
+
+	.Header--admin .HeaderUpper-inner {
+		padding: 1em .5em;
+	}
+
+	.Header--admin {
+		-webkit-box-shadow: 0 0 10px 0 #000000;
+		box-shadow: 0 0 10px 0 #000000;
+	}
+
+	.HeaderUpper-background {
+		background-color: #301c09;
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-image: url("/dist/img/svg/background-madeira-escovada.svg");
+	}
+
+</style>
+
+<style>
+
+	.Body {
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		min-height: 100%;
+		margin: 0;
+	}
+
+	.Content {
+		padding: .75em 1em 2em;
+	}
+
+	@media (min-width: 48em) {
+
+		.Content {
+			padding: 1em 1.5em 3em;
+		}
+
+	}
+
+	.Content {
+		flex: 1 1;
+	}
+
+</style>
+
+<style>
+
+	.Content-title {
+		font-size: 1.5em;
+		display: inline-block;
+		width: 100%;
+		margin-bottom: .25em;
+		border-bottom: 2px solid black;
+		text-transform: uppercase;
+		font-weight: 800;
+	}
+
+	.Content-subtitle {
+		font-size: 1.25em;
+		font-weight: 600;
+		margin-bottom: .5em;
+	}
+
+	.Content-button {
+		margin: .5em 0;
+	}
+
+	.ContentSection-title {
+		font-size: 1.25em;
+		text-transform: uppercase;
+		font-weight: 600;
+		display: inline-block;
+		width: 100%;
+		margin: .5em 0;
+		border-bottom: 1px solid black;
+	}
+
+	@media (min-width: 48em) {
+
+		.Content-title {
+			font-size: 2em;
+			padding-bottom: .25em;
+		}
+
+	}
+
+</style>
+
+<style>
 
 	.logo {
 		height: 100px;
@@ -152,110 +300,306 @@
 		margin: 1em;
 	}
 
-	.Button--narrow {
-		background-color: #03a9f4;
-		border: none;
-		border-radius: 2px;
-		color: #ffffff;
-		font-weight: 700;
-		padding: .25em .5em;
-		-webkit-transition: background .3s ease-in-out;
-		-moz-transition: background .3s ease-in-out;
-		-ms-transition: background .3s ease-in-out;
-		-o-transition: background .3s ease-in-out;
-		transition: background .3s ease-in-out;
-		text-transform: uppercase;
+</style>
+
+<style>
+
+	#pending-list {
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-flex-flow: row wrap;
+		flex-flow: row wrap;
+		-webkit-justify-content: space-between;
+		justify-content: space-between;
+		/*width: 100%;*/
 	}
 
-	.Button--narrow:focus,
-	.Button--narrow:hover {
-		background-color: #81d4fa;
-		cursor: pointer;
-		-webkit-transition: background .3s ease-in-out;
-		-moz-transition: background .3s ease-in-out;
-		-ms-transition: background .3s ease-in-out;
-		-o-transition: background .3s ease-in-out;
-		transition: background .3s ease-in-out;
+	.PendingAdminsUser {
+		-webkit-align-items: center;
+		align-items: center;
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-justify-content: center;
+		justify-content: center;
+		width: 100%;
+		max-width: 600px;
+		padding: 0 .5em;
+		margin: .5em 0;
+
+		/*background-color: #ebc373;*/
+		background-color: rgba(235,195,115,.4);
+		color: #301c09;
+		border: solid 2px #4c2f0f;
 	}
 
-	.Button--narrow:active {
-		background-color: #039be5;
+	.PendingAdminsUser-column {
+		padding: .5em;
+		margin: 0 .25em;
+		/*border: 1px solid red;*/
+		height: 125px;
 	}
 
-	.Button--simple {
-		background-color: #585858;
+	.PendingAdminsUser-column.PendingAdminsUser-info {
+		flex: 2;
 	}
 
-	.Button--simple:focus,
-	.Button--simple:hover {
-		background-color: #bdbdbd;
+	.PendingAdminsUser-column img {
+		max-width: 80px;
+		max-height: 80px;
+		display: inline-block;
+		margin: 0;
+		padding: 0;
+		border: solid 2px #4c2f0f;
 	}
 
-	.Button--simple:active {
-		background-color: #585858;
+	.PendingAdminsUser-column .Btn {
+		display: block;
+		margin: .5em;
 	}
 
-	.Button--alert {
-		background-color: #F44336;
-	}
-
-	.Button--alert:focus,
-	.Button--alert:hover {
-		background-color: #EF9A9A;
-	}
-
-	.Button--alert:active {
-		background-color: #E53935;
-	}
-
-	.Button--success {
-		background-color: #43A047;
-	}
-
-	.Button--success:focus,
-	.Button--success:hover {
-		background-color: #A5D6A7;
-	}
-
-	.Button--success:active {
-		background-color: #43A047;
+	.PendingAdminsUser-column {
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-justify-content: center;
+		justify-content: center;
+		-webkit-flex-direction: column;
+		flex-direction: column;
 	}
 
 </style>
 
-<body class="grey-100">
+<body class="roboto marrom-poeira--lighter">
 
-<header class="AdminHeader">
+<div class="bg-paper-full"></div>
 
-	<div class="AdminHeader-background"></div>
+<div class="Header Header--admin">
 
-	<div class="AdminHeader-inner font-brown-900">
+	<div class="HeaderUpper">
 
-		<div class="AdminHeader-logo">
+		<div class="HeaderUpper-background"></div>
 
-			<img class="logo" src="/dist/img/svg/logo-assis.svg" alt="JJPA_LOGO">
+		<header class="HeaderUpper-inner container">
 
-		</div>
+			<div class="HeaderAdmin">
 
-		<div class="AdminHeader-info">
+				<div id="logo" class="HeaderAdmin-logo">
+					<!-- SVG logo-assis -->
+				</div>
 
-			<span style="margin-bottom: .25em;"><b>DADOS DE ACESSO</b></span>
-			<span id="userInfo-name">Nome de exibição</span>
-			<span id="userInfo-email">Email</span>
-			<span id="userInfo-uid">Código de autenticação</span>
+				<div class="HeaderAdmin-info">
+					<p><span id="userInfo-name"></span></p>
+				</div>
 
-			<div class="AdminHeader-control">
+				<div class="HeaderAdmin-buttons">
 
-				<a id="userLogout" href="/assis/admin/logout" class="Button--narrow Button--alert">Sair</a>
-				<span id="userOffline" class="Button--narrow Button--simple">Offline</span>
+					<a href="/assis/admin/" class="HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-home"></span> Dashboard</a>
+					<a href="/assis/admin/agenda.html" class="HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-calendar"></span> Eventos</a>
+					<a href="/assis/admin/galeria.html" class="HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-camera"></span> Álbuns</a>
+
+					<a href="/assis" class="HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-beer-1"></span> Assis</a>
+					<a id="logout" href="/assis/admin/logout" class="HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow Btn--cancel"><span class="icon-logout"></span>Sair</a>
+
+				</div>
+
+			</div>
+
+		</header>
+
+	</div>
+
+</div>
+
+<section class="Body Body--admin">
+
+	<div class="Content Content--admin f-marrom-couro--darkest">
+
+		<h1 class="Content-title">Dashboard</h1>
+		<h2 class="Content-subtitle">Painel administrativo - Jesse James Assis</h2>
+
+		<div id="pending-admins" class="PendingAdmins">
+
+			<h1 class="ContentSection-title">Requisições de acesso administrativo</h1>
+			<p>Os seguintes usuários estão requisitando acesso administrativo para este painel:</p>
+
+			<div id="pending-list">
+
+				<!--<div class="PendingAdminsUser">-->
+
+					<!--<div class="PendingAdminsUser-column PendingAdminsUser-image">-->
+						<!--<img src="https://scontent.xx.fbcdn.net/v/t1.0-1/p100x100/15095486_211126649330767_304312906854601921_n.jpg?oh=bcf457f7e25a18117087f552328f2eef&oe=5A8F59A9" alt="Foto usuário">-->
+					<!--</div>-->
+
+					<!--<div class="PendingAdminsUser-column PendingAdminsUser-info">-->
+						<!--<p><strong>Nome: </strong> Rafael Spoladore</p>-->
+						<!--<p><strong>Email: </strong> rafael@kukoala.com</p>-->
+						<!--<p><strong>UID: </strong> gSBIG6dkVDax0sUbQM7Uiznlrgd2</p>-->
+						<!--<p><strong>Data da requisição: </strong> 28/11/2017 17:34:18</p>-->
+					<!--</div>-->
+
+					<!--<div class="PendingAdminsUser-column PendingAdminsUser-control">-->
+						<!--<button class="Btn Btn&#45;&#45;narrow Btn&#45;&#45;filled Btn&#45;&#45;success">Aceitar</button>-->
+						<!--<button class="Btn Btn&#45;&#45;narrow Btn&#45;&#45;filled Btn&#45;&#45;cancel">Excluir</button>-->
+					<!--</div>-->
+
+				<!--</div>-->
 
 			</div>
 
 		</div>
 
+		<h1 class="ContentSection-title">Dados de acesso</h1>
+		<span id="userStatus" class="Btn Btn--filled Btn--narrow Btn--simple">Offline</span>
+		<p id="userInfo-name--body">Usuário</p>
+		<p id="userInfo-email">Email</p>
+		<p id="userInfo-uid">UID</p>
+
 	</div>
 
-</header>
+</section>
+
+<script src="/dist/js/jessejamespub.min.js"></script>
+
+<script>
+
+	var logo = new SvgAppend(document.getElementById('logo'), '/dist/img/svg/logo-assis.svg', false);
+
+	window.addEventListener('load', function () {
+
+		pending_init();
+
+	});
+
+	var databaseRef = firebase.database().ref('/');
+	var houseRef = databaseRef.child(pub_config.CITY);
+	var pendingAdminsRef = houseRef.child('pending_admins');
+	var adminsRef = houseRef.child('admins');
+	var usersRef = databaseRef.child('users');
+
+	function pending_init() {
+
+		pendingAdminsRef.once('value', function (snap) {
+
+			if(snap.exists()) {
+
+				document.body.classList.add('has-pending');
+
+				var pendingList = document.getElementById('pending-list');
+
+				pendingAdminsRef.on('child_added', function (pendingAdmin) {
+
+					var pAdmin = pendingAdmin.val();
+
+					var userNode = document.createElement('div');
+					userNode.className = 'PendingAdminsUser';
+					userNode.id = pAdmin.uid;
+
+					var userImageNode = document.createElement('div');
+					userImageNode.className = 'PendingAdminsUser-column PendingAdminsUser-image';
+
+					var userImageElement = document.createElement('img');
+					userImageElement.src = pAdmin.photoURL;
+					userImageElement.alt = pAdmin.displayName;
+
+					userImageNode.appendChild(userImageElement);
+					userNode.appendChild(userImageNode);
+
+					var userInfoNode = document.createElement('div');
+					userInfoNode.className = 'PendingAdminsUser-column PendingAdminsUser-info';
+					userInfoNode.innerHTML = '<p><strong>Nome: </strong> ' + pAdmin.displayName + '</p>';
+
+					if (pendingAdmin.val().email && pendingAdmin.val().email !== '')
+						userInfoNode.innerHTML += '<p><strong>Email: </strong> ' + pAdmin.email + '</p>';
+
+					userInfoNode.innerHTML += '<p><strong>UID: </strong> ' + pAdmin.uid + '</p>';
+					userInfoNode.innerHTML += '<p><strong>Data da requisição: </strong> ' + pAdmin.datetime + '</p>';
+
+					userNode.appendChild(userInfoNode);
+
+					var userControlNode = document.createElement('div');
+					userControlNode.className = 'PendingAdminsUser-column PendingAdminsUser-control';
+
+					var aceitarButtonElement = document.createElement('button');
+					aceitarButtonElement.className = 'Btn Btn--narrow Btn--filled Btn--success';
+					aceitarButtonElement.textContent = 'Aceitar';
+					aceitarButtonElement.dataset.id = pAdmin.uid;
+					aceitarButtonElement.addEventListener('click', function() {
+						if(confirm('Conceder privilégios administrativos para este usuário?')) {
+							acceptPendingAdmin(this.dataset.id);
+						}
+					});
+
+					var excluirButtonElement = document.createElement('button');
+					excluirButtonElement.className = 'Btn Btn--narrow Btn--filled Btn--error';
+					excluirButtonElement.textContent = 'Excluir';
+					excluirButtonElement.dataset.id = pAdmin.uid;
+					excluirButtonElement.addEventListener('click', function() {
+						if(confirm('Rejeitar requisição de privilégios administrativos para este usuário?')) {
+							removePendingAdmin(this.dataset.id);
+						}
+					});
+
+					userControlNode.appendChild(aceitarButtonElement);
+					userControlNode.appendChild(excluirButtonElement);
+
+					userNode.appendChild(userControlNode);
+					pendingList.appendChild(userNode);
+
+				});
+
+
+
+				pendingAdminsRef.on('child_removed', function (pendingAdmin) {
+					var el = document.getElementById(pendingAdmin.val().uid);
+					var old = el.parentNode.removeChild(el);
+				});
+
+			}
+
+		});
+
+	}
+
+	function removePendingAdmin (uid) {
+
+		/* remove pending admin node */
+		pendingAdminsRef.child(uid).remove();
+
+	}
+
+	function acceptPendingAdmin (uid) {
+
+		/* add user uid to admin node */
+		var aceitar = pendingAdminsRef.orderByChild('uid').equalTo(uid);
+		aceitar.on('child_added', function(snap) {
+
+			adminsRef.child(snap.val().uid).set({
+				'uid': snap.val().uid,
+				'datetime': new Date().toLocaleString()
+			}, function(error) {
+
+				if (error) {
+					console.log(error);
+					console.log('Não foi possível adicionar os privilégios do usuário.');
+				} else {
+					removePendingAdmin(uid);
+				}
+
+			});
+
+		});
+
+	}
+
+</script>
 
 </body>
 
