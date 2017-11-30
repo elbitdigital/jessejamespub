@@ -35,6 +35,8 @@
 
 	var pub_config = {
 		CITY: 'ourinhos',
+		CITY_DISPlAY: 'Ourinhos',
+		PUB_FULLNAME: 'Jesse James Pub Ourinhos',
 		PAGE_ID: 418573041848314,
 		APP_TOKEN: '1503099946449554|15VNIZhrGxhpkXDF-6CTQF1B_AE'
 	};
@@ -122,9 +124,12 @@
 		display: none;
 	}
 
-	.is-online #logout,
-	.has-pending #pending-admins {
+	.is-online #logout {
 		display: inline-block;
+	}
+
+	.has-pending #pending-admins {
+		display: block;
 	}
 
 </style>
@@ -202,7 +207,7 @@
 		display: -ms-flexbox;
 		display: -webkit-flex;
 		display: flex;
-		min-height: 100%;
+		/*min-height: 100%;*/
 		margin: 0;
 	}
 
@@ -297,75 +302,6 @@
 		margin: 1em;
 	}
 
-	.Button--narrow {
-		background-color: #03a9f4;
-		border: none;
-		border-radius: 2px;
-		color: #ffffff;
-		font-weight: 700;
-		padding: .25em .5em;
-		-webkit-transition: background .3s ease-in-out;
-		-moz-transition: background .3s ease-in-out;
-		-ms-transition: background .3s ease-in-out;
-		-o-transition: background .3s ease-in-out;
-		transition: background .3s ease-in-out;
-		text-transform: uppercase;
-	}
-
-	.Button--narrow:focus,
-	.Button--narrow:hover {
-		background-color: #81d4fa;
-		cursor: pointer;
-		-webkit-transition: background .3s ease-in-out;
-		-moz-transition: background .3s ease-in-out;
-		-ms-transition: background .3s ease-in-out;
-		-o-transition: background .3s ease-in-out;
-		transition: background .3s ease-in-out;
-	}
-
-	.Button--narrow:active {
-		background-color: #039be5;
-	}
-
-	.Button--simple {
-		background-color: #585858;
-	}
-
-	.Button--simple:focus,
-	.Button--simple:hover {
-		background-color: #bdbdbd;
-	}
-
-	.Button--simple:active {
-		background-color: #585858;
-	}
-
-	.Button--alert {
-		background-color: #F44336;
-	}
-
-	.Button--alert:focus,
-	.Button--alert:hover {
-		background-color: #EF9A9A;
-	}
-
-	.Button--alert:active {
-		background-color: #E53935;
-	}
-
-	.Button--success {
-		background-color: #43A047;
-	}
-
-	.Button--success:focus,
-	.Button--success:hover {
-		background-color: #A5D6A7;
-	}
-
-	.Button--success:active {
-		background-color: #43A047;
-	}
-
 </style>
 
 <style>
@@ -458,7 +394,7 @@
 			<div class="HeaderAdmin">
 
 				<div id="logo" class="HeaderAdmin-logo">
-					<!-- SVG logo-ourinhos -->
+					<!-- SVG logo -->
 				</div>
 
 				<div class="HeaderAdmin-info">
@@ -467,12 +403,12 @@
 
 				<div class="HeaderAdmin-buttons">
 
-					<a href="/ourinhos/admin/" class="HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-home"></span> Dashboard</a>
-					<a href="/ourinhos/admin/agenda.html" class="HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-calendar"></span> Eventos</a>
-					<a href="/ourinhos/admin/galeria.html" class="HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-camera"></span> Álbuns</a>
+					<a href="/admin/" class="pubInfo-urlPrepend HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-home"></span> Dashboard</a>
+					<a href="/admin/agenda.html" class="pubInfo-urlPrepend HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-calendar"></span> Eventos</a>
+					<a href="/admin/galeria.html" class="pubInfo-urlPrepend HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-camera"></span> Álbuns</a>
 
-					<a href="/ourinhos" class="HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-beer-1"></span> Ourinhos</a>
-					<a id="logout" href="/ourinhos/admin/logout" class="HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow Btn--cancel"><span class="icon-logout"></span>Sair</a>
+					<a href="/" class="pubInfo-urlPrepend HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-beer-1"></span> <span class="pubInfo-cityDisplay"></span></a>
+					<a id="logout" href="/admin/logout" class="pubInfo-urlPrepend HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow Btn--cancel"><span class="icon-logout"></span>Sair</a>
 
 				</div>
 
@@ -489,7 +425,7 @@
 	<div class="Content Content--admin f-marrom-couro--darkest">
 
 		<h1 class="Content-title">Dashboard</h1>
-		<h2 class="Content-subtitle">Painel administrativo - Jesse James Ourinhos</h2>
+		<h2 class="Content-subtitle">Painel administrativo - <span class="pubInfo-fullName"></span></h2>
 
 		<div id="pending-admins" class="PendingAdmins">
 
@@ -514,21 +450,152 @@
 
 <script>
 
-	var logo = new SvgAppend(document.getElementById('logo'), '/dist/img/svg/logo-ourinhos.svg', false);
+	var logo = new SvgAppend(document.getElementById('logo'), '/dist/img/svg/logo-' + pub_config.CITY + '.svg', false);
 
 	window.addEventListener('load', function () {
+
+		locate_pub();
 		pending_init();
+
 	});
+
+	function locate_pub() {
+
+		document.title = document.title + ' ' + pub_config.CITY_DISPlAY;
+
+		var urlPrepend = document.querySelectorAll('.pubInfo-urlPrepend');
+		for (var a = 0; a < urlPrepend.length; a++) {
+			urlPrepend[a].href = '/' + pub_config.CITY + urlPrepend[a].getAttribute("href");
+		}
+
+		var fullName = document.querySelectorAll('.pubInfo-fullName');
+		for (var b = 0; b < fullName.length; b++) {
+			fullName[b].textContent = pub_config.PUB_FULLNAME;
+		}
+
+		var cityDisplay = document.querySelectorAll('.pubInfo-cityDisplay');
+		for (var c = 0; c < cityDisplay.length; c++) {
+			cityDisplay[c].textContent = pub_config.CITY_DISPlAY;
+		}
+
+	}
+
+	var databaseRef = firebase.database().ref('/');
+	var houseRef = databaseRef.child(pub_config.CITY);
+	var pendingAdminsRef = houseRef.child('pending_admins');
+	var adminsRef = houseRef.child('admins');
+	var usersRef = databaseRef.child('users');
 
 	function pending_init() {
 
-		var databaseRef = firebase.database().ref('/');
-		var houseRef = databaseRef.child(pub_config.CITY);
-		var pendingAdminsRef = houseRef.child('pending_admins');
-
 		pendingAdminsRef.once('value', function (snap) {
 
-			console.log(snap.exists());
+			if(snap.exists()) {
+
+				document.body.classList.add('has-pending');
+
+				var pendingList = document.getElementById('pending-list');
+
+				pendingAdminsRef.on('child_added', function (pendingAdmin) {
+
+					var pAdmin = pendingAdmin.val();
+
+					var userNode = document.createElement('div');
+					userNode.className = 'PendingAdminsUser';
+					userNode.id = pAdmin.uid;
+
+					var userImageNode = document.createElement('div');
+					userImageNode.className = 'PendingAdminsUser-column PendingAdminsUser-image';
+
+					var userImageElement = document.createElement('img');
+					userImageElement.src = pAdmin.photoURL;
+					userImageElement.alt = pAdmin.displayName;
+
+					userImageNode.appendChild(userImageElement);
+					userNode.appendChild(userImageNode);
+
+					var userInfoNode = document.createElement('div');
+					userInfoNode.className = 'PendingAdminsUser-column PendingAdminsUser-info';
+					userInfoNode.innerHTML = '<p><strong>Nome: </strong> ' + pAdmin.displayName + '</p>';
+
+					if (pendingAdmin.val().email && pendingAdmin.val().email !== '')
+						userInfoNode.innerHTML += '<p><strong>Email: </strong> ' + pAdmin.email + '</p>';
+
+					userInfoNode.innerHTML += '<p><strong>UID: </strong> ' + pAdmin.uid + '</p>';
+					userInfoNode.innerHTML += '<p><strong>Data da requisição: </strong> ' + pAdmin.datetime + '</p>';
+
+					userNode.appendChild(userInfoNode);
+
+					var userControlNode = document.createElement('div');
+					userControlNode.className = 'PendingAdminsUser-column PendingAdminsUser-control';
+
+					var aceitarButtonElement = document.createElement('button');
+					aceitarButtonElement.className = 'Btn Btn--narrow Btn--filled Btn--success';
+					aceitarButtonElement.textContent = 'Aceitar';
+					aceitarButtonElement.dataset.id = pAdmin.uid;
+					aceitarButtonElement.addEventListener('click', function() {
+						if(confirm('Conceder privilégios administrativos para este usuário?')) {
+							acceptPendingAdmin(this.dataset.id);
+						}
+					});
+
+					var excluirButtonElement = document.createElement('button');
+					excluirButtonElement.className = 'Btn Btn--narrow Btn--filled Btn--error';
+					excluirButtonElement.textContent = 'Excluir';
+					excluirButtonElement.dataset.id = pAdmin.uid;
+					excluirButtonElement.addEventListener('click', function() {
+						if(confirm('Rejeitar requisição de privilégios administrativos para este usuário?')) {
+							removePendingAdmin(this.dataset.id);
+						}
+					});
+
+					userControlNode.appendChild(aceitarButtonElement);
+					userControlNode.appendChild(excluirButtonElement);
+
+					userNode.appendChild(userControlNode);
+					pendingList.appendChild(userNode);
+
+				});
+
+
+
+				pendingAdminsRef.on('child_removed', function (pendingAdmin) {
+					var el = document.getElementById(pendingAdmin.val().uid);
+					var old = el.parentNode.removeChild(el);
+				});
+
+			}
+
+		});
+
+	}
+
+	function removePendingAdmin (uid) {
+
+		/* remove pending admin node */
+		pendingAdminsRef.child(uid).remove();
+
+	}
+
+	function acceptPendingAdmin (uid) {
+
+		/* add user uid to admin node */
+		var aceitar = pendingAdminsRef.orderByChild('uid').equalTo(uid);
+		aceitar.on('child_added', function(snap) {
+
+			adminsRef.child(snap.val().uid).set({
+				'uid': snap.val().uid,
+				'datetime': new Date().toLocaleString()
+			}, function(error) {
+
+				if (error) {
+					console.log(error);
+					console.log('Não foi possível adicionar os privilégios do usuário.');
+				} else {
+					removePendingAdmin(uid);
+				}
+
+			});
 
 		});
 

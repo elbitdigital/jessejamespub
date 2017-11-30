@@ -35,6 +35,8 @@
 
 	var pub_config = {
 		CITY: 'assis',
+		CITY_DISPlAY: 'Assis',
+		PUB_FULLNAME: 'Jesse James Pub Assis',
 		PAGE_ID: 1586666258259861,
 		APP_TOKEN: '146544439255115|3_8Ip3wrGqx-BfnrEVVRhJeUpLA'
 	};
@@ -205,7 +207,7 @@
 		display: -ms-flexbox;
 		display: -webkit-flex;
 		display: flex;
-		min-height: 100%;
+		/*min-height: 100%;*/
 		margin: 0;
 	}
 
@@ -392,7 +394,7 @@
 			<div class="HeaderAdmin">
 
 				<div id="logo" class="HeaderAdmin-logo">
-					<!-- SVG logo-assis -->
+					<!-- SVG logo -->
 				</div>
 
 				<div class="HeaderAdmin-info">
@@ -401,12 +403,12 @@
 
 				<div class="HeaderAdmin-buttons">
 
-					<a href="/assis/admin/" class="HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-home"></span> Dashboard</a>
-					<a href="/assis/admin/agenda.html" class="HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-calendar"></span> Eventos</a>
-					<a href="/assis/admin/galeria.html" class="HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-camera"></span> Álbuns</a>
+					<a href="/admin/" class="pubInfo-urlPrepend HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-home"></span> Dashboard</a>
+					<a href="/admin/agenda.html" class="pubInfo-urlPrepend HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-calendar"></span> Eventos</a>
+					<a href="/admin/galeria.html" class="pubInfo-urlPrepend HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-camera"></span> Álbuns</a>
 
-					<a href="/assis" class="HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-beer-1"></span> Assis</a>
-					<a id="logout" href="/assis/admin/logout" class="HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow Btn--cancel"><span class="icon-logout"></span>Sair</a>
+					<a href="/" class="pubInfo-urlPrepend HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-beer-1"></span> <span class="pubInfo-cityDisplay"></span></a>
+					<a id="logout" href="/admin/logout" class="pubInfo-urlPrepend HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow Btn--cancel"><span class="icon-logout"></span>Sair</a>
 
 				</div>
 
@@ -423,36 +425,14 @@
 	<div class="Content Content--admin f-marrom-couro--darkest">
 
 		<h1 class="Content-title">Dashboard</h1>
-		<h2 class="Content-subtitle">Painel administrativo - Jesse James Assis</h2>
+		<h2 class="Content-subtitle">Painel administrativo - <span class="pubInfo-fullName"></span></h2>
 
 		<div id="pending-admins" class="PendingAdmins">
 
 			<h1 class="ContentSection-title">Requisições de acesso administrativo</h1>
 			<p>Os seguintes usuários estão requisitando acesso administrativo para este painel:</p>
 
-			<div id="pending-list">
-
-				<!--<div class="PendingAdminsUser">-->
-
-					<!--<div class="PendingAdminsUser-column PendingAdminsUser-image">-->
-						<!--<img src="https://scontent.xx.fbcdn.net/v/t1.0-1/p100x100/15095486_211126649330767_304312906854601921_n.jpg?oh=bcf457f7e25a18117087f552328f2eef&oe=5A8F59A9" alt="Foto usuário">-->
-					<!--</div>-->
-
-					<!--<div class="PendingAdminsUser-column PendingAdminsUser-info">-->
-						<!--<p><strong>Nome: </strong> Rafael Spoladore</p>-->
-						<!--<p><strong>Email: </strong> rafael@kukoala.com</p>-->
-						<!--<p><strong>UID: </strong> gSBIG6dkVDax0sUbQM7Uiznlrgd2</p>-->
-						<!--<p><strong>Data da requisição: </strong> 28/11/2017 17:34:18</p>-->
-					<!--</div>-->
-
-					<!--<div class="PendingAdminsUser-column PendingAdminsUser-control">-->
-						<!--<button class="Btn Btn&#45;&#45;narrow Btn&#45;&#45;filled Btn&#45;&#45;success">Aceitar</button>-->
-						<!--<button class="Btn Btn&#45;&#45;narrow Btn&#45;&#45;filled Btn&#45;&#45;cancel">Excluir</button>-->
-					<!--</div>-->
-
-				<!--</div>-->
-
-			</div>
+			<div id="pending-list"></div>
 
 		</div>
 
@@ -470,13 +450,35 @@
 
 <script>
 
-	var logo = new SvgAppend(document.getElementById('logo'), '/dist/img/svg/logo-assis.svg', false);
+	var logo = new SvgAppend(document.getElementById('logo'), '/dist/img/svg/logo-' + pub_config.CITY + '.svg', false);
 
 	window.addEventListener('load', function () {
 
+		locate_pub();
 		pending_init();
 
 	});
+
+	function locate_pub() {
+
+		document.title = document.title + ' ' + pub_config.CITY_DISPlAY;
+
+		var urlPrepend = document.querySelectorAll('.pubInfo-urlPrepend');
+		for (var a = 0; a < urlPrepend.length; a++) {
+			urlPrepend[a].href = '/' + pub_config.CITY + urlPrepend[a].getAttribute("href");
+		}
+
+		var fullName = document.querySelectorAll('.pubInfo-fullName');
+		for (var b = 0; b < fullName.length; b++) {
+			fullName[b].textContent = pub_config.PUB_FULLNAME;
+		}
+
+		var cityDisplay = document.querySelectorAll('.pubInfo-cityDisplay');
+		for (var c = 0; c < cityDisplay.length; c++) {
+			cityDisplay[c].textContent = pub_config.CITY_DISPlAY;
+		}
+
+	}
 
 	var databaseRef = firebase.database().ref('/');
 	var houseRef = databaseRef.child(pub_config.CITY);
