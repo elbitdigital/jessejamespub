@@ -69,6 +69,8 @@
 								userStatus.textContent = 'Online';
 								userStatus.classList.add('Btn--success');
 								document.body.classList.add('is-online');
+							} else {
+								window.location.href = '/' + pub_config.CITY + '/admin/logout';
 							}
 
 						}).catch(function (err) {
@@ -331,7 +333,7 @@
 		justify-content: center;
 		width: 100%;
 		max-width: 600px;
-		padding: 0 .5em;
+		padding: 1em .5em;
 		margin: .5em 0;
 
 		/*background-color: #ebc373;*/

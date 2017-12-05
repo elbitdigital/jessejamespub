@@ -35,6 +35,8 @@
 
 	var pub_config = {
 		CITY: 'assis',
+		CITY_DISPlAY: 'Assis',
+		PUB_FULLNAME: 'Jesse James Pub Assis',
 		PAGE_ID: 1586666258259861,
 		APP_TOKEN: '146544439255115|3_8Ip3wrGqx-BfnrEVVRhJeUpLA'
 	};
@@ -246,6 +248,17 @@
 		width: 100%;
 		margin: .5em 0;
 		border-bottom: 1px solid black;
+	}
+
+	#gallery-messages {
+		display: none;
+	}
+
+	#gallery-messages.is-updated {
+		display: block;
+		background-color: rgba(76,175,80, .4);
+		border: 2px solid #1B5E20;
+		padding: .5em .5em 1em;
 	}
 
 	@media (min-width: 48em) {
@@ -506,7 +519,7 @@
 			<div class="HeaderAdmin">
 
 				<div id="logo" class="HeaderAdmin-logo">
-					<!-- SVG logo-assis -->
+					<!-- SVG logo -->
 				</div>
 
 				<div class="HeaderAdmin-info">
@@ -515,12 +528,12 @@
 
 				<div class="HeaderAdmin-buttons">
 
-					<a href="/assis/admin/" class="HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-home"></span> Dashboard</a>
-					<a href="/assis/admin/agenda.html" class="HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-calendar"></span> Eventos</a>
-					<a href="/assis/admin/galeria.html" class="HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-camera"></span> Álbuns</a>
+					<a href="/admin/" class="pubInfo-urlPrepend HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-home"></span> Dashboard</a>
+					<a href="/admin/agenda.html" class="pubInfo-urlPrepend HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-calendar"></span> Eventos</a>
+					<a href="/admin/galeria.html" class="pubInfo-urlPrepend HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-camera"></span> Álbuns</a>
 
-					<a href="/assis" class="HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-beer-1"></span> Assis</a>
-					<a id="logout" href="/assis/admin/logout" class="HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow Btn--cancel"><span class="icon-logout"></span>Sair</a>
+					<a href="/" class="pubInfo-urlPrepend HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-beer-1"></span> Assis</a>
+					<a id="logout" href="/admin/logout" class="pubInfo-urlPrepend HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow Btn--cancel"><span class="icon-logout"></span>Sair</a>
 
 				</div>
 
@@ -536,15 +549,15 @@
 
 	<div class="Content Content--admin f-marrom-couro--darkest">
 
-		<h1 class="Content-title">Galeria</h1>
-		<h2 class="Content-subtitle">Gerenciamento de álbuns - Jesse James Assis</h2>
+		<h1 class="Content-title">Galeria - <span class="pubInfo-cityDisplay"></span></h1>
+		<h2 class="Content-subtitle">Gerenciamento de álbuns - <span class="pubInfo-fullName"></span></h2>
 
 		<p>Os álbuns listados nesta página são recebidos e sincronizados com os álbuns das respectivas páginas no Facebook das franquias.</p>
 		<p>Os álbuns habilitados são exibidos publicamente na página da franquia (os 3 mais recentes na página inicial e os 24 mais recentes na página da galeria).</p>
 
 		<button id="gallery-rebase" class="Content-button Btn Btn--primary Btn--filled">Reiniciar álbums</button>
 		<button id="gallery-update" class="Content-button Btn Btn--primary Btn--filled">Atualizar álbums</button>
-		<a href="/assis/galeria" target="_blank" class="Content-button Btn Btn--primary">Ir para galeria</a>
+		<a href="/galeria" target="_blank" class="pubInfo-urlPrepend Content-button Btn Btn--primary">Ir para galeria</a>
 
 		<div id="gallery-error"></div>
 
@@ -570,7 +583,7 @@
 
 <script>
 
-	var logo = new SvgAppend(document.getElementById('logo'), '/dist/img/svg/logo-assis.svg', false);
+	var logo = new SvgAppend(document.getElementById('logo'), '/dist/img/svg/logo-' + pub_config.CITY + '.svg', false);
 
 	var databaseRef = firebase.database().ref('/');
 	var houseRef = databaseRef.child(pub_config.CITY);
@@ -600,9 +613,31 @@
 			updateDatabase();
 		});
 
+		locate_pub();
 		galleryInit();
 
 	});
+
+	function locate_pub() {
+
+		document.title = document.title + ' ' + pub_config.CITY_DISPlAY;
+
+		var urlPrepend = document.querySelectorAll('.pubInfo-urlPrepend');
+		for (var a = 0; a < urlPrepend.length; a++) {
+			urlPrepend[a].href = '/' + pub_config.CITY + urlPrepend[a].getAttribute("href");
+		}
+
+		var fullName = document.querySelectorAll('.pubInfo-fullName');
+		for (var b = 0; b < fullName.length; b++) {
+			fullName[b].textContent = pub_config.PUB_FULLNAME;
+		}
+
+		var cityDisplay = document.querySelectorAll('.pubInfo-cityDisplay');
+		for (var c = 0; c < cityDisplay.length; c++) {
+			cityDisplay[c].textContent = pub_config.CITY_DISPlAY;
+		}
+
+	}
 
 	/**
 	 * Initialize the gallery behavior, listing all persisted albums at the database ref to the
@@ -1138,6 +1173,7 @@
 
 			if (page_albums.length > database_albums.length) {
 				var msg = document.getElementById('gallery-messages');
+				msg.classList.add('is-updated');
 				msg.innerHTML = '<h1 class="ContentSection-title">Novos álbuns adicionados na página!</h1>';
 				if (saveNewAsDisabled) {
 					msg.innerHTML += '<p><strong>Habilite os álbuns que foram adicionados recentemente para que se tornem visíveis no site.</strong></p>';

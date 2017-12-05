@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <meta charset="UTF-8">
-<title>Agenda | Ourinhos | Jesse James Pub</title>
+<title>Agenda | Jesse James Pub</title>
 <meta name="viewport"
       content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
 
@@ -14,17 +14,129 @@
 <meta name="application-name" content="Jesse James Pub">
 <meta name="theme-color" content="#ebc373">
 
-<script src="../../dist/js/villa.min.js"></script>
+<script src="/dist/js/villa.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700" rel="stylesheet">
-<link rel="stylesheet" href="../../dist/css/villa.min.css"/>
-<link rel="stylesheet" href="../../dist/css/jessejamespub.min.css"/>
+<link rel="stylesheet" href="/dist/css/villa.min.css"/>
+<link rel="stylesheet" href="/dist/css/jessejamespub.min.css"/>
 <!--[if lt IE 9]>
-<link rel="stylesheet" type="text/css" href="../../dist/css/material-colors.css"/>
-<link rel="stylesheet" type="text/css" href="../../dist/css/villa-cross.min.css"/>
-<script src="../../dist/js/html5shiv.js"></script>
-<script src="../../dist/js/html5shiv-printshiv.js"></script>
-<script src="../../dist/js/classList.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/dist/css/material-colors.css"/>
+<link rel="stylesheet" type="text/css" href="/dist/css/villa-cross.min.css"/>
+<script src="/dist/js/html5shiv.js"></script>
+<script src="/dist/js/html5shiv-printshiv.js"></script>
+<script src="/dist/js/classList.min.js"></script>
 <![endif]-->
+
+<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-storage.js"></script>
+<script src="/dist/js/firebase.js"></script>
+
+<script>
+
+	var pub_config = {
+		CITY: 'ourinhos',
+		CITY_DISPlAY: 'Ourinhos',
+		PUB_FULLNAME: 'Jesse James Pub Ourinhos',
+		PAGE_ID: 418573041848314,
+		APP_TOKEN: '1503099946449554|15VNIZhrGxhpkXDF-6CTQF1B_AE'
+	};
+
+	initApp = function () {
+
+		firebase.auth().onAuthStateChanged(function (user) {
+
+			var databaseRef = firebase.database().ref('/');
+			var usersRef = databaseRef.child('users');
+			var houseRef = databaseRef.child(pub_config.CITY);
+			var adminsRef = houseRef.child('admins');
+
+			if (user) {
+
+				usersRef.child(user.uid).once('value').then(function (snapshot) {
+
+					if (snapshot.exists()) {
+
+						var uid = snapshot.child('uid').val();
+
+						adminsRef.child(uid).once('value').then(function (snapshot) {
+
+							if (snapshot.exists()) {
+								document.getElementById('userInfo-name').textContent = "Usuário: " + user.displayName;
+								document.body.classList.add('is-online');
+							}
+
+						}).catch(function (err) {
+
+							console.log('Você não tem permissão de administrador: ' + err);
+
+							setTimeout(function() {
+								window.location.href = '/' + pub_config.CITY + '/admin/logout';
+							}, 3000);
+
+						});
+
+					} else {
+
+						window.location.href = '/' + pub_config.CITY + '/admin/logout';
+
+					}
+
+				}).catch(function (err) {
+
+					console.log('Algo de errado não está certo: ' + err);
+					window.location.href = '/' + pub_config.CITY + '/admin/logout';
+
+				});
+
+			} else {
+
+//				document.getElementById('account-details').textContent = 'null';
+
+			}
+
+		}, function (error) {
+
+			console.log(error);
+
+		});
+	};
+
+	window.addEventListener('load', function () {
+		initApp();
+	});
+
+	if (typeof localStorage["firebaseui::rememberedAccounts"] == "undefined") {
+		window.location.href = "/" + pub_config.CITY + "/admin/login";
+	}
+
+</script>
+
+<style>
+
+	#logout {
+		display: none;
+	}
+
+	.is-online #logout {
+		display: inline-block;
+	}
+
+</style>
+
+<style>
+
+	.Body {
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		min-height: 100%;
+		margin: 0;
+	}
+
+</style>
 
 <style>
 
@@ -46,7 +158,7 @@
 	}
 
 	.HeaderAdmin-logo {
-		margin-bottom: 1em;
+		margin-bottom: .5em;
 		display: block;
 	}
 
@@ -54,52 +166,20 @@
 		max-width: 10em;
 	}
 
+	.HeaderAdmin-buttons {
+		/*margin: .25em;*/
+	}
+
 	.HeaderAdmin-button {
 		margin-bottom: .25em;
 	}
 
-	.HeaderAdmin-toggle {
-		-webkit-touch-callout: none;
-		-webkit-user-select: none;
-		-moz-user-select: none;
-		-ms-user-select: none;
-		user-select: none;
-		cursor: pointer;
-		padding: .5em;
-		border-radius: 2px;
+	.HeaderAdmin-info {
+		font-size: .875em;
+		font-weight: bold;
+		text-transform: uppercase;
+		margin-bottom: .5em;
 	}
-
-	.HeaderAdmin-toggle .toggle-text {
-		display: none;
-	}
-
-	.HeaderAdmin-toggle:hover {
-		background-color: #301c09;
-	}
-
-	.HeaderAdmin-toggle .will-close {
-		display: none;
-	}
-
-	.HeaderAdmin-toggle.is-open .will-close {
-		display: inline-block;
-	}
-
-	.HeaderAdmin-toggle.is-open .will-open {
-		display: none;
-	}
-
-	@media (min-width: 48em) {
-
-		.HeaderAdmin-toggle .toggle-text {
-			display: inline-block;
-		}
-
-	}
-
-</style>
-
-<style>
 
 	.Header--admin .HeaderUpper-inner {
 		padding: 1em .5em;
@@ -109,6 +189,21 @@
 		-webkit-box-shadow: 0 0 10px 0 #000000;
 		box-shadow: 0 0 10px 0 #000000;
 	}
+
+	.HeaderUpper-background {
+		background-color: #301c09;
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-image: url("/dist/img/svg/background-madeira-escovada.svg");
+	}
+
+</style>
+
+<style>
 
 	.Body {
 		display: -webkit-box;
@@ -132,69 +227,8 @@
 
 	}
 
-	.Sidebar {
-		flex: 0 0 250px;
-		-webkit-box-shadow: 3px 0 7px -3px #000000;
-		box-shadow: 3px 0 7px -3px #000000;
-		-webkit-transition: all .3s ease;
-		-moz-transition: all .3s ease;
-		-ms-transition: all .3s ease;
-		-o-transition: all .3s ease;
-		transition: all .3s ease;
-	}
-
-	.Sidebar.is-hide {
-		margin-left: -250px;
-		box-shadow: none;
-	}
-
-	.Sidebar-title {
-		font-size: 1.5em;
-		margin: .5em;
-	}
-
 	.Content {
 		flex: 1 1;
-	}
-
-</style>
-
-
-<style>
-
-	.SidebarList {
-
-	}
-
-	.SidebarList-item {
-		-webkit-transition: background .2s ease;
-		-moz-transition: background .2s ease;
-		-ms-transition: background .2s ease;
-		-o-transition: background .2s ease;
-		transition: background .2s ease;
-	}
-
-	.SidebarList-item.is-current,
-	.SidebarList-item:hover {
-		background-color: #f2d9a7;
-		color: #301c09;
-	}
-
-	.SidebarList-item-link {
-		border-bottom: 3px solid #301c09;
-		display: inline-block;
-		width: 100%;
-		padding: .5em;
-	}
-
-	.SidebarList-item p {
-		display: inline-block;
-		font-weight: 600;
-	}
-
-	.SidebarList-item span {
-		padding: .25em .5em;
-		font-size: 1.125em;
 	}
 
 </style>
@@ -254,12 +288,20 @@
 		flex-flow: row wrap;
 		-webkit-align-items: center;
 		align-items: center;
-		-webkit-justify-content: space-between;
-		justify-content: space-between;
+		-webkit-justify-content: flex-start;
+		justify-content: flex-start;
 	}
 
 	.Schedule-addNewEventButton {
 		cursor: pointer;
+	}
+
+	@media (min-width: 48em) {
+
+		.Schedule-list {
+			/*padding: 0 1em;*/
+		}
+
 	}
 
 </style>
@@ -267,22 +309,22 @@
 <style>
 
 	.Event {
-		/*font-family: 'Roboto', sans-serif;*/
-		/*display: -webkit-box;*/
-		/*display: -moz-box;*/
-		/*display: -ms-flexbox;*/
-		/*display: -webkit-flex;*/
-		/*display: flex;*/
-		/*width: 100%;*/
-		/* max-height: 500px; */
-		/*-webkit-flex-flow: column;*/
-		/*flex-flow: column;*/
+		font-family: 'Roboto', sans-serif;
+		display: -webkit-box;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: -webkit-flex;
+		display: flex;
+		width: 100%;
+		max-height: 500px;
+		-webkit-flex-flow: column;
+		flex-flow: column;
 		/*margin-right: 1em;*/
 
 		background-color: #7d381b;
 		min-width: 300px;
 		/*margin-bottom: 1em;*/
-		margin: 5px 0;
+		margin: 5px 5px 5px 0;
 	}
 
 	.EventFooter {
@@ -420,6 +462,11 @@
 	/*}*/
 
 
+	.Event-headerImage,
+	.EventContent {
+		flex: auto;
+	}
+
 	.Event-headerImage {
 		-webkit-align-items: center;
 		align-items: center;
@@ -438,8 +485,9 @@
 		display: -webkit-flex;
 		display: flex;
 		/*min-height: 350px;*/
-		height: 15em;
-		height: calc(100vw - 2em);
+		min-height: 150px;
+		/*height: calc(100vw);*/
+		height: 100vw;
 		-webkit-justify-content: center;
 		justify-content: center;
 		margin-bottom: 1rem;
@@ -477,12 +525,12 @@
 		transform: scale(1);
 	}
 
-	@media (min-width: 48em) {
+	@media (min-width: 90em) {
 
-		/*.Event {*/
-		/*width: 25em;*/
-		/*margin-right: 1em;*/
-		/*}*/
+		.Event {
+			width: 25em;
+			margin: 10px;
+		}
 
 		/*.Event-headerImage {*/
 		/*height: 350px;*/
@@ -495,25 +543,34 @@
 
 <body class="roboto marrom-poeira--lighter">
 
+<div class="bg-paper-full"></div>
+
 <div class="Header Header--admin">
 
 	<div class="HeaderUpper">
 
-		<div class="HeaderUpper-background marrom-couro--darker"></div>
+		<div class="HeaderUpper-background"></div>
 
 		<header class="HeaderUpper-inner container">
 
 			<div class="HeaderAdmin">
 
-				<div id="logo" class="HeaderAdmin-logo"></div>
+				<div id="logo" class="HeaderAdmin-logo">
+					<!-- SVG logo -->
+				</div>
+
+				<div class="HeaderAdmin-info">
+					<p><span id="userInfo-name"></span></p>
+				</div>
 
 				<div class="HeaderAdmin-buttons">
 
-					<a href="./agenda.html" class="HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-calendar"></span> Eventos</a>
-					<a href="./galeria.html" class="HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-camera"></span> Álbuns</a>
+					<a href="/admin/" class="pubInfo-urlPrepend HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-home"></span> Dashboard</a>
+					<a href="/admin/agenda.html" class="pubInfo-urlPrepend HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-calendar"></span> Eventos</a>
+					<a href="/admin/galeria.html" class="pubInfo-urlPrepend HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-camera"></span> Álbuns</a>
 
-					<a href="../" class="HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-beer-1"></span> Ourinhos</a>
-					<a href="#" class="HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow Btn--cancel"><span class="icon-logout"></span>Sair</a>
+					<a href="/" class="pubInfo-urlPrepend HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-beer-1"></span> <span class="pubInfo-cityDisplay"></span></a>
+					<a id="logout" href="/admin/logout" class="pubInfo-urlPrepend HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow Btn--cancel"><span class="icon-logout"></span>Sair</a>
 
 				</div>
 
@@ -527,153 +584,72 @@
 
 <section class="Body Body--admin">
 
-	<aside id="sidebar" class="Sidebar Sidebar--admin marrom-couro is-hide">
-
-		<h2 class="Sidebar-title">
-			<span class="icon-down-dir"></span> OURINHOS
-		</h2>
-
-		<ul class="SidebarList marrom-couro--lighter">
-
-			<li class="SidebarList-item is-current">
-
-				<a href="agenda.html" class="SidebarList-item-link">
-					<span class="icon-pin"></span>
-					<p>Eventos</p>
-				</a>
-
-			</li>
-
-			<li class="SidebarList-item">
-
-				<a href="galeria.html" class="SidebarList-item-link">
-					<span class="icon-picture"></span>
-					<p>Álbuns</p>
-				</a>
-
-			</li>
-
-			<li class="SidebarList-item">
-
-				<a href="#" class="SidebarList-item-link">
-					<span class="icon-lock"></span>
-					<p>Administradores</p>
-				</a>
-
-			</li>
-
-		</ul>
-
-	</aside>
-
 	<div class="Content Content--admin f-marrom-couro--darkest">
 
-		<h1 class="Content-title">Agenda</h1>
-		<h2 class="Content-subtitle">Gerenciamento de eventos - Jesse James Ourinhos</h2>
+		<h1 class="Content-title">Agenda - <span class="pubInfo-cityDisplay"></span></h1>
+		<h2 class="Content-subtitle">Gerenciamento de eventos - <span class="pubInfo-fullName"></span></h2>
 
-		<p>Os eventos cadastrados aqui aparecerão no topo da página inicial do site.</p>
+		<p class="Content-text">Os eventos cadastrados aqui aparecerão no topo da página inicial do site.</p>
 
-		<!--<a class="Schedule-addNewEventButton" onclick="addNewEvent()">Adicionar novo evento</a>-->
 		<button id="agenda-insert" class="Content-button Btn Btn--primary Btn--filled">Adicionar novo evento</button>
-		<a href="../agenda" class="Content-button Btn Btn--primary">Ir para agenda</a>
+		<a href="#agenda" target="_blank" class="pubInfo-urlPrepend Content-button Btn Btn--primary">Ir para agenda</a>
 
 		<div id="gallery-messages" class="Content-section"></div>
 
 		<h1 class="ContentSection-title">Eventos cadastrados</h1>
-		<div id="event-list" class="Schedule-list">
-
-			<!--<div class="Event" data-event-reference-key="-KnagjO5ZbKn-71i6-re">-->
-
-				<!--<input type="file" style="visibility: hidden;">-->
-				<!--<div class="Event-headerImage" style="background-image: url('https://firebasestorage.googleapis.com/v0/b/jessejamespub-com-br.appspot.com/o/eventImage%2FSA%CC%81BADO01.jpg?alt=media&amp;token=642b9220-729c-487f-9c95-1014643921f3');"></div>-->
-
-				<!--<input type="text" class="Event-title" placeholder="Título do evento">-->
-				<!--<input type="text" class="Event-facebookEventURL" placeholder="Link do evento (Facebook)">-->
-
-				<!--<div class="EventFooter">-->
-
-					<!--<button class="Btn Btn&#45;&#45;narrow Btn&#45;&#45;filled Btn&#45;&#45;turnoff" style="padding: 0 .5em;"><span class="icon-cancel"></span></button>-->
-
-					<!--<select name="select" class="Event-select">-->
-						<!--<option value="DOM">DOM</option>-->
-						<!--<option value="SEG">SEG</option>-->
-						<!--<option value="TER">TER</option>-->
-						<!--<option value="QUA">QUA</option>-->
-						<!--<option value="QUI">QUI</option>-->
-						<!--<option value="SEX">SEX</option>-->
-						<!--<option value="SÁB">SÁB</option>-->
-					<!--</select>-->
-
-					<!--<input type="text" class="Event-select Event-dateInput" placeholder="Dia/mês">-->
-
-					<!--<input type="checkbox" id="active" class="Event-checkbox"/>-->
-					<!--<label for="active" class="Event-activeStatus">Ativo</label>-->
-
-				<!--</div>-->
-
-			<!--</div>-->
-
-
-		</div>
+		<div id="event-list" class="Schedule-list"></div>
 
 	</div>
 
 </section>
 
-<script src="../../dist/js/jessejamespub.min.js"></script>
+<script src="/dist/js/jessejamespub.min.js"></script>
 
 <script>
 
-	var logo = new SvgAppend(document.getElementById('logo'), '../../dist/img/svg/logo-ourinhos.svg', false);
+	var logo = new SvgAppend(document.getElementById('logo'), '/dist/img/svg/logo-' + pub_config.CITY + '.svg', false);
 
-    window.addEventListener('load', function () {
-
-//        var btnMenu = document.getElementById('sidebar-toggle');
-//        btnMenu.addEventListener('click', function() {
-//            var sidebar = document.getElementById('sidebar');
-//            sidebar.classList.toggle('is-hide');
-//            this.classList.toggle('is-open');
-//        });
+	window.addEventListener('load', function () {
 
 		var btnInsert = document.getElementById('agenda-insert');
 		btnInsert.addEventListener('click', function() {
 			addNewEvent()
 		});
 
-//        if (window.innerWidth > 768) {
-//            document.getElementById('sidebar').classList.toggle('is-hide');
-//            document.getElementById('sidebar-toggle').classList.toggle('is-open');
-//        }
+		locate_pub();
+		agendaInit();
 
-         agendaInit();
+	});
 
-    });
+	function locate_pub() {
 
-</script>
+		document.title = document.title + ' ' + pub_config.CITY_DISPlAY;
 
-<script src="../../dist/js/axios.min.js"></script>
-<script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
+		var urlPrepend = document.querySelectorAll('.pubInfo-urlPrepend');
+		for (var a = 0; a < urlPrepend.length; a++) {
+			urlPrepend[a].href = '/' + pub_config.CITY + urlPrepend[a].getAttribute("href");
+		}
 
-<script>
+		var fullName = document.querySelectorAll('.pubInfo-fullName');
+		for (var b = 0; b < fullName.length; b++) {
+			fullName[b].textContent = pub_config.PUB_FULLNAME;
+		}
 
-	var config = {
-		apiKey: "AIzaSyAMTCtuJ2DyPiBx5qBHeDg_OU1KW4UzURY",
-		authDomain: "jessejamespub-com-br.firebaseapp.com",
-		databaseURL: "https://jessejamespub-com-br.firebaseio.com",
-		projectId: "jessejamespub-com-br",
-		storageBucket: "jessejamespub-com-br.appspot.com",
-		messagingSenderId: "118227352953"
-	};
-	firebase.initializeApp(config);
+		var cityDisplay = document.querySelectorAll('.pubInfo-cityDisplay');
+		for (var c = 0; c < cityDisplay.length; c++) {
+			cityDisplay[c].textContent = pub_config.CITY_DISPlAY;
+		}
 
-    var databaseRef = firebase.database().ref('/');
-    var houseRef = databaseRef.child('ourinhos');
-    var scheduleRef = houseRef.child('schedule');
-    var eventsRef = scheduleRef.child('items');
+	}
 
-    // storage ref
-    var storageRef = firebase.storage().ref();
-    var eventImageStorageRef = storageRef.child('eventImage');
+	var databaseRef = firebase.database().ref('/');
+	var houseRef = databaseRef.child(pub_config.CITY);
+	var scheduleRef = houseRef.child('schedule');
+	var eventsRef = scheduleRef.child('items');
+
+	// storage ref
+	var storageRef = firebase.storage().ref();
+	var eventImageStorageRef = storageRef.child('eventImage');
 
 	var eventListElement = document.getElementById('event-list');
 	var weekDays = ['DOM', 'SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SÁB'];
@@ -695,6 +671,12 @@
 
 		eventsRef.child(key).remove();
 
+		eventImageStorageRef.delete().then(function() {
+			console.log("Imagem removida junto com o evento");
+		}).catch(function(error) {
+			console.log("Erro ao remover a imagem junto com o evento");
+		});
+
 	}
 
 </script>
@@ -715,6 +697,21 @@
 			eventElement.dataset.eventReferenceKey = eventReferenceKey;
 			eventListElement.insertBefore(eventElement, eventListElement.firstChild);
 
+			// IMAGEM
+			var imageElement = document.createElement('div');
+			imageElement.className = 'Event-headerImage';
+			imageElement.addEventListener('click', function () {
+
+				imageFileInputElement.click();
+
+			});
+			eventRef.child('headerImageURL').on('value', function (snap) {
+
+				imageElement.style.backgroundImage = 'url("' + snap.val() + '")';
+
+			});
+			eventElement.appendChild(imageElement);
+
 			// ARQUIVO DA IMAGEM
 			var imageFileInputElement = document.createElement('input');
 			imageFileInputElement.type = 'text';
@@ -731,12 +728,14 @@
 				if (file) {
 
 					// Upload file and metadata to the object 'images/mountains.jpg'
-					var uploadTask = eventImageStorageRef.child(file.name).put(file, metadata);
+					var uploadTask = eventImageStorageRef.child(snap.key).put(file, metadata);
 
 					// Listen for state changes, errors, and completion of the upload.
 					uploadTask.on('state_changed', // or 'state_changed'
 
 						function (snapshot) {
+
+							imageElement.style.backgroundImage = 'url("/dist/img/loading.gif")';
 
 							// Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
 							var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
@@ -757,6 +756,7 @@
 						}, function (error) {
 
 							console.log('UPLOAD ERROR!');
+							imageElement.style.backgroundImage = '';
 							console.log(error.message);
 
 						}, function () {
@@ -771,21 +771,6 @@
 
 			});
 			eventElement.appendChild(imageFileInputElement);
-
-			// IMAGEM
-			var imageElement = document.createElement('div');
-			imageElement.className = 'Event-headerImage';
-			imageElement.addEventListener('click', function () {
-
-				imageFileInputElement.click();
-
-			});
-			eventRef.child('headerImageURL').on('value', function (snap) {
-
-				imageElement.style.backgroundImage = 'url("' + snap.val() + '")';
-
-			});
-			eventElement.appendChild(imageElement);
 
 			// TITULO DO EVENTO
 			var titleElement = document.createElement('input');
@@ -893,17 +878,29 @@
 			dateElement.type = 'text';
 			dateElement.className = 'Event-select Event-dateInput';
 			dateElement.placeholder = 'Dia/mês';
-			dateElement.addEventListener('input', function () {
-
-				eventRef.child('date').set(this.value);
-
+//			dateElement.addEventListener('input', function () {
+//
+//				eventRef.child('date').set(this.value);
+//
+//			});
+			dateElement.addEventListener('focusout', function () {
+				if (dateElement.dataset.valor != dateElement.value) {
+					if (/^[0-3]?[0-9][-,/\s]((jan(eiro)?)|(fev(ereiro)?)|(mar(ço)?)|(abr(il)?)|(mai(o)?)|(jun(ho)?)|(jul(ho)?)|(ago(sto)?)|(set(embro)?)|(out(ubro)?)|(nov(embro)?)|(dez(embro)?))$/gim.test(dateElement.value)) {
+						eventRef.child('date').set(dateElement.value.toUpperCase());
+					} else {
+						dateElement.value = dateElement.dataset.valor;
+					}
+				}
 			});
 			eventRef.child('date').on('value', function (snap) {
 
 				if (dateElement.value !== snap.val())
 					dateElement.value = snap.val();
 
+				dateElement.dataset.valor = snap.val();
+
 			});
+
 			eventFooterElement.appendChild(dateElement);
 
 			// EVENT STATUS CHECKBOX

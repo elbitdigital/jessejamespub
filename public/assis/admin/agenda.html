@@ -36,6 +36,8 @@
 
 	var pub_config = {
 		CITY: 'assis',
+		CITY_DISPlAY: 'Assis',
+		PUB_FULLNAME: 'Jesse James Pub Assis',
 		PAGE_ID: 1586666258259861,
 		APP_TOKEN: '146544439255115|3_8Ip3wrGqx-BfnrEVVRhJeUpLA'
 	};
@@ -502,6 +504,7 @@
 		font-weight: 900;
 		text-align: center;
 		text-transform: uppercase;
+		opacity: .3;
 		 -webkit-transition: all .6s;
 		 -moz-transition: all .6s;
 		 -ms-transition: all .6s;
@@ -521,6 +524,7 @@
 		 -ms-transform: scale(1);
 		 -o-transform: scale(1);
 		transform: scale(1);
+		opacity: .8;
 	}
 
 	@media (min-width: 90em) {
@@ -554,7 +558,7 @@
 			<div class="HeaderAdmin">
 
 				<div id="logo" class="HeaderAdmin-logo">
-					<!-- SVG logo-assis -->
+					<!-- SVG logo -->
 				</div>
 
 				<div class="HeaderAdmin-info">
@@ -563,12 +567,12 @@
 
 				<div class="HeaderAdmin-buttons">
 
-					<a href="/assis/admin/" class="HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-home"></span> Dashboard</a>
-					<a href="/assis/admin/agenda.html" class="HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-calendar"></span> Eventos</a>
-					<a href="/assis/admin/galeria.html" class="HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-camera"></span> Álbuns</a>
+					<a href="/admin/" class="pubInfo-urlPrepend HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-home"></span> Dashboard</a>
+					<a href="/admin/agenda.html" class="pubInfo-urlPrepend HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-calendar"></span> Eventos</a>
+					<a href="/admin/galeria.html" class="pubInfo-urlPrepend HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-camera"></span> Álbuns</a>
 
-					<a href="/assis" class="HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-beer-1"></span> Assis</a>
-					<a id="logout" href="/assis/admin/logout" class="HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow Btn--cancel"><span class="icon-logout"></span>Sair</a>
+					<a href="/" class="pubInfo-urlPrepend HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-beer-1"></span> <span class="pubInfo-cityDisplay"></span></a>
+					<a id="logout" href="/admin/logout" class="pubInfo-urlPrepend HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow Btn--cancel"><span class="icon-logout"></span>Sair</a>
 
 				</div>
 
@@ -584,13 +588,13 @@
 
 	<div class="Content Content--admin f-marrom-couro--darkest">
 
-		<h1 class="Content-title">Agenda</h1>
-		<h2 class="Content-subtitle">Gerenciamento de eventos - Jesse James Assis</h2>
+		<h1 class="Content-title">Agenda - <span class="pubInfo-cityDisplay"></span></h1>
+		<h2 class="Content-subtitle">Gerenciamento de eventos - <span class="pubInfo-fullName"></span></h2>
 
 		<p class="Content-text">Os eventos cadastrados aqui aparecerão no topo da página inicial do site.</p>
 
 		<button id="agenda-insert" class="Content-button Btn Btn--primary Btn--filled">Adicionar novo evento</button>
-		<a href="/assis#agenda" target="_blank" class="Content-button Btn Btn--primary">Ir para agenda</a>
+		<a href="#agenda" target="_blank" class="pubInfo-urlPrepend Content-button Btn Btn--primary">Ir para agenda</a>
 
 		<div id="gallery-messages" class="Content-section"></div>
 
@@ -605,7 +609,7 @@
 
 <script>
 
-	var logo = new SvgAppend(document.getElementById('logo'), '/dist/img/svg/logo-assis.svg', false);
+	var logo = new SvgAppend(document.getElementById('logo'), '/dist/img/svg/logo-' + pub_config.CITY + '.svg', false);
 
     window.addEventListener('load', function () {
 
@@ -614,13 +618,31 @@
 			addNewEvent()
 		});
 
+	    locate_pub();
 	    agendaInit();
 
     });
 
-</script>
+	function locate_pub() {
 
-<script>
+		document.title = document.title + ' ' + pub_config.CITY_DISPlAY;
+
+		var urlPrepend = document.querySelectorAll('.pubInfo-urlPrepend');
+		for (var a = 0; a < urlPrepend.length; a++) {
+			urlPrepend[a].href = '/' + pub_config.CITY + urlPrepend[a].getAttribute("href");
+		}
+
+		var fullName = document.querySelectorAll('.pubInfo-fullName');
+		for (var b = 0; b < fullName.length; b++) {
+			fullName[b].textContent = pub_config.PUB_FULLNAME;
+		}
+
+		var cityDisplay = document.querySelectorAll('.pubInfo-cityDisplay');
+		for (var c = 0; c < cityDisplay.length; c++) {
+			cityDisplay[c].textContent = pub_config.CITY_DISPlAY;
+		}
+
+	}
 
 	var databaseRef = firebase.database().ref('/');
 	var houseRef = databaseRef.child(pub_config.CITY);
@@ -651,6 +673,12 @@
 
 		eventsRef.child(key).remove();
 
+		eventImageStorageRef.delete().then(function() {
+			console.log("Imagem removida junto com o evento");
+		}).catch(function(error) {
+			console.log("Erro ao remover a imagem junto com o evento");
+		});
+
 	}
 
 </script>
@@ -670,6 +698,21 @@
 			eventElement.className = 'Event';
 			eventElement.dataset.eventReferenceKey = eventReferenceKey;
 			eventListElement.insertBefore(eventElement, eventListElement.firstChild);
+
+			// IMAGEM
+			var imageElement = document.createElement('div');
+			imageElement.className = 'Event-headerImage';
+			imageElement.addEventListener('click', function () {
+
+				imageFileInputElement.click();
+
+			});
+			eventRef.child('headerImageURL').on('value', function (snap) {
+
+				imageElement.style.backgroundImage = 'url("' + snap.val() + '")';
+
+			});
+			eventElement.appendChild(imageElement);
 
 			// ARQUIVO DA IMAGEM
 			var imageFileInputElement = document.createElement('input');
@@ -694,6 +737,8 @@
 
 						function (snapshot) {
 
+							imageElement.style.backgroundImage = 'url("/dist/img/loading.gif")';
+
 							// Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
 							var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
 
@@ -713,6 +758,7 @@
 						}, function (error) {
 
 							console.log('UPLOAD ERROR!');
+							imageElement.style.backgroundImage = '';
 							console.log(error.message);
 
 						}, function () {
@@ -727,21 +773,6 @@
 
 			});
 			eventElement.appendChild(imageFileInputElement);
-
-			// IMAGEM
-			var imageElement = document.createElement('div');
-			imageElement.className = 'Event-headerImage';
-			imageElement.addEventListener('click', function () {
-
-				imageFileInputElement.click();
-
-			});
-			eventRef.child('headerImageURL').on('value', function (snap) {
-
-				imageElement.style.backgroundImage = 'url("' + snap.val() + '")';
-
-			});
-			eventElement.appendChild(imageElement);
 
 			// TITULO DO EVENTO
 			var titleElement = document.createElement('input');
@@ -849,17 +880,29 @@
 			dateElement.type = 'text';
 			dateElement.className = 'Event-select Event-dateInput';
 			dateElement.placeholder = 'Dia/mês';
-			dateElement.addEventListener('input', function () {
-
-				eventRef.child('date').set(this.value);
-
+//			dateElement.addEventListener('input', function () {
+//
+//				eventRef.child('date').set(this.value);
+//
+//			});
+			dateElement.addEventListener('focusout', function () {
+				if (dateElement.dataset.valor != dateElement.value) {
+					if (/^[0-3]?[0-9][-,/\s]((jan(eiro)?)|(fev(ereiro)?)|(mar(ço)?)|(abr(il)?)|(mai(o)?)|(jun(ho)?)|(jul(ho)?)|(ago(sto)?)|(set(embro)?)|(out(ubro)?)|(nov(embro)?)|(dez(embro)?))$/gim.test(dateElement.value)) {
+						eventRef.child('date').set(dateElement.value.toUpperCase());
+					} else {
+						dateElement.value = dateElement.dataset.valor;
+					}
+				}
 			});
 			eventRef.child('date').on('value', function (snap) {
 
 				if (dateElement.value !== snap.val())
 					dateElement.value = snap.val();
 
+				dateElement.dataset.valor = snap.val();
+
 			});
+
 			eventFooterElement.appendChild(dateElement);
 
 			// EVENT STATUS CHECKBOX

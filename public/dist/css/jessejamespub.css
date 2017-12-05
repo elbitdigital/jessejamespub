@@ -2366,15 +2366,23 @@ img::-moz-selection {
 
   .FranchiseMenuList-item {
     display: inline-block;
-    /*margin: 0 .25em;*/
-    /*display: block;*/
     font-size: 1em;
     font-weight: 900;
-    padding: 0 .5em;
+    /*padding: 0 .125em;*/
     position: relative;
     text-transform: uppercase;
-    margin: 0 0 3px 0;
+    margin: 2px 0 0 0;
     text-shadow: 0 0 2px rgba(0,0,0,.2);
+  }
+
+  .FranchiseMenuList-item a {
+    padding: .25em .5em;
+    /* transition from villa.css */
+  }
+
+  .FranchiseMenuList-item:hover a {
+    border-radius: 3px;
+    color: #ebc373;
   }
 
   .FranchiseMain--internal .FranchiseMenuList--header {

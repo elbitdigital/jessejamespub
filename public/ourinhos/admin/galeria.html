@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <meta charset="UTF-8">
-<title>Galeria - Jesse James Assis</title>
+<title>Galeria | Jesse James Pub</title>
 <meta name="viewport"
       content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
 
@@ -14,17 +14,114 @@
 <meta name="application-name" content="Jesse James Pub">
 <meta name="theme-color" content="#ebc373">
 
-<script src="../../dist/js/villa.min.js"></script>
+<script src="/dist/js/villa.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700" rel="stylesheet">
-<link rel="stylesheet" href="../../dist/css/villa.min.css"/>
-<link rel="stylesheet" href="../../dist/css/jessejamespub.min.css"/>
+<link rel="stylesheet" href="/dist/css/villa.min.css"/>
+<link rel="stylesheet" href="/dist/css/jessejamespub.min.css"/>
 <!--[if lt IE 9]>
-<link rel="stylesheet" type="text/css" href="../../dist/css/material-colors.css"/>
-<link rel="stylesheet" type="text/css" href="../../dist/css/villa-cross.min.css"/>
-<script src="../../dist/js/html5shiv.js"></script>
-<script src="../../dist/js/html5shiv-printshiv.js"></script>
-<script src="../../dist/js/classList.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/dist/css/material-colors.css"/>
+<link rel="stylesheet" type="text/css" href="/dist/css/villa-cross.min.css"/>
+<script src="/dist/js/html5shiv.js"></script>
+<script src="/dist/js/html5shiv-printshiv.js"></script>
+<script src="/dist/js/classList.min.js"></script>
 <![endif]-->
+
+<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/4.2.0/firebase-database.js"></script>
+<script src="/dist/js/firebase.js"></script>
+
+<script>
+
+	var pub_config = {
+		CITY: 'ourinhos',
+		CITY_DISPlAY: 'Ourinhos',
+		PUB_FULLNAME: 'Jesse James Pub Ourinhos',
+		PAGE_ID: 418573041848314,
+		APP_TOKEN: '1503099946449554|15VNIZhrGxhpkXDF-6CTQF1B_AE'
+	};
+
+	initApp = function () {
+
+		firebase.auth().onAuthStateChanged(function (user) {
+
+			var databaseRef = firebase.database().ref('/');
+			var usersRef = databaseRef.child('users');
+			var houseRef = databaseRef.child(pub_config.CITY);
+			var adminsRef = houseRef.child('admins');
+
+			if (user) {
+
+				usersRef.child(user.uid).once('value').then(function (snapshot) {
+
+					if (snapshot.exists()) {
+
+						var uid = snapshot.child('uid').val();
+
+						adminsRef.child(uid).once('value').then(function (snapshot) {
+
+							if (snapshot.exists()) {
+								document.getElementById('userInfo-name').textContent = "Usuário: " + user.displayName;
+								document.body.classList.add('is-online');
+							}
+
+						}).catch(function (err) {
+
+							console.log('Você não tem permissão de administrador: ' + err);
+
+							setTimeout(function() {
+								window.location.href = '/' + pub_config.CITY + '/admin/logout';
+							}, 3000);
+
+						});
+
+					} else {
+
+						window.location.href = '/' + pub_config.CITY + '/admin/logout';
+
+					}
+
+				}).catch(function (err) {
+
+					console.log('Algo de errado não está certo: ' + err);
+					window.location.href = '/' + pub_config.CITY + '/admin/logout';
+
+				});
+
+			} else {
+
+//				document.getElementById('account-details').textContent = 'null';
+
+			}
+
+		}, function (error) {
+
+			console.log(error);
+
+		});
+	};
+
+	window.addEventListener('load', function () {
+		initApp();
+	});
+
+	if (typeof localStorage["firebaseui::rememberedAccounts"] == "undefined") {
+		window.location.href = "/" + pub_config.CITY + "/admin/login";
+	}
+
+</script>
+
+<style>
+
+	#logout {
+		display: none;
+	}
+
+	.is-online #logout {
+		display: inline-block;
+	}
+
+</style>
 
 <style>
 
@@ -46,7 +143,7 @@
 	}
 
 	.HeaderAdmin-logo {
-		margin-bottom: 1em;
+		margin-bottom: .5em;
 		display: block;
 	}
 
@@ -54,53 +151,44 @@
 		max-width: 10em;
 	}
 
-	.HeaderAdmin-toggle {
-		-webkit-touch-callout: none;
-		-webkit-user-select: none;
-		-moz-user-select: none;
-		-ms-user-select: none;
-		user-select: none;
-		cursor: pointer;
-		padding: .5em;
-		border-radius: 2px;
+	.HeaderAdmin-buttons {
+		/*margin: .25em;*/
 	}
 
-	.HeaderAdmin-toggle .toggle-text {
-		display: none;
+	.HeaderAdmin-button {
+		margin-bottom: .25em;
 	}
 
-	.HeaderAdmin-toggle:hover {
-		background-color: #301c09;
+	.HeaderAdmin-info {
+		font-size: .875em;
+		font-weight: bold;
+		text-transform: uppercase;
+		margin-bottom: .5em;
 	}
 
-	.HeaderAdmin-toggle .will-close {
-		display: none;
+	.Header--admin .HeaderUpper-inner {
+		padding: 1em .5em;
 	}
-
-	.HeaderAdmin-toggle.is-open .will-close {
-		display: inline-block;
-	}
-
-	.HeaderAdmin-toggle.is-open .will-open {
-		display: none;
-	}
-
-	@media (min-width: 48em) {
-
-		.HeaderAdmin-toggle .toggle-text {
-			display: inline-block;
-		}
-
-	}
-
-</style>
-
-<style>
 
 	.Header--admin {
 		-webkit-box-shadow: 0 0 10px 0 #000000;
 		box-shadow: 0 0 10px 0 #000000;
 	}
+
+	.HeaderUpper-background {
+		background-color: #301c09;
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-image: url("/dist/img/svg/background-madeira-escovada.svg");
+	}
+
+</style>
+
+<style>
 
 	.Body {
 		display: -webkit-box;
@@ -124,69 +212,8 @@
 
 	}
 
-	.Sidebar {
-		flex: 0 0 250px;
-		-webkit-box-shadow: 3px 0 7px -3px #000000;
-		box-shadow: 3px 0 7px -3px #000000;
-		-webkit-transition: all .3s ease;
-		-moz-transition: all .3s ease;
-		-ms-transition: all .3s ease;
-		-o-transition: all .3s ease;
-		transition: all .3s ease;
-	}
-
-	.Sidebar.is-hide {
-		margin-left: -250px;
-		box-shadow: none;
-	}
-
-	.Sidebar-title {
-		font-size: 1.5em;
-		margin: .5em;
-	}
-
 	.Content {
 		flex: 1 1;
-	}
-
-</style>
-
-
-<style>
-
-	.SidebarList {
-
-	}
-
-	.SidebarList-item {
-		-webkit-transition: background .2s ease;
-		-moz-transition: background .2s ease;
-		-ms-transition: background .2s ease;
-		-o-transition: background .2s ease;
-		transition: background .2s ease;
-	}
-
-	.SidebarList-item.is-current,
-	.SidebarList-item:hover {
-		background-color: #f2d9a7;
-		color: #301c09;
-	}
-
-	.SidebarList-item-link {
-		border-bottom: 3px solid #301c09;
-		display: inline-block;
-		width: 100%;
-		padding: .5em;
-	}
-
-	.SidebarList-item p {
-		display: inline-block;
-		font-weight: 600;
-	}
-
-	.SidebarList-item span {
-		padding: .25em .5em;
-		font-size: 1.125em;
 	}
 
 </style>
@@ -223,6 +250,17 @@
 		border-bottom: 1px solid black;
 	}
 
+	#gallery-messages {
+		display: none;
+	}
+
+	#gallery-messages.is-updated {
+		display: block;
+		background-color: rgba(76,175,80, .4);
+		border: 2px solid #1B5E20;
+		padding: .5em .5em 1em;
+	}
+
 	@media (min-width: 48em) {
 
 		.Content-title {
@@ -233,7 +271,6 @@
 	}
 
 </style>
-
 
 <style>
 
@@ -271,7 +308,7 @@
 <style>
 
 	.Gallery {
-		/*padding: 3em 0 2.5em;*/
+		padding: 0 0 3em;
 		text-align: center;
 	}
 
@@ -469,25 +506,34 @@
 
 <body class="roboto marrom-poeira--lighter">
 
+<div class="bg-paper-full"></div>
+
 <div class="Header Header--admin">
 
 	<div class="HeaderUpper">
 
-		<div class="HeaderUpper-background marrom-couro--darker"></div>
+		<div class="HeaderUpper-background"></div>
 
 		<header class="HeaderUpper-inner container">
 
 			<div class="HeaderAdmin">
 
-				<div id="logo" class="HeaderAdmin-logo"></div>
+				<div id="logo" class="HeaderAdmin-logo">
+					<!-- SVG logo -->
+				</div>
+
+				<div class="HeaderAdmin-info">
+					<p><span id="userInfo-name"></span></p>
+				</div>
 
 				<div class="HeaderAdmin-buttons">
 
-					<a href="./agenda.html" class="HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-calendar"></span> Eventos</a>
-					<a href="./galeria.html" class="HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-camera"></span> Álbuns</a>
+					<a href="/admin/" class="pubInfo-urlPrepend HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-home"></span> Dashboard</a>
+					<a href="/admin/agenda.html" class="pubInfo-urlPrepend HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-calendar"></span> Eventos</a>
+					<a href="/admin/galeria.html" class="pubInfo-urlPrepend HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-camera"></span> Álbuns</a>
 
-					<a href="../" class="HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-beer-1"></span> Ourinhos</a>
-					<a href="#" class="HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow Btn--cancel"><span class="icon-logout"></span>Sair</a>
+					<a href="/" class="pubInfo-urlPrepend HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow"><span class="icon-beer-1"></span> Assis</a>
+					<a id="logout" href="/admin/logout" class="pubInfo-urlPrepend HeaderAdmin-button Btn Btn-primary Btn--filled Btn--narrow Btn--cancel"><span class="icon-logout"></span>Sair</a>
 
 				</div>
 
@@ -501,241 +547,49 @@
 
 <section class="Body Body--admin">
 
-	<aside id="sidebar" class="Sidebar Sidebar--admin marrom-couro is-hide">
-
-		<h2 class="Sidebar-title">
-			<span class="icon-down-dir"></span> ASSIS
-		</h2>
-
-		<ul class="SidebarList marrom-couro--lighter">
-
-			<li class="SidebarList-item">
-
-				<a href="agenda.html" class="SidebarList-item-link">
-					<span class="icon-pin"></span>
-					<p>Eventos</p>
-				</a>
-
-			</li>
-
-			<li class="SidebarList-item is-current">
-
-				<a href="galeria.html" class="SidebarList-item-link">
-					<span class="icon-picture"></span>
-					<p>Álbuns</p>
-				</a>
-
-			</li>
-
-			<li class="SidebarList-item">
-
-				<a href="#" class="SidebarList-item-link">
-					<span class="icon-lock"></span>
-					<p>Administradores</p>
-				</a>
-
-			</li>
-
-		</ul>
-
-	</aside>
-
 	<div class="Content Content--admin f-marrom-couro--darkest">
 
-		<h1 class="Content-title">Galeria</h1>
-		<h2 class="Content-subtitle">Gerenciamento de álbuns - Jesse James Assis</h2>
+		<h1 class="Content-title">Galeria - <span class="pubInfo-cityDisplay"></span></h1>
+		<h2 class="Content-subtitle">Gerenciamento de álbuns - <span class="pubInfo-fullName"></span></h2>
 
 		<p>Os álbuns listados nesta página são recebidos e sincronizados com os álbuns das respectivas páginas no Facebook das franquias.</p>
-		<p>Os álbuns habilitados são exibidos publicamente na página da franquia (os três mais recentes na página inicial).</p>
+		<p>Os álbuns habilitados são exibidos publicamente na página da franquia (os 3 mais recentes na página inicial e os 24 mais recentes na página da galeria).</p>
 
 		<button id="gallery-rebase" class="Content-button Btn Btn--primary Btn--filled">Reiniciar álbums</button>
 		<button id="gallery-update" class="Content-button Btn Btn--primary Btn--filled">Atualizar álbums</button>
-		<a href="../galeria" class="Content-button Btn Btn--primary">Ir para galeria</a>
+		<a href="/galeria" target="_blank" class="pubInfo-urlPrepend Content-button Btn Btn--primary">Ir para galeria</a>
 
-		<div id="gallery-messages" class="Content-section">
+		<div id="gallery-error"></div>
 
-		</div>
+		<div id="gallery-messages" class="Content-section"></div>
 
 		<!--<h1 class="ContentSection-title">Álbuns modificados</h1>-->
-		<!--<div id="modified-albums" class="Gallery AlbumsGallery">-->
-
-			<!--<div class="EditorAlbum is-enabled">-->
-
-				<!--<div class="EditorAlbum-background" style="background-image: url('https://scontent.xx.fbcdn.net/v/t31.0-0/p600x600/20368996_1929509733975510_6919608120889740573_o.jpg?oh=015be32f605fd90145511454d4fd9c52&oe=5A024C8A');">-->
-
-					<!--<div class="EditorAlbum-overlay marrom-couro&#45;&#45;darkest"></div>-->
-
-				<!--</div>-->
-
-				<!--<div class="EditorAlbumContent">-->
-
-					<!--<div class="EditorAlbumInfo">-->
-
-						<!--<input class="EditorAlbumInfo-date" type="text" placeholder="DD/MM/AAAA" onclick="this.select();">-->
-						<!--<textarea class="EditorAlbumInfo-title" rows="3">Título</textarea>-->
-
-					<!--</div>-->
-
-					<!--<div class="EditorAlbumAction">-->
-
-						<!--<a href="#" target="_blank" class="Btn Btn&#45;&#45;narrow Btn&#45;&#45;filled">Ver álbum</a>-->
-						<!--<button class="Btn Btn&#45;&#45;narrow Btn&#45;&#45;filled Btn&#45;&#45;turnoff">Desabilitar</button>-->
-
-					<!--</div>-->
-
-				<!--</div>-->
-
-			<!--</div>-->
-
-		<!--</div>-->
-
-
-
-
-
+		<!--<div id="modified-albums" class="Gallery AlbumsGallery"></div>-->
 
 
 		<h1 class="ContentSection-title">Álbuns desabilitados</h1>
-		<div id="disabled-albums" class="Gallery AlbumsGallery">
-
-			<!--<div class="EditorAlbum is-disabled">-->
-
-				<!--<div class="EditorAlbum-background" style="background-image: url('https://scontent.xx.fbcdn.net/v/t31.0-0/p600x600/20368996_1929509733975510_6919608120889740573_o.jpg?oh=015be32f605fd90145511454d4fd9c52&oe=5A024C8A');">-->
-
-					<!--<div class="EditorAlbum-overlay marrom-couro&#45;&#45;darkest"></div>-->
-
-				<!--</div>-->
-
-				<!--<div class="EditorAlbumContent">-->
-
-					<!--<div class="EditorAlbumInfo">-->
-
-						<!--<input class="EditorAlbumInfo-date" type="text" placeholder="DD/MM/AAAA" onclick="this.select();">-->
-						<!--<textarea class="EditorAlbumInfo-title" rows="3">Título</textarea>-->
-
-					<!--</div>-->
-
-					<!--<div class="EditorAlbumAction">-->
-
-						<!--<a href="#" target="_blank" class="Btn Btn&#45;&#45;narrow Btn&#45;&#45;filled">Ver álbum</a>-->
-						<!--<button class="Btn Btn&#45;&#45;narrow Btn&#45;&#45;filled Btn&#45;&#45;turnon">Habilitar</button>-->
-
-					<!--</div>-->
-
-				<!--</div>-->
-
-			<!--</div>-->
-
-		</div>
-
-
-
-
-
+		<div id="disabled-albums" class="Gallery AlbumsGallery"></div>
 
 
 		<h1 class="ContentSection-title">Álbuns habilitados</h1>
-		<div id="enabled-albums" class="Gallery AlbumsGallery">
-
-			<!--<div class="EditorAlbum">-->
-
-				<!--<div class="EditorAlbum-background" style="background-image: url('https://scontent.xx.fbcdn.net/v/t31.0-0/p600x600/20368996_1929509733975510_6919608120889740573_o.jpg?oh=015be32f605fd90145511454d4fd9c52&oe=5A024C8A');">-->
-
-					<!--<div class="EditorAlbum-overlay marrom-couro&#45;&#45;darkest"></div>-->
-
-				<!--</div>-->
-
-				<!--<div class="EditorAlbumContent">-->
-
-					<!--<div class="EditorAlbumInfo">-->
-
-						<!--<input class="EditorAlbumInfo-date" type="text" placeholder="DD/MM/AAAA" onclick="this.select();">-->
-						<!--<textarea class="EditorAlbumInfo-title" rows="3">Título</textarea>-->
-
-					<!--</div>-->
-
-					<!--<div class="EditorAlbumAction">-->
-
-						<!--<a href="#" target="_blank" class="Btn Btn&#45;&#45;narrow Btn&#45;&#45;filled">Ver álbum</a>-->
-						<!--<button class="Btn Btn&#45;&#45;narrow Btn&#45;&#45;filled Btn&#45;&#45;turnoff">Desabilitar</button>-->
-
-					<!--</div>-->
-
-				<!--</div>-->
-
-			<!--</div>-->
-
-		</div>
+		<div id="enabled-albums" class="Gallery AlbumsGallery"></div>
 
 	</div>
 
 </section>
 
-<script src="../../dist/js/jessejamespub.min.js"></script>
+<script src="/dist/js/axios.min.js"></script>
+<script src="/dist/js/jessejamespub.min.js"></script>
 
 <script>
 
-	var logo = new SvgAppend(document.getElementById('logo'), '../../dist/img/svg/logo-ourinhos.svg', false);
-
-	window.addEventListener('load', function () {
-
-//		var btnMenu = document.getElementById('sidebar-toggle');
-//		btnMenu.addEventListener('click', function() {
-//			var sidebar = document.getElementById('sidebar');
-//			sidebar.classList.toggle('is-hide');
-//			this.classList.toggle('is-open');
-//		});
-
-		var btnRebase = document.getElementById('gallery-rebase');
-		btnRebase.addEventListener('click', function() {
-			rebaseDatabase();
-		});
-
-		var btnUpdate = document.getElementById('gallery-update');
-		btnUpdate.addEventListener('click', function() {
-			updateDatabase();
-		});
-
-//		if (window.innerWidth > 768) {
-//			document.getElementById('sidebar').classList.toggle('is-hide');
-//			document.getElementById('sidebar-toggle').classList.toggle('is-open');
-//		}
-
-		 galleryInit();
-
-	});
-
-</script>
-
-<script src="../../dist/js/axios.min.js"></script>
-<script src="https://www.gstatic.com/firebasejs/4.1.3/firebase.js"></script>
-
-<script>
-
-	var config = {
-		apiKey: "AIzaSyAMTCtuJ2DyPiBx5qBHeDg_OU1KW4UzURY",
-		authDomain: "jessejamespub-com-br.firebaseapp.com",
-		databaseURL: "https://jessejamespub-com-br.firebaseio.com",
-		projectId: "jessejamespub-com-br",
-		messagingSenderId: "118227352953"
-	};
-	firebase.initializeApp(config);
+	var logo = new SvgAppend(document.getElementById('logo'), '/dist/img/svg/logo-' + pub_config.CITY + '.svg', false);
 
 	var databaseRef = firebase.database().ref('/');
-	var houseRef = databaseRef.child('ourinhos');
+	var houseRef = databaseRef.child(pub_config.CITY);
 	var galleryRef = houseRef.child('gallery');
 	var enabledRef = galleryRef.child('enabledAlbums');
 	var disabledRef = galleryRef.child('disabledAlbums');
-
-</script>
-
-<script>
-
-	var franchise_config = {
-		CITY: 'ourinhos',
-		PAGE_ID: 418573041848314,
-		APP_TOKEN: '1503099946449554|15VNIZhrGxhpkXDF-6CTQF1B_AE'
-	};
 
 	var saveNewAsDisabled = false;
 	var initialLoadComplete = false;
@@ -747,6 +601,43 @@
 	var total_of_albums = 0;
 	var batch_list = [];
 
+	window.addEventListener('load', function () {
+
+		var btnRebase = document.getElementById('gallery-rebase');
+		btnRebase.addEventListener('click', function() {
+			rebaseDatabase();
+		});
+
+		var btnUpdate = document.getElementById('gallery-update');
+		btnUpdate.addEventListener('click', function() {
+			updateDatabase();
+		});
+
+		locate_pub();
+		galleryInit();
+
+	});
+
+	function locate_pub() {
+
+		document.title = document.title + ' ' + pub_config.CITY_DISPlAY;
+
+		var urlPrepend = document.querySelectorAll('.pubInfo-urlPrepend');
+		for (var a = 0; a < urlPrepend.length; a++) {
+			urlPrepend[a].href = '/' + pub_config.CITY + urlPrepend[a].getAttribute("href");
+		}
+
+		var fullName = document.querySelectorAll('.pubInfo-fullName');
+		for (var b = 0; b < fullName.length; b++) {
+			fullName[b].textContent = pub_config.PUB_FULLNAME;
+		}
+
+		var cityDisplay = document.querySelectorAll('.pubInfo-cityDisplay');
+		for (var c = 0; c < cityDisplay.length; c++) {
+			cityDisplay[c].textContent = pub_config.CITY_DISPlAY;
+		}
+
+	}
 
 	/**
 	 * Initialize the gallery behavior, listing all persisted albums at the database ref to the
@@ -765,8 +656,7 @@
 
 					database_albums.push(grandChildSnapshot.val());
 
-					var nodeParentPath = grandChildSnapshot.ref.parent.path.o;
-					var nodeParentText = nodeParentPath[nodeParentPath.length -1];
+					var nodeParentText = grandChildSnapshot.ref.parent.key;
 
 					if (nodeParentText == "enabledAlbums") {
 
@@ -786,7 +676,7 @@
 
 		}).then(function() {
 
-			getAllAlbumsFromPageFirstBite(franchise_config.PAGE_ID, franchise_config.APP_TOKEN);
+			getAllAlbumsFromPageFirstBite(pub_config.PAGE_ID, pub_config.APP_TOKEN);
 
 		}, function(error) {
 			console.error(error);
@@ -831,13 +721,13 @@
 
 			} else {
 
-				document.getElementById('albums-gallery').innerHTML = '<pre><code>' + JSON.stringify(response.data, undefined, 2) +'</code></pre>';
+				document.getElementById('gallery-error').innerHTML = '<pre><code>' + JSON.stringify(response.data, undefined, 2) +'</code></pre>';
 
 			}
 
 		}).catch(function (err) {
 
-			document.getElementById('albums-gallery').innerHTML = '<span style="color: red;">' + err.message + '</span>';
+			document.getElementById('gallery-error').innerHTML = '<span style="color: red;">' + err.message + '</span>';
 			console.log(err);
 
 		});
@@ -865,7 +755,7 @@
 
 				if (next) {
 
-					getAllAlbumsFromPageNextBite(response.data.albums.paging.next);
+					getAllAlbumsFromPageNextBite(next);
 
 				} else {
 
@@ -875,13 +765,13 @@
 
 			} else {
 
-				document.getElementById('albums-gallery').innerHTML += '<pre><code>' + JSON.stringify(response.data, undefined, 2) +'</code></pre>';
+				document.getElementById('gallery-error').innerHTML += '<pre><code>' + JSON.stringify(response.data, undefined, 2) +'</code></pre>';
 
 			}
 
 		}).catch(function (err) {
 
-			document.getElementById('albums-gallery').innerHTML = '<span style="color: red;">' + err.message + '</span>';
+			document.getElementById('gallery-error').innerHTML = '<span style="color: red;">' + err.message + '</span>';
 			console.log(err);
 
 		});
@@ -905,7 +795,7 @@
 
 	function transformDataToDatabaseFormat(received_albums) {
 
-		var albums = received_albums;		
+		var albums = received_albums;
 		var parsed_albums = [];
 
 		// look for dates as 01/01/2017, 01.01.2017, 01-01-2017, 01 01 2017 (with year as two digits included)
@@ -1041,10 +931,10 @@
 			if(confirm(msg)) {
 
 				msg = "Reiniciar os álbuns sobrescreve as modificações salvas anteriormente. ";
-				msg += "Digite '" + franchise_config.CITY + "' e confirme para continuar.";
+				msg += "Digite '" + pub_config.CITY + "' e confirme para continuar.";
 				var confirmation = prompt(msg);
 
-				if(confirmation == franchise_config.CITY) {
+				if(confirmation == pub_config.CITY) {
 
 					if(saveAndOverrideAlbums(page_albums)) {
 
@@ -1114,7 +1004,7 @@
 	}
 
 	function compareAndUpdateAlbums(albumsCurrent, albums) {
-		
+
 		for (var s = 0; s < albumsCurrent.length; s++) {
 
 			if (albumsCurrent[s].type != "modified") {
@@ -1154,10 +1044,10 @@
 			if(confirm(msg)) {
 
 				msg = "Atualizar os álbuns modifica apenas os álbuns que não tiveram a data ou título alteradas por meio do gerenciador. ";
-				msg += "Digite '" + franchise_config.CITY + "' e confirme para continuar.";
+				msg += "Digite '" + pub_config.CITY + "' e confirme para continuar.";
 				var confirmation = prompt(msg);
 
-				if(confirmation == franchise_config.CITY) {
+				if(confirmation == pub_config.CITY) {
 
 					if(compareAndUpdateAlbums(database_albums, page_albums)) {
 
@@ -1251,7 +1141,7 @@
 		var albumRef = {};
 
 		for (var i = 0; i < page_albums.length; i++) {
-			
+
 			if (searchAlbumIndex(page_albums[i].fb_id, database_albums) == -1) {
 
 				if (saveNewAsDisabled) {
@@ -1283,8 +1173,13 @@
 
 			if (page_albums.length > database_albums.length) {
 				var msg = document.getElementById('gallery-messages');
+				msg.classList.add('is-updated');
 				msg.innerHTML = '<h1 class="ContentSection-title">Novos álbuns adicionados na página!</h1>';
-				msg.innerHTML += '<p>Habilite os álbuns que foram adicionados recentemente para que se tornem visíveis no site.</p>';
+				if (saveNewAsDisabled) {
+					msg.innerHTML += '<p><strong>Habilite os álbuns que foram adicionados recentemente para que se tornem visíveis no site.</strong></p>';
+				} else {
+					msg.innerHTML += '<p><strong>Os álbuns que foram adicionados recentemente foram habilitados automaticamente. Para que não sejam exibidos no site, desabilite-os abaixo.</strong></strong></p>';
+				}
 
 				syncPageAndDatabaseAlbums();
 			}
