@@ -83,12 +83,16 @@ form.sendRequest = function(requestData) {
 			if (xhr.readyState == 4) {
 
 				if (xhr.status == 200) {
-					// var result = JSON.parse(xhr.responseText);
-					// console.log(xhr.responseText);
-					// console.log(result);
-					form.changeState('is-success');
+
+					var result = JSON.parse(xhr.responseText);
+
+					if (result.sent)
+						form.changeState('is-success');
+					else
+						form.changeState('is-fail');
+
 				} else {
-					form.changeState('is-error');
+					form.changeState('is-fail');
 				}
 
 			}
